@@ -18,5 +18,6 @@ namespace Geonorge.Kartografi.Models
         public DbSet<CartographyFile> CartographyFiles { get; set; }
         public DbSet<Symbol> Symbols { get; set; }
 
+        public System.Data.Entity.DbSet<Geonorge.Kartografi.Models.SymbolFile> SymbolFiles { get; set; }
     }
 }

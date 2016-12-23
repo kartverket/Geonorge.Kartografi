@@ -1,0 +1,155 @@
+﻿@model IEnumerable<Geonorge.Kartografi.Models.CartographyFile>
+@section breadcrumb {
+    <li>Digital kartografi</li>
+}
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerOrganization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Format)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Use)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatasetUuid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatasetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceUuid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreviewImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VersionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateChanged)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAccepted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcceptedComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficialStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Properties)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Theme)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerOrganization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Format)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Use)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatasetUuid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatasetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceUuid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreviewImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VersionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateChanged)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAccepted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcceptedComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficialStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Properties)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Theme)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
