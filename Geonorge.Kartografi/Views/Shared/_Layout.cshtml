@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@UI.AppPageTitle</title>
     <!-- Stylesheets -->
     @Styles.Render("~/Content/bower_components/kartverket-felleskomponenter/assets/css/styles")
 
@@ -55,7 +55,7 @@
         <div class="container container-breadcrumbs" id="navTabCont">
             <ul class="breadcrumbs col-md-12">
                 <li><a href="@Html.GeonorgeUrl()">Geonorge</a></li>
-                <li><a href="/">Kartografi</a></li>
+                <li><a href="@Html.RegistryUrl()">Registrene</a></li>
                 @RenderSection("breadcrumb", false)
             </ul>
         </div>
