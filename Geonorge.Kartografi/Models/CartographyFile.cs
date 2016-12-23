@@ -47,6 +47,9 @@ namespace Geonorge.Kartografi.Models
         /// <summary>Et lite bilde som viser hvilke symboler som benyttes med beskrivende tekst.</summary>
         public string PreviewImage { get; set; }
 
+        /// <summary>Tallverdi for hvilken versjon av filen det er snakk om. Autogenereres.</summary>
+        public int VersionId { get; set; }
+
         /// <summary>Dato for når filen/informasjonen i registeret sist ble endret.</summary>
         public DateTime DateChanged { get; set; }
 
