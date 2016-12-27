@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using Geonorge.Kartografi.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +18,8 @@ namespace Geonorge.Kartografi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            DependencyConfig.Configure(new ContainerBuilder());
         }
     }
 }
