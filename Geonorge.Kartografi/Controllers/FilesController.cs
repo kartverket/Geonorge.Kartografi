@@ -9,12 +9,10 @@ namespace Geonorge.Kartografi.Controllers
 {
     public class FilesController : Controller
     {
-        private readonly CartographyDbContext _dbContext;
         ICartographyService _cartographyService;
 
-        public FilesController(CartographyDbContext dbContext, ICartographyService cartographyService)
+        public FilesController(ICartographyService cartographyService)
         {
-            _dbContext = dbContext;
             _cartographyService = cartographyService;
         }
 
@@ -30,6 +28,22 @@ namespace Geonorge.Kartografi.Controllers
             return View();
         }
 
+        // GET: Files/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
+            if (cartographyFile == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cartographyFile);
+        }
+
+
         // POST: Files/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -39,8 +53,7 @@ namespace Geonorge.Kartografi.Controllers
         {
             if (ModelState.IsValid)
             {
-                _dbContext.CartographyFiles.Add(cartographyFile);
-                _dbContext.SaveChanges();
+                _cartographyService.AddCartography(cartographyFile);
                 return RedirectToAction("Index");
             }
 
@@ -54,7 +67,7 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CartographyFile cartographyFile = _dbContext.CartographyFiles.Find(id);
+            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
             if (cartographyFile == null)
             {
                 return HttpNotFound();
@@ -71,8 +84,7 @@ namespace Geonorge.Kartografi.Controllers
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Entry(cartographyFile).State = EntityState.Modified;
-                _dbContext.SaveChanges();
+                _cartographyService.UpdateCartography(cartographyFile);
                 return RedirectToAction("Index");
             }
             return View(cartographyFile);
@@ -85,7 +97,7 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CartographyFile cartographyFile = _dbContext.CartographyFiles.Find(id);
+            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
             if (cartographyFile == null)
             {
                 return HttpNotFound();
@@ -98,19 +110,9 @@ namespace Geonorge.Kartografi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CartographyFile cartographyFile = _dbContext.CartographyFiles.Find(id);
-            _dbContext.CartographyFiles.Remove(cartographyFile);
-            _dbContext.SaveChanges();
+            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
+            _cartographyService.RemoveCartography(cartographyFile);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _dbContext.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

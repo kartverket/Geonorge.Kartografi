@@ -362,6 +362,7 @@
     <Content Include="Views\Symbols\Details.cshtml" />
     <Content Include="Views\Symbols\Edit.cshtml" />
     <Content Include="Views\Symbols\Index.cshtml" />
+    <Content Include="Views\Files\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
