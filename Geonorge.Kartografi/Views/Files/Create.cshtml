@@ -1,10 +1,14 @@
 ﻿@model Geonorge.Kartografi.Models.CartographyFile
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Ny tegneregel";
 }
 
-<h2>Create</h2>
+@section breadcrumb {
+    <li><a href="~/Files/">Digital kartografi og symboler</a></li>
+}
+
+<h2>Ny tegneregel</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,8 +16,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CartographyFile</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -183,14 +185,12 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+        <div class="clearfix"></div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/Files/">Tilbake</a>
+            <input type="submit" value="Ny" style="margin-left: 15px;" class="btn btn-default pull-right" />
+
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

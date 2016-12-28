@@ -5,6 +5,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Geonorge.Kartografi.Models;
+using Geonorge.Kartografi.Services;
 
 namespace Geonorge.Kartografi.App_Start
 {
@@ -24,7 +25,7 @@ namespace Geonorge.Kartografi.App_Start
         private static void ConfigureApplicationDependencies(ContainerBuilder builder)
         {
             builder.RegisterType<CartographyDbContext>().InstancePerRequest().AsSelf();
-            
+            builder.RegisterType<CartographyService>().As<ICartographyService>();
         }
 
         private static void SetupAspMvcDependencyResolver(IContainer container)

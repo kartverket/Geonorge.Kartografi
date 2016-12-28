@@ -3,37 +3,25 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Geonorge.Kartografi.Models;
+using Geonorge.Kartografi.Services;
 
 namespace Geonorge.Kartografi.Controllers
 {
     public class FilesController : Controller
     {
         private readonly CartographyDbContext _dbContext;
+        ICartographyService _cartographyService;
 
-        public FilesController(CartographyDbContext dbContext)
+        public FilesController(CartographyDbContext dbContext, ICartographyService cartographyService)
         {
             _dbContext = dbContext;
+            _cartographyService = cartographyService;
         }
 
         // GET: Files
         public ActionResult Index()
         {
-            return View(_dbContext.CartographyFiles.ToList());
-        }
-
-        // GET: Files/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CartographyFile cartographyFile = _dbContext.CartographyFiles.Find(id);
-            if (cartographyFile == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cartographyFile);
+            return View(_cartographyService.GetCartography());
         }
 
         // GET: Files/Create

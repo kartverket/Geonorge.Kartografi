@@ -6,150 +6,73 @@
     ViewBag.Title = "Digital kartografi";
 }
 
-<h2>Digital kartografi</h2>
+<section class="heading">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>
+                Digital kartografi
+            </h1>
+        </div>
+        <div class="col-sm-12">
+            <span class="separator-lg"></span>
+        </div>
+    </div>
+</section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OwnerOrganization)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OwnerPerson)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastEditedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FileName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Format)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Use)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatasetUuid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatasetName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ServiceUuid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ServiceName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreviewImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VersionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateChanged)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateAccepted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AcceptedComment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OfficialStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Properties)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Theme)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OwnerOrganization)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OwnerPerson)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastEditedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Format)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Use)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatasetUuid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatasetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceUuid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreviewImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VersionId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateChanged)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateAccepted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AcceptedComment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OfficialStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Properties)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Theme)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
+        Inneholder datasett som har registrert digital kartografi
+    </div>
 
-</table>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div id="tableView" class="search-results">
+            <div class="row search-results-table-heading">
+                <div class="col-sm-3"><p>@Html.DisplayNameFor(model => model.DatasetName)</p></div>
+                <div class="col-sm-3"><p>@Html.DisplayNameFor(model => model.Name)</p></div>
+                <div class="col-sm-2"><p>@Html.DisplayNameFor(model => model.Theme)</p></div>
+                <div class="col-sm-2"><p>@Html.DisplayNameFor(model => model.OwnerOrganization)</p></div>
+                <div class="col-sm-1"><p>@Html.DisplayNameFor(model => model.OfficialStatus)</p></div>
+                <div class="col-sm-1"><p>@Html.DisplayNameFor(model => model.Format)</p></div>
+            </div>
+            <div class="menu-separator search-results-table-heading"></div>
+            @foreach (var item in Model)
+            {
+                <div class="row result-row metadata">
+
+                    <div class="col-sm-3">
+                        @Html.DisplayFor(modelItem => item.DatasetName)
+                    </div>
+
+                    <div class="col-sm-3">
+                        @Html.ActionLink(item.Name, "Edit", new { id = item.Id })
+                    </div>
+
+                    <div class="col-sm-2">
+                        @Html.DisplayFor(modelItem => item.Theme)
+                    </div>
+
+                    <div class="col-sm-2">
+                        @Html.DisplayFor(modelItem => item.OwnerOrganization)
+                    </div>
+
+                    <div class="col-sm-1">
+                        @Html.DisplayFor(modelItem => item.OfficialStatus)
+                    </div>
+
+                    <div class="col-sm-1">
+                        @Html.DisplayFor(modelItem => item.Format)
+                    </div>
+                </div>
+                <hr />
+             }
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="/">Tilbake</a>
+        <a class="btn btn-default btn-space pull-right" href="Create">Legg til</a>
+
+    </div>
+</div>
