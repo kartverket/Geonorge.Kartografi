@@ -12,7 +12,7 @@ namespace Geonorge.Kartografi.Controllers
 {
     public class SymbolsController : Controller
     {
-        private KartografiDbContext db = new KartografiDbContext();
+        private CartographyDbContext db = new CartographyDbContext();
 
         // GET: Symbols
         public ActionResult Index()

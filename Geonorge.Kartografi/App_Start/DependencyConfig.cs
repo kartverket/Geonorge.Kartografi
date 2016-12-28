@@ -23,7 +23,7 @@ namespace Geonorge.Kartografi.App_Start
 
         private static void ConfigureApplicationDependencies(ContainerBuilder builder)
         {
-            builder.RegisterType<KartografiDbContext>().InstancePerRequest().AsSelf();
+            builder.RegisterType<CartographyDbContext>().InstancePerRequest().AsSelf();
             
         }
 

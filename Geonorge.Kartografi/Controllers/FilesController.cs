@@ -8,9 +8,9 @@ namespace Geonorge.Kartografi.Controllers
 {
     public class FilesController : Controller
     {
-        private readonly KartografiDbContext _dbContext;
+        private readonly CartographyDbContext _dbContext;
 
-        public FilesController(KartografiDbContext dbContext)
+        public FilesController(CartographyDbContext dbContext)
         {
             _dbContext = dbContext;
         }

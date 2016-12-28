@@ -7,12 +7,12 @@ using Geonorge.Kartografi.Models;
 
 namespace Geonorge.Kartografi.Models
 {
-    public class KartografiDbContext : DbContext
+    public class CartographyDbContext : DbContext
     {
-        public KartografiDbContext() : base("KartografiDbContext")
+        public CartographyDbContext() : base("KartografiDbContext")
         {
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<KartografiDbContext, Geonorge.Kartografi.Migrations.Configuration>("KartografiDbContext"));
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<CartographyDbContext, Geonorge.Kartografi.Migrations.Configuration>("KartografiDbContext"));
         }
 
         public DbSet<CartographyFile> CartographyFiles { get; set; }

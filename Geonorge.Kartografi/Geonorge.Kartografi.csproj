@@ -163,7 +163,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartographyFile.cs" />
-    <Compile Include="Models\KartografiDbContext.cs" />
+    <Compile Include="Models\CartographyDbContext.cs" />
     <Compile Include="Models\Symbol.cs" />
     <Compile Include="Models\SymbolFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
