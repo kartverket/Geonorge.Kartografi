@@ -15,7 +15,7 @@ namespace Geonorge.Kartografi.Models
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<CartographyDbContext, Geonorge.Kartografi.Migrations.Configuration>("KartografiDbContext"));
         }
 
-        public DbSet<CartographyFile> CartographyFiles { get; set; }
+        public virtual DbSet<CartographyFile> CartographyFiles { get; set; }
         public DbSet<Symbol> Symbols { get; set; }
 
         public System.Data.Entity.DbSet<Geonorge.Kartografi.Models.SymbolFile> SymbolFiles { get; set; }
