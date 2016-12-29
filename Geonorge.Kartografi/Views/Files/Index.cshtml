@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="col-sm-3">
-                        @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                        @Html.ActionLink(item.Name ?? "->", "Details", new { id = item.Id })
                     </div>
 
                     <div class="col-sm-2">
