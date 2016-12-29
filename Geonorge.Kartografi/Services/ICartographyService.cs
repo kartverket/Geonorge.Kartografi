@@ -9,7 +9,7 @@ namespace Geonorge.Kartografi.Services
     public interface ICartographyService
     {
         List<CartographyFile> GetCartography();
-        CartographyFile GetCartography(int? id);
+        CartographyFile GetCartography(Guid? SystemId);
         void AddCartography(CartographyFile cartographyFile);
         void UpdateCartography(CartographyFile cartographyFile);
         void RemoveCartography(CartographyFile cartographyFile);

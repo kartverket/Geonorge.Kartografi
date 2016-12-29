@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,9 +9,12 @@ namespace Geonorge.Kartografi.Models
 {
     public class CartographyFile
     {
-        public int Id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid SystemId { get; set; }
         /// <summary> Navn* på kartografiregel/stil. For eksempel «N50 stier og løyper».</summary>
         [Display(Name = "Tegneregelnavn")]
+        [Required]
         public string Name { get; set; }
 
         /// <summary> Beskrivelse av både hva og hvordan filen uthever informasjon i datasettet.</summary>

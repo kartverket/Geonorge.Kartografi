@@ -32,13 +32,13 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Files/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(Guid? SystemId)
         {
-            if (id == null)
+            if (SystemId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
+            CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
             if (cartographyFile == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace Geonorge.Kartografi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile)
+        public ActionResult Create([Bind(Include = "SystemId,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
@@ -67,22 +67,27 @@ namespace Geonorge.Kartografi.Controllers
 
         private string SaveFile(HttpPostedFileBase file)
         {
-            string fileName = file.FileName;
-            string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/files");
-            string targetPath = Path.Combine(targetFolder, fileName);
-            file.SaveAs(targetPath);
+            string fileName = null;
+
+            if(file != null)
+            { 
+                fileName = file.FileName;
+                string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/files");
+                string targetPath = Path.Combine(targetFolder, fileName);
+                file.SaveAs(targetPath);
+            }
 
             return fileName;
         }
 
         // GET: Files/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(Guid SystemId)
         {
-            if (id == null)
+            if (SystemId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
+            CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
             if (cartographyFile == null)
             {
                 return HttpNotFound();
@@ -95,7 +100,7 @@ namespace Geonorge.Kartografi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,FileName,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,PreviewImage,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile)
+        public ActionResult Edit([Bind(Include = "SystemId,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,FileName,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,PreviewImage,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile)
         {
             if (ModelState.IsValid)
             {
@@ -106,13 +111,13 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Files/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(Guid? SystemId)
         {
-            if (id == null)
+            if (SystemId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
+            CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
             if (cartographyFile == null)
             {
                 return HttpNotFound();
@@ -123,9 +128,9 @@ namespace Geonorge.Kartografi.Controllers
         // POST: Files/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid SystemId)
         {
-            CartographyFile cartographyFile = _cartographyService.GetCartography(id);
+            CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
             _cartographyService.RemoveCartography(cartographyFile);
             return RedirectToAction("Index");
         }

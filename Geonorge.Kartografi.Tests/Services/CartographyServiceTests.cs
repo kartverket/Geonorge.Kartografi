@@ -20,7 +20,7 @@ namespace Geonorge.Kartografi.Tests
             mockContext.Setup(m => m.CartographyFiles).Returns(mockSet.Object);
 
             var service = new CartographyService(mockContext.Object);
-            service.AddCartography( new CartographyFile { Id = 1, Name = "Test" });
+            service.AddCartography( new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0cef"), Name = "Test" });
 
             mockSet.Verify(m => m.Add(It.IsAny<CartographyFile>()), Times.Once());
             mockContext.Verify(m => m.CartographyFiles, Times.Once());
@@ -31,9 +31,9 @@ namespace Geonorge.Kartografi.Tests
         {
             var data = new List<CartographyFile>
             {
-                new CartographyFile { Id = 1,  Name = "BBB" },
-                new CartographyFile { Id = 2,  Name = "ZZZ" },
-                new CartographyFile { Id = 3, Name = "AAA" },
+                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0fff"),  Name = "BBB" },
+                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0bff"),  Name = "ZZZ" },
+                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0aff"), Name = "AAA" },
             }.AsQueryable();
 
             var mockSet = new Mock<DbSet<CartographyFile>>();

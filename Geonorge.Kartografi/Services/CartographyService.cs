@@ -21,9 +21,9 @@ namespace Geonorge.Kartografi.Services
             return _dbContext.CartographyFiles.ToList();
         }
 
-        public CartographyFile GetCartography(int? id)
+        public CartographyFile GetCartography(Guid? SystemId)
         {
-            return _dbContext.CartographyFiles.Find(id);
+            return _dbContext.CartographyFiles.Find(SystemId);
         }
 
         public void AddCartography(CartographyFile cartographyFile)
