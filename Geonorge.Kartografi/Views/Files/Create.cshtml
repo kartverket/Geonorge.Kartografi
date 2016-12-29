@@ -8,15 +8,51 @@
     <li><a href="~/tegneregler/">Digital kartografi og symboler</a></li>
 }
 
-<h2>Ny tegneregel</h2>
+<section class="heading">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>
+                Legg til digital kartografi
+            </h1>
+        </div>
+        <div class="col-sm-12">
+            <span class="separator-lg"></span>
+        </div>
+    </div>
+</section>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DatasetUuid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatasetName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DatasetName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -30,6 +66,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Format, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Format, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Format, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -58,18 +102,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Format, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Format, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Format, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.OfficialStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OfficialStatus, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -82,18 +118,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DatasetUuid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
+                <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DatasetName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DatasetName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
+                <input type="file" id="uploadFile" name="uploadFile" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Properties, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -113,13 +155,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PreviewImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PreviewImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <hr />
 
         <div class="form-group">
             @Html.LabelFor(model => model.VersionId, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -161,35 +197,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OfficialStatus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OfficialStatus, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Properties, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="clearfix"></div>
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
             <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/">Tilbake</a>
-            <input type="submit" value="Ny" style="margin-left: 15px;" class="btn btn-default pull-right" />
+            <input type="submit" value="Foreslå ny" style="margin-left: 15px;" class="btn btn-default pull-right" />
 
         </div>
     </div>

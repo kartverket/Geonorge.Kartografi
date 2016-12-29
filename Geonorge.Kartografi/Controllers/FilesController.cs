@@ -4,6 +4,9 @@ using System.Net;
 using System.Web.Mvc;
 using Geonorge.Kartografi.Models;
 using Geonorge.Kartografi.Services;
+using System.Web;
+using System;
+using System.IO;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -49,15 +52,27 @@ namespace Geonorge.Kartografi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,FileName,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,PreviewImage,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
+                cartographyFile.PreviewImage = SaveFile(uploadPreviewImage);
+                cartographyFile.FileName = SaveFile(uploadFile);
                 _cartographyService.AddCartography(cartographyFile);
                 return RedirectToAction("Index");
             }
 
             return View(cartographyFile);
+        }
+
+        private string SaveFile(HttpPostedFileBase file)
+        {
+            string fileName = file.FileName;
+            string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/files");
+            string targetPath = Path.Combine(targetFolder, fileName);
+            file.SaveAs(targetPath);
+
+            return fileName;
         }
 
         // GET: Files/Edit/5
