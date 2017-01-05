@@ -19,7 +19,8 @@ namespace Geonorge.Kartografi.Tests
             var mockContext = new Mock<CartographyDbContext>();
             mockContext.Setup(m => m.CartographyFiles).Returns(mockSet.Object);
 
-            var service = new CartographyService(mockContext.Object);
+            var versioning = new Mock<VersioningService>(mockContext.Object);
+            var service = new CartographyService(mockContext.Object, versioning.Object);
             service.AddCartography( new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0cef"), Name = "Test" });
 
             mockSet.Verify(m => m.Add(It.IsAny<CartographyFile>()), Times.Once());
@@ -31,9 +32,9 @@ namespace Geonorge.Kartografi.Tests
         {
             var data = new List<CartographyFile>
             {
-                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0fff"),  Name = "BBB" },
-                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0bff"),  Name = "ZZZ" },
-                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0aff"), Name = "AAA" },
+                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0fff"),  Name = "BBB" , versioning = new Models.Version { CurrentVersion = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0fff") } },
+                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0bff"),  Name = "ZZZ", versioning = new Models.Version { CurrentVersion = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0bff") } },
+                new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0aff"), Name = "AAA", versioning = new Models.Version { CurrentVersion = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0aff") } },
             }.AsQueryable();
 
             var mockSet = new Mock<DbSet<CartographyFile>>();
@@ -45,7 +46,8 @@ namespace Geonorge.Kartografi.Tests
             var mockContext = new Mock<CartographyDbContext>();
             mockContext.Setup(c => c.CartographyFiles).Returns(mockSet.Object);
 
-            var service = new CartographyService(mockContext.Object);
+            var versioning = new Mock<VersioningService>(mockContext.Object);
+            var service = new CartographyService(mockContext.Object, versioning.Object);
             var files = service.GetCartography();
 
             Assert.Equal(3, files.Count);

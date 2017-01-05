@@ -11,7 +11,9 @@ namespace Geonorge.Kartografi.Services
         List<CartographyFile> GetCartography();
         CartographyFile GetCartography(Guid? SystemId);
         void AddCartography(CartographyFile cartographyFile);
+        void AddCartographyVersion(CartographyFile cartographyFile);
         void UpdateCartography(CartographyFile cartographyFile);
         void RemoveCartography(CartographyFile cartographyFile);
+        VersionsItem Versions(Guid? SystemId);
     }
 }

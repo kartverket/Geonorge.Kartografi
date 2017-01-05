@@ -26,6 +26,7 @@ namespace Geonorge.Kartografi.App_Start
         {
             builder.RegisterType<CartographyDbContext>().InstancePerRequest().AsSelf();
             builder.RegisterType<CartographyService>().As<ICartographyService>();
+            builder.RegisterType<VersioningService>().As<IVersioningService>();
         }
 
         private static void SetupAspMvcDependencyResolver(IContainer container)

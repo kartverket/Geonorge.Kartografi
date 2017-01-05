@@ -38,7 +38,7 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
+            VersionsItem cartographyFile = _cartographyService.Versions(SystemId);
             if (cartographyFile == null)
             {
                 return HttpNotFound();
@@ -81,7 +81,7 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Files/Edit/5
-        public ActionResult Edit(Guid SystemId)
+        public ActionResult Edit(Guid SystemId, bool newversion = false)
         {
             if (SystemId == null)
             {
@@ -92,19 +92,24 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.newversion = newversion;
+
             return View(cartographyFile);
         }
 
         // POST: Files/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SystemId,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,FileName,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,PreviewImage,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile)
+        public ActionResult Edit(CartographyFile cartographyFile, bool newversion = false)
         {
             if (ModelState.IsValid)
             {
-                _cartographyService.UpdateCartography(cartographyFile);
+                if(newversion)
+                    _cartographyService.AddCartographyVersion(cartographyFile);
+                else
+                    _cartographyService.UpdateCartography(cartographyFile);
+
                 return RedirectToAction("Index");
             }
             return View(cartographyFile);

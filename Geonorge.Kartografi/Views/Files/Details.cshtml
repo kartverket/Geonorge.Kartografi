@@ -1,21 +1,23 @@
-﻿﻿@model Geonorge.Kartografi.Models.CartographyFile
+﻿﻿@model Geonorge.Kartografi.Models.VersionsItem
 
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = Model.CurrentVersion.Name;
 }
 
 @section breadcrumb {
     <li><a href="~/tegneregler/">Digital kartografi og symboler</a></li>
-    <li>@Model.Name</li>
+    <li>@Model.CurrentVersion.Name</li>
 }
 
-<h2>@Model.Name</h2>
+<h2>@Model.CurrentVersion.Name</h2>
 
-<a href="~/files/@Model.FileName" class="btn" target="_blank">
+<a href="~/files/@Model.CurrentVersion.FileName" class="btn" target="_blank">
     <span class="glyphicon glyphicon-download-alt"> </span>Last ned
 </a><br />
-<img src="~/files/@Model.PreviewImage" />
+<img src="~/files/@Model.CurrentVersion.PreviewImage" />
 <br />
-<a class="btn btn-default btn-space pull-right" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.SystemId">Slett</a>
+<a class="btn btn-default btn-space" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>
 
-<a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.SystemId">Rediger</a>
+<a class="btn btn-default btn-space" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId">Rediger</a>
+
+<a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId?newversion=true">Foreslå ny versjon</a>

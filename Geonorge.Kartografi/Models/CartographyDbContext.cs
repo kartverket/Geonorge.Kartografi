@@ -16,5 +16,6 @@ namespace Geonorge.Kartografi.Models
         }
 
         public virtual DbSet<CartographyFile> CartographyFiles { get; set; }
+        public virtual DbSet<Version> Versions { get; set; }
     }
 }

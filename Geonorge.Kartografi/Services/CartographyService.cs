@@ -10,15 +10,17 @@ namespace Geonorge.Kartografi.Services
     public class CartographyService : ICartographyService
     {
         private readonly CartographyDbContext _dbContext;
+        private IVersioningService _versioningService;
 
-        public CartographyService(CartographyDbContext dbContext)
+        public CartographyService(CartographyDbContext dbContext, IVersioningService versioningService)
         {
             _dbContext = dbContext;
+            _versioningService = versioningService;
         }
 
         public List<CartographyFile> GetCartography()
         {
-            return _dbContext.CartographyFiles.ToList();
+            return _dbContext.CartographyFiles.Where(c => c.SystemId == c.versioning.CurrentVersion).ToList();
         }
 
         public CartographyFile GetCartography(Guid? SystemId)
@@ -28,8 +30,11 @@ namespace Geonorge.Kartografi.Services
 
         public void AddCartography(CartographyFile cartographyFile)
         {
+            cartographyFile.SystemId = Guid.NewGuid();
+            cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, null);
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
+
         }
 
         public void UpdateCartography(CartographyFile cartographyFile)
@@ -38,10 +43,25 @@ namespace Geonorge.Kartografi.Services
             _dbContext.SaveChanges();
         }
 
+        public void AddCartographyVersion(CartographyFile cartographyFile)
+        {
+            CartographyFile originalCartographyFile = GetCartography(cartographyFile.SystemId);
+            cartographyFile.SystemId = Guid.NewGuid();
+            cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, originalCartographyFile);
+            _dbContext.CartographyFiles.Add(cartographyFile);
+            _dbContext.SaveChanges();
+
+        }
+
         public void RemoveCartography(CartographyFile cartographyFile)
         {
             _dbContext.CartographyFiles.Remove(cartographyFile);
             _dbContext.SaveChanges();
+        }
+
+        public VersionsItem Versions(Guid? SystemId)
+        {
+            return _versioningService.Versions(SystemId);
         }
     }
 }

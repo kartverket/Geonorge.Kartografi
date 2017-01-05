@@ -10,7 +10,7 @@ namespace Geonorge.Kartografi.Models
     public class CartographyFile
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid SystemId { get; set; }
         /// <summary> Navn* på kartografiregel/stil. For eksempel «N50 stier og løyper».</summary>
         [Display(Name = "Tegneregelnavn")]
@@ -68,6 +68,10 @@ namespace Geonorge.Kartografi.Models
         /// <summary>Tallverdi for hvilken versjon av filen det er snakk om. Autogenereres.</summary>
         [Display(Name = "Versjon")]
         public int VersionId { get; set; }
+
+        [ForeignKey("versioning")]
+        public Guid versioningId { get; set; }
+        public virtual Version versioning { get; set; }
 
         /// <summary>Dato for når filen/informasjonen i registeret sist ble endret.</summary>
         [Display(Name = "Dato endret")]
