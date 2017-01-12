@@ -1,4 +1,5 @@
-﻿@model Geonorge.Kartografi.Models.CartographyFile
+﻿@using Geonorge.Kartografi.Helpers
+@model Geonorge.Kartografi.Models.CartographyFile
 
 @{
     ViewBag.Title = "Ny tegneregel";
@@ -34,13 +35,8 @@
                 <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"> </select>
                 @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.DatasetName)
+                @Html.HiddenFor(model => model.Theme)
                 @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,7 +52,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", cols = "", rows = "2" })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,8 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Format, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Format, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Format, "", new { @class = "text-danger" })
+                @Html.DropDownList("Format", ViewBag.Formats as SelectList, String.Empty, new { @class = "form-control" })
             </div>
         </div>
 
@@ -104,7 +99,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Use, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Use, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Use, new { @class = "form-control", cols = "", rows = "2" })
                 @Html.ValidationMessageFor(model => model.Use, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -126,7 +121,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Properties, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Properties, new { @class = "form-control", cols = "", rows = "2" })
                 @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -204,7 +199,7 @@
         placeholder: "Søk etter datasett",
         language: "nb",
         ajax: {
-            url: "http://kartkatalog.dev.geonorge.no/api/search",
+            url: "@Html.KartkatalogenUrl()api/search",
             dataType: 'json',
             delay: 250,
             data: function (params) {

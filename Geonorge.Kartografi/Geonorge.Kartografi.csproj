@@ -172,6 +172,7 @@
       <DependentUpon>UI.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\CartographyService.cs" />
+    <Compile Include="Services\CodeList.cs" />
     <Compile Include="Services\ICartographyService.cs" />
     <Compile Include="Services\IVersioningService.cs" />
     <Compile Include="Services\VersioningService.cs" />

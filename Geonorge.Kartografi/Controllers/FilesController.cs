@@ -28,6 +28,7 @@ namespace Geonorge.Kartografi.Controllers
         // GET: Files/Create
         public ActionResult Create()
         {
+            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             return View();
         }
 
