@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Ny tegneregel";
 }
-
 @section breadcrumb {
     <li><a href="~/tegneregler/">Digital kartografi og symboler</a></li>
 }
@@ -32,19 +31,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DatasetUuid, new { htmlAttributes = new { @class = "form-control" } })
+                <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"> </select>
                 @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DatasetName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DatasetName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.DatasetName)
                 @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -206,3 +198,54 @@
         </div>
     </div>
 }
+<script type="text/javascript">
+    var metadata = [];
+    $('.datasetUuidSelect').select2({
+        placeholder: "Søk etter datasett",
+        language: "nb",
+        ajax: {
+            url: "http://kartkatalog.dev.geonorge.no/api/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    text: params.term,// search term
+                    limit: 10,
+                    'facets[0]name' : "type",
+                    'facets[0]value' : "dataset"
+                };
+            },
+            processResults: function (data, params) {
+
+                metadata = [];
+                $.each(data.Results, function(i, item) {
+                    option = {}
+                    option["id"] = item.Uuid;
+                    option["text"] = item.Title;
+                    option["theme"] = item.Theme;
+
+                    metadata.push(option);
+                })
+
+                return {
+                    results: metadata
+                };
+            },
+            cache: true
+        },
+        minimumInputLength: 3
+    });
+
+    $('.datasetUuidSelect').on('select2:select', function (evt) {
+
+        var uuidSelected = $("#DatasetUuid").val();
+
+        $.each(metadata, function (i, item) {
+            if (uuidSelected == item.id) {
+                $("#DatasetName").val(item.text);
+                $("#Theme").val(item.theme);
+            }
+        })
+
+    });
+</script>
