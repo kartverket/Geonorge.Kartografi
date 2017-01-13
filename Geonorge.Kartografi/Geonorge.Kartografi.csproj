@@ -378,10 +378,9 @@
     <Content Include="Views\Files\Edit.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\Details.cshtml" />
-    <None Include="Web.Dev.config">
+    <Content Include="Web.Dev.config">
       <DependentUpon>Web.config</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
