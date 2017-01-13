@@ -156,15 +156,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ServiceUuid, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.ServiceUuid, new { htmlAttributes = new { @class = "form-control" } })
+                        <select class="serviceUuidSelect form-control" id="ServiceUuid" name="ServiceUuid"></select>
                         @Html.ValidationMessageFor(model => model.ServiceUuid, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ServiceName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ServiceName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.HiddenFor(model => model.ServiceName)
                         @Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -230,92 +224,115 @@
     </div>
 }
 
-            <script type="text/javascript">
-                var metadata = [];
-                $('.datasetUuidSelect').select2({
-                    placeholder: "Søk etter datasett",
-                    language: "nb",
-                    ajax: {
-                        url: "@Html.KartkatalogenUrl()api/search",
-                        dataType: 'json',
-                        delay: 250,
-                        data: function (params) {
-                            return {
-                                text: params.term,// search term
-                                limit: 10,
-                                'facets[0]name': "type",
-                                'facets[0]value': "dataset"
-                            };
-                        },
-                        processResults: function (data, params) {
+<script type="text/javascript">
+    var metadata = [];
+    $('.datasetUuidSelect').select2({
+        placeholder: "Søk etter datasett",
+        language: "nb",
+        ajax: {
+            url: "@Html.KartkatalogenUrl()api/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    text: params.term,// search term
+                    limit: 10,
+                    'facets[0]name': "type",
+                    'facets[0]value': "dataset"
+                };
+            },
+            processResults: function (data, params) {
 
-                            metadata = [];
-                            $.each(data.Results, function (i, item) {
-                                option = {}
-                                option["id"] = item.Uuid;
-                                option["text"] = item.Title;
-                                option["theme"] = item.Theme;
+                metadata = [];
+                $.each(data.Results, function (i, item) {
+                    option = {}
+                    option["id"] = item.Uuid;
+                    option["text"] = item.Title;
+                    option["theme"] = item.Theme;
 
-                                metadata.push(option);
-                            })
+                    metadata.push(option);
+                })
 
-                            return {
-                                results: metadata
-                            };
-                        },
-                        cache: true
-                    },
-                    minimumInputLength: 3
-                });
+                return {
+                    results: metadata
+                };
+            },
+            cache: true
+        },
+        minimumInputLength: 3
+    });
 
-                $('.datasetUuidSelect').on('select2:select', function (evt) {
+    $('.datasetUuidSelect').on('select2:select', function (evt) {
 
-                    var uuidSelected = $("#DatasetUuid").val();
+        var uuidSelected = $("#DatasetUuid").val();
 
-                    $.each(metadata, function (i, item) {
-                        if (uuidSelected == item.id) {
-                            $("#DatasetName").val(item.text);
-                            $("#Theme").val(item.theme);
+        $.each(metadata, function (i, item) {
+            if (uuidSelected == item.id) {
+                $("#DatasetName").val(item.text);
+                $("#Theme").val(item.theme);
+
+                $('#ServiceUuid').empty();
+                $.getJSON("@Html.KartkatalogenUrl()api/getdata/" + uuidSelected, function (relatedData) {                              
+                    if (relatedData.length != 0) {
+                        $('#ServiceUuid').append($("<option></option>")
+                                    .attr("value", "").text("Velg tjeneste"));
+                        for (r = 0 ; r < relatedData.Related.length; r++) {
+                            var related = relatedData.Related[r];
+                            var distributionDetails = related.DistributionDetails;
+                            if (distributionDetails != null)
+                            {
+                                if (distributionDetails.Name == "" && (distributionDetails.Protocol == "OGC:WMS" ||  distributionDetails.Protocol == "OGC:WFS"))
+                                {
+                                    $('#ServiceUuid').append($("<option></option>")
+                                        .attr("value", related.Uuid).text(related.Title));
+                                }
+                            }
                         }
-                    })
-
+                    }
                 });
+            }
+        })
 
-                var organizations = [];
+    });
 
-                $('.ownerOrganizationSelect').select2({
-                    placeholder: "Søk etter organisasjon",
-                    language: "nb",
-                    ajax: {
-                        url: "@Html.RegistryUrl()api/search",
-                        dataType: 'json',
-                        delay: 250,
-                        data: function (params) {
-                            return {
-                                text: params.term,// search term
-                                limit: 10,
-                                'facets[0]name': "type",
-                                'facets[0]value': "organisasjoner"
-                            };
-                        },
-                        processResults: function (data, params) {
-                            console.log(data);
-                            organizations = [];
-                            $.each(data.Results, function (i, item) {
-                                option = {}
-                                option["id"] = item.Name;
-                                option["text"] = item.Name;
+    $('#ServiceUuid').on('change', function () {
+        $('#ServiceName').val($('#ServiceUuid option:selected').text());
+    })
 
-                                organizations.push(option);
-                            })
+    var organizations = [];
 
-                            return {
-                                results: organizations
-                            };
-                        },
-                        cache: true
-                    },
-                    minimumInputLength: 3
-                });
+    $('.ownerOrganizationSelect').select2({
+        placeholder: "Søk etter organisasjon",
+        language: "nb",
+        ajax: {
+            url: "@Html.RegistryUrl()api/search",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    text: params.term,// search term
+                    limit: 10,
+                    'facets[0]name': "type",
+                    'facets[0]value': "organisasjoner"
+                };
+            },
+            processResults: function (data, params) {
+                organizations = [];
+                $.each(data.Results, function (i, item) {
+                    option = {}
+                    option["id"] = item.Name;
+                    option["text"] = item.Name;
 
-            </script>
+                    organizations.push(option);
+                })
+
+                return {
+                    results: organizations
+                };
+            },
+            cache: true
+        },
+        minimumInputLength: 3
+    });
+
+</script>
