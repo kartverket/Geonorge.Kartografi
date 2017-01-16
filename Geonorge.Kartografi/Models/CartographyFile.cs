@@ -91,7 +91,7 @@ namespace Geonorge.Kartografi.Models
 
         /// <summary>Angi om kartografi er levert som offisielt tilbud eller som et alternativ til offisiell kartografi, radioknapp</summary>
         [Display(Name = "Offisiell")]
-        public string OfficialStatus { get; set; }
+        public bool OfficialStatus { get; set; }
 
         /// <summary>Hvilke attributter er sentrale for bruk av kartografien, tekstfelt</summary>
         [Display(Name = "Viktig egenskap for kartografien")]

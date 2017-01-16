@@ -31,7 +31,7 @@ namespace Geonorge.Kartografi.Migrations
                         Status = c.String(),
                         DateAccepted = c.DateTime(nullable: false),
                         AcceptedComment = c.String(),
-                        OfficialStatus = c.String(),
+                        OfficialStatus = c.Boolean(nullable: false),
                         Properties = c.String(),
                         Theme = c.String(),
                     })
