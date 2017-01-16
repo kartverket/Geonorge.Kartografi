@@ -94,6 +94,14 @@
                 </div>
 
                 <div class="form-group">
+                    @Html.LabelFor(model => model.Compatibility, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("compatibilities", ViewBag.Compatibility as SelectList, String.Empty, new { @class = "form-control compatibilitySelect", multiple = "multiple" })
+                        @Html.ValidationMessageFor(model => model.Compatibility, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
                     @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" />
@@ -334,5 +342,7 @@
         },
         minimumInputLength: 3
     });
+
+    $(".compatibilitySelect").select2();
 
 </script>

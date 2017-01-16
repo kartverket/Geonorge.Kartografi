@@ -12,6 +12,12 @@ namespace Geonorge.Kartografi.Services
             {"sld", "sld"},
             {"lyr", "lyr"}
         };
+
+        public static readonly Dictionary<string, string> Compatibility = new Dictionary<string, string>()
+        {
+            {"wms", "wms"},
+            {"qgis", "qgis"}
+        };
     }
 
 }

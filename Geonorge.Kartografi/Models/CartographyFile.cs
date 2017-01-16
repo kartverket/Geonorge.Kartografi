@@ -41,6 +41,10 @@ namespace Geonorge.Kartografi.Models
         [Display(Name = "Format")]
         public string Format { get; set; }
 
+        /// <summary>Beskrivelse over hva filen skal brukes til. F.eks. style WMS eller GML.</summary>
+        [Display(Name = "Kompatibel med")]
+        public virtual ICollection<Compatibility> Compatibility { get; set; }
+
         /// <summary>Dropdown,beskrivelse over hva filen skal brukes til, f.eks. style WMS eller GML.</summary>
         [Display(Name = "Bruksområde")]
         public string Use { get; set; }

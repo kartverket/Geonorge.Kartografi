@@ -172,9 +172,14 @@
     <Compile Include="Migrations\201701160840200_Initial.Designer.cs">
       <DependentUpon>201701160840200_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701161151218_CompatibilityWith.cs" />
+    <Compile Include="Migrations\201701161151218_CompatibilityWith.Designer.cs">
+      <DependentUpon>201701161151218_CompatibilityWith.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartographyFile.cs" />
     <Compile Include="Models\CartographyDbContext.cs" />
+    <Compile Include="Models\Compatibility.cs" />
     <Compile Include="Models\Version.cs" />
     <Compile Include="Models\VersionsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -395,6 +400,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701160840200_Initial.resx">
       <DependentUpon>201701160840200_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701161151218_CompatibilityWith.resx">
+      <DependentUpon>201701161151218_CompatibilityWith.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UI.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

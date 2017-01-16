@@ -7,6 +7,7 @@ using Geonorge.Kartografi.Services;
 using System.Web;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -29,6 +30,7 @@ namespace Geonorge.Kartografi.Controllers
         public ActionResult Create()
         {
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
+            ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             return View();
         }
 
@@ -53,8 +55,14 @@ namespace Geonorge.Kartografi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SystemId,Name,Description,OwnerOrganization,OwnerPerson,LastEditedBy,Format,Use,DatasetUuid,DatasetName,ServiceUuid,ServiceName,VersionId,DateChanged,Status,DateAccepted,AcceptedComment,OfficialStatus,Properties,Theme")] CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile)
+        public ActionResult Create(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities)
         {
+            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
+            ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
+            cartographyFile.Compatibility = new List<Compatibility>();
+            foreach (var item in compatibilities)
+                cartographyFile.Compatibility.Add(new Compatibility {Id = Guid.NewGuid().ToString(),  Key = item });
+
             if (ModelState.IsValid)
             {
                 cartographyFile.PreviewImage = SaveFile(uploadPreviewImage);
