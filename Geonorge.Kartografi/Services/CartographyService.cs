@@ -39,8 +39,20 @@ namespace Geonorge.Kartografi.Services
 
         public void UpdateCartography(CartographyFile cartographyFile)
         {
+
+            var deleteSql = "DELETE from Compatibilities where CartographyFile_SystemId = {0}";
+            _dbContext.Database.ExecuteSqlCommand(deleteSql, cartographyFile.SystemId);
+            _dbContext.SaveChanges();
+
+            foreach (var item in cartographyFile.Compatibility.ToList()) {
+                var insertSql = "INSERT INTO Compatibilities(Id, [Key], CartographyFile_SystemId) Values ({0}, {1}, {2} )";
+                _dbContext.Database.ExecuteSqlCommand(insertSql, Guid.NewGuid().ToString(), item.Key, cartographyFile.SystemId);
+                _dbContext.SaveChanges();
+            }
+
             _dbContext.Entry(cartographyFile).State = EntityState.Modified;
             _dbContext.SaveChanges();
+
         }
 
         public void AddCartographyVersion(CartographyFile cartographyFile)

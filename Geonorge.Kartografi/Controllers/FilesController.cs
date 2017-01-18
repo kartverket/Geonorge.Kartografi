@@ -96,13 +96,16 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
             if (cartographyFile == null)
             {
                 return HttpNotFound();
             }
 
+            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", cartographyFile.Format);
             ViewBag.newversion = newversion;
+            ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
 
             return View(cartographyFile);
         }
@@ -110,8 +113,12 @@ namespace Geonorge.Kartografi.Controllers
         // POST: Files/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CartographyFile cartographyFile, bool newversion = false)
+        public ActionResult Edit(CartographyFile cartographyFile, string[] compatibilities, bool newversion = false)
         {
+            cartographyFile.Compatibility = new List<Compatibility>();
+            foreach (var item in compatibilities)
+                cartographyFile.Compatibility.Add(new Compatibility { Id = Guid.NewGuid().ToString(), Key = item });
+
             if (ModelState.IsValid)
             {
                 if(newversion)

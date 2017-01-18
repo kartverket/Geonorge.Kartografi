@@ -13,6 +13,8 @@
     <script>
         var applicationEnvironment = '@Html.EnvironmentName()';
         var applicationVersionNumber = '@Html.ApplicationVersionNumber()';
+        var kartkatalogenUrl = '@Html.KartkatalogenUrl()';
+        var registryUrl = '@Html.RegistryUrl()';
         var authenticationData = {
             supportsLogin: true,
             isAuthenticated: @Request.IsAuthenticated.ToString().ToLower(),

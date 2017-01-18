@@ -350,6 +350,7 @@
     <Content Include="Content\bower_components\kartverket-felleskomponenter\bower.json" />
     <Content Include="Content\bower_components\kartverket-felleskomponenter\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\i18n\en.js" />
     <Content Include="Scripts\i18n\nb.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -365,7 +366,9 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
