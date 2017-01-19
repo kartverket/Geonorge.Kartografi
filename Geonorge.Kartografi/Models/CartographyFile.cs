@@ -80,7 +80,7 @@ namespace Geonorge.Kartografi.Models
         /// <summary>Dato for når filen/informasjonen i registeret sist ble endret.</summary>
         [Display(Name = "Dato endret")]
         [DisplayFormat(NullDisplayText = "", ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
-        public DateTime DateChanged { get; set; }
+        public DateTime DateChanged { get; set; } = DateTime.Now;
 
         /// <summary>(gjelder kun for «offisiell» digital kartografi) *Viser på samme måte som andre registre i geonorge om filen er godkjent eller ikke. Settes av administrator.</summary>
         [Display(Name = "Status")]
@@ -89,7 +89,7 @@ namespace Geonorge.Kartografi.Models
         /// <summary>Dato for når filen ble godkjent. Settes av administrator.</summary>
         [Display(Name = "Dato godkjent")]
         [DisplayFormat(NullDisplayText = "", ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
-        public DateTime DateAccepted { get; set; }
+        public DateTime? DateAccepted { get; set; }
 
         /// <summary>Tekst dersom det er noe som er viktig å påpeke ved godkjenningen. F.eks. dersom noe blir godkjent, men ikke er optimalt. Settes av administrator</summary>
         [Display(Name = "Godkjent kommentar")]

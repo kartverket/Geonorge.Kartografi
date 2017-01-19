@@ -18,6 +18,18 @@ namespace Geonorge.Kartografi.Services
             {"wms", "wms"},
             {"qgis", "qgis"}
         };
+
+        public static readonly Dictionary<string, string> Status = new Dictionary<string, string>()
+        {
+            {"Draft", "Utkast"},
+            {"NotAccepted", "Ikke godkjent"},
+            {"Retired", "Utgått"},
+            {"Sosi-valid", "SOSI godkjent"},
+            {"Submitted", "Sendt inn"},
+            {"Superseded", "Erstattet"},
+            {"Valid", "Gyldig"},
+        };
+
     }
 
 }

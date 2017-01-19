@@ -29,7 +29,7 @@ namespace Geonorge.Kartografi.Migrations
                         versioningId = c.Guid(nullable: false),
                         DateChanged = c.DateTime(nullable: false),
                         Status = c.String(),
-                        DateAccepted = c.DateTime(nullable: false),
+                        DateAccepted = c.DateTime(),
                         AcceptedComment = c.String(),
                         OfficialStatus = c.Boolean(nullable: false),
                         Properties = c.String(),
@@ -38,6 +38,18 @@ namespace Geonorge.Kartografi.Migrations
                 .PrimaryKey(t => t.SystemId)
                 .ForeignKey("dbo.Versions", t => t.versioningId, cascadeDelete: true)
                 .Index(t => t.versioningId);
+            
+            CreateTable(
+                "dbo.Compatibilities",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Key = c.String(),
+                        CartographyFile_SystemId = c.Guid(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.CartographyFiles", t => t.CartographyFile_SystemId, cascadeDelete: true)
+                .Index(t => t.CartographyFile_SystemId);
             
             CreateTable(
                 "dbo.Versions",
@@ -54,8 +66,11 @@ namespace Geonorge.Kartografi.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.CartographyFiles", "versioningId", "dbo.Versions");
+            DropForeignKey("dbo.Compatibilities", "CartographyFile_SystemId", "dbo.CartographyFiles");
+            DropIndex("dbo.Compatibilities", new[] { "CartographyFile_SystemId" });
             DropIndex("dbo.CartographyFiles", new[] { "versioningId" });
             DropTable("dbo.Versions");
+            DropTable("dbo.Compatibilities");
             DropTable("dbo.CartographyFiles");
         }
     }

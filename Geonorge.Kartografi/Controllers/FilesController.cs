@@ -31,6 +31,7 @@ namespace Geonorge.Kartografi.Controllers
         {
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
+            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Draft");
             return View();
         }
 
@@ -59,9 +60,13 @@ namespace Geonorge.Kartografi.Controllers
         {
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
+            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Draft");
             cartographyFile.Compatibility = new List<Compatibility>();
-            foreach (var item in compatibilities)
-                cartographyFile.Compatibility.Add(new Compatibility {Id = Guid.NewGuid().ToString(),  Key = item });
+            if(compatibilities != null)
+            {
+                foreach (var item in compatibilities)
+                    cartographyFile.Compatibility.Add(new Compatibility {Id = Guid.NewGuid().ToString(),  Key = item });
+            }
 
             if (ModelState.IsValid)
             {
@@ -106,6 +111,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", cartographyFile.Format);
             ViewBag.newversion = newversion;
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
+            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
 
             return View(cartographyFile);
         }
@@ -116,8 +122,11 @@ namespace Geonorge.Kartografi.Controllers
         public ActionResult Edit(CartographyFile cartographyFile, string[] compatibilities, bool newversion = false)
         {
             cartographyFile.Compatibility = new List<Compatibility>();
-            foreach (var item in compatibilities)
-                cartographyFile.Compatibility.Add(new Compatibility { Id = Guid.NewGuid().ToString(), Key = item });
+            if (compatibilities != null)
+            {
+                foreach (var item in compatibilities)
+                    cartographyFile.Compatibility.Add(new Compatibility { Id = Guid.NewGuid().ToString(), Key = item });
+            }
 
             if (ModelState.IsValid)
             {
