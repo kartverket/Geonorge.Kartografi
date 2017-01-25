@@ -21,13 +21,11 @@ namespace Geonorge.Kartografi.Services
 
         public static readonly Dictionary<string, string> Status = new Dictionary<string, string>()
         {
-            {"Draft", "Utkast"},
-            {"NotAccepted", "Ikke godkjent"},
-            {"Retired", "Utgått"},
-            {"Sosi-valid", "SOSI godkjent"},
             {"Submitted", "Sendt inn"},
+            {"Accepted", "Godkjent"},
+            {"NotAccepted", "Ikke godkjent"},
             {"Superseded", "Erstattet"},
-            {"Valid", "Gyldig"},
+            {"Retired", "Utgått"},
         };
 
     }
