@@ -37,7 +37,7 @@ namespace Geonorge.Kartografi.Services
         private void UpdateLatestVersioningGroup(Guid versioningId, CartographyFile cartographyFile)
         {
             Models.Version versjonsgruppe = GetVersionGroup(versioningId);
-            if (cartographyFile.Status == "Valid")
+            if (cartographyFile.Status == "Accepted")
                 versjonsgruppe.CurrentVersion = cartographyFile.SystemId;
 
             versjonsgruppe.LastVersionNumber = cartographyFile.VersionId;
@@ -97,8 +97,7 @@ namespace Geonorge.Kartografi.Services
             queryResults = from ca in _dbContext.CartographyFiles
                            where
                            ca.versioningId == versjonsGruppeId
-                           && (ca.Status == "Submitted"
-                           || ca.Status == "Draft")                  
+                           && (ca.Status == "Submitted")                  
                            select ca;
 
             foreach (CartographyFile item in queryResults.ToList())
