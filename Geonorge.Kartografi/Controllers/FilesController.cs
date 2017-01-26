@@ -119,13 +119,25 @@ namespace Geonorge.Kartografi.Controllers
         // POST: Files/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CartographyFile cartographyFile, string[] compatibilities, bool newversion = false)
+        public ActionResult Edit(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities, bool newversion = false)
         {
             cartographyFile.Compatibility = new List<Compatibility>();
             if (compatibilities != null)
             {
                 foreach (var item in compatibilities)
                     cartographyFile.Compatibility.Add(new Compatibility { Id = Guid.NewGuid().ToString(), Key = item });
+            }
+
+            var previewImage = SaveFile(uploadPreviewImage);
+            var fileName = SaveFile(uploadFile);
+
+            if(fileName != null)
+            {
+                newversion = true;
+                CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
+                originalCartographyFile.Status = "Superseded";
+                _cartographyService.UpdateCartography(originalCartographyFile);
+                cartographyFile.Status = "Submitted";
             }
 
             if (ModelState.IsValid)
