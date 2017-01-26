@@ -31,7 +31,7 @@ namespace Geonorge.Kartografi.Controllers
         {
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
-            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Draft");
+            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Submitted");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace Geonorge.Kartografi.Controllers
         {
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
-            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Draft");
+            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
             cartographyFile.Compatibility = new List<Compatibility>();
             if(compatibilities != null)
             {
