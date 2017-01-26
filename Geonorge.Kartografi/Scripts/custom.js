@@ -107,3 +107,22 @@ $('.ownerOrganizationSelect').select2({
 });
 
 $(".compatibilitySelect").select2();
+
+
+var Statuses = function (event) {
+
+    var selectedStatus = $('#Status option:selected').val();
+
+    if (selectedStatus == "Accepted") {
+        $('#DateAcceptedDiv').show();
+        $('#AcceptedCommentDiv').show();
+    }
+    else
+    {
+        $('#DateAcceptedDiv').hide();
+        $('#AcceptedCommentDiv').hide();
+    }
+};
+
+$("#Status").on("change", Statuses);
+Statuses();
