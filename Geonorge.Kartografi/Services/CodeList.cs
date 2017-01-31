@@ -24,7 +24,8 @@ namespace Geonorge.Kartografi.Services
             {"Submitted", "Sendt inn"},
             {"Accepted", "Godkjent"},
             {"NotAccepted", "Ikke godkjent"},
-            {"Superseded", "Erstattet"}
+            {"Superseded", "Erstattet"},
+            {"Retired", "Utgått"},
         };
 
     }
