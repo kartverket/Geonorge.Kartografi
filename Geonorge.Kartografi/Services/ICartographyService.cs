@@ -8,7 +8,8 @@ namespace Geonorge.Kartografi.Services
 {
     public interface ICartographyService
     {
-        List<CartographyFile> GetCartography();
+        List<Dataset> GetDatasets();
+        List<CartographyFile> GetCartography(string uuid = null);
         CartographyFile GetCartography(Guid? SystemId);
         void AddCartography(CartographyFile cartographyFile);
         void AddCartographyVersion(CartographyFile cartographyFile);

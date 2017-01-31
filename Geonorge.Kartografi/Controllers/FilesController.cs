@@ -20,8 +20,14 @@ namespace Geonorge.Kartografi.Controllers
             _cartographyService = cartographyService;
         }
 
-        // GET: Files
+        // GET: Datasets
         public ActionResult Index()
+        {
+            return View(_cartographyService.GetDatasets());
+        }
+
+        // GET: Files in dataset
+        public ActionResult Files()
         {
             return View(_cartographyService.GetCartography());
         }

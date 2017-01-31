@@ -37,7 +37,7 @@ namespace Geonorge.Kartografi.Services
         private void UpdateLatestVersioningGroup(Guid versioningId, CartographyFile cartographyFile)
         {
             Models.Version versjonsgruppe = GetVersionGroup(versioningId);
-            if (cartographyFile.Status == "Accepted")
+            if (cartographyFile.OfficialStatus)
                 versjonsgruppe.CurrentVersion = cartographyFile.SystemId;
 
             versjonsgruppe.LastVersionNumber = cartographyFile.VersionId;

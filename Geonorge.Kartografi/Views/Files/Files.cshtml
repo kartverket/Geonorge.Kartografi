@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Geonorge.Kartografi.Models.Dataset>
+﻿@model IEnumerable<Geonorge.Kartografi.Models.CartographyFile>
 @section breadcrumb {
     <li>Digital kartografi</li>
 }
@@ -28,29 +28,39 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div id="tableView" class="search-results">
             <div class="row search-results-table-heading">
-                <div class="col-sm-5"><p>@Html.DisplayNameFor(model => model.DatasetName)</p></div>
-                <div class="col-sm-4"><p>@Html.DisplayNameFor(model => model.OwnerOrganization)</p></div>
-                <div class="col-sm-3"><p>@Html.DisplayNameFor(model => model.Theme)</p></div>
+                <div class="col-sm-3"><p>@Html.DisplayNameFor(model => model.Name)</p></div>
+                <div class="col-sm-2"><p>@Html.DisplayNameFor(model => model.Compatibility)</p></div>
+                <div class="col-sm-2"><p>@Html.DisplayNameFor(model => model.OwnerOrganization)</p></div>
+                <div class="col-sm-1"><p>@Html.DisplayNameFor(model => model.OfficialStatus)</p></div>
+                <div class="col-sm-1"><p>@Html.DisplayNameFor(model => model.Format)</p></div>
             </div>
             <div class="menu-separator search-results-table-heading"></div>
             @foreach (var item in Model)
             {
                 <div class="row result-row metadata">
 
-                    <div class="col-sm-5">
-                        @Html.ActionLink(item.DatasetName ?? "->", "Files", new { uuid = item.DatasetUuid })
+                    <div class="col-sm-3">
+                        @Html.ActionLink(item.Name ?? "->", "Details", new { SystemId = item.SystemId })
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
+                        @Html.DisplayFor(modelItem => item.Compatibility)
+                    </div>
+
+                    <div class="col-sm-2">
                         @Html.DisplayFor(modelItem => item.OwnerOrganization)
                     </div>
 
-                    <div class="col-sm-3">
-                        @Html.DisplayFor(modelItem => item.Theme)
+                    <div class="col-sm-1">
+                        @Html.DisplayFor(modelItem => item.OfficialStatus)
+                    </div>
+
+                    <div class="col-sm-1">
+                        @Html.DisplayFor(modelItem => item.Format)
                     </div>
                 </div>
                 <hr />
-             }
+            }
         </div>
 
     </div>

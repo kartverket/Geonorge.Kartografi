@@ -18,9 +18,20 @@ namespace Geonorge.Kartografi.Services
             _versioningService = versioningService;
         }
 
-        public List<CartographyFile> GetCartography()
+        public List<Dataset> GetDatasets()
         {
-            return _dbContext.CartographyFiles.Where(c => c.SystemId == c.versioning.CurrentVersion).ToList();
+            return _dbContext.CartographyFiles
+                .Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerOrganization = d.OwnerOrganization })
+                .Distinct()
+                .ToList();
+        }
+
+        public List<CartographyFile> GetCartography(string uuid = null)
+        {
+            if(string.IsNullOrEmpty(uuid))
+                return _dbContext.CartographyFiles.Where(c => c.SystemId == c.versioning.CurrentVersion).ToList();
+            else
+                return _dbContext.CartographyFiles.Where(c => c.SystemId == c.versioning.CurrentVersion && c.DatasetUuid == uuid).ToList();
         }
 
         public CartographyFile GetCartography(Guid? SystemId)

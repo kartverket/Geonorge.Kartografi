@@ -176,6 +176,7 @@
     <Compile Include="Models\CartographyFile.cs" />
     <Compile Include="Models\CartographyDbContext.cs" />
     <Compile Include="Models\Compatibility.cs" />
+    <Compile Include="Models\Dataset.cs" />
     <Compile Include="Models\Version.cs" />
     <Compile Include="Models\VersionsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -385,6 +386,7 @@
     <Content Include="Web.Dev.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Files\Files.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

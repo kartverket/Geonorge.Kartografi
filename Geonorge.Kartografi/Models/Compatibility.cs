@@ -10,5 +10,10 @@ namespace Geonorge.Kartografi.Models
     {
         public string Id { get; set; }
         public string Key { get; set; }
+
+        public override string ToString()
+        {
+            return Key;
+        }
     }
 }
