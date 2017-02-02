@@ -97,7 +97,7 @@ namespace Geonorge.Kartografi.Services
             queryResults = from ca in _dbContext.CartographyFiles
                            where
                            ca.versioningId == versjonsGruppeId
-                           && (ca.Status == "Submitted")                  
+                           && (ca.Status == "Submitted" && ca.SystemId!= currentVersionId)                  
                            select ca;
 
             foreach (CartographyFile item in queryResults.ToList())
@@ -109,6 +109,7 @@ namespace Geonorge.Kartografi.Services
             //Find historical versions
             var queryResultsHistorical = from ca in _dbContext.CartographyFiles
                                          where ca.versioningId == CurrentVersion.versioningId
+                                         && ca.SystemId != currentVersionId
                                           && (ca.Status == "Superseded"
                                           || ca.Status == "Retired")                                        
                                          select ca;

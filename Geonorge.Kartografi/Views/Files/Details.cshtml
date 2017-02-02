@@ -65,10 +65,57 @@
                 </div>
             </div>
             <div class="tab-pane" id="historiske">
-                Historiske
+                @if (Model.Historical != null && Model.Historical.Count > 0)
+                {
+                    <div class="row">
+                        <div class="col-lg-4"><b>Tittel</b></div>
+                        <div class="col-lg-3"><b>Eier</b></div>
+                        <div class="col-lg-2"><b>Utgave</b></div>
+                        <div class="col-lg-3"><b>Status</b></div>
+                    </div>
+                    foreach (var historical in Model.Historical)
+                    {
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a href="~/tegneregler/Edit/@historical.SystemId">@historical.Name</a>
+                        </div>
+                        <div class="col-lg-3">@historical.OwnerOrganization</div>
+                        <div class="col-lg-2">@historical.VersionId</div>
+                        <div class="col-lg-3">@CodeList.Status[historical.Status]</div>
+                    </div>
+                    }
+                }
+                else
+                {
+                   <span>Ingen filer</span>
+                }
             </div>
             <div class="tab-pane" id="forslag">
-                Forslag
+            @if (Model.Suggestions != null && Model.Suggestions.Count > 0)
+            {
+                <div class="row">
+                    <div class="col-lg-4"><b>Tittel</b></div>
+                    <div class="col-lg-3"><b>Eier</b></div>
+                    <div class="col-lg-2"><b>Utgave</b></div>
+                    <div class="col-lg-3"><b>Status</b></div>
+                </div>
+                foreach (var suggestion in Model.Suggestions)
+                {
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a href="~/tegneregler/Edit/@suggestion.SystemId">@suggestion.Name</a>
+                        </div>
+                        <div class="col-lg-3">@suggestion.OwnerOrganization</div>
+                        <div class="col-lg-2">@suggestion.VersionId</div>
+                        <div class="col-lg-3">@CodeList.Status[suggestion.Status]</div>
+                    </div>
+                }
+            }
+            else
+            {
+                <span>Ingen filer</span>
+            }
             </div>
+        </div>
     </div>
 </div>
