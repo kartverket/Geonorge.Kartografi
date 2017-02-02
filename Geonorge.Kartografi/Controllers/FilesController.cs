@@ -27,9 +27,9 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Files in dataset
-        public ActionResult Files()
+        public ActionResult Files(string uuid = null)
         {
-            return View(_cartographyService.GetCartography());
+            return View(_cartographyService.GetCartography(uuid));
         }
 
         // GET: Files/Create
@@ -79,7 +79,7 @@ namespace Geonorge.Kartografi.Controllers
                 cartographyFile.PreviewImage = SaveFile(uploadPreviewImage);
                 cartographyFile.FileName = SaveFile(uploadFile);
                 _cartographyService.AddCartography(cartographyFile);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Files", new { uuid = cartographyFile.DatasetUuid });
             }
 
             return View(cartographyFile);
@@ -137,7 +137,7 @@ namespace Geonorge.Kartografi.Controllers
             var previewImage = SaveFile(uploadPreviewImage);
             var fileName = SaveFile(uploadFile);
 
-            if(fileName != null)
+            if(fileName != null && cartographyFile.OfficialStatus)
             {
                 newversion = true;
                 CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
@@ -153,7 +153,7 @@ namespace Geonorge.Kartografi.Controllers
                 else
                     _cartographyService.UpdateCartography(cartographyFile);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Files", "Files", new { uuid = cartographyFile.DatasetUuid });
             }
             return View(cartographyFile);
         }
