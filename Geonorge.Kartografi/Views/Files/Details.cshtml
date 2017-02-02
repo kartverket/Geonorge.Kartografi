@@ -6,7 +6,8 @@
 }
 
 @section breadcrumb {
-    <li><a href="~/tegneregler/">Digital kartografi og symboler</a></li>
+    <li><a href="~/tegneregler/">Digital kartografi</a></li>
+    <li><a href="~/tegneregler/Files?uuid=@Model.CurrentVersion.DatasetUuid">@Model.CurrentVersion.DatasetName</a></li>
     <li>@Model.CurrentVersion.Name</li>
 }
 <section class="heading">
@@ -64,18 +65,19 @@
                   </div>
                 </div>
             </div>
-            <div class="tab-pane" id="historiske">
+            <div class="tab-pane search-results" id="historiske">
                 @if (Model.Historical != null && Model.Historical.Count > 0)
                 {
-                    <div class="row">
+                    <div class="row search-results-table-heading">
                         <div class="col-lg-4"><b>Tittel</b></div>
                         <div class="col-lg-3"><b>Eier</b></div>
                         <div class="col-lg-2"><b>Utgave</b></div>
                         <div class="col-lg-3"><b>Status</b></div>
                     </div>
+                    <div class="menu-separator search-results-table-heading"></div>
                     foreach (var historical in Model.Historical)
                     {
-                    <div class="row">
+                    <div class="row result-row metadata">
                         <div class="col-lg-4">
                             <a href="~/tegneregler/Edit/@historical.SystemId">@historical.Name</a>
                         </div>
@@ -90,18 +92,19 @@
                    <span>Ingen filer</span>
                 }
             </div>
-            <div class="tab-pane" id="forslag">
+            <div class="tab-pane search-results" id="forslag">
             @if (Model.Suggestions != null && Model.Suggestions.Count > 0)
             {
-                <div class="row">
+                <div class="row search-results-table-heading">
                     <div class="col-lg-4"><b>Tittel</b></div>
                     <div class="col-lg-3"><b>Eier</b></div>
                     <div class="col-lg-2"><b>Utgave</b></div>
                     <div class="col-lg-3"><b>Status</b></div>
                 </div>
+                <div class="menu-separator search-results-table-heading"></div>
                 foreach (var suggestion in Model.Suggestions)
                 {
-                    <div class="row">
+                    <div class="row result-row metadata">
                         <div class="col-lg-4">
                             <a href="~/tegneregler/Edit/@suggestion.SystemId">@suggestion.Name</a>
                         </div>
@@ -118,9 +121,8 @@
             </div>
         </div>
     </div>
-</div>
-<div class="clearfix"></div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
-    <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Files?uuid=@Model.CurrentVersion.DatasetUuid">Tilbake</a>
-
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Files?uuid=@Model.CurrentVersion.DatasetUuid">Tilbake</a>
+    </div>
 </div>

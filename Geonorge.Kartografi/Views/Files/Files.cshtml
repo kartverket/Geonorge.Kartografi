@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Geonorge.Kartografi.Models.CartographyFile>
 @section breadcrumb {
-    <li>Digital kartografi</li>
+    <li><a href="~/tegneregler/">Digital kartografi</a></li>
+    <li><a href="~/tegneregler/Files?uuid=@Model.FirstOrDefault().DatasetUuid">@Model.FirstOrDefault().DatasetName</a></li>
 }
 @{
     ViewBag.Title = "Digital kartografi";
