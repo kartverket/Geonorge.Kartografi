@@ -126,3 +126,47 @@ var Statuses = function (event) {
 
 $("#Status").on("change", Statuses);
 Statuses();
+
+
+var OfficialStatus = function (event) {
+
+    var statusAll = {};
+    statusAll["Submitted"] = "Sendt inn";
+    statusAll["Accepted"] = "Godkjent";
+    statusAll["Superseded"] = "Erstattet";
+    statusAll["Retired"] = "Utgått";
+
+    var statusNotOfficial = {};
+    statusNotOfficial["Submitted"] = "Sendt inn";
+    statusNotOfficial["Retired"] = "Utgått";
+
+    var selectedStatus = $('#Status option:selected').val();
+
+    var officialStatusSelected = $("input[type=radio][name=OfficialStatus]:checked").val();
+    if (officialStatusSelected == "False")
+    {
+        $('#Status').children('option').remove();
+        for (var key in statusNotOfficial) {
+            $('#Status')
+                .append($("<option></option>")
+                .attr("value", key)
+                .text(statusNotOfficial[key]));
+        }
+
+        $('#Status').val(selectedStatus);
+    }
+    else{
+        $('#Status').children('option').remove();
+        for (var key in statusAll) {
+            $('#Status')
+                .append($("<option></option>")
+                .attr("value", key)
+                .text(statusAll[key]));
+        }
+        $('#Status').val(selectedStatus);
+    }
+
+};
+
+$("input[type=radio][name=OfficialStatus]").on("change", OfficialStatus);
+OfficialStatus();
