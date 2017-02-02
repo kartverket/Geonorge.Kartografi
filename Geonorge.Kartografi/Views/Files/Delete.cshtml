@@ -6,7 +6,8 @@
 
 @section breadcrumb {
     <li><a href="~/tegneregler/">Digital kartografi og symboler</a></li>
-    <li>@Model.Name</li>
+    <li><a href="~/tegneregler/Details/@Model.SystemId">@Model.Name</a></li>
+    <li>Slett</li>
 }
 
 <h2>Slett @Model.Name</h2>
@@ -18,7 +19,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/">Tilbake</a>
+                <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Details/@Model.SystemId">Tilbake</a>
                 <input type="submit" value="Slett" class="btn btn-default pull-right" />
             </div>
         </div>
