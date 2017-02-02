@@ -81,7 +81,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="file" id="uploadFile" name="uploadFile" />
+                        <span>@Model.FileName</span> <input type="file" id="uploadFile" name="uploadFile" style="color:transparent; display:inline;" />
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" />
+                        <span>@Model.PreviewImage</span> <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" style="color:transparent; display:inline;" />
                     </div>
                 </div>
 
