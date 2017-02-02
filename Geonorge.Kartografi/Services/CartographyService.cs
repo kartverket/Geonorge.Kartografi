@@ -42,6 +42,7 @@ namespace Geonorge.Kartografi.Services
         public void AddCartography(CartographyFile cartographyFile)
         {
             cartographyFile.SystemId = Guid.NewGuid();
+            cartographyFile.VersionId = 1;
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, null);
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
@@ -70,6 +71,7 @@ namespace Geonorge.Kartografi.Services
         {
             CartographyFile originalCartographyFile = GetCartography(cartographyFile.SystemId);
             cartographyFile.SystemId = Guid.NewGuid();
+            cartographyFile.VersionId = originalCartographyFile.VersionId + 1;
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, originalCartographyFile);
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
