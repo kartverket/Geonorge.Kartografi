@@ -12,7 +12,7 @@
 <h2>Rediger @Model.Name</h2>
 
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", id = "cartographyform" }))
 {
     @Html.AntiForgeryToken()
 
