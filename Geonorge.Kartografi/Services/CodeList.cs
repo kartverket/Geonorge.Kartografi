@@ -10,8 +10,7 @@ namespace Geonorge.Kartografi.Services
         public static readonly Dictionary<string, string> Formats = new Dictionary<string, string>()
         {
             {"sld", "sld"},
-            {"lyr", "lyr"},
-            {"pdf", "pdf"}
+            {"lyr", "lyr"}
         };
 
         public static readonly Dictionary<string, string> Compatibility = new Dictionary<string, string>()
