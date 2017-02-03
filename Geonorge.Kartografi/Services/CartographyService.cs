@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Geonorge.Kartografi.Models;
 using System.Data.Entity;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Geonorge.Kartografi.Services
 {
@@ -39,14 +41,17 @@ namespace Geonorge.Kartografi.Services
             return _dbContext.CartographyFiles.Find(SystemId);
         }
 
-        public void AddCartography(CartographyFile cartographyFile)
+        public void AddCartography(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null)
         {
             cartographyFile.SystemId = Guid.NewGuid();
             cartographyFile.VersionId = 1;
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, null);
+            cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
+            cartographyFile.FileName = CreateFileName(cartographyFile);
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
-
+            SaveFile(uploadFile, cartographyFile.FileName);
+            SaveFile(uploadPreviewImage, cartographyFile.PreviewImage);
         }
 
         public void UpdateCartography(CartographyFile cartographyFile)
@@ -67,14 +72,18 @@ namespace Geonorge.Kartografi.Services
 
         }
 
-        public void AddCartographyVersion(CartographyFile cartographyFile)
+        public void AddCartographyVersion(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null)
         {
             CartographyFile originalCartographyFile = GetCartography(cartographyFile.SystemId);
             cartographyFile.SystemId = Guid.NewGuid();
             cartographyFile.VersionId = originalCartographyFile.VersionId + 1;
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, originalCartographyFile);
+            cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
+            cartographyFile.FileName = CreateFileName(cartographyFile);
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
+            SaveFile(uploadFile, cartographyFile.FileName);
+            SaveFile(uploadPreviewImage, cartographyFile.PreviewImage);
 
         }
 
@@ -82,6 +91,88 @@ namespace Geonorge.Kartografi.Services
         {
             _dbContext.CartographyFiles.Remove(cartographyFile);
             _dbContext.SaveChanges();
+        }
+
+        public string CreateFileName(CartographyFile cartographyFile)
+        {
+            string name = cartographyFile.Name;
+            string compability = "";
+
+            var compatibilityList = cartographyFile.Compatibility.ToList();
+
+            for (int c = 0; c < compatibilityList.Count; c++)
+            {
+                compability = compability + compatibilityList[c];
+                if (c != compatibilityList.Count - 1)
+                    compability = compability + "-";
+            }
+            compability = compability.ToLower();
+            string version = cartographyFile.VersionId.ToString();
+            string format = cartographyFile.Format;
+            name = MakeSeoFriendlyString(name);
+
+            string filename = name + "_" + compability + "_v" + version + "." + format;
+
+            return filename;
+        }
+
+        public string CreateThumbnailFileName(CartographyFile cartographyFile, HttpPostedFileBase image)
+        {
+            string filename = null;
+
+            if (image != null)
+            {
+                string name = cartographyFile.Name;
+                string compability = "";
+
+                var compatibilityList = cartographyFile.Compatibility.ToList();
+
+                for (int c = 0; c < compatibilityList.Count; c++)
+                {
+                    compability = compability + compatibilityList[c];
+                    if (c != compatibilityList.Count - 1)
+                        compability = compability + "-";
+                }
+                compability = compability.ToLower();
+                string version = cartographyFile.VersionId.ToString();
+                name = MakeSeoFriendlyString(name);
+                filename = name + "_" + compability + "_v" + version + Path.GetExtension(image.FileName);
+            }
+
+            return filename;
+        }
+
+        public static string MakeSeoFriendlyString(string input)
+        {
+            string encodedUrl = (input ?? "").ToLower();
+            // replace & with and
+            encodedUrl = Regex.Replace(encodedUrl, @"\&+", "and");
+
+            // remove characters
+            encodedUrl = encodedUrl.Replace("'", "");
+
+            // replace norwegian characters
+            encodedUrl = encodedUrl.Replace("å", "a").Replace("æ", "ae").Replace("ø", "o");
+
+            // remove invalid characters
+            encodedUrl = Regex.Replace(encodedUrl, @"[^a-z0-9]", "");
+
+            // trim leading & trailing characters
+            encodedUrl = encodedUrl.Trim(' ');
+
+            return encodedUrl;
+        }
+
+        private string SaveFile(HttpPostedFileBase file, string fileName)
+        {
+            if (file != null)
+            {
+                string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/files");
+                string targetPath = Path.Combine(targetFolder, fileName);
+                file.SaveAs(targetPath);
+            }
+
+            return fileName;
         }
 
         public VersionsItem Versions(Guid? SystemId)

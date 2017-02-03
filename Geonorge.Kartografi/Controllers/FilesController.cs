@@ -76,28 +76,11 @@ namespace Geonorge.Kartografi.Controllers
 
             if (ModelState.IsValid)
             {
-                cartographyFile.PreviewImage = SaveFile(uploadPreviewImage);
-                cartographyFile.FileName = SaveFile(uploadFile);
-                _cartographyService.AddCartography(cartographyFile);
+                _cartographyService.AddCartography(cartographyFile, uploadFile, uploadPreviewImage);
                 return RedirectToAction("Index", "Files", new { uuid = cartographyFile.DatasetUuid });
             }
 
             return View(cartographyFile);
-        }
-
-        private string SaveFile(HttpPostedFileBase file)
-        {
-            string fileName = null;
-
-            if(file != null)
-            { 
-                fileName = file.FileName;
-                string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/files");
-                string targetPath = Path.Combine(targetFolder, fileName);
-                file.SaveAs(targetPath);
-            }
-
-            return fileName;
         }
 
         // GET: Files/Edit/5
@@ -134,10 +117,7 @@ namespace Geonorge.Kartografi.Controllers
                     cartographyFile.Compatibility.Add(new Compatibility { Id = Guid.NewGuid().ToString(), Key = item });
             }
 
-            var previewImage = SaveFile(uploadPreviewImage);
-            var fileName = SaveFile(uploadFile);
-
-            if(fileName != null && cartographyFile.OfficialStatus)
+            if(uploadFile != null && cartographyFile.OfficialStatus)
             {
                 newversion = true;
                 CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
@@ -149,7 +129,7 @@ namespace Geonorge.Kartografi.Controllers
             if (ModelState.IsValid)
             {
                 if(newversion)
-                    _cartographyService.AddCartographyVersion(cartographyFile);
+                    _cartographyService.AddCartographyVersion(cartographyFile, uploadFile, uploadPreviewImage);
                 else
                     _cartographyService.UpdateCartography(cartographyFile);
 

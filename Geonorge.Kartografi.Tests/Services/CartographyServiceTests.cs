@@ -21,7 +21,9 @@ namespace Geonorge.Kartografi.Tests
 
             var versioning = new Mock<VersioningService>(mockContext.Object);
             var service = new CartographyService(mockContext.Object, versioning.Object);
-            service.AddCartography( new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0cef"), Name = "Test" });
+            var compability = new List<Compatibility>();
+            compability.Add(new Compatibility { Id = "WMS", Key = "WMS" });
+            service.AddCartography( new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0cef"), Name = "Test", Compatibility = compability, Format = "sld" });
 
             mockSet.Verify(m => m.Add(It.IsAny<CartographyFile>()), Times.Once());
             mockContext.Verify(m => m.CartographyFiles, Times.Once());
