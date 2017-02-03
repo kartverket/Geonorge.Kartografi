@@ -15,9 +15,9 @@ namespace Geonorge.Kartografi.Services
 
         public static readonly Dictionary<string, string> Compatibility = new Dictionary<string, string>()
         {
-            {"wms", "wms"},
-            {"qgis", "qgis"},
-            {"ESRI/ArcMap", "ESRI/ArcMap"}
+            {"WMS", "WMS"},
+            {"QGIS", "QGIS"},
+            {"ESRI", "ESRI"}
         };
 
         public static readonly Dictionary<string, string> Status = new Dictionary<string, string>()
