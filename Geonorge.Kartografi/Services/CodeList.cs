@@ -10,13 +10,15 @@ namespace Geonorge.Kartografi.Services
         public static readonly Dictionary<string, string> Formats = new Dictionary<string, string>()
         {
             {"sld", "sld"},
-            {"lyr", "lyr"}
+            {"lyr", "lyr"},
+            {"pdf", "pdf"}
         };
 
         public static readonly Dictionary<string, string> Compatibility = new Dictionary<string, string>()
         {
             {"wms", "wms"},
-            {"qgis", "qgis"}
+            {"qgis", "qgis"},
+            {"ESRI/ArcMap", "ESRI/ArcMap"}
         };
 
         public static readonly Dictionary<string, string> Status = new Dictionary<string, string>()
