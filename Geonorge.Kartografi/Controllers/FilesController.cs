@@ -117,13 +117,24 @@ namespace Geonorge.Kartografi.Controllers
                     cartographyFile.Compatibility.Add(new Compatibility { Id = Guid.NewGuid().ToString(), Key = item });
             }
 
-            if(uploadFile != null && cartographyFile.OfficialStatus)
+            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", cartographyFile.Format);
+            ViewBag.newversion = newversion;
+            ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
+            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
+
+            if (uploadFile != null)
             {
-                newversion = true;
-                CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
-                originalCartographyFile.Status = "Superseded";
-                _cartographyService.UpdateCartography(originalCartographyFile);
-                cartographyFile.Status = "Submitted";
+                if (cartographyFile.OfficialStatus)
+                {
+                    newversion = true;
+                    CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
+                    originalCartographyFile.Status = "Superseded";
+                    _cartographyService.UpdateCartography(originalCartographyFile);
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Vennligst opprett en ny versjon");
+                }
             }
 
             if (ModelState.IsValid)
