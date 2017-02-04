@@ -91,6 +91,8 @@ namespace Geonorge.Kartografi.Services
         {
             _dbContext.CartographyFiles.Remove(cartographyFile);
             _dbContext.SaveChanges();
+            DeleteFile(cartographyFile.FileName);
+            DeleteFile(cartographyFile.PreviewImage);
         }
 
         public string CreateFileName(CartographyFile cartographyFile)
@@ -173,6 +175,17 @@ namespace Geonorge.Kartografi.Services
             }
 
             return fileName;
+        }
+
+        private void DeleteFile(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/files");
+                string targetPath = Path.Combine(targetFolder, fileName);
+                if(File.Exists(targetPath))
+                    File.Delete(targetPath);
+            }
         }
 
         public VersionsItem Versions(Guid? SystemId)
