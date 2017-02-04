@@ -76,7 +76,7 @@ namespace Geonorge.Kartografi.Services
         {
             CartographyFile originalCartographyFile = GetCartography(cartographyFile.SystemId);
             cartographyFile.SystemId = Guid.NewGuid();
-            cartographyFile.VersionId = originalCartographyFile.VersionId + 1;
+            cartographyFile.VersionId = originalCartographyFile.versioning.LastVersionNumber + 1;
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, originalCartographyFile);
             cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
             cartographyFile.FileName = CreateFileName(cartographyFile);
