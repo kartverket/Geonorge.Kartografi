@@ -122,7 +122,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
 
-            if (uploadFile != null)
+            if (!newversion && uploadFile != null)
             {
                 if (cartographyFile.OfficialStatus)
                 {
