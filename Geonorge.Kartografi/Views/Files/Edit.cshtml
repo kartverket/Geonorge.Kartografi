@@ -135,8 +135,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" :"") /> Ja 
-                        <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" :"") /> Nei
+                        <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" :"")  disabled='disabled' /> Ja 
+                        <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" :"") disabled='disabled' /> Nei
                     </div>
                 </div>
             </div>
@@ -216,6 +216,10 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
             <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Details/@Model.SystemId">Tilbake</a>
             <input type="submit" value="Lagre" style="margin-left: 15px;" class="btn btn-default pull-right" />
+            @if (!(Model.OfficialStatus && Model.Status == "Accepted"))
+            {
+                <a class="btn btn-default btn-space pull-right" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.SystemId">Slett</a>
+            }
 
         </div>
     </div>
