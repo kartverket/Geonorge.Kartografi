@@ -14,10 +14,12 @@ namespace Geonorge.Kartografi.Controllers
     public class FilesController : Controller
     {
         ICartographyService _cartographyService;
+        private readonly IAuthorizationService _authorizationService;
 
-        public FilesController(ICartographyService cartographyService)
+        public FilesController(ICartographyService cartographyService, IAuthorizationService authorizationService)
         {
             _cartographyService = cartographyService;
+            _authorizationService = authorizationService;
         }
 
         // GET: Datasets
@@ -60,6 +62,7 @@ namespace Geonorge.Kartografi.Controllers
         // POST: Files/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities)
