@@ -157,8 +157,22 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" :"")  @(!ViewBag.newversion ? "disabled='disabled'" :"")  /> Ja 
-                        <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" :"") @(!ViewBag.newversion ? "disabled='disabled'" : "")  /> Nei
+                    @if (ViewBag.newversion)
+                    {
+                        <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" : "")  /> <span>Ja</span>
+                        <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" : "") /> <span>Nei</span>
+                    }
+                    else
+                    {
+                        if (Model.OfficialStatus)
+                        {
+                            <span>Ja</span>
+                        }
+                        else
+                        {
+                            <span>Nei</span>
+                        }
+                    }
                     </div>
                 </div>
             </div>

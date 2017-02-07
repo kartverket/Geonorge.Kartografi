@@ -54,7 +54,7 @@
                                 <span class="glyphicon glyphicon-download-alt"> </span>Last ned
                             </a><br />
                             <a class="btn btn-default btn-space" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId">Rediger</a>
-                            <a class="btn btn-default btn-space" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>
+                            <a class="btn btn-default btn-space@((Model.CurrentVersion.OfficialStatus && Model.CurrentVersion.Status == "Accepted") ? " disabled" :"" )" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>
                             <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId?newversion=true">Foreslå ny versjon</a>
                         </div>
                         <div class="col-no-padding-xs col-xs-12 col-sm-4 col-md-4 col-lg-4 col-information pull-right">
