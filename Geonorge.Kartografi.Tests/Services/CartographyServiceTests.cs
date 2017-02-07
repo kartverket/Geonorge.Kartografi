@@ -6,6 +6,8 @@ using Moq;
 using Xunit;
 using System.Data.Entity;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading;
 
 namespace Geonorge.Kartografi.Tests
 {
@@ -20,7 +22,15 @@ namespace Geonorge.Kartografi.Tests
             mockContext.Setup(m => m.CartographyFiles).Returns(mockSet.Object);
 
             var versioning = new Mock<VersioningService>(mockContext.Object);
-            var service = new CartographyService(mockContext.Object, versioning.Object);
+
+            var claims = new List<Claim>();
+            claims.Add(new Claim("orgnr", "111111111"));
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new Mock<ClaimsPrincipal>(identity);
+
+            var authorizationService = new Mock<AuthorizationService>(claimsPrincipal.Object);
+            authorizationService.Setup(a => a.IsAdmin("testuser")).Returns(true);
+            var service = new CartographyService(mockContext.Object, versioning.Object, authorizationService.Object);
             var compability = new List<Compatibility>();
             compability.Add(new Compatibility { Id = "WMS", Key = "WMS" });
             service.AddCartography( new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0cef"), Name = "Test", Compatibility = compability, Format = "sld" });
@@ -49,7 +59,15 @@ namespace Geonorge.Kartografi.Tests
             mockContext.Setup(c => c.CartographyFiles).Returns(mockSet.Object);
 
             var versioning = new Mock<VersioningService>(mockContext.Object);
-            var service = new CartographyService(mockContext.Object, versioning.Object);
+
+            var claims = new List<Claim>();
+            claims.Add(new Claim("orgnr", "111111111"));
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new Mock<ClaimsPrincipal>(identity);
+
+            var authorizationService = new Mock<AuthorizationService>(claimsPrincipal.Object);
+            authorizationService.Setup(a => a.IsAdmin("testuser")).Returns(true);
+            var service = new CartographyService(mockContext.Object, versioning.Object, authorizationService.Object);
             var files = service.GetCartography();
 
             Assert.Equal(3, files.Count);
@@ -57,5 +75,58 @@ namespace Geonorge.Kartografi.Tests
             Assert.Equal("ZZZ", files[1].Name);
             Assert.Equal("AAA", files[2].Name);
         }
+
+        [Fact]
+        public void UserIsAdmin()
+        {
+            var claims = new List<Claim>();
+            claims.Add(new Claim("role", "nd.metadata_admin"));
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+            Thread.CurrentPrincipal = claimsPrincipal;
+            var authorizationService = new AuthorizationService(claimsPrincipal);
+            Assert.Equal(true, authorizationService.IsAdmin("testuser"));
+        }
+
+        [Fact]
+        public void UserIsNotAdmin()
+        {
+            var claims = new List<Claim>();
+            claims.Add(new Claim("role", "nd.metadata"));
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+            Thread.CurrentPrincipal = claimsPrincipal;
+            var authorizationService = new AuthorizationService(claimsPrincipal);
+            Assert.Equal(false, authorizationService.IsAdmin("testuser"));
+        }
+
+        [Fact]
+        public void UserIsOwner()
+        {
+            var owner = "Riksantikvaren";
+            var user = owner;
+            var claims = new List<Claim>();
+            claims.Add(new Claim("organization", user));
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+            Thread.CurrentPrincipal = claimsPrincipal;
+            var authorizationService = new AuthorizationService(claimsPrincipal);
+            Assert.Equal(true, authorizationService.IsOwner(owner, user));
+        }
+
+        [Fact]
+        public void UserIsNotOwner()
+        {
+            var owner = "Riksantikvaren";
+            var user = "Fiskeridirektoratet";
+            var claims = new List<Claim>();
+            claims.Add(new Claim("organization", user));
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+            Thread.CurrentPrincipal = claimsPrincipal;
+            var authorizationService = new AuthorizationService(claimsPrincipal);
+            Assert.Equal(false, authorizationService.IsOwner(owner, user));
+        }
+
     }
 }

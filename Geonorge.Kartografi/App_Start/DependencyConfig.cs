@@ -6,6 +6,7 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Geonorge.Kartografi.Models;
 using Geonorge.Kartografi.Services;
+using System.Security.Claims;
 
 namespace Geonorge.Kartografi.App_Start
 {
@@ -27,6 +28,8 @@ namespace Geonorge.Kartografi.App_Start
             builder.RegisterType<CartographyDbContext>().InstancePerRequest().AsSelf();
             builder.RegisterType<CartographyService>().As<ICartographyService>();
             builder.RegisterType<VersioningService>().As<IVersioningService>();
+            builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
+            builder.RegisterType<ClaimsPrincipal>().As<ClaimsPrincipal>();
         }
 
         private static void SetupAspMvcDependencyResolver(IContainer container)

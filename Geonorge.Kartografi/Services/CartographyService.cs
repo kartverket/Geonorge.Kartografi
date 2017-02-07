@@ -13,11 +13,13 @@ namespace Geonorge.Kartografi.Services
     {
         private readonly CartographyDbContext _dbContext;
         private IVersioningService _versioningService;
+        private readonly IAuthorizationService _authorizationService;
 
-        public CartographyService(CartographyDbContext dbContext, IVersioningService versioningService)
+        public CartographyService(CartographyDbContext dbContext, IVersioningService versioningService, IAuthorizationService authorizationService)
         {
             _dbContext = dbContext;
             _versioningService = versioningService;
+            _authorizationService = authorizationService;
         }
 
         public List<Dataset> GetDatasets()
