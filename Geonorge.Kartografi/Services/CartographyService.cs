@@ -89,6 +89,32 @@ namespace Geonorge.Kartografi.Services
 
         public void RemoveCartography(CartographyFile cartographyFile)
         {
+            CartographyFile originalCartographyFile = GetCartography(cartographyFile.SystemId);
+            var versioning = originalCartographyFile.versioning;
+            if (originalCartographyFile.SystemId == versioning.CurrentVersion)
+            {
+                var versions = _dbContext.CartographyFiles.Where(v => v.SystemId != cartographyFile.SystemId &&  v.versioning.SystemId == versioning.SystemId).ToList().OrderByDescending(s => s.versioning.LastVersionNumber);
+
+                if(versions != null && versions.Count() > 0)
+                { 
+                    var newVersion = versions.First();
+
+                    foreach (var version in versions)
+                    {
+                        if (version.OfficialStatus)
+                        {
+                            newVersion = version;
+                            break;
+                        }
+                    }
+
+                    Models.Version versionGroup = _versioningService.GetVersionGroup(newVersion.versioningId);
+                    versionGroup.CurrentVersion = newVersion.SystemId;
+                    versionGroup.LastVersionNumber = newVersion.VersionId;
+                    _dbContext.SaveChanges();
+
+                }
+            }
             _dbContext.CartographyFiles.Remove(cartographyFile);
             _dbContext.SaveChanges();
             DeleteFile(cartographyFile.FileName);

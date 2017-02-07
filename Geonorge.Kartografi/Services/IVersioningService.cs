@@ -10,5 +10,6 @@ namespace Geonorge.Kartografi.Services
     {
         VersionsItem Versions(Guid? SystemId);
         Guid GetVersioningId(CartographyFile cartographyFile, CartographyFile originalCartographyFile);
+        Models.Version GetVersionGroup(Guid? versioningId);
     }
 }

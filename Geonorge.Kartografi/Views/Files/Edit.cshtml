@@ -78,13 +78,24 @@
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+                @if (ViewBag.newversion)
+                {
                 <div class="form-group">
                     @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <span>@Model.FileName</span> <input type="file" id="uploadFile" name="uploadFile" style="display:inline;" />
                     </div>
                 </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <span>@Model.FileName</span>
+                        </div>
+                    </div>
+                }
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Format, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -100,13 +111,24 @@
                         @Html.ValidationMessageFor(model => model.Compatibility, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+                @if (ViewBag.newversion)
+                {
                 <div class="form-group">
                     @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <span>@Model.PreviewImage</span> <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" style="display:inline;" />
                     </div>
                 </div>
+                }
+                else
+                {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <span>@Model.PreviewImage</span>
+                    </div>
+                </div>
+                }
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -135,8 +157,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" :"")  disabled='disabled' /> Ja 
-                        <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" :"") disabled='disabled' /> Nei
+                        <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" :"")  @(!ViewBag.newversion ? "disabled='disabled'" :"")  /> Ja 
+                        <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" :"") @(!ViewBag.newversion ? "disabled='disabled'" : "")  /> Nei
                     </div>
                 </div>
             </div>

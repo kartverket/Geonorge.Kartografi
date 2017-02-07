@@ -122,25 +122,15 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
 
-            if (!newversion && uploadFile != null)
+            if (ModelState.IsValid)
             {
-                if (cartographyFile.OfficialStatus)
+                if (newversion)
                 {
-                    newversion = true;
                     CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
                     originalCartographyFile.Status = "Superseded";
                     _cartographyService.UpdateCartography(originalCartographyFile);
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Vennligst opprett en ny versjon");
-                }
-            }
-
-            if (ModelState.IsValid)
-            {
-                if(newversion)
                     _cartographyService.AddCartographyVersion(cartographyFile, uploadFile, uploadPreviewImage);
+                }
                 else
                     _cartographyService.UpdateCartography(cartographyFile);
 
