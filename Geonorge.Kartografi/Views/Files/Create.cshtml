@@ -49,7 +49,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.OwnerPerson, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.OwnerPerson, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.OwnerPerson, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.OwnerPerson, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.LastEditedBy, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.LastEditedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.LastEditedBy, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.LastEditedBy, "", new { @class = "text-danger" })
                     </div>
                 </div>
