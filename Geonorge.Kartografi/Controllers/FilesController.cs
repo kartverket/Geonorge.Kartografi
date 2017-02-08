@@ -168,5 +168,22 @@ namespace Geonorge.Kartografi.Controllers
             _cartographyService.RemoveCartography(cartographyFile);
             return RedirectToAction("Index");
         }
+
+        // GET: Files/File/5
+        public ActionResult File(Guid SystemId)
+        {
+            if (SystemId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
+            if (cartographyFile == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(cartographyFile);
+        }
     }
 }

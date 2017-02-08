@@ -1,0 +1,50 @@
+﻿@using Geonorge.Kartografi.Services
+@model Geonorge.Kartografi.Models.CartographyFile
+
+@{
+    ViewBag.Title = "Detaljer";
+}
+@section breadcrumb {
+    <li><a href="~/tegneregler/">Digital kartografi</a></li>
+    <li><a href="~/tegneregler/Details/@Model.SystemId">@Model.Name</a></li>
+    <li>Detaljer</li>
+}
+
+<h2>@Model.Name</h2>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
+            <p>@Model.OwnerOrganization</p>
+            <p>@Model.Description</p>
+            <p><span>Offisiell: </span>@(Model.OfficialStatus ? "ja" : "nei")</p>
+            <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
+            <p><span>Versjon: </span>@Model.VersionId</p>       
+        </div>
+        <div class="col-no-padding-xs col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <p><span>Endret: </span>@Model.DateChanged.ToString("dd.MM.yyyy")</p>     
+        </div>
+
+        <div class="col-no-padding-xs col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <hr>
+            <a href="~/files/@Model.FileName" target="_blank">
+                <img src="~/files/@Model.PreviewImage" />
+            </a>
+            <a href="~/files/@Model.FileName" class="btn" style="vertical-align:top;" target="_blank">
+                <span class="glyphicon glyphicon-download-alt"> </span>Last ned
+            </a><br />  
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+        <hr />
+
+        @if (Request.IsAuthenticated)
+        {
+            <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.SystemId" style="margin-left: 15px;">Rediger</a>
+            <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Delete/@Model.SystemId">Slett</a>
+        }
+        <a class="hidden-print" href="~/tegneregler/Details/@Model.SystemId">Tilbake</a>
+
+    </div>
+</div>
