@@ -15,14 +15,17 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
-            <p>@Model.Owner</p>
             <p>@Model.Description</p>
             <p><span>Offisiell: </span>@(Model.OfficialStatus ? "ja" : "nei")</p>
             <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
-            <p><span>Versjon: </span>@Model.VersionId</p>       
+            <p><span>Versjon: </span>@Model.VersionId</p>
+            <p><span>Datasett: </span>@Model.DatasetName</p>
+            <p><span>Datasetteier: </span>@Model.OwnerDataset</p>  
+            <p><span>Tjeneste: </span>@Model.ServiceName</p>         
         </div>
         <div class="col-no-padding-xs col-xs-12 col-sm-2 col-md-2 col-lg-2">
-            <p><span>Endret: </span>@Model.DateChanged.ToString("dd.MM.yyyy")</p>     
+            <p><span>Endret: </span>@Model.DateChanged.ToString("dd.MM.yyyy")</p>
+            <p><span>Eier: </span>@Model.Owner</p>     
         </div>
 
         <div class="col-no-padding-xs col-xs-12 col-sm-12 col-md-12 col-lg-12">

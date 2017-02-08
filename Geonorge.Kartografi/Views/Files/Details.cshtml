@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-no-padding-xs col-title col-sm-4 col-md-4 col-lg-4">
                             <p>@Model.CurrentVersion.Name</p>
-                            <p>@Model.CurrentVersion.Owner</p>
+                            <p><span>Eier: </span>@Model.CurrentVersion.Owner</p>
                             <p>@Model.CurrentVersion.Description</p>       
                         </div>
                         <div class="col-no-padding-xs col-actions col-xs-12 col-sm-2 col-md-2 col-lg-2">
@@ -64,6 +64,9 @@
                             <p><span>Offisiell: </span>@(Model.CurrentVersion.OfficialStatus ? "ja" : "nei")</p>
                             <p><span>Status: </span>@CodeList.Status[Model.CurrentVersion.Status]</p>
                             <p><span>Versjon: </span>@Model.CurrentVersion.VersionId</p>
+                            <p><span>Datasett: </span>@Model.CurrentVersion.DatasetName</p>
+                            <p><span>Datasetteier: </span>@Model.CurrentVersion.OwnerDataset</p>
+                            <p><span>Tjeneste: </span>@Model.CurrentVersion.ServiceName</p>  
                         </div>
                   </div>
                 </div>
