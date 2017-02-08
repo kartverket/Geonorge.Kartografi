@@ -17,6 +17,17 @@ namespace Geonorge.Kartografi.Helpers
         {
             return WebConfigurationManager.AppSettings["RegistryUrl"];
         }
+
+        public static string UrlActionSignIn(this HtmlHelper helper)
+        {
+            return WebConfigurationManager.AppSettings["UrlActionSignIn"];
+        }
+
+        public static string UrlActionSignOut(this HtmlHelper helper)
+        {
+            return WebConfigurationManager.AppSettings["UrlActionSignOut"];
+        }
+
         public static string ObjektkatalogUrl(this HtmlHelper helper)
         {
             return WebConfigurationManager.AppSettings["ObjektkatalogUrl"];
