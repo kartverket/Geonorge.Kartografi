@@ -114,6 +114,11 @@ namespace Geonorge.Kartografi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities, bool newversion = false)
         {
+            if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             cartographyFile.Compatibility = new List<Compatibility>();
             if (compatibilities != null)
             {
@@ -165,6 +170,10 @@ namespace Geonorge.Kartografi.Controllers
         public ActionResult DeleteConfirmed(Guid SystemId)
         {
             CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
+            if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             _cartographyService.RemoveCartography(cartographyFile);
             return RedirectToAction("Index");
         }
