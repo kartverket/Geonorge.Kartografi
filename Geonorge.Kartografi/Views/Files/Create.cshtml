@@ -21,9 +21,10 @@
     </div>
 </section>
 
-
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", id = "cartographyform" }))
+@if (Request.IsAuthenticated)
 {
+    using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", id = "cartographyform" }))
+    {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -214,5 +215,6 @@
 
         </div>
     </div>
+    }
 }
 <script type="text/javascript" src="~/Scripts/custom.js"></script>

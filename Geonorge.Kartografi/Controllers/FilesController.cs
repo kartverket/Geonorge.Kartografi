@@ -110,6 +110,7 @@ namespace Geonorge.Kartografi.Controllers
 
         // POST: Files/Edit/5
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities, bool newversion = false)
         {
@@ -160,6 +161,7 @@ namespace Geonorge.Kartografi.Controllers
         // POST: Files/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(Guid SystemId)
         {
             CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
