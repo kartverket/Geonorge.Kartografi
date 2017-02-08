@@ -168,9 +168,9 @@
     </Compile>
     <Compile Include="Helpers\HtmlHelperExtension.cs" />
     <Compile Include="Helpers\registerUrls.cs" />
-    <Compile Include="Migrations\201701190952554_Initial.cs" />
-    <Compile Include="Migrations\201701190952554_Initial.Designer.cs">
-      <DependentUpon>201701190952554_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201702081214416_Initial.cs" />
+    <Compile Include="Migrations\201702081214416_Initial.Designer.cs">
+      <DependentUpon>201702081214416_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartographyFile.cs" />
@@ -402,8 +402,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701190952554_Initial.resx">
-      <DependentUpon>201701190952554_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702081214416_Initial.resx">
+      <DependentUpon>201702081214416_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UI.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

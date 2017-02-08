@@ -22,6 +22,7 @@ $('.datasetUuidSelect').select2({
                 option["id"] = item.Uuid;
                 option["text"] = item.Title;
                 option["theme"] = item.Theme;
+                option["ownerorganization"] = item.Organization;
 
                 metadata.push(option);
             })
@@ -42,6 +43,7 @@ $('.datasetUuidSelect').on('select2:select', function (evt) {
     $.each(metadata, function (i, item) {
         if (uuidSelected == item.id) {
             $("#DatasetName").val(item.text);
+            $("#OwnerDataset").val(item.ownerorganization);
             $("#Theme").val(item.theme);
 
             $('#ServiceUuid').empty();
@@ -69,42 +71,6 @@ $('.datasetUuidSelect').on('select2:select', function (evt) {
 $('#ServiceUuid').on('change', function () {
     $('#ServiceName').val($('#ServiceUuid option:selected').text());
 })
-
-var organizations = [];
-
-$('.ownerOrganizationSelect').select2({
-    placeholder: "Søk etter organisasjon",
-    language: "nb",
-    ajax: {
-        url: registryUrl + "api/search",
-        dataType: 'json',
-        delay: 250,
-        data: function (params) {
-            return {
-                text: params.term,// search term
-                limit: 10,
-                'facets[0]name': "type",
-                'facets[0]value': "organisasjoner"
-            };
-        },
-        processResults: function (data, params) {
-            organizations = [];
-            $.each(data.Results, function (i, item) {
-                option = {}
-                option["id"] = item.Name;
-                option["text"] = item.Name;
-
-                organizations.push(option);
-            })
-
-            return {
-                results: organizations
-            };
-        },
-        cache: true
-    },
-    minimumInputLength: 3
-});
 
 $(".compatibilitySelect").select2();
 

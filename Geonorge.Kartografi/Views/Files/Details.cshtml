@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-no-padding-xs col-title col-sm-4 col-md-4 col-lg-4">
                             <p>@Model.CurrentVersion.Name</p>
-                            <p>@Model.CurrentVersion.OwnerOrganization</p>
+                            <p>@Model.CurrentVersion.Owner</p>
                             <p>@Model.CurrentVersion.Description</p>       
                         </div>
                         <div class="col-no-padding-xs col-actions col-xs-12 col-sm-2 col-md-2 col-lg-2">
@@ -84,7 +84,7 @@
                         <div class="col-lg-4">
                             <a href="~/tegneregler/File/@historical.SystemId">@historical.Name</a>
                         </div>
-                        <div class="col-lg-3">@historical.OwnerOrganization</div>
+                        <div class="col-lg-3">@historical.Owner</div>
                         <div class="col-lg-2">@historical.VersionId</div>
                         <div class="col-lg-3">@CodeList.Status[historical.Status]</div>
                     </div>
@@ -111,7 +111,7 @@
                         <div class="col-lg-4">
                             <a href="~/tegneregler/File/@suggestion.SystemId">@suggestion.Name</a>
                         </div>
-                        <div class="col-lg-3">@suggestion.OwnerOrganization</div>
+                        <div class="col-lg-3">@suggestion.Owner</div>
                         <div class="col-lg-2">@suggestion.VersionId</div>
                         <div class="col-lg-3">@CodeList.Status[suggestion.Status]</div>
                     </div>

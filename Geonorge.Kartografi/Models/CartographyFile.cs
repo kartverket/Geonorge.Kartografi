@@ -23,11 +23,11 @@ namespace Geonorge.Kartografi.Models
 
         /// <summary> Eier av datasettet, eventuelt eier av fil (ved foreslått digital kartografi), dropdown (fra organisasjonsregisteret)</summary>
         [Display(Name = "Organisasjon")]
-        public string OwnerOrganization { get; set; }
+        public string Owner { get; set; }
 
         /// <summary> Navn på hvem som har sendt inn filen. Personnavn</summary>
-        [Display(Name = "Innsender")]
-        public string OwnerPerson { get; set; }
+        [Display(Name = "Datasetteier")]
+        public string OwnerDataset { get; set; }
 
         /// <summary> Editor. Hentes fra pålogget bruker</summary>
         [Display(Name = "Redigert av")]

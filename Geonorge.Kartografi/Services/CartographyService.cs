@@ -25,7 +25,7 @@ namespace Geonorge.Kartografi.Services
         public List<Dataset> GetDatasets()
         {
             return _dbContext.CartographyFiles
-                .Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerOrganization = d.OwnerOrganization })
+                .Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
                 .Distinct()
                 .ToList();
         }
@@ -50,6 +50,8 @@ namespace Geonorge.Kartografi.Services
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, null);
             cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
             cartographyFile.FileName = CreateFileName(cartographyFile);
+            cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
             SaveFile(uploadFile, cartographyFile.FileName);
@@ -69,7 +71,9 @@ namespace Geonorge.Kartografi.Services
                 _dbContext.SaveChanges();
             }
 
+            cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
             cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
+
             _dbContext.Entry(cartographyFile).State = EntityState.Modified;
             _dbContext.SaveChanges();
 
@@ -83,6 +87,7 @@ namespace Geonorge.Kartografi.Services
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, originalCartographyFile);
             cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
             cartographyFile.FileName = CreateFileName(cartographyFile);
+            cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
             cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();

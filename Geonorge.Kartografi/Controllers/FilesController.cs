@@ -37,13 +37,10 @@ namespace Geonorge.Kartografi.Controllers
         // GET: Files/Create
         public ActionResult Create()
         {
-            CartographyFile cartographyFile = new CartographyFile();
-            cartographyFile.OwnerPerson = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
-            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Submitted");
-            return View(cartographyFile);
+            return View();
         }
 
         // GET: Files/Details/5
@@ -70,8 +67,6 @@ namespace Geonorge.Kartografi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities)
         {
-            cartographyFile.OwnerPerson = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
-            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);

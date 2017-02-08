@@ -33,40 +33,6 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-12">
-                        <span class="required">Eierinformasjon til tegneregel – hvem leverer tegneregel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.OwnerOrganization, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <select class="ownerOrganizationSelect form-control" id="OwnerOrganization" name="OwnerOrganization"> </select>
-                        @Html.ValidationMessageFor(model => model.OwnerOrganization, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.OwnerPerson, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.OwnerPerson, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.OwnerPerson, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LastEditedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LastEditedBy, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.LastEditedBy, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-md-12">
                         <span class="required">Informasjon om kartografi-filen</span>
                     </div>
                 </div>
@@ -156,6 +122,7 @@
                         <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"> </select>
                         @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.DatasetName)
+                        @Html.HiddenFor(model => model.OwnerDataset)
                         @Html.HiddenFor(model => model.Theme)
                         @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
                         @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })

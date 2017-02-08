@@ -31,7 +31,7 @@
             <div class="row search-results-table-heading">
                 <div class="col-sm-3"><p>@Html.DisplayNameFor(model => model.Name)</p></div>
                 <div class="col-sm-2"><p>@Html.DisplayNameFor(model => model.Compatibility)</p></div>
-                <div class="col-sm-2"><p>@Html.DisplayNameFor(model => model.OwnerOrganization)</p></div>
+                <div class="col-sm-2"><p>@Html.DisplayNameFor(model => model.Owner)</p></div>
                 <div class="col-sm-1"><p>@Html.DisplayNameFor(model => model.OfficialStatus)</p></div>
                 <div class="col-sm-1"><p>@Html.DisplayNameFor(model => model.Format)</p></div>
             </div>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="col-sm-2">
-                        @Html.DisplayFor(modelItem => item.OwnerOrganization)
+                        @Html.DisplayFor(modelItem => item.Owner)
                     </div>
 
                     <div class="col-sm-1">

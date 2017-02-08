@@ -14,6 +14,6 @@ namespace Geonorge.Kartografi.Models
         [Display(Name = "Tema")]
         public string Theme { get; set; }
         [Display(Name = "Eier")]
-        public string OwnerOrganization { get; set; }
+        public string OwnerDataset { get; set; }
     }
 }

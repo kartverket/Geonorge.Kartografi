@@ -13,7 +13,7 @@ namespace Geonorge.Kartografi.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201701190952554_Initial"; }
+            get { return "201702081214416_Initial"; }
         }
         
         string IMigrationMetadata.Source
