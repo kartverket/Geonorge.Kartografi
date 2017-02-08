@@ -9,5 +9,6 @@ namespace Geonorge.Kartografi.Services
     {
         bool IsAdmin(string userId);
         bool IsOwner(string owner, string user);
+        List<string> GetSecurityClaim(string type);
     }
 }

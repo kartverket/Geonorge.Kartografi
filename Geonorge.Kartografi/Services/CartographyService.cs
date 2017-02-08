@@ -69,6 +69,7 @@ namespace Geonorge.Kartografi.Services
                 _dbContext.SaveChanges();
             }
 
+            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("urn:oid:1.2.840.113549.1.9.1").FirstOrDefault();
             _dbContext.Entry(cartographyFile).State = EntityState.Modified;
             _dbContext.SaveChanges();
 
@@ -82,6 +83,7 @@ namespace Geonorge.Kartografi.Services
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, originalCartographyFile);
             cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
             cartographyFile.FileName = CreateFileName(cartographyFile);
+            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("urn:oid:1.2.840.113549.1.9.1").FirstOrDefault();
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
             SaveFile(uploadFile, cartographyFile.FileName);

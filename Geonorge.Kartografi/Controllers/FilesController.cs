@@ -37,10 +37,13 @@ namespace Geonorge.Kartografi.Controllers
         // GET: Files/Create
         public ActionResult Create()
         {
+            CartographyFile cartographyFile = new CartographyFile();
+            cartographyFile.OwnerPerson = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("urn:oid:1.2.840.113549.1.9.1").FirstOrDefault();
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Submitted");
-            return View();
+            return View(cartographyFile);
         }
 
         // GET: Files/Details/5
@@ -67,6 +70,8 @@ namespace Geonorge.Kartografi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities)
         {
+            cartographyFile.OwnerPerson = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("urn:oid:1.2.840.113549.1.9.1").FirstOrDefault();
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
@@ -99,7 +104,6 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return HttpNotFound();
             }
-
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", cartographyFile.Format);
             ViewBag.newversion = newversion;
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
