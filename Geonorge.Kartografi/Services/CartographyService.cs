@@ -45,12 +45,16 @@ namespace Geonorge.Kartografi.Services
 
         public void AddCartography(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null)
         {
+            string owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+            if (_authorizationService.IsAdmin() && !string.IsNullOrEmpty(cartographyFile.Owner))
+                owner = cartographyFile.Owner;
+
             cartographyFile.SystemId = Guid.NewGuid();
             cartographyFile.VersionId = 1;
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, null);
             cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
             cartographyFile.FileName = CreateFileName(cartographyFile);
-            cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+            cartographyFile.Owner = owner;
             cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
@@ -58,23 +62,43 @@ namespace Geonorge.Kartografi.Services
             SaveFile(uploadPreviewImage, cartographyFile.PreviewImage);
         }
 
-        public void UpdateCartography(CartographyFile cartographyFile)
+        public void UpdateCartography(CartographyFile originalFile, CartographyFile file)
         {
+            if(file != null)
+            {
+                originalFile.Name = file.Name;
+                originalFile.Description = file.Description;
+                originalFile.Format = file.Format;
+                originalFile.Use = file.Use;
+                originalFile.Properties = file.Properties;
+                originalFile.DatasetUuid = file.DatasetUuid;
+                originalFile.DatasetName = file.DatasetName;
+                originalFile.ServiceUuid = file.ServiceUuid;
+                originalFile.ServiceName = file.ServiceName;
+                originalFile.Status = file.Status;
+                originalFile.AcceptedComment = file.AcceptedComment;
+                originalFile.DateAccepted = file.DateAccepted;
+                originalFile.DateChanged = DateTime.Now;
+                string owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+                if (_authorizationService.IsAdmin() && !string.IsNullOrEmpty(file.Owner))
+                    owner = file.Owner;
+                originalFile.Owner = owner;
+                originalFile.OwnerDataset = file.OwnerDataset;
+                originalFile.Theme = file.Theme;
 
-            var deleteSql = "DELETE from Compatibilities where CartographyFile_SystemId = {0}";
-            _dbContext.Database.ExecuteSqlCommand(deleteSql, cartographyFile.SystemId);
-            _dbContext.SaveChanges();
-
-            foreach (var item in cartographyFile.Compatibility.ToList()) {
-                var insertSql = "INSERT INTO Compatibilities(Id, [Key], CartographyFile_SystemId) Values ({0}, {1}, {2} )";
-                _dbContext.Database.ExecuteSqlCommand(insertSql, Guid.NewGuid().ToString(), item.Key, cartographyFile.SystemId);
+                var deleteSql = "DELETE from Compatibilities where CartographyFile_SystemId = {0}";
+                _dbContext.Database.ExecuteSqlCommand(deleteSql, originalFile.SystemId);
                 _dbContext.SaveChanges();
+
+                foreach (var item in file.Compatibility.ToList()) {
+                    var insertSql = "INSERT INTO Compatibilities(Id, [Key], CartographyFile_SystemId) Values ({0}, {1}, {2} )";
+                    _dbContext.Database.ExecuteSqlCommand(insertSql, Guid.NewGuid().ToString(), item.Key, originalFile.SystemId);
+                    _dbContext.SaveChanges();
+                }
             }
 
-            cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
-            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
-
-            _dbContext.Entry(cartographyFile).State = EntityState.Modified;
+            originalFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
+            _dbContext.Entry(originalFile).State = EntityState.Modified;
             _dbContext.SaveChanges();
 
         }

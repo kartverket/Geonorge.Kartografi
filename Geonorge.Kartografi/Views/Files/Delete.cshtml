@@ -9,22 +9,20 @@
     <li><a href="~/tegneregler/Details/@Model.SystemId">@Model.Name</a></li>
     <li>Slett</li>
 }
-@if (Request.IsAuthenticated)
-{
+
 <h2>Slett @Model.Name</h2>
 
 <h3>Er du sikker på at du vil slette @Html.DisplayFor(model => model.Name)?</h3>
 <div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <div class="row">
-            <div class="col-md-12">
-                <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Details/@Model.SystemId">Tilbake</a>
-                <input type="submit" value="Slett" class="btn btn-default pull-right" />
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Details/@Model.SystemId">Tilbake</a>
+            <input type="submit" value="Slett" class="btn btn-default pull-right" />
         </div>
-    }
-</div>
+    </div>
 }
+</div>

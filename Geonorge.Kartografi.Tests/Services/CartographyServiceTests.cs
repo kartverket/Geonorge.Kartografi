@@ -24,13 +24,14 @@ namespace Geonorge.Kartografi.Tests
             var versioning = new Mock<VersioningService>(mockContext.Object);
 
             var claims = new List<Claim>();
-            claims.Add(new Claim("orgnr", "111111111"));
+            claims.Add(new Claim("role", "nd.metadata_admin"));
+            claims.Add(new Claim("organization", "Kartverket"));
             var identity = new ClaimsIdentity(claims, "TestAuthType");
-            var claimsPrincipal = new Mock<ClaimsPrincipal>(identity);
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+            Thread.CurrentPrincipal = claimsPrincipal;
 
-            var authorizationService = new Mock<AuthorizationService>(claimsPrincipal.Object);
-            authorizationService.Setup(a => a.IsAdmin("testuser")).Returns(true);
-            var service = new CartographyService(mockContext.Object, versioning.Object, authorizationService.Object);
+            var authorizationService = new AuthorizationService(claimsPrincipal);
+            var service = new CartographyService(mockContext.Object, versioning.Object, authorizationService);
             var compability = new List<Compatibility>();
             compability.Add(new Compatibility { Id = "WMS", Key = "WMS" });
             service.AddCartography( new CartographyFile { SystemId = Guid.Parse("c6056ed8-e040-42ef-b3c8-02f66fbb0cef"), Name = "Test", Compatibility = compability, Format = "sld" });
@@ -66,7 +67,7 @@ namespace Geonorge.Kartografi.Tests
             var claimsPrincipal = new Mock<ClaimsPrincipal>(identity);
 
             var authorizationService = new Mock<AuthorizationService>(claimsPrincipal.Object);
-            authorizationService.Setup(a => a.IsAdmin("testuser")).Returns(true);
+            authorizationService.Setup(a => a.IsAdmin()).Returns(true);
             var service = new CartographyService(mockContext.Object, versioning.Object, authorizationService.Object);
             var files = service.GetCartography();
 
@@ -85,7 +86,7 @@ namespace Geonorge.Kartografi.Tests
             var claimsPrincipal = new ClaimsPrincipal(identity);
             Thread.CurrentPrincipal = claimsPrincipal;
             var authorizationService = new AuthorizationService(claimsPrincipal);
-            Assert.Equal(true, authorizationService.IsAdmin("testuser"));
+            Assert.Equal(true, authorizationService.IsAdmin());
         }
 
         [Fact]
@@ -97,7 +98,7 @@ namespace Geonorge.Kartografi.Tests
             var claimsPrincipal = new ClaimsPrincipal(identity);
             Thread.CurrentPrincipal = claimsPrincipal;
             var authorizationService = new AuthorizationService(claimsPrincipal);
-            Assert.Equal(false, authorizationService.IsAdmin("testuser"));
+            Assert.Equal(false, authorizationService.IsAdmin());
         }
 
         [Fact]

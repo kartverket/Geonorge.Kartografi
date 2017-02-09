@@ -7,8 +7,9 @@ namespace Geonorge.Kartografi.Services
 {
     public interface IAuthorizationService
     {
-        bool IsAdmin(string userId);
+        bool IsAdmin();
         bool IsOwner(string owner, string user);
+        bool HasAccess(string owner, string user);
         List<string> GetSecurityClaim(string type);
     }
 }

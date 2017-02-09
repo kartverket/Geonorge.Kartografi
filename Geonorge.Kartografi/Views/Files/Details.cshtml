@@ -53,7 +53,7 @@
                             <a href="~/files/@Model.CurrentVersion.FileName" class="btn" target="_blank">
                                 <span class="glyphicon glyphicon-download-alt"> </span>Last ned
                             </a><br />
-                            @if (Request.IsAuthenticated)
+                            @if (ViewBag.HasAccess)
                             {
                             <a class="btn btn-default btn-space" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId">Rediger</a>
                             <a class="btn btn-default btn-space@((Model.CurrentVersion.OfficialStatus && Model.CurrentVersion.Status == "Accepted") ? " disabled" : "" )" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>

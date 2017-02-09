@@ -55,6 +55,14 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.HasAccess = false;
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.HasAccess = _authorizationService.HasAccess(cartographyFile.CurrentVersion.Owner,
+                    _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
+            } 
+
             return View(cartographyFile);
         }
 
@@ -104,6 +112,12 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
 
+            ViewBag.IsAdmin = false;
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.IsAdmin = _authorizationService.IsAdmin();
+            }
+
             return View(cartographyFile);
         }
 
@@ -113,6 +127,14 @@ namespace Geonorge.Kartografi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities, bool newversion = false)
         {
+            CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
+
+            if (!_authorizationService.HasAccess(originalCartographyFile.Owner,
+                    _authorizationService.GetSecurityClaim("organization").FirstOrDefault()))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+
             if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -134,13 +156,12 @@ namespace Geonorge.Kartografi.Controllers
             {
                 if (newversion)
                 {
-                    CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
                     originalCartographyFile.Status = "Superseded";
                     _cartographyService.UpdateCartography(originalCartographyFile);
                     _cartographyService.AddCartographyVersion(cartographyFile, uploadFile, uploadPreviewImage);
                 }
                 else
-                    _cartographyService.UpdateCartography(cartographyFile);
+                    _cartographyService.UpdateCartography(originalCartographyFile, cartographyFile);
 
                 return RedirectToAction("Files", "Files", new { uuid = cartographyFile.DatasetUuid });
             }
@@ -169,6 +190,13 @@ namespace Geonorge.Kartografi.Controllers
         public ActionResult DeleteConfirmed(Guid SystemId)
         {
             CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
+
+            if (!_authorizationService.HasAccess(cartographyFile.Owner,
+                _authorizationService.GetSecurityClaim("organization").FirstOrDefault()))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+
             if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -189,6 +217,13 @@ namespace Geonorge.Kartografi.Controllers
             if (cartographyFile == null)
             {
                 return HttpNotFound();
+            }
+
+            ViewBag.HasAccess = false;
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.HasAccess = _authorizationService.HasAccess(cartographyFile.Owner,
+                    _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
             }
 
             return View(cartographyFile);

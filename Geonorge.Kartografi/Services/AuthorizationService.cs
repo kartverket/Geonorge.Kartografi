@@ -16,7 +16,12 @@ namespace Geonorge.Kartografi.Services
             _claimsPrincipal = claimsPrincipal;
         }
 
-        public virtual bool IsAdmin(string userId)
+        public bool HasAccess(string owner, string user)
+        {
+            return (IsAdmin() || IsOwner(owner, user));
+        }
+
+        public virtual bool IsAdmin()
         {
             List<string> roles = GetSecurityClaim("role");
             foreach (string role in roles)

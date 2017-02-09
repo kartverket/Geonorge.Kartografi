@@ -21,167 +21,186 @@
     </div>
 </section>
 
-@if (Request.IsAuthenticated)
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", id = "cartographyform" }))
 {
-    using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", id = "cartographyform" }))
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @if(ViewBag.IsAdmin)
     {
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="required">Informasjon om kartografi-filen</span>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <input type="file" id="uploadFile" name="uploadFile" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Format, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("Format", ViewBag.Formats as SelectList, String.Empty, new { @class = "form-control" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Compatibility, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("compatibilities", ViewBag.Compatibility as SelectList, String.Empty, new { @class = "form-control compatibilitySelect", multiple = "multiple" })
-                        @Html.ValidationMessageFor(model => model.Compatibility, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Use, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Use, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
-                        @Html.ValidationMessageFor(model => model.Use, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Properties, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
-                        @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <input type="radio" name="OfficialStatus" value="True" /> Ja <input type="radio" name="OfficialStatus" value="False" /> Nei
-                    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="required">Eierinformasjon til tegneregel – hvem leverer tegneregel</span>
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="required">Knytning til datasett og tjeneste</span>
-                    </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Owner, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="ownerOrganizationSelect form-control" id="OwnerOrganization" name="OwnerOrganization"> </select>
+                    @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"> </select>
-                        @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.DatasetName)
-                        @Html.HiddenFor(model => model.OwnerDataset)
-                        @Html.HiddenFor(model => model.Theme)
-                        @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
-                        @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ServiceUuid, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <select class="serviceUuidSelect form-control" id="ServiceUuid" name="ServiceUuid"></select>
-                        @Html.ValidationMessageFor(model => model.ServiceUuid, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.ServiceName)
-                        @Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-md-12">
-                        <span>Dokumentgodkjenning</span>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("Status", ViewBag.Statuses as SelectList, String.Empty, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div id="DateAcceptedDiv" class="form-group">
-                    @Html.LabelFor(model => model.DateAccepted, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DateAccepted, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateAccepted, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div id="AcceptedCommentDiv" class="form-group">
-                    @Html.LabelFor(model => model.AcceptedComment, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.AcceptedComment, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AcceptedComment, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
-            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/">Tilbake</a>
-            <input type="submit" value="Foreslå" style="margin-left: 15px;" class="btn btn-default pull-right" />
-
         </div>
     </div>
     }
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="required">Informasjon om kartografi-filen</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="uploadFile" name="uploadFile" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Format, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Format", ViewBag.Formats as SelectList, String.Empty, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Compatibility, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("compatibilities", ViewBag.Compatibility as SelectList, String.Empty, new { @class = "form-control compatibilitySelect", multiple = "multiple" })
+                    @Html.ValidationMessageFor(model => model.Compatibility, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Use, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Use, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
+                    @Html.ValidationMessageFor(model => model.Use, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Properties, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
+                    @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="radio" name="OfficialStatus" value="True" /> Ja <input type="radio" name="OfficialStatus" value="False" /> Nei
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="required">Knytning til datasett og tjeneste</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"> </select>
+                    @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.DatasetName)
+                    @Html.HiddenFor(model => model.OwnerDataset)
+                    @Html.HiddenFor(model => model.Theme)
+                    @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ServiceUuid, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="serviceUuidSelect form-control" id="ServiceUuid" name="ServiceUuid"></select>
+                    @Html.ValidationMessageFor(model => model.ServiceUuid, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ServiceName)
+                    @Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Dokumentgodkjenning</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Status", ViewBag.Statuses as SelectList, String.Empty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="DateAcceptedDiv" class="form-group">
+                @Html.LabelFor(model => model.DateAccepted, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateAccepted, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateAccepted, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="AcceptedCommentDiv" class="form-group">
+                @Html.LabelFor(model => model.AcceptedComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AcceptedComment, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AcceptedComment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/">Tilbake</a>
+        <input type="submit" value="Foreslå" style="margin-left: 15px;" class="btn btn-default pull-right" />
+
+    </div>
+</div>
 }
 <script type="text/javascript" src="~/Scripts/custom.js"></script>
