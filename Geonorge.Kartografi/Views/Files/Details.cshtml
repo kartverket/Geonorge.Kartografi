@@ -64,6 +64,11 @@
                             <p><span>Offisiell: </span>@(Model.CurrentVersion.OfficialStatus ? "ja" : "nei")</p>
                             <p><span>Status: </span>@CodeList.Status[Model.CurrentVersion.Status]</p>
                             <p><span>Versjon: </span>@Model.CurrentVersion.VersionId</p>
+                            @if (ViewBag.IsAdmin)
+                            {
+                                <p><span>Redigert av: </span>@Model.CurrentVersion.LastEditedBy</p>
+                            }
+                            <p><span>Sist oppdatert: </span>@Model.CurrentVersion.DateChanged</p>
                             <p><span>Datasett: </span>@Model.CurrentVersion.DatasetName</p>
                             <p><span>Datasetteier: </span>@Model.CurrentVersion.OwnerDataset</p>
                             <p><span>Tjeneste: </span>@Model.CurrentVersion.ServiceName</p>  

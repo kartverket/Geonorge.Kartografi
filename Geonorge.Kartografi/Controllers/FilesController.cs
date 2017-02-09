@@ -62,10 +62,12 @@ namespace Geonorge.Kartografi.Controllers
             }
 
             ViewBag.HasAccess = false;
+            ViewBag.IsAdmin = false;
             if (Request.IsAuthenticated)
             {
                 ViewBag.HasAccess = _authorizationService.HasAccess(cartographyFile.CurrentVersion.Owner,
                     _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
+                ViewBag.IsAdmin = _authorizationService.IsAdmin();
             } 
 
             return View(cartographyFile);
@@ -252,10 +254,12 @@ namespace Geonorge.Kartografi.Controllers
             }
 
             ViewBag.HasAccess = false;
+            ViewBag.IsAdmin = false;
             if (Request.IsAuthenticated)
             {
                 ViewBag.HasAccess = _authorizationService.HasAccess(cartographyFile.Owner,
                     _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
+                ViewBag.IsAdmin = _authorizationService.IsAdmin();
             }
 
             return View(cartographyFile);

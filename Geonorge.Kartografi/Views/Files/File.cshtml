@@ -25,6 +25,10 @@
         </div>
         <div class="col-no-padding-xs col-xs-12 col-sm-2 col-md-2 col-lg-2">
             <p><span>Endret: </span>@Model.DateChanged.ToString("dd.MM.yyyy")</p>
+            @if (ViewBag.IsAdmin)
+            {
+                <p><span>Redigert av: </span>@Model.LastEditedBy</p>
+            }
             <p><span>Eier: </span>@Model.Owner</p>     
         </div>
 
