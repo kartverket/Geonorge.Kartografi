@@ -45,7 +45,10 @@
                     </div>
 
                     <div class="col-sm-2">
-                        @Html.DisplayFor(modelItem => item.Compatibility)
+                        @foreach (var compability in item.Compatibility)
+                        {
+                        <span>@compability</span>if (!item.Compatibility.LastOrDefault().Equals(compability)){<span>, </span>}
+                        }
                     </div>
 
                     <div class="col-sm-2">
