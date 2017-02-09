@@ -85,6 +85,18 @@ namespace Geonorge.Kartografi.Controllers
             {
                 ViewBag.IsAdmin = _authorizationService.IsAdmin();
             }
+
+            if (!ViewBag.IsAdmin && cartographyFile.Status == "Accepted")
+            {
+                cartographyFile.DateAccepted = null;
+                cartographyFile.AcceptedComment = "";
+                cartographyFile.Status = "Submitted";
+                ModelState.Remove("DateAccepted");
+                ModelState.Remove("AcceptedComment");
+                ModelState.Remove("Status");
+                ModelState.AddModelError(string.Empty, "Kun administrator kan godkjenne");
+            }
+
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
@@ -139,15 +151,24 @@ namespace Geonorge.Kartografi.Controllers
         {
             CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
 
+            ViewBag.IsAdmin = _authorizationService.IsAdmin();
+   
             if (!_authorizationService.HasAccess(originalCartographyFile.Owner,
                     _authorizationService.GetSecurityClaim("organization").FirstOrDefault()))
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
-            }
 
             if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted")
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            if (!ViewBag.IsAdmin && cartographyFile.Status == "Accepted")
+            {
+                cartographyFile.DateAccepted = null;
+                cartographyFile.AcceptedComment = "";
+                cartographyFile.Status = "Submitted";
+                ModelState.Remove("DateAccepted");
+                ModelState.Remove("AcceptedComment");
+                ModelState.Remove("Status");
+                ModelState.AddModelError(string.Empty, "Kun administrator kan godkjenne");
             }
 
             cartographyFile.Compatibility = new List<Compatibility>();
@@ -174,12 +195,6 @@ namespace Geonorge.Kartografi.Controllers
                     _cartographyService.UpdateCartography(originalCartographyFile, cartographyFile);
 
                 return RedirectToAction("Files", "Files", new { uuid = cartographyFile.DatasetUuid });
-            }
-
-            ViewBag.IsAdmin = false;
-            if (Request.IsAuthenticated)
-            {
-                ViewBag.IsAdmin = _authorizationService.IsAdmin();
             }
 
             return View(cartographyFile);
