@@ -28,10 +28,12 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div id="tableView" class="search-results">
             <div class="row search-results-table-heading">
-                <div class="col-sm-5"><p>@Html.DisplayNameFor(model => model.DatasetName)</p></div>
-                <div class="col-sm-4"><p>@Html.DisplayNameFor(model => model.OwnerDataset)</p></div>
-                <div class="col-sm-3"><p>@Html.DisplayNameFor(model => model.Theme)</p></div>
+                <div class="col-sm-5"><p>@Html.ActionLink(Html.DisplayNameFor(model => model.DatasetName).ToHtmlString(), "Index", new { sortOrder = ViewBag.DatasetNameSortParm }, new { @class = ViewBag.SortOrder.Contains("datasetname") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-4"><p>@Html.ActionLink(Html.DisplayNameFor(model => model.OwnerDataset).ToHtmlString(), "Index", new { sortOrder = ViewBag.DatasetOwner }, new { @class = ViewBag.SortOrder.Contains("datasetowner") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-3"><p>@Html.ActionLink(Html.DisplayNameFor(model => model.Theme).ToHtmlString(), "Index", new { sortOrder = ViewBag.Theme }, new { @class = ViewBag.SortOrder.Contains("theme") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
             </div>
+
+
             <div class="menu-separator search-results-table-heading"></div>
             @foreach (var item in Model)
             {

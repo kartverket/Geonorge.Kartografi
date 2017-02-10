@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+
+a.sorted-asc:after {
+    content: ' \25BC';
+}
+a.sorted-desc:after {
+    content: ' \25B2';
+}

@@ -23,9 +23,39 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Datasets
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(_cartographyService.GetDatasets());
+            var datasets = _cartographyService.GetDatasets();
+            switch (sortOrder)
+            {
+                case "datasetname_desc":
+                    datasets = datasets.OrderByDescending(s => s.DatasetName).ToList();
+                    break;
+                case "datasetowner":
+                    datasets = datasets.OrderBy(s => s.OwnerDataset).ToList();
+                    break;
+                case "datasetowner_desc":
+                    datasets = datasets.OrderByDescending(s => s.OwnerDataset).ToList();
+                    break;
+                case "theme_desc":
+                    datasets = datasets.OrderByDescending(s => s.Theme).ToList();
+                    break;
+                case "theme":
+                    datasets = datasets.OrderBy(s => s.Theme).ToList();
+                    break;
+                default:
+                    datasets = datasets.OrderBy(s => s.DatasetName).ToList();
+                    break;
+            }
+            if (string.IsNullOrEmpty(sortOrder))
+                sortOrder = "datasetname";
+
+            ViewBag.DatasetNameSortParm = sortOrder == "datasetname" ? "datasetname_desc" : "datasetname";
+            ViewBag.DatasetOwner = sortOrder == "datasetowner" ? "datasetowner_desc" : "datasetowner";
+            ViewBag.Theme = sortOrder == "theme" ? "theme_desc" : "theme";
+            ViewBag.SortOrder = sortOrder;
+
+            return View(datasets);
         }
 
         // GET: Files in dataset
