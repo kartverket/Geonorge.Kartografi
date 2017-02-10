@@ -139,7 +139,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"> </select>
+                    <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"></select>
                     @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.DatasetName)
                     @Html.HiddenFor(model => model.OwnerDataset)
@@ -204,3 +204,26 @@
 </div>
 }
 <script type="text/javascript" src="~/Scripts/custom.js"></script>
+@if (!string.IsNullOrEmpty(Model.DatasetUuid))
+{
+<script type="text/javascript">
+    $(document).ready(function () {
+        metadata = [];
+        option = {}
+        option["id"] = "@Model.DatasetUuid";
+        option["text"] = "@Model.DatasetName";
+        option["theme"] = "@Model.Theme";
+        option["ownerorganization"] = "@Model.OwnerDataset";
+
+        metadata.push(option);
+
+        var data = [{ id: "@Model.DatasetUuid", text: '@Model.DatasetName' }];
+
+        $(".datasetUuidSelect").select2({
+            data: data
+        })
+
+        $(".datasetUuidSelect").trigger("select2:select");
+    });
+</script>
+}

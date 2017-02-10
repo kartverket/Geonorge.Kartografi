@@ -35,8 +35,22 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Files/Create
-        public ActionResult Create()
+        public ActionResult Create(string uuid = null)
         {
+            CartographyFile file = new CartographyFile();
+
+            if (!string.IsNullOrEmpty(uuid))
+            {
+                var data = _cartographyService.GetCartography(uuid).FirstOrDefault();
+                if(data != null)
+                { 
+                    file.DatasetUuid = data.DatasetUuid;
+                    file.DatasetName = data.DatasetName;
+                    file.Theme = data.Theme;
+                    file.OwnerDataset = data.OwnerDataset;
+                }
+            }
+
             ViewBag.IsAdmin = false;
             if (Request.IsAuthenticated)
             {
@@ -45,7 +59,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Submitted");
-            return View();
+            return View(file);
         }
 
         // GET: Files/Details/5
