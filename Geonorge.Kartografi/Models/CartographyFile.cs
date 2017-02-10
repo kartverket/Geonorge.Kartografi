@@ -107,5 +107,21 @@ namespace Geonorge.Kartografi.Models
         [Display(Name = "Tema")]
         public string Theme { get; set; }
 
+        public string FileUrl()
+        {
+            return CurrentDomain() + "/files/" + FileName;
+        }
+
+        public string PreviewImageUrl()
+        {
+            return CurrentDomain() + "/files/" + PreviewImage;
+        }
+
+        string CurrentDomain()
+        {
+            return HttpContext.Current.Request.Url.Scheme + System.Uri.SchemeDelimiter
+                 + HttpContext.Current.Request.Url.Host +
+                 (HttpContext.Current.Request.Url.IsDefaultPort ? "" : ":" + HttpContext.Current.Request.Url.Port);
+        }
     }
 }

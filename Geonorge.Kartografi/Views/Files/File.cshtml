@@ -34,10 +34,10 @@
 
         <div class="col-no-padding-xs col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <hr>
-            <a href="~/files/@Model.FileName" target="_blank">
-                <img src="~/files/@Model.PreviewImage" />
+            <a href="@Model.FileUrl()" target="_blank">
+                <img src="@Model.PreviewImageUrl()" />
             </a>
-            <a href="~/files/@Model.FileName" class="btn" style="vertical-align:top;" target="_blank">
+            <a href="@Model.FileUrl()" class="btn" style="vertical-align:top;" target="_blank">
                 <span class="glyphicon glyphicon-download-alt"> </span>Last ned
             </a><br />  
         </div>

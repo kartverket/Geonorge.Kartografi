@@ -40,8 +40,8 @@
                 <div class="row result-row metadata">
                     <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12" style="height: auto; border: medium none; box-shadow: none;">
                         <div class="col-img col-xs-6 col-sm-2 col-md-2 col-lg-2">
-                            <a href="~/files/@Model.CurrentVersion.FileName" target="_blank">
-                                <img src="~/files/@Model.CurrentVersion.PreviewImage" />
+                            <a href="@Model.CurrentVersion.FileUrl()" target="_blank">
+                                <img src="@Model.CurrentVersion.PreviewImageUrl()" />
                              </a>   
                         </div>
                         <div class="col-no-padding-xs col-title col-sm-4 col-md-4 col-lg-4">
@@ -50,7 +50,7 @@
                             <p>@Model.CurrentVersion.Description</p>       
                         </div>
                         <div class="col-no-padding-xs col-actions col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                            <a href="~/files/@Model.CurrentVersion.FileName" class="btn" target="_blank">
+                            <a href="@Model.CurrentVersion.FileUrl()" class="btn" target="_blank">
                                 <span class="glyphicon glyphicon-download-alt"> </span>Last ned
                             </a><br />
                             @if (ViewBag.HasAccess)
