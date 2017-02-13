@@ -8,6 +8,7 @@ using System.Web;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using PagedList;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -23,7 +24,7 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Datasets
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, int? page)
         {
             var datasets = _cartographyService.GetDatasets();
             switch (sortOrder)
@@ -55,7 +56,10 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.Theme = sortOrder == "theme" ? "theme_desc" : "theme";
             ViewBag.SortOrder = sortOrder;
 
-            return View(datasets);
+            int pageSize = 50;
+            int pageNumber = (page ?? 1);
+
+            return View(datasets.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Files in dataset
