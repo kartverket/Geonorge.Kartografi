@@ -172,8 +172,3 @@ var OfficialStatus = function (event) {
 
 $("input[type=radio][name=OfficialStatus]").on("change", OfficialStatus);
 OfficialStatus();
-
-$(document).ready(function () {
-    if ($('#Status option:selected').val() == "Accepted" && $('#newversion').val() == "false" )
-        $("#cartographyform :input").prop("disabled", true);
-});

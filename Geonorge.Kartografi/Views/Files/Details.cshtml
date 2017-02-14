@@ -56,7 +56,7 @@
                             @if (ViewBag.HasAccess)
                             {
                             <a class="btn btn-default btn-space" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId">Rediger</a>
-                            <a class="btn btn-default btn-space@((Model.CurrentVersion.OfficialStatus && Model.CurrentVersion.Status == "Accepted") ? " disabled" : "" )" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>
+                            <a class="btn btn-default btn-space" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>
                             <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId?newversion=true">Foreslå ny versjon</a>
                             }
                         </div>

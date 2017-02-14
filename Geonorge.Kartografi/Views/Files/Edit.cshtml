@@ -247,3 +247,12 @@
 </div>
 }
 <script type="text/javascript" src="~/Scripts/custom.js"></script>
+@if (!ViewBag.IsAdmin)
+{
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($('#Status option:selected').val() == "Accepted" && $('#newversion').val() == "false")
+            $("#cartographyform :input").prop("disabled", true);
+    });
+</script>
+}

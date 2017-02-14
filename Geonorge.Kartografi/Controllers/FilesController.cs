@@ -65,7 +65,7 @@ namespace Geonorge.Kartografi.Controllers
         // GET: Files in dataset
         public ActionResult Files(string uuid = null)
         {
-            return View(_cartographyService.GetCartography(uuid));
+            return View(_cartographyService.GetCartography(uuid).OrderBy(s => s.Name));
         }
 
         // GET: Files/Create
@@ -207,9 +207,6 @@ namespace Geonorge.Kartografi.Controllers
                     _authorizationService.GetSecurityClaim("organization").FirstOrDefault()))
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
-            if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted")
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
             if (!ViewBag.IsAdmin && cartographyFile.Status == "Accepted")
             {
                 cartographyFile.DateAccepted = null;
@@ -273,13 +270,17 @@ namespace Geonorge.Kartografi.Controllers
         {
             CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
 
-            if (!_authorizationService.HasAccess(cartographyFile.Owner,
-                _authorizationService.GetSecurityClaim("organization").FirstOrDefault()))
+            bool hasAccess = _authorizationService.HasAccess(cartographyFile.Owner,
+                _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
+
+            bool isAdmin = _authorizationService.IsAdmin();
+
+            if (!hasAccess)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
-            if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted")
+            if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted" && !isAdmin)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
