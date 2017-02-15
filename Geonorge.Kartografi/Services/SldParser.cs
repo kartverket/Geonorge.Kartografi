@@ -64,8 +64,14 @@ namespace Geonorge.Kartografi.Services
                 foreach (var rule in rules)
                 {
                     var name = rule.Element(SE + "Name").Value;
+                    var WellKnownName = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                        .Element(SE + "Mark").Element(SE + "WellKnownName").Value;
+                    var fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                        .Element(SE + "Mark").Element(SE + "Fill").Value;
+                    var stroke = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                            .Element(SE + "Mark").Element(SE + "Stroke").Value;
 
-                    sldRules.Add(new SldRule { Name = name });
+                    sldRules.Add(new SldRule { Name = name, WellKnownName = WellKnownName, Fill = fill, Stroke = stroke });
                 }
             }
             return sldRules;

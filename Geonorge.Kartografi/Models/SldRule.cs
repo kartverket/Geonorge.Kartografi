@@ -8,5 +8,8 @@ namespace Geonorge.Kartografi.Models
     public class SldRule
     {
         public string Name { get; set; }
+        public string WellKnownName { get; set; }
+        public string Fill { get; set; }
+        public string Stroke { get; set; }
     }
 }
