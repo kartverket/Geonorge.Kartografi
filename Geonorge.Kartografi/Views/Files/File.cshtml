@@ -34,12 +34,17 @@
 
         <div class="col-no-padding-xs col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <hr>
-            <a href="@Model.FileUrl()" target="_blank">
-                <img src="@Model.PreviewImageUrl()" />
-            </a>
-            <a href="@Model.FileUrl()" class="btn" style="vertical-align:top;" target="_blank">
-                <span class="glyphicon glyphicon-download-alt"> </span>Last ned
-            </a><br />  
+            <div class="col-lg-4">
+                <a href="@Model.FileUrl()" target="_blank">
+                    <img src="@Model.PreviewImageUrl()" />
+                </a>
+            </div>
+            <div class="col-lg-8">
+                <a href="@Model.FileUrl()" class="btn" style="vertical-align:top;" target="_blank">
+                    <span class="glyphicon glyphicon-download-alt"> </span>Last ned
+                </a>
+                @Html.Partial("_Sld", new { fileUrl = Model.FileUrl() })
+            </div>
         </div>
     </div>
 

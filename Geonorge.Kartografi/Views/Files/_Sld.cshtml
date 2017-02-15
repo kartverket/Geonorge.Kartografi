@@ -1,0 +1,20 @@
+﻿@using Geonorge.Kartografi.Models
+@using Geonorge.Kartografi.Services
+@{ 
+    List<SldRule> sldRules = new SldParser().Get(Model.fileUrl);
+}
+
+@if(sldRules != null)
+{
+    foreach(var sld in sldRules)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <svg width="20" height="20">
+                    <rect width="20" height="20" style="fill:rgb(220,220,220);"/>
+                </svg>
+                <span>@sld.Name</span>
+            </div>
+        </div>
+    }
+}

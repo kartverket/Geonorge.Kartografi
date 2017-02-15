@@ -185,6 +185,7 @@
     <Compile Include="Models\CartographyDbContext.cs" />
     <Compile Include="Models\Compatibility.cs" />
     <Compile Include="Models\Dataset.cs" />
+    <Compile Include="Models\SldRule.cs" />
     <Compile Include="Models\Version.cs" />
     <Compile Include="Models\VersionsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\ICartographyService.cs" />
     <Compile Include="Services\IVersioningService.cs" />
+    <Compile Include="Services\SldParser.cs" />
     <Compile Include="Services\VersioningService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +400,7 @@
     </Content>
     <Content Include="Views\Files\Files.cshtml" />
     <Content Include="Views\Files\File.cshtml" />
+    <Content Include="Views\Files\_Sld.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

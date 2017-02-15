@@ -73,6 +73,7 @@
                             <p><span>Datasetteier: </span>@Model.CurrentVersion.OwnerDataset</p>
                             <p><span>Tjeneste: </span>@Model.CurrentVersion.ServiceName</p>  
                         </div>
+                        @Html.Partial("_Sld", new { fileUrl = Model.CurrentVersion.FileUrl() })
                   </div>
                 </div>
             </div>
