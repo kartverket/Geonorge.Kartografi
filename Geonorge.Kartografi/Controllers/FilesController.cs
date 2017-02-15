@@ -24,9 +24,9 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Datasets
-        public ActionResult Index(string sortOrder, int? page)
+        public ActionResult Index(string sortOrder, string text, int? page)
         {
-            var datasets = _cartographyService.GetDatasets();
+            var datasets = _cartographyService.GetDatasets(text);
             switch (sortOrder)
             {
                 case "datasetname_desc":
@@ -55,6 +55,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.DatasetOwner = sortOrder == "datasetowner" ? "datasetowner_desc" : "datasetowner";
             ViewBag.Theme = sortOrder == "theme" ? "theme_desc" : "theme";
             ViewBag.SortOrder = sortOrder;
+            ViewBag.text = text;
 
             int pageSize = 50;
             int pageNumber = (page ?? 1);

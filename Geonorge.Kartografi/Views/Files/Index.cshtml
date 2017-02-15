@@ -29,9 +29,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div id="tableView" class="search-results">
             <div class="row search-results-table-heading">
-                <div class="col-sm-5"><p>@Html.ActionLink("Tittel", "Index", new { sortOrder = ViewBag.DatasetNameSortParm }, new { @class = ViewBag.SortOrder.Contains("datasetname") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
-                <div class="col-sm-4"><p>@Html.ActionLink("Eier", "Index", new { sortOrder = ViewBag.DatasetOwner }, new { @class = ViewBag.SortOrder.Contains("datasetowner") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
-                <div class="col-sm-3"><p>@Html.ActionLink("Tema", "Index", new { sortOrder = ViewBag.Theme }, new { @class = ViewBag.SortOrder.Contains("theme") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-5"><p>@Html.ActionLink("Tittel", "Index", new { sortOrder = ViewBag.DatasetNameSortParm, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("datasetname") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-4"><p>@Html.ActionLink("Eier", "Index", new { sortOrder = ViewBag.DatasetOwner, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("datasetowner") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-3"><p>@Html.ActionLink("Tema", "Index", new { sortOrder = ViewBag.Theme, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("theme") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
             </div>
 
 
@@ -57,7 +57,7 @@
         </div>
         Side @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) av @Model.PageCount
 
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort}))
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, text = ViewBag.text }))
     </div>
     <div class="clearfix"></div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">

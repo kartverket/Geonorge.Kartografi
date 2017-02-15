@@ -22,12 +22,25 @@ namespace Geonorge.Kartografi.Services
             _authorizationService = authorizationService;
         }
 
-        public List<Dataset> GetDatasets()
+        public List<Dataset> GetDatasets(string text = null)
         {
+            if (!string.IsNullOrEmpty(text))
+            {
+               return  _dbContext.CartographyFiles
+                .Where(s => s.DatasetName.Contains(text) || s.Description.Contains(text) || s.FileName.Contains(text) || s.Format.Contains(text)
+                || s.Name.Contains(text) || s.Properties.Contains(text) || s.Theme.Contains(text) || s.Use.Contains(text) 
+                || s.OwnerDataset.Contains(text) || s.Owner.Contains(text))
+                .Select(d => new Dataset { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
+                .Distinct()
+                .ToList();
+            }
+            else
+            { 
             return _dbContext.CartographyFiles
                 .Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
                 .Distinct()
                 .ToList();
+            }
         }
 
         public List<CartographyFile> GetCartography(string uuid = null)
