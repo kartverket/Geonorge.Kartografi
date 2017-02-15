@@ -121,7 +121,8 @@ namespace Geonorge.Kartografi.Models
         {
             return HttpContext.Current.Request.Url.Scheme + System.Uri.SchemeDelimiter
                  + HttpContext.Current.Request.Url.Host +
-                 (HttpContext.Current.Request.Url.IsDefaultPort ? "" : ":" + HttpContext.Current.Request.Url.Port);
+                 (HttpContext.Current.Request.Url.IsDefaultPort ? "" : ":" + HttpContext.Current.Request.Url.Port)
+                 +(!HttpContext.Current.Request.Url.Host.Contains("localhost") ? "/kartografi" : "");
         }
     }
 }
