@@ -128,5 +128,16 @@ namespace Geonorge.Kartografi.Services
 
 
         }
+
+        public int GetNewVersionNumber(CartographyFile originalCartographyFile)
+        {
+
+            var versionNumber = _dbContext.CartographyFiles.Where(v => v.versioningId == originalCartographyFile.versioningId)
+                .Select(n => n.VersionId)
+                .Max() +1 ;
+
+
+            return versionNumber;
+        }
     }
 }
