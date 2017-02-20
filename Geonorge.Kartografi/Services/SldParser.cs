@@ -74,7 +74,16 @@ namespace Geonorge.Kartografi.Services
 
                         if (strokeWidthObject != null)
                             strokeWidth = strokeWidthObject.Value;
+                    }
+                    else if (wellKnownName == "square")
+                    {
+                        fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                        .Element(SE + "Mark").Element(SE + "Fill").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "fill").Value;
 
+                        stroke = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                        .Element(SE + "Mark").Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke").Value;
                     }
 
                 }

@@ -17,9 +17,12 @@
                                     stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke" />
                         </svg>
                     }
-                    else
+                    else if (sld.WellKnownName == "square")
                     {
-                        <rect width="20" height="20" style="fill:rgb(220,220,220);" />
+                        <svg width="100" height="100">
+                            <rect width="100" height="100"
+                                  fill="@sld.Fill" stroke-width="10" stroke="@sld.Stroke" />
+                        </svg>
                     }
                 <span>@sld.Name</span>
             </div>
