@@ -21,11 +21,11 @@ namespace Geonorge.Kartografi.Models
         [Display(Name = "Beskrivelse")]
         public string Description { get; set; }
 
-        /// <summary> Eier av datasettet, eventuelt eier av fil (ved foreslått digital kartografi), dropdown (fra organisasjonsregisteret)</summary>
+        /// <summary> Organisasjon som har sendt inn filen.</summary>
         [Display(Name = "Organisasjon")]
         public string Owner { get; set; }
 
-        /// <summary> Navn på hvem som har sendt inn filen. Personnavn</summary>
+        /// <summary> Eier av datasettet</summary>
         [Display(Name = "Datasetteier")]
         public string OwnerDataset { get; set; }
 
