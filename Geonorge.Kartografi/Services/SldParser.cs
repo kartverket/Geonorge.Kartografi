@@ -34,46 +34,67 @@ namespace Geonorge.Kartografi.Services
 
             XElement root = sldDoc.Element(SLD + "StyledLayerDescriptor");
 
-            string version = root.Attribute("version").Value;
+            IEnumerable<XElement> rules =
+                    from r in root.Element(SLD + "NamedLayer")
+                        .Element(SLD + "UserStyle")
+                        .Element(SE + "FeatureTypeStyle")
+                        .Elements(SE + "Rule")
+                    select r;
 
-            if (version.StartsWith("1.0"))
+            foreach (var rule in rules)
             {
-                IEnumerable<XElement> rules =
-                from r in root.Element(SLD + "NamedLayer")
-                    .Element(SLD + "UserStyle")
-                    .Element(SLD + "FeatureTypeStyle")
-                    .Elements(SLD + "Rule")
-                select r;
 
-                foreach (var rule in rules)
+                var name = rule.Element(SE + "Name").Value;
+                string symboliser = "";
+                string fill = "";
+                string stroke = "";
+                string strokeWidth = "";
+                string wellKnownName = "";
+
+                if (rule.Element(SE + "PointSymbolizer").HasElements)
                 {
-                    var name = rule.Element(SLD + "Name").Value;
+                    symboliser = "point";
 
-                    sldRules.Add(new SldRule { Name = name });
-                }
-            }
-            else
-            { 
-                IEnumerable<XElement> rules =
-                        from r in root.Element(SLD + "NamedLayer")
-                            .Element(SLD + "UserStyle")
-                            .Element(SE + "FeatureTypeStyle")
-                            .Elements(SE + "Rule")
-                        select r;
-
-                foreach (var rule in rules)
-                {
-                    var name = rule.Element(SE + "Name").Value;
-                    var WellKnownName = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                    wellKnownName = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "WellKnownName").Value;
-                    var fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
-                        .Element(SE + "Mark").Element(SE + "Fill").Value;
-                    var stroke = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
-                            .Element(SE + "Mark").Element(SE + "Stroke").Value;
 
-                    sldRules.Add(new SldRule { Name = name, WellKnownName = WellKnownName, Fill = fill, Stroke = stroke });
+                    if(wellKnownName == "circle")
+                    {
+                        fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                        .Element(SE + "Mark").Element(SE + "Fill").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "fill").Value;
+
+                        stroke = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                        .Element(SE + "Mark").Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke").Value;
+
+                        var strokeWidthObject = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
+                        .Element(SE + "Mark").Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+
+                        if (strokeWidthObject != null)
+                            strokeWidth = strokeWidthObject.Value;
+
+                    }
+
                 }
+                else if (rule.Element(SE + "PolygonSymbolizer").HasElements)
+                {
+
+                }
+
+                sldRules.Add(new SldRule
+                {
+                    Symbolizer = symboliser,
+                    Name = name,
+                    WellKnownName = wellKnownName,
+                    Fill = fill,
+                    Stroke = stroke,
+                    StrokeWidth = strokeWidth
+                });
+
             }
+
             return sldRules;
         }
 
