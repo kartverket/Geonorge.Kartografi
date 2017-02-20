@@ -24,6 +24,26 @@
                                   fill="@sld.Fill" stroke-width="10" stroke="@sld.Stroke" />
                         </svg>
                     }
+                    else if (sld.WellKnownName == "cross" || sld.WellKnownName == "cross_fill")
+                    {
+                        <svg height="100" width="100">
+                            <rect width="20" height="100" x="40" y="0"
+                                  stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke" />
+                            <rect width="100" height="20" x="0" y="40"
+                                  stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke" />
+                            <!--Trengte denne, hvis ikke ble det "stroke" over delen i midten-->
+                            <rect width="20" height="25" x="40" y="38" fill="@sld.Fill" />
+                        </svg>
+                    }
+                    else if (sld.WellKnownName == "cross2")
+                    {
+                        <svg height="100" width="100">
+                            <polygon points="0,0 100,100"
+                                     stroke="@sld.Stroke" fill="@sld.Fill" stroke-width="@sld.StrokeWidth" />
+                            <polygon points="0,100 100,0"
+                                     stroke="@sld.Stroke" fill="@sld.Fill" stroke-width="@sld.StrokeWidth" />
+                        </svg>
+                    }
                 <span>@sld.Name</span>
             </div>
         </div>

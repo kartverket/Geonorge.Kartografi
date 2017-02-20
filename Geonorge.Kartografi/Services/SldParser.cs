@@ -58,7 +58,7 @@ namespace Geonorge.Kartografi.Services
                     wellKnownName = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "WellKnownName").Value;
 
-                    if(wellKnownName == "circle")
+                    if(wellKnownName == "circle" || wellKnownName == "cross" || wellKnownName == "cross_fill")
                     {
                         fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "Fill").Elements(SE + "SvgParameter")
@@ -75,7 +75,7 @@ namespace Geonorge.Kartografi.Services
                         if (strokeWidthObject != null)
                             strokeWidth = strokeWidthObject.Value;
                     }
-                    else if (wellKnownName == "square" || wellKnownName == "triangle")
+                    else if (wellKnownName == "square" || wellKnownName == "triangle" || wellKnownName == "cross2")
                     {
                         fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "Fill").Elements(SE + "SvgParameter")

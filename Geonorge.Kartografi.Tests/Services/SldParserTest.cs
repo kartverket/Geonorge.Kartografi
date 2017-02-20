@@ -62,5 +62,44 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.Equal("#000000", slds[0].Stroke);
         }
 
+        [Fact]
+        public void ShouldParseKryss2()
+        {
+            xmlFile = File.ReadAllText("xml\\punkt_kryss2.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("point", slds[0].Symbolizer);
+            Assert.Equal("cross", slds[0].WellKnownName);
+            Assert.Equal("#00ff0c", slds[0].Fill);
+            Assert.Equal("#000000", slds[0].Stroke);
+        }
+
+        [Fact]
+        public void ShouldParseKryss()
+        {
+            xmlFile = File.ReadAllText("xml\\punkt_kryss.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("point", slds[0].Symbolizer);
+            Assert.Equal("cross_fill", slds[0].WellKnownName);
+            Assert.Equal("#00ff0c", slds[0].Fill);
+            Assert.Equal("#000000", slds[0].Stroke);
+        }
+
+        [Fact]
+        public void ShouldParseX()
+        {
+            xmlFile = File.ReadAllText("xml\\punkt_x.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("point", slds[0].Symbolizer);
+            Assert.Equal("cross2", slds[0].WellKnownName);
+            Assert.Equal("#00ff0c", slds[0].Fill);
+            Assert.Equal("#000000", slds[0].Stroke);
+        }
+
     }
 }
