@@ -75,7 +75,7 @@ namespace Geonorge.Kartografi.Services
                         if (strokeWidthObject != null)
                             strokeWidth = strokeWidthObject.Value;
                     }
-                    else if (wellKnownName == "square")
+                    else if (wellKnownName == "square" || wellKnownName == "triangle")
                     {
                         fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "Fill").Elements(SE + "SvgParameter")
