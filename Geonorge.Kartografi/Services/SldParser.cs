@@ -51,10 +51,23 @@ namespace Geonorge.Kartografi.Services
                 string strokeWidth = "";
                 string wellKnownName = "";
 
-                if (rule.Element(SE + "PointSymbolizer").HasElements)
+                var point = rule.Element(SE + "PointSymbolizer");
+                if (point != null)
                 {
                     symboliser = "point";
+                }
+                else
+                {
+                    var polygon = rule.Element(SE + "PolygonSymbolizer");
+                    if (polygon != null)
+                        symboliser = "polygon";
+                }
 
+  
+
+
+                if (symboliser == "point")
+                {
                     wellKnownName = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "WellKnownName").Value;
 
@@ -87,8 +100,31 @@ namespace Geonorge.Kartografi.Services
                     }
 
                 }
-                else if (rule.Element(SE + "PolygonSymbolizer").HasElements)
+                else if (symboliser == "polygon")
                 {
+                    var wellKnownNameObject = rule.Element(SE + "PolygonSymbolizer")
+                    .Element(SE + "WellKnownName");
+
+                    if (wellKnownNameObject != null)
+                        wellKnownName = wellKnownNameObject.Value;
+
+                    if (wellKnownName == "")
+                    {
+                        fill = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Fill").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "fill").Value;
+
+                        stroke = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke").Value;
+
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+
+                        if (strokeWidthObject != null)
+                            strokeWidth = strokeWidthObject.Value;
+                    }
 
                 }
 

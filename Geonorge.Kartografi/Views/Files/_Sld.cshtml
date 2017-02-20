@@ -17,11 +17,11 @@
                                     stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke" />
                         </svg>
                     }
-                    else if (sld.WellKnownName == "square" || sld.WellKnownName == "triangle")
+                    else if (sld.WellKnownName == "square" || sld.WellKnownName == "triangle" || sld.WellKnownName == "")
                     {
                         <svg width="100" height="100">
                             <rect width="100" height="100"
-                                  fill="@sld.Fill" stroke-width="10" stroke="@sld.Stroke" />
+                                  fill="@sld.Fill" stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
                         </svg>
                     }
                     else if (sld.WellKnownName == "cross" || sld.WellKnownName == "cross_fill")

@@ -101,5 +101,19 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.Equal("#000000", slds[0].Stroke);
         }
 
+        [Fact]
+        public void ShouldParsePolygonSolid()
+        {
+            xmlFile = File.ReadAllText("xml\\polygon_solid.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("polygon", slds[0].Symbolizer);
+            Assert.Equal("", slds[0].WellKnownName);
+            Assert.Equal("#c20003", slds[0].Fill);
+            Assert.Equal("#000001", slds[0].Stroke);
+            Assert.Equal("1", slds[0].StrokeWidth);
+        }
+
     }
 }
