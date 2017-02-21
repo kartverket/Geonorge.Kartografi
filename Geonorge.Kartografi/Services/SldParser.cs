@@ -102,11 +102,12 @@ namespace Geonorge.Kartografi.Services
                 }
                 else if (symboliser == "polygon")
                 {
-                    var wellKnownNameObject = rule.Element(SE + "PolygonSymbolizer")
-                    .Element(SE + "WellKnownName");
+                    var wellKnownNameObject = rule.Element(SE + "PolygonSymbolizer").Element(SE + "Fill")?
+                        .Element(SE + "GraphicFill")?.Element(SE + "Graphic")?.Element(SE + "Mark")?.Element(SE + "WellKnownName");
 
                     if (wellKnownNameObject != null)
                         wellKnownName = wellKnownNameObject.Value;
+
 
                     if (wellKnownName == "")
                     {
@@ -125,6 +126,13 @@ namespace Geonorge.Kartografi.Services
                         if (strokeWidthObject != null)
                             strokeWidth = strokeWidthObject.Value;
                     }
+                    else if (wellKnownName == "line")
+                    {
+                        stroke = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                    }
+    
 
                 }
 

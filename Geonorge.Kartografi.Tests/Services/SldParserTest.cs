@@ -115,5 +115,29 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.Equal("1", slds[0].StrokeWidth);
         }
 
+        [Fact]
+        public void ShouldParsePolygonVertline()
+        {
+            xmlFile = File.ReadAllText("xml\\polygon_vertline.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("polygon", slds[0].Symbolizer);
+            Assert.Equal("line", slds[0].WellKnownName);
+            Assert.Equal("#000001", slds[0].Stroke);
+        }
+
+        [Fact]
+        public void ShouldParsePolygonHorline()
+        {
+            xmlFile = File.ReadAllText("xml\\polygon_horline.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("polygon", slds[0].Symbolizer);
+            Assert.Equal("horline", slds[0].WellKnownName);
+            Assert.Equal("#000001", slds[0].Stroke);
+        }
+
     }
 }
