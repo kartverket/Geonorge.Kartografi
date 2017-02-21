@@ -186,6 +186,36 @@ namespace Geonorge.Kartografi.Services
 
                     }
 
+                    else if (wellKnownName == "backslash")
+                    {
+                        stroke = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke").Value;
+
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+
+                        if (strokeWidthObject != null)
+                            strokeWidth = strokeWidthObject.Value;
+
+                    }
+
+                    else if (wellKnownName == "x")
+                    {
+                        stroke = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke").Value;
+
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
+                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+
+                        if (strokeWidthObject != null)
+                            strokeWidth = strokeWidthObject.Value;
+
+                    }
+
 
                 }
 
