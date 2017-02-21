@@ -139,5 +139,29 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.Equal("#000001", slds[0].Stroke);
         }
 
+        [Fact]
+        public void ShouldParsePolygonCross()
+        {
+            xmlFile = File.ReadAllText("xml\\polygon_kryss.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("polygon", slds[0].Symbolizer);
+            Assert.Equal("cross", slds[0].WellKnownName);
+            Assert.Equal("#000001", slds[0].Stroke);
+        }
+
+        [Fact]
+        public void ShouldParsePolygonSlash()
+        {
+            xmlFile = File.ReadAllText("xml\\polygon_slash.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("polygon", slds[0].Symbolizer);
+            Assert.Equal("slash", slds[0].WellKnownName);
+            Assert.Equal("#000001", slds[0].Stroke);
+        }
+
     }
 }
