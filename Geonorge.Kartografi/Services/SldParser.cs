@@ -70,8 +70,9 @@ namespace Geonorge.Kartografi.Services
                 {
                     wellKnownName = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "WellKnownName").Value;
+                    wellKnownName = RemoveStrings(wellKnownName);
 
-                    if(wellKnownName == "circle" || wellKnownName == "cross" || wellKnownName == "cross_fill")
+                    if (wellKnownName == "circle" || wellKnownName == "cross" || wellKnownName == "cross_fill")
                     {
                         fill = rule.Element(SE + "PointSymbolizer").Element(SE + "Graphic")
                         .Element(SE + "Mark").Element(SE + "Fill").Elements(SE + "SvgParameter")
@@ -105,8 +106,10 @@ namespace Geonorge.Kartografi.Services
                     var wellKnownNameObject = rule.Element(SE + "PolygonSymbolizer").Element(SE + "Fill")?
                         .Element(SE + "GraphicFill")?.Element(SE + "Graphic")?.Element(SE + "Mark")?.Element(SE + "WellKnownName");
 
-                    if (wellKnownNameObject != null)
+                    if (wellKnownNameObject != null) {
                         wellKnownName = wellKnownNameObject.Value;
+                        wellKnownName = RemoveStrings(wellKnownName);
+                    }
 
 
                     if (wellKnownName == "")
@@ -232,6 +235,13 @@ namespace Geonorge.Kartografi.Services
             }
 
             return sldRules;
+        }
+
+        string RemoveStrings(string str)
+        {
+            str = str.Replace(@"shape://", "");
+
+            return str;
         }
 
     }
