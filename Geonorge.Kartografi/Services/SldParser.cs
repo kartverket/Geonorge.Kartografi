@@ -123,12 +123,12 @@ namespace Geonorge.Kartografi.Services
                         .Element(SE + "Fill").Elements(SE + "SvgParameter")
                         .First(x => x.Attribute("name").Value == "fill").Value;
 
-                        stroke = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                        stroke = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke")?.Value;
 
-                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
                         .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
 
                         if (strokeWidthObject != null)
@@ -136,12 +136,12 @@ namespace Geonorge.Kartografi.Services
                     }
                     else if (wellKnownName == "line")
                     {
-                        stroke = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                        stroke = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke")?.Value;
 
-                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
                         .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
 
                         if (strokeWidthObject != null)
@@ -151,12 +151,12 @@ namespace Geonorge.Kartografi.Services
 
                     else if (wellKnownName == "horline")
                     {
-                        stroke = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                        stroke = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke")?.Value;
 
-                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
                         .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
 
                         if (strokeWidthObject != null)
@@ -166,12 +166,12 @@ namespace Geonorge.Kartografi.Services
 
                     else if (wellKnownName == "cross")
                     {
-                        stroke = rule.Element(SE + "PolygonSymbolizer")
+                        stroke = rule.Element(SE + "PolygonSymbolizer")?
                         .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                        .First(x => x.Attribute("name").Value == "stroke")?.Value;
 
-                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
                         .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
 
                         if (strokeWidthObject != null)
@@ -181,12 +181,12 @@ namespace Geonorge.Kartografi.Services
 
                     else if (wellKnownName == "slash")
                     {
-                        stroke = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                        stroke = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke")?.Value;
 
-                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
                         .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
 
                         if (strokeWidthObject != null)
@@ -196,13 +196,13 @@ namespace Geonorge.Kartografi.Services
 
                     else if (wellKnownName == "backslash")
                     {
-                        stroke = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                        stroke = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke")?.Value;
 
-                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name")?.Value == "stroke-width");
 
                         if (strokeWidthObject != null)
                             strokeWidth = strokeWidthObject.Value;
@@ -211,12 +211,12 @@ namespace Geonorge.Kartografi.Services
 
                     else if (wellKnownName == "x")
                     {
-                        stroke = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
-                        .First(x => x.Attribute("name").Value == "stroke").Value;
+                        stroke = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .First(x => x.Attribute("name").Value == "stroke")?.Value;
 
-                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")
-                        .Element(SE + "Stroke").Elements(SE + "SvgParameter")
+                        var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
                         .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
 
                         if (strokeWidthObject != null)
