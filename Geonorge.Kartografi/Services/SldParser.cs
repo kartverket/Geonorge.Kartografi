@@ -11,6 +11,7 @@ namespace Geonorge.Kartografi.Services
     {
         private static XNamespace SLD = "http://www.opengis.net/sld";
         private static XNamespace SE = "http://www.opengis.net/se";
+        private static XNamespace XLINK = "http://www.w3.org/1999/xlink";
 
         public List<SldRule> Get(string url)
         {
@@ -50,6 +51,10 @@ namespace Geonorge.Kartografi.Services
                 string stroke = "";
                 string strokeWidth = "";
                 string wellKnownName = "";
+                string externalGraphicHref = "";
+
+                externalGraphicHref = rule.Element(SLD + "PointSymbolizer")?.Element(SLD + "Graphic")
+                    ?.Element(SLD + "ExternalGraphic")?.Element(SLD + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
 
                 var point = rule.Element(SE + "PointSymbolizer");
                 if (point != null)
@@ -229,7 +234,8 @@ namespace Geonorge.Kartografi.Services
                     WellKnownName = wellKnownName,
                     Fill = fill,
                     Stroke = stroke,
-                    StrokeWidth = strokeWidth
+                    StrokeWidth = strokeWidth,
+                    ExternalGraphicHref = externalGraphicHref
                 });
 
             }

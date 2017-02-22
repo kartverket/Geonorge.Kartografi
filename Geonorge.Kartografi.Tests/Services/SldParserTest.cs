@@ -187,5 +187,15 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.Equal("#000001", slds[0].Stroke);
         }
 
+        [Fact]
+        public void ShouldParseExternalGraphic()
+        {
+            xmlFile = File.ReadAllText("xml\\punkt_svg.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal(@"http://blackicemedia.com/presentations/2013-02-hires/img/awesome_tiger.svg", slds[0].ExternalGraphicHref);
+        }
+
     }
 }

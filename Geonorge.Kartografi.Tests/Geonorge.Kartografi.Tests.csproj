@@ -127,6 +127,9 @@
     <None Include="xml\punkt_sirkel.sld">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="xml\punkt_svg.sld">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="xml\punkt_triangel.sld">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
