@@ -124,7 +124,7 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
             Assert.Equal("line", slds[0].WellKnownName);
-            Assert.Equal("#000001", slds[0].Stroke);
+            Assert.Equal("#c20003", slds[0].Stroke);
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
             Assert.Equal("horline", slds[0].WellKnownName);
-            Assert.Equal("#000001", slds[0].Stroke);
+            Assert.Equal("#c20003", slds[0].Stroke);
         }
 
         [Fact]
@@ -148,7 +148,7 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
             Assert.Equal("cross", slds[0].WellKnownName);
-            Assert.Equal("#000001", slds[0].Stroke);
+            Assert.Equal("#c20003", slds[0].Stroke);
         }
 
         [Fact]
@@ -160,7 +160,7 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
             Assert.Equal("slash", slds[0].WellKnownName);
-            Assert.Equal("#000001", slds[0].Stroke);
+            Assert.Equal("#c20003", slds[0].Stroke);
         }
 
         [Fact]
@@ -172,7 +172,7 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
             Assert.Equal("backslash", slds[0].WellKnownName);
-            Assert.Equal("#000001", slds[0].Stroke);
+            Assert.Equal("#c20003", slds[0].Stroke);
         }
 
         [Fact]
@@ -184,7 +184,7 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
             Assert.Equal("x", slds[0].WellKnownName);
-            Assert.Equal("#000001", slds[0].Stroke);
+            Assert.Equal("#c20003", slds[0].Stroke);
         }
 
         [Fact]
