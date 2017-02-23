@@ -33,14 +33,19 @@ namespace Geonorge.Kartografi.Services
 
             List<SldRule> sldRules = new List<SldRule>();
 
-            XElement root = sldDoc.Element(SLD + "StyledLayerDescriptor");
+            XElement root = sldDoc?.Element(SLD + "StyledLayerDescriptor");
 
-            IEnumerable<XElement> rules =
-                    from r in root.Element(SLD + "NamedLayer")
-                        .Element(SLD + "UserStyle")
-                        .Element(SE + "FeatureTypeStyle")
+            if (root == null)
+                return null;
+
+            IEnumerable<XElement> rules = root?.Element(SLD + "NamedLayer")?
+                        .Element(SLD + "UserStyle")?
+                        .Element(SE + "FeatureTypeStyle")?
                         .Elements(SE + "Rule")
-                    select r;
+                        .ToList();
+
+            if (rules == null)
+                return null;
 
             foreach (var rule in rules)
             {
