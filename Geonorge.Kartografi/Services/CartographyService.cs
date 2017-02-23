@@ -126,6 +126,8 @@ namespace Geonorge.Kartografi.Services
             cartographyFile.FileName = CreateFileName(cartographyFile);
             cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
             cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
+            if (string.IsNullOrEmpty(cartographyFile.Status))
+                cartographyFile.Status = "Submitted";
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
             SaveFile(uploadFile, cartographyFile.FileName);
