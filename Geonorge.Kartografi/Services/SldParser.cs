@@ -167,7 +167,8 @@ namespace Geonorge.Kartografi.Services
 
         string RemoveStrings(string str)
         {
-            str = str.Replace(@"shape://", "");
+            if(!string.IsNullOrEmpty(str))
+                str = str.Replace(@"shape://", "");
 
             return str;
         }
