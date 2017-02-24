@@ -1,7 +1,8 @@
 ﻿@using Geonorge.Kartografi.Models
 @using Geonorge.Kartografi.Services
+@model Geonorge.Kartografi.Models.CartographyFile
 @{ 
-    List<SldRule> sldRules = new SldParser().Get(Model.fileUrl);
+    List<SldRule> sldRules = new SldParser().Get(Model.FileUrl());
     var viewBox = "0 0 194 186";
 }
 <div class="row"></div>
