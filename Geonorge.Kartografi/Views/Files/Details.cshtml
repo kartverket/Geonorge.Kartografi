@@ -24,71 +24,73 @@
 </section>
 
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <ul class="page-header nav nav-tabs nav-tabs-topp" style="display:block; padding-bottom:0px;">
-                <li class="tab active"><a aria-expanded="false" href="#gjeldende" id="gjeldendeLink" data-toggle="tab">Gjeldende</a></li>
+    <div class="col-lg-12">
+        <ul class="page-header nav nav-tabs nav-tabs-topp" style="display:block; padding-bottom:0px;">
+            <li class="tab active"><a aria-expanded="false" href="#gjeldende" id="gjeldendeLink" data-toggle="tab">Gjeldende</a></li>
 
-                <li class="tab pull-right"><a aria-expanded="false" href="#forslag" id="forslagLink" data-toggle="tab">Forslag</a></li>
+            <li class="tab pull-right"><a aria-expanded="false" href="#forslag" id="forslagLink" data-toggle="tab">Forslag</a></li>
 
-                <li class="tab pull-right"><a aria-expanded="false" href="#historiske" id="historiskeLink" data-toggle="tab">Historiske</a></li>
-            </ul>
-            <br />
-        </div>
-        <div class="tab-content">
-            <div class="tab-pane active" id="gjeldende">
-                <div class="row result-row metadata">
-                    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12" style="height: auto; border: medium none; box-shadow: none;">
-                        <div class="col-img col-xs-6 col-sm-2 col-md-2 col-lg-2">
-                            <a href="@Model.CurrentVersion.FileUrl()" target="_blank">
-                                <img src="@Model.CurrentVersion.PreviewImageUrl()" />
-                             </a>   
-                        </div>
-                        <div class="col-no-padding-xs col-title col-sm-4 col-md-4 col-lg-4">
-                            <p>@Model.CurrentVersion.Name</p>
-                            <p><span>Eier: </span>@Model.CurrentVersion.Owner</p>
-                            <p>@Model.CurrentVersion.Description</p>       
-                        </div>
-                        <div class="col-no-padding-xs col-actions col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                            <a href="@Model.CurrentVersion.FileUrl()" class="btn" target="_blank">
-                                <span class="glyphicon glyphicon-download-alt"> </span>Last ned
-                            </a><br />
-                            @if (ViewBag.HasAccess)
-                            {
+            <li class="tab pull-right"><a aria-expanded="false" href="#historiske" id="historiskeLink" data-toggle="tab">Historiske</a></li>
+        </ul>
+        <br />
+    </div>
+    <div class="tab-content col-lg-12">
+        <div class="tab-pane active" id="gjeldende">
+            <div class="row result-row metadata">
+                <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12" style="height: auto; border: medium none; box-shadow: none;">
+                    <div class="col-img col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <a href="@Model.CurrentVersion.FileUrl()" target="_blank">
+                            <img src="@Model.CurrentVersion.PreviewImageUrl()" />
+                        </a>
+                    </div>
+                    <div class="col-no-padding-xs col-title col-sm-4 col-md-4 col-lg-4">
+                        <p>@Model.CurrentVersion.Name</p>
+                        <p><span>Eier: </span>@Model.CurrentVersion.Owner</p>
+                        <p>@Model.CurrentVersion.Description</p>
+                    </div>
+                    <div class="col-no-padding-xs col-actions col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                        <a href="@Model.CurrentVersion.FileUrl()" class="btn" target="_blank">
+                            <span class="glyphicon glyphicon-download-alt"> </span>Last ned
+                        </a><br />
+                        @if (ViewBag.HasAccess)
+                        {
                             <a class="btn btn-default btn-space" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId">Rediger</a>
                             <a class="btn btn-default btn-space" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>
                             <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId?newversion=true">Foreslå ny versjon</a>
-                            }
-                        </div>
-                        <div class="col-no-padding-xs col-xs-12 col-sm-4 col-md-4 col-lg-4 col-information pull-right">
-                            <p><span>Offisiell: </span>@(Model.CurrentVersion.OfficialStatus ? "ja" : "nei")</p>
-                            <p><span>Status: </span>@CodeList.Status[Model.CurrentVersion.Status]</p>
-                            <p><span>Versjon: </span>@Model.CurrentVersion.VersionId</p>
-                            @if (ViewBag.IsAdmin)
-                            {
-                                <p><span>Redigert av: </span>@Model.CurrentVersion.LastEditedBy</p>
-                            }
-                            <p><span>Sist oppdatert: </span>@Model.CurrentVersion.DateChanged</p>
-                            <p><span>Datasett: </span>@Model.CurrentVersion.DatasetName</p>
-                            <p><span>Datasetteier: </span>@Model.CurrentVersion.OwnerDataset</p>
-                            <p><span>Tjeneste: </span>@Model.CurrentVersion.ServiceName</p>  
-                        </div>
-                        @Html.Partial("_Sld", Model.CurrentVersion)
-                  </div>
+                        }
+                    </div>
+                    <div class="col-no-padding-xs col-xs-12 col-sm-4 col-md-4 col-lg-4 col-information pull-right">
+                        <p><span>Offisiell: </span>@(Model.CurrentVersion.OfficialStatus ? "ja" : "nei")</p>
+                        <p><span>Status: </span>@CodeList.Status[Model.CurrentVersion.Status]</p>
+                        <p><span>Versjon: </span>@Model.CurrentVersion.VersionId</p>
+                        @if (ViewBag.IsAdmin)
+                        {
+                            <p><span>Redigert av: </span>@Model.CurrentVersion.LastEditedBy</p>
+                        }
+                        <p><span>Sist oppdatert: </span>@Model.CurrentVersion.DateChanged</p>
+                        <p><span>Datasett: </span>@Model.CurrentVersion.DatasetName</p>
+                        <p><span>Datasetteier: </span>@Model.CurrentVersion.OwnerDataset</p>
+                        <p><span>Tjeneste: </span>@Model.CurrentVersion.ServiceName</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <span class="separator-small margin-top-10"></span>
+
+                    @Html.Partial("_Sld", Model.CurrentVersion)
                 </div>
             </div>
-            <div class="tab-pane search-results" id="historiske">
-                @if (Model.Historical != null && Model.Historical.Count > 0)
-                {
-                    <div class="row search-results-table-heading">
-                        <div class="col-lg-4"><b>Tittel</b></div>
-                        <div class="col-lg-3"><b>Eier</b></div>
-                        <div class="col-lg-2"><b>Utgave</b></div>
-                        <div class="col-lg-3"><b>Status</b></div>
-                    </div>
+        </div>
+        <div class="tab-pane search-results" id="historiske">
+            @if (Model.Historical != null && Model.Historical.Count > 0)
+            {
+                <div class="row search-results-table-heading">
+                    <div class="col-lg-4"><b>Tittel</b></div>
+                    <div class="col-lg-3"><b>Eier</b></div>
+                    <div class="col-lg-2"><b>Utgave</b></div>
+                    <div class="col-lg-3"><b>Status</b></div>
+                </div>
                     <div class="menu-separator search-results-table-heading"></div>
-                    foreach (var historical in Model.Historical)
-                    {
+                foreach (var historical in Model.Historical)
+                {
                     <div class="row result-row metadata">
                         <div class="col-lg-4">
                             <a href="~/tegneregler/File/@historical.SystemId">@historical.Name</a>
@@ -97,14 +99,14 @@
                         <div class="col-lg-2">@historical.VersionId</div>
                         <div class="col-lg-3">@CodeList.Status[historical.Status]</div>
                     </div>
-                    }
                 }
-                else
-                {
-                   <span>Ingen filer</span>
-                }
-            </div>
-            <div class="tab-pane search-results" id="forslag">
+            }
+            else
+            {
+                <span>Ingen filer</span>
+            }
+        </div>
+        <div class="tab-pane search-results" id="forslag">
             @if (Model.Suggestions != null && Model.Suggestions.Count > 0)
             {
                 <div class="row search-results-table-heading">
@@ -130,7 +132,6 @@
             {
                 <span>Ingen filer</span>
             }
-            </div>
         </div>
     </div>
     <div class="clearfix"></div>

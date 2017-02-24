@@ -4,3 +4,20 @@
 a.sorted-desc:after {
     content: ' \25B2';
 }
+
+.legend-list-item{
+    padding: 2px 0;
+}
+.legend-list-item svg,
+.legend-list-item img {
+    height: 50px;
+    width: 50px!important;
+}
+
+.legend-list-item span{
+    line-height: 50px;
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 18px;
+
+}
