@@ -94,6 +94,12 @@
     <None Include="xml\AkvakulturGodkjenteLokaliteter.sld">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="xml\linje_helpunkt.sld">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xml\linje_heltrukket.sld">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="xml\polygon_backslash.sld">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

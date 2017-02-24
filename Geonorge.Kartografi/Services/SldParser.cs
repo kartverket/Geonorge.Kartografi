@@ -55,6 +55,7 @@ namespace Geonorge.Kartografi.Services
                 string fill = "";
                 string stroke = "";
                 string strokeWidth = "";
+                string strokeDasharray = "0";
                 string wellKnownName = "";
                 string externalGraphicHref = "";
 
@@ -62,9 +63,16 @@ namespace Geonorge.Kartografi.Services
                     ?.Element(SLD + "ExternalGraphic")?.Element(SLD + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
 
                 var point = rule.Element(SE + "PointSymbolizer");
+
+                var line = rule.Element(SE + "LineSymbolizer");
+
                 if (point != null)
                 {
                     symboliser = "point";
+                }
+                else if(line != null)
+                {
+                    symboliser = "line";
                 }
                 else
                 {
@@ -108,12 +116,34 @@ namespace Geonorge.Kartografi.Services
                     }
 
                 }
+                else if (symboliser == "line")
+                {
+                    stroke = rule.Element(SE + "LineSymbolizer")
+                        ?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke")?.Value;
+
+                    var strokeDasharrayObject = rule.Element(SE + "LineSymbolizer")
+                        ?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke-dasharray");
+
+                    if (strokeDasharrayObject != null)
+                        strokeDasharray = strokeDasharrayObject.Value;
+
+                    var strokeWidthObject = rule.Element(SE + "LineSymbolizer")?
+                        .Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+
+                    if (strokeWidthObject != null)
+                        strokeWidth = strokeWidthObject.Value;
+
+                }
                 else if (symboliser == "polygon")
                 {
                     var wellKnownNameObject = rule.Element(SE + "PolygonSymbolizer").Element(SE + "Fill")?
                         .Element(SE + "GraphicFill")?.Element(SE + "Graphic")?.Element(SE + "Mark")?.Element(SE + "WellKnownName");
 
-                    if (wellKnownNameObject != null) {
+                    if (wellKnownNameObject != null)
+                    {
                         wellKnownName = wellKnownNameObject.Value;
                         wellKnownName = RemoveStrings(wellKnownName);
                     }
@@ -125,11 +155,11 @@ namespace Geonorge.Kartografi.Services
                             .FirstOrDefault(x => x.Attribute("name").Value == "stroke")?.Value;
                     }
                     else
-                    { 
-                    stroke = rule.Element(SE + "PolygonSymbolizer").Element(SE + "Fill")?
-                        .Element(SE + "GraphicFill")?.Element(SE + "Graphic")?.Element(SE + "Mark")
-                        ?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
-                        .FirstOrDefault(x => x.Attribute("name").Value == "stroke")?.Value;
+                    {
+                        stroke = rule.Element(SE + "PolygonSymbolizer").Element(SE + "Fill")?
+                            .Element(SE + "GraphicFill")?.Element(SE + "Graphic")?.Element(SE + "Mark")
+                            ?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
+                            .FirstOrDefault(x => x.Attribute("name").Value == "stroke")?.Value;
                     }
 
                     var strokeWidthObject = rule.Element(SE + "PolygonSymbolizer")?
@@ -157,6 +187,7 @@ namespace Geonorge.Kartografi.Services
                     Fill = fill,
                     Stroke = stroke,
                     StrokeWidth = strokeWidth,
+                    StrokeDasharray = strokeDasharray,
                     ExternalGraphicHref = externalGraphicHref
                 });
 

@@ -197,5 +197,29 @@ namespace Geonorge.Kartografi.Tests.Services
             Assert.Equal(@"http://blackicemedia.com/presentations/2013-02-hires/img/awesome_tiger.svg", slds[0].ExternalGraphicHref);
         }
 
+        [Fact]
+        public void ShouldParseLineHeltrukket()
+        {
+            xmlFile = File.ReadAllText("xml\\linje_heltrukket.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("line", slds[0].Symbolizer);
+            Assert.Equal("#d6cd68", slds[0].Stroke);
+            Assert.Equal("0", slds[0].StrokeDasharray);
+        }
+
+        [Fact]
+        public void ShouldParseLineHelpunkt()
+        {
+            xmlFile = File.ReadAllText("xml\\linje_helpunkt.sld");
+            XDocument doc = XDocument.Parse(xmlFile);
+            List<SldRule> slds = new SldParser().Parse(doc);
+            Assert.NotNull(slds);
+            Assert.Equal("line", slds[0].Symbolizer);
+            Assert.Equal("#d64c5c", slds[0].Stroke);
+            Assert.Equal("4 2 1 2", slds[0].StrokeDasharray);
+        }
+
     }
 }
