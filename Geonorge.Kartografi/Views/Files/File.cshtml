@@ -10,20 +10,27 @@
     <li>Detaljer</li>
 }
 
-<h2>@Model.Name</h2>
+<section class="heading">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>
+                @Model.Name
+            </h1>
+        </div>
+        <div class="col-sm-12">
+            <span class="separator-lg"></span>
+        </div>
+    </div>
+</section>
 
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
-            <p>@Model.Description</p>
-            <p><span>Offisiell: </span>@(Model.OfficialStatus ? "ja" : "nei")</p>
-            <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
-            <p><span>Versjon: </span>@Model.VersionId</p>
-            <p><span>Datasett: </span>@Model.DatasetName</p>
-            <p><span>Datasetteier: </span>@Model.OwnerDataset</p>  
-            <p><span>Tjeneste: </span>@Model.ServiceName</p>         
+        <div class="col-sm-2">
+            <a href="@Model.FileUrl()" target="_blank">
+                <img src="@Model.PreviewImageUrl()" />
+            </a>
         </div>
-        <div class="col-no-padding-xs col-xs-12 col-sm-2 col-md-2 col-lg-2">
+        
+        <div class="col-no-padding-xs col-sm-4">
             <p><span>Endret: </span>@Model.DateChanged.ToString("dd.MM.yyyy")</p>
             @if (ViewBag.IsAdmin)
             {
@@ -32,23 +39,27 @@
             <p><span>Eier: </span>@Model.Owner</p>     
         </div>
 
-        <div class="col-no-padding-xs col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <hr>
-            <div class="col-lg-4">
-                <a href="@Model.FileUrl()" target="_blank">
-                    <img src="@Model.PreviewImageUrl()" />
-                </a>
-            </div>
-            <div class="col-lg-8">
-                <a href="@Model.FileUrl()" class="btn" style="vertical-align:top;" target="_blank">
-                    <span class="glyphicon glyphicon-download-alt"> </span>Last ned
-                </a>
-                @Html.Partial("_Sld", Model)
-            </div>
-        </div>
+            
+    <div class="col-sm-2">
+        <a href="@Model.FileUrl()" class="btn" style="vertical-align:top;" target="_blank">
+            <span class="glyphicon glyphicon-download-alt"> </span>Last ned
+        </a>
+    </div>
+    <div class="col-no-padding-xs col-sm-4">
+        <p>@Model.Description</p>
+        <p><span>Offisiell: </span>@(Model.OfficialStatus ? "ja" : "nei")</p>
+        <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
+        <p><span>Versjon: </span>@Model.VersionId</p>
+        <p><span>Datasett: </span>@Model.DatasetName</p>
+        <p><span>Datasetteier: </span>@Model.OwnerDataset</p>
+        <p><span>Tjeneste: </span>@Model.ServiceName</p>
     </div>
 
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+    <div class="col-sm-12">
+        @Html.Partial("_Sld", Model)
+    </div>
+
+    <div class="col-sm-12 hidden-print">
         <hr />
 
         @if (ViewBag.HasAccess)

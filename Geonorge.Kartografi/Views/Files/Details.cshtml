@@ -37,7 +37,6 @@
     <div class="tab-content col-lg-12">
         <div class="tab-pane active" id="gjeldende">
             <div class="row result-row metadata">
-                <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12" style="height: auto; border: medium none; box-shadow: none;">
                     <div class="col-img col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         <a href="@Model.CurrentVersion.FileUrl()" target="_blank">
                             <img src="@Model.CurrentVersion.PreviewImageUrl()" />
@@ -76,7 +75,6 @@
                     <span class="separator-small margin-top-10"></span>
 
                     @Html.Partial("_Sld", Model.CurrentVersion)
-                </div>
             </div>
         </div>
         <div class="tab-pane search-results" id="historiske">
