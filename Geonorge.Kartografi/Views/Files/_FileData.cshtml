@@ -1,0 +1,50 @@
+﻿@using Geonorge.Kartografi.Models
+@using Geonorge.Kartografi.Services
+@model Geonorge.Kartografi.Models.CartographyFile
+
+<div class="row result-row metadata">
+    <div class="col-img col-xs-6 col-sm-2">
+        <a href="@Model.FileUrl()" target="_blank">
+            <img src="@Model.PreviewImageUrl()" />
+        </a>
+    </div>
+    <div class="col-no-padding-xs col-title col-sm-4">
+        <p>@Model.Name</p>
+        <p><span>Eier: </span>@Model.Owner</p>
+        <p><span>Beskrivelse: </span>@Model.Description</p>
+        <p><span>Bruksområde: </span>@Model.Use</p>
+        <p><span>Viktig egenskap for kartografien: </span>@Model.Properties</p>
+    </div>
+
+    <div class="col-no-padding-xs col-sm-3 col-information">
+        <p><span>Offisiell: </span>@(Model.OfficialStatus ? "Ja" : "Nei")</p>
+        <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
+        <p><span>Versjon: </span>@Model.VersionId</p>
+        @if (ViewBag.IsAdmin)
+        {
+            <p><span>Redigert av: </span>@Model.LastEditedBy</p>
+        }
+        <p><span>Sist oppdatert: </span>@Model.DateChanged</p>
+    </div>
+    <div class="col-sm-3">
+        <p><span>Datasett: </span>@Model.DatasetName</p>
+        <p><span>Datasetteier: </span>@Model.OwnerDataset</p>
+        <p><span>Tjeneste: </span>@Model.ServiceName</p>
+    </div>
+</div>
+
+        <a href="@Model.FileUrl()" class="btn" target="_blank">
+            <span class="glyphicon glyphicon-download-alt"></span> Last ned
+        </a>
+        @if (ViewBag.HasAccess)
+        {
+            <a class="btn" href="~/tegneregler/Edit/@Model.SystemId"><span class="fa fa-edit"></span> Rediger</a>
+            <a class="btn" href="~/tegneregler/Delete/@Model.SystemId"><span class="fa fa-trash"></span> Slett</a>
+            <a class="btn pull-right" href="~/tegneregler/Edit/@Model.SystemId?newversion=true"><span class="fa fa-copy"></span> Foreslå ny versjon</a>
+        }
+    <div class="clearfix"></div>
+
+<span class="separator-small margin-top-10"></span>
+
+    
+    @Html.Partial("_Sld", Model)

@@ -5,9 +5,11 @@ a.sorted-desc:after {
     content: ' \25B2';
 }
 
-.legend-list-item{
-    padding: 2px 0;
+.legend-list-item {
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
+
 .legend-list-item svg,
 .legend-list-item img {
     height: 50px;
@@ -18,6 +20,12 @@ a.sorted-desc:after {
     line-height: 50px;
     vertical-align: top;
     display: inline-block;
-    margin-left: 18px;
+    margin-left: 8px;
 
+}
+
+@media (max-width: 1199px) {
+    .nav-tabs > li.pull-right {
+        float: left!important;
+    }
 }

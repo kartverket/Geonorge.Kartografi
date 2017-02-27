@@ -34,50 +34,13 @@
         </ul>
         <br />
     </div>
+</div>
+
+
+<div class="row">
     <div class="tab-content col-lg-12">
         <div class="tab-pane active" id="gjeldende">
-            <div class="row result-row metadata">
-                    <div class="col-img col-xs-6 col-sm-2 col-md-2 col-lg-2">
-                        <a href="@Model.CurrentVersion.FileUrl()" target="_blank">
-                            <img src="@Model.CurrentVersion.PreviewImageUrl()" />
-                        </a>
-                    </div>
-                    <div class="col-no-padding-xs col-title col-sm-4 col-md-4 col-lg-4">
-                        <p>@Model.CurrentVersion.Name</p>
-                        <p><span>Eier: </span>@Model.CurrentVersion.Owner</p>
-                        <p><span>Beskrivelse: </span>@Model.CurrentVersion.Description</p>
-                        <p><span>Bruksområde: </span>@Model.CurrentVersion.Use</p>
-                        <p><span>Viktig egenskap for kartografien: </span>@Model.CurrentVersion.Properties</p>
-                    </div>
-                    <div class="col-no-padding-xs col-actions col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                        <a href="@Model.CurrentVersion.FileUrl()" class="btn" target="_blank">
-                            <span class="glyphicon glyphicon-download-alt"> </span>Last ned
-                        </a><br />
-                        @if (ViewBag.HasAccess)
-                        {
-                            <a class="btn btn-default btn-space" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId">Rediger</a>
-                            <a class="btn btn-default btn-space" style="margin-left: 15px;" href="~/tegneregler/Delete/@Model.CurrentVersion.SystemId">Slett</a>
-                            <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.CurrentVersion.SystemId?newversion=true">Foreslå ny versjon</a>
-                        }
-                    </div>
-                    <div class="col-no-padding-xs col-xs-12 col-sm-4 col-md-4 col-lg-4 col-information pull-right">
-                        <p><span>Offisiell: </span>@(Model.CurrentVersion.OfficialStatus ? "Ja" : "Nei")</p>
-                        <p><span>Status: </span>@CodeList.Status[Model.CurrentVersion.Status]</p>
-                        <p><span>Versjon: </span>@Model.CurrentVersion.VersionId</p>
-                        @if (ViewBag.IsAdmin)
-                        {
-                            <p><span>Redigert av: </span>@Model.CurrentVersion.LastEditedBy</p>
-                        }
-                        <p><span>Sist oppdatert: </span>@Model.CurrentVersion.DateChanged</p>
-                        <p><span>Datasett: </span>@Model.CurrentVersion.DatasetName</p>
-                        <p><span>Datasetteier: </span>@Model.CurrentVersion.OwnerDataset</p>
-                        <p><span>Tjeneste: </span>@Model.CurrentVersion.ServiceName</p>
-                    </div>
-                    <div class="clearfix"></div>
-                    <span class="separator-small margin-top-10"></span>
-
-                    @Html.Partial("_Sld", Model.CurrentVersion)
-            </div>
+            @Html.Partial("_FileData", Model.CurrentVersion)
         </div>
         <div class="tab-pane search-results" id="historiske">
             @if (Model.Historical != null && Model.Historical.Count > 0)
@@ -115,7 +78,7 @@
                     <div class="col-lg-2"><b>Utgave</b></div>
                     <div class="col-lg-3"><b>Status</b></div>
                 </div>
-                <div class="menu-separator search-results-table-heading"></div>
+                    <div class="menu-separator search-results-table-heading"></div>
                 foreach (var suggestion in Model.Suggestions)
                 {
                     <div class="row result-row metadata">
@@ -135,7 +98,11 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
-        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Files?uuid=@Model.CurrentVersion.DatasetUuid">Tilbake</a>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Files?uuid=@Model.CurrentVersion.DatasetUuid">Tilbake</a>
+        </div>
     </div>
 </div>
+
+
