@@ -46,8 +46,10 @@
         </a>
     </div>
     <div class="col-no-padding-xs col-sm-4">
-        <p>@Model.Description</p>
-        <p><span>Offisiell: </span>@(Model.OfficialStatus ? "ja" : "nei")</p>
+        <p><span>Beskrivelse: </span>@Model.Description</p>
+        <p><span>Bruksområde: </span>@Model.Use</p>
+        <p><span>Viktig egenskap for kartografien: </span>@Model.Properties</p>
+        <p><span>Offisiell: </span>@(Model.OfficialStatus ? "Ja" : "Nei")</p>
         <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
         <p><span>Versjon: </span>@Model.VersionId</p>
         <p><span>Datasett: </span>@Model.DatasetName</p>

@@ -45,7 +45,9 @@
                     <div class="col-no-padding-xs col-title col-sm-4 col-md-4 col-lg-4">
                         <p>@Model.CurrentVersion.Name</p>
                         <p><span>Eier: </span>@Model.CurrentVersion.Owner</p>
-                        <p>@Model.CurrentVersion.Description</p>
+                        <p><span>Beskrivelse: </span>@Model.CurrentVersion.Description</p>
+                        <p><span>Bruksområde: </span>@Model.CurrentVersion.Use</p>
+                        <p><span>Viktig egenskap for kartografien: </span>@Model.CurrentVersion.Properties</p>
                     </div>
                     <div class="col-no-padding-xs col-actions col-xs-12 col-sm-2 col-md-2 col-lg-2">
                         <a href="@Model.CurrentVersion.FileUrl()" class="btn" target="_blank">
@@ -59,7 +61,7 @@
                         }
                     </div>
                     <div class="col-no-padding-xs col-xs-12 col-sm-4 col-md-4 col-lg-4 col-information pull-right">
-                        <p><span>Offisiell: </span>@(Model.CurrentVersion.OfficialStatus ? "ja" : "nei")</p>
+                        <p><span>Offisiell: </span>@(Model.CurrentVersion.OfficialStatus ? "Ja" : "Nei")</p>
                         <p><span>Status: </span>@CodeList.Status[Model.CurrentVersion.Status]</p>
                         <p><span>Versjon: </span>@Model.CurrentVersion.VersionId</p>
                         @if (ViewBag.IsAdmin)
