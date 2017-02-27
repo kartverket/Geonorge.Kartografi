@@ -66,6 +66,14 @@ namespace Geonorge.Kartografi.Services
             cartographyFile.VersionId = 1;
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, null);
             cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
+            cartographyFile.Format = "sld";
+            if (uploadFile != null)
+            {
+                string extension = Path.GetExtension(uploadFile.FileName);
+                extension = extension.Replace(".", "");
+                if ((extension == "sld" || extension == "lyr"))
+                    cartographyFile.Format = extension;
+            }
             cartographyFile.FileName = CreateFileName(cartographyFile);
             cartographyFile.Owner = owner;
             cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
@@ -81,7 +89,6 @@ namespace Geonorge.Kartografi.Services
             {
                 originalFile.Name = file.Name;
                 originalFile.Description = file.Description;
-                originalFile.Format = file.Format;
                 originalFile.Use = file.Use;
                 originalFile.Properties = file.Properties;
                 originalFile.DatasetUuid = file.DatasetUuid;
@@ -123,6 +130,14 @@ namespace Geonorge.Kartografi.Services
             cartographyFile.VersionId = _versioningService.GetNewVersionNumber(originalCartographyFile);
             cartographyFile.versioningId = _versioningService.GetVersioningId(cartographyFile, originalCartographyFile);
             cartographyFile.PreviewImage = CreateThumbnailFileName(cartographyFile, uploadPreviewImage);
+            cartographyFile.Format = "sld";
+            if (uploadFile != null)
+            {
+                string extension = Path.GetExtension(uploadFile.FileName);
+                extension = extension.Replace(".", "");
+                if ((extension == "sld" || extension == "lyr"))
+                    cartographyFile.Format = extension;
+            }
             cartographyFile.FileName = CreateFileName(cartographyFile);
             cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
             cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();

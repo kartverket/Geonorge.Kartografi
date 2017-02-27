@@ -91,7 +91,7 @@ namespace Geonorge.Kartografi.Controllers
             {
                 ViewBag.IsAdmin = _authorizationService.IsAdmin();
             }
-            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
+
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Submitted");
             return View(file);
@@ -148,7 +148,6 @@ namespace Geonorge.Kartografi.Controllers
                 ModelState.AddModelError(string.Empty, "Kun administrator kan godkjenne");
             }
 
-            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", "sld");
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
             cartographyFile.Compatibility = new List<Compatibility>();
@@ -180,7 +179,7 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", cartographyFile.Format);
+
             ViewBag.newversion = newversion;
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
@@ -226,7 +225,6 @@ namespace Geonorge.Kartografi.Controllers
                     cartographyFile.Compatibility.Add(new Compatibility { Id = Guid.NewGuid().ToString(), Key = item });
             }
 
-            ViewBag.Formats = new SelectList(CodeList.Formats, "Key", "Value", cartographyFile.Format);
             ViewBag.newversion = newversion;
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
             ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
