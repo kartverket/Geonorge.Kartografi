@@ -8,6 +8,11 @@ namespace Geonorge.Kartografi.Models
 {
     public class Dataset
     {
+        public Dataset()
+        {
+            Files = new List<CartographyFile>();
+        }
+
         public string DatasetUuid { get; set; }
         [Display(Name = "Tittel")]
         public string DatasetName { get; set; }
@@ -15,5 +20,7 @@ namespace Geonorge.Kartografi.Models
         public string Theme { get; set; }
         [Display(Name = "Eier")]
         public string OwnerDataset { get; set; }
+
+        public List<CartographyFile> Files { get; set; }
     }
 }
