@@ -68,7 +68,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <span>@Model.FileName</span> <input type="file" id="uploadFile" name="uploadFile" style="display:inline;" />
+                    <span>@Model.FileName</span> <input required type="file" id="uploadFile" name="uploadFile" style="display:inline;" />
                 </div>
             </div>
             }
