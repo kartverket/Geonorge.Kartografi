@@ -8,15 +8,14 @@
             <img src="@Model.PreviewImageUrl()" />
         </a>
     </div>
-    <div class="col-no-padding-xs col-title col-sm-4">
-        <p>@Model.Name</p>
+    <div class="col-no-padding-xs col-title col-sm-4 col-md-5">
         <p><span>Eier: </span>@Model.Owner</p>
         <p><span>Beskrivelse: </span>@Model.Description</p>
         <p><span>Bruksområde: </span>@Model.Use</p>
         <p><span>Viktig egenskap for kartografien: </span>@Model.Properties</p>
     </div>
 
-    <div class="col-no-padding-xs col-sm-3 col-information">
+    <div class="col-no-padding-xs col-sm-3 col-md-2 col-information">
         <p><span>Offisiell: </span>@(Model.OfficialStatus ? "Ja" : "Nei")</p>
         <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
         <p><span>Versjon: </span>@Model.VersionId</p>

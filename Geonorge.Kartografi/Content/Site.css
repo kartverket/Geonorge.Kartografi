@@ -29,3 +29,7 @@ a.sorted-desc:after {
         float: left!important;
     }
 }
+.metadata span{
+    display: block;
+    font-weight: bold;
+}
