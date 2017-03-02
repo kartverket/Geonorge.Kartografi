@@ -120,4 +120,16 @@
   <data name="AppPageTitle" xml:space="preserve">
     <value>Geonorge kartografi</value>
   </data>
+  <data name="HelpDescription" xml:space="preserve">
+    <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
+  </data>
+  <data name="HelpOfficialStatus" xml:space="preserve">
+    <value>Offisiell: Ja = Filen inneholder kartografi som etaten har bestemt at er gjeldende. Nei = Forslag til kartografi.</value>
+  </data>
+  <data name="HelpProperties" xml:space="preserve">
+    <value>En oppramsing av hvilke attributter i datasettet kartografien-reglene benytter.</value>
+  </data>
+  <data name="HelpUse" xml:space="preserve">
+    <value>Kort beskrivelse av hva kartografi-filen kan/bør brukes til.</value>
+  </data>
 </root>

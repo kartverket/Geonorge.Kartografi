@@ -1,4 +1,5 @@
-﻿@model Geonorge.Kartografi.Models.CartographyFile
+﻿@using Geonorge.Kartografi.Resources
+@model Geonorge.Kartografi.Models.CartographyFile
 
 @{
     ViewBag.Title = "Rediger";
@@ -110,31 +111,58 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-9">
+                    <p class="help-text bg-success" id="help-text-description" style="display: none">
+                        @UI.HelpDescription
+                    </p>
                     @Html.TextAreaFor(model => model.Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <p class="form-control-static">
+                        <a href="#" data-help-text-id="help-text-description" class="badge help-text-toggle">?</a>
+                    </p>
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Use, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-9">
+                    <p class="help-text bg-success" id="help-text-use" style="display: none">
+                        @UI.HelpUse
+                    </p>
                     @Html.TextAreaFor(model => model.Use, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
                     @Html.ValidationMessageFor(model => model.Use, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <p class="form-control-static">
+                        <a href="#" data-help-text-id="help-text-use" class="badge help-text-toggle">?</a>
+                    </p>
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-9">
+                    <p class="help-text bg-success" id="help-text-properties" style="display: none">
+                        @UI.HelpProperties
+                    </p>
                     @Html.TextAreaFor(model => model.Properties, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
                     @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <p class="form-control-static">
+                        <a href="#" data-help-text-id="help-text-properties" class="badge help-text-toggle">?</a>
+                    </p>
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-9">
+                    <p class="help-text bg-success" id="help-text-officialstatus" style="display: none">
+                        @UI.HelpOfficialStatus
+                    </p>
                 @if (ViewBag.newversion)
                 {
                     <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" : "")  /> <span>Ja</span>
@@ -151,6 +179,11 @@
                         <span>Nei</span>
                     }
                 }
+                </div>
+                <div class="col-md-1">
+                    <p class="form-control-static">
+                        <a href="#" data-help-text-id="help-text-officialstatus" class="badge help-text-toggle">?</a>
+                    </p>
                 </div>
             </div>
         </div>

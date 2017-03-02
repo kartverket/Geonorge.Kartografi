@@ -68,5 +68,41 @@ namespace Geonorge.Kartografi.Resources {
                 return ResourceManager.GetString("AppPageTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kortfattet tekst om hvordan kartografien ser ut..
+        /// </summary>
+        public static string HelpDescription {
+            get {
+                return ResourceManager.GetString("HelpDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offisiell: Ja = Filen inneholder kartografi som etaten har bestemt at er gjeldende. Nei = Forslag til kartografi..
+        /// </summary>
+        public static string HelpOfficialStatus {
+            get {
+                return ResourceManager.GetString("HelpOfficialStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to En oppramsing av hvilke attributter i datasettet kartografien-reglene benytter..
+        /// </summary>
+        public static string HelpProperties {
+            get {
+                return ResourceManager.GetString("HelpProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kort beskrivelse av hva kartografi-filen kan/bør brukes til..
+        /// </summary>
+        public static string HelpUse {
+            get {
+                return ResourceManager.GetString("HelpUse", resourceCulture);
+            }
+        }
     }
 }
