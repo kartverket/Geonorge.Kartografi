@@ -257,7 +257,7 @@ namespace Geonorge.Kartografi.Controllers
                     _cartographyService.AddCartographyVersion(cartographyFile, uploadFile, uploadPreviewImage);
                 }
                 else
-                    _cartographyService.UpdateCartography(originalCartographyFile, cartographyFile);
+                    _cartographyService.UpdateCartography(originalCartographyFile, cartographyFile, uploadPreviewImage);
 
                 return RedirectToAction("Files", "Files", new { uuid = cartographyFile.DatasetUuid });
             }

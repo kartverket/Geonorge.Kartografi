@@ -83,8 +83,13 @@ namespace Geonorge.Kartografi.Services
             SaveFile(uploadPreviewImage, cartographyFile.PreviewImage);
         }
 
-        public void UpdateCartography(CartographyFile originalFile, CartographyFile file)
+        public void UpdateCartography(CartographyFile originalFile, CartographyFile file, HttpPostedFileBase uploadPreviewImage = null)
         {
+            if (uploadPreviewImage != null)
+            {
+                originalFile.PreviewImage = CreateThumbnailFileName(file, uploadPreviewImage);
+            }
+
             if(file != null)
             {
                 originalFile.Name = file.Name;
@@ -120,6 +125,8 @@ namespace Geonorge.Kartografi.Services
             originalFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
             _dbContext.Entry(originalFile).State = EntityState.Modified;
             _dbContext.SaveChanges();
+            if (uploadPreviewImage != null)
+                SaveFile(uploadPreviewImage, originalFile.PreviewImage);
 
         }
 

@@ -15,6 +15,6 @@ namespace Geonorge.Kartografi.Services
         void RemoveCartography(CartographyFile cartographyFile);
         VersionsItem Versions(Guid? SystemId);
         void AddCartography(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null);
-        void UpdateCartography(CartographyFile originalFile, CartographyFile file = null);
+        void UpdateCartography(CartographyFile originalFile, CartographyFile file = null, HttpPostedFileBase uploadPreviewImage = null);
     }
 }
