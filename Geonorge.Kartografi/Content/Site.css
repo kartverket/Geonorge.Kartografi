@@ -1,35 +1,83 @@
 ﻿a.sorted-asc:after {
     content: ' \25BC';
 }
+
 a.sorted-desc:after {
     content: ' \25B2';
 }
+
+.arrow-icon {
+    background-image: url(/Content/bower_components/kartverket-felleskomponenter/assets/images/svg/arrow-right.svg);
+    width: 11px;
+    height: 12px;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 50%;
+    display: inline-block;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+    .arrow-icon.active {
+        background-image: url(/Content/bower_components/kartverket-felleskomponenter/assets/images/svg/arrow-down.svg);
+    }
+
+.dataset-list {
+    line-height: 24pt;
+}
+
+.dataset-list .title-field{
+    padding-left: 6px;
+}
+
+.file-list {
+    display: none;
+}
+
+    .file-list .title-field {
+        padding-left: 24px;
+    }
+
+    .file-list .official-field{
+        text-align: center;
+    }
+
+.dataset-list.active .file-list {
+    display: block;
+}
+
+
+.file-list .file-list-item:nth-child(even){
+    background-color: #f8f9f9;
+}
+
 
 .legend-list-item {
     padding-top: 2px;
     padding-bottom: 2px;
 }
 
-.legend-list-item svg,
-.legend-list-item img {
-    height: 50px;
-    width: 50px!important;
-}
+    .legend-list-item svg,
+    .legend-list-item img {
+        height: 50px;
+        width: 50px !important;
+    }
 
-.legend-list-item span{
-    line-height: 50px;
-    vertical-align: top;
-    display: inline-block;
-    margin-left: 8px;
-
-}
+    .legend-list-item span {
+        line-height: 50px;
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 8px;
+    }
 
 @media (max-width: 1199px) {
     .nav-tabs > li.pull-right {
-        float: left!important;
+        float: left !important;
     }
 }
-.metadata span{
+
+.cartography-metadata .cartography-metadata-name {
     display: block;
     font-weight: bold;
 }
