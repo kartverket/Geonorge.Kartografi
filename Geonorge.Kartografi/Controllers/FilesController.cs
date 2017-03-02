@@ -131,6 +131,15 @@ namespace Geonorge.Kartografi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities)
         {
+            if (uploadPreviewImage != null)
+            {
+                if (!(uploadPreviewImage.ContentType == "image/jpeg" || uploadPreviewImage.ContentType == "image/gif" 
+                    || uploadPreviewImage.ContentType == "image/png" || uploadPreviewImage.ContentType == "image/svg+xml"))
+                {
+                    ModelState.AddModelError(string.Empty, "Miniatyrbilde må være bilde format");
+                }
+            }
+
             ViewBag.IsAdmin = false;
             if (Request.IsAuthenticated)
             {
@@ -199,6 +208,16 @@ namespace Geonorge.Kartografi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CartographyFile cartographyFile, HttpPostedFileBase uploadPreviewImage, HttpPostedFileBase uploadFile, string[] compatibilities, bool newversion = false)
         {
+
+            if (uploadPreviewImage != null)
+            {
+                if (!(uploadPreviewImage.ContentType == "image/jpeg" || uploadPreviewImage.ContentType == "image/gif"
+                    || uploadPreviewImage.ContentType == "image/png" || uploadPreviewImage.ContentType == "image/svg+xml"))
+                {
+                    ModelState.AddModelError(string.Empty, "Miniatyrbilde må være bilde format");
+                }
+            }
+
             CartographyFile originalCartographyFile = _cartographyService.GetCartography(cartographyFile.SystemId);
 
             ViewBag.IsAdmin = _authorizationService.IsAdmin();

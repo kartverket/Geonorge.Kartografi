@@ -95,7 +95,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <span>@Model.PreviewImage</span> <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" style="display:inline;" />
+                    <span>@Model.PreviewImage</span> <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" accept="image/*" style="display:inline;" />
                 </div>
             </div>
             }
