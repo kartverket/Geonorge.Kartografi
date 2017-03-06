@@ -24,23 +24,38 @@ namespace Geonorge.Kartografi.Services
 
         public List<Dataset> GetDatasets(string text = null)
         {
+            List<Dataset> datasets;
+
             if (!string.IsNullOrEmpty(text))
             {
-               return  _dbContext.CartographyFiles
+                datasets = _dbContext.CartographyFiles
                 .Where(s => s.DatasetName.Contains(text) || s.Description.Contains(text) || s.FileName.Contains(text) || s.Format.Contains(text)
                 || s.Name.Contains(text) || s.Properties.Contains(text) || s.Theme.Contains(text) || s.Use.Contains(text) 
                 || s.OwnerDataset.Contains(text) || s.Owner.Contains(text))
                 .Select(d => new Dataset { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
                 .Distinct()
                 .ToList();
+
             }
             else
             { 
-            return _dbContext.CartographyFiles
-                .Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
-                .Distinct()
-                .ToList();
+                datasets = _dbContext.CartographyFiles
+                    .Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
+                    .Distinct()
+                    .ToList();
+                }
+
+            for (int d = 0; d < datasets.Count; d++)
+            {
+                if (!string.IsNullOrEmpty(datasets[d].DatasetUuid))
+                {
+                    var files = GetCartography(datasets[d].DatasetUuid).ToList();
+                    foreach(var file in files)
+                        datasets[d].Files.Add(file);
+                }
             }
+
+            return datasets;
         }
 
         public List<CartographyFile> GetCartography(string uuid = null)

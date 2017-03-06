@@ -2,34 +2,33 @@
 @using Geonorge.Kartografi.Services
 @model Geonorge.Kartografi.Models.CartographyFile
 
-<div class="row result-row metadata">
+<div class="row result-row metadata cartography-metadata">
     <div class="col-img col-xs-6 col-sm-2">
         <a href="@Model.FileUrl()" target="_blank">
             <img src="@Model.PreviewImageUrl()" />
         </a>
     </div>
-    <div class="col-no-padding-xs col-title col-sm-4">
-        <p>@Model.Name</p>
-        <p><span>Eier: </span>@Model.Owner</p>
-        <p><span>Beskrivelse: </span>@Model.Description</p>
-        <p><span>Bruksområde: </span>@Model.Use</p>
-        <p><span>Viktig egenskap for kartografien: </span>@Model.Properties</p>
+    <div class="col-no-padding-xs col-title col-sm-4 col-md-5">
+        <p><span class="cartography-metadata-name">Eier: </span>@Model.Owner</p>
+        <p><span class="cartography-metadata-name">Beskrivelse: </span>@Model.Description</p>
+        <p><span class="cartography-metadata-name">Bruksområde: </span>@Model.Use</p>
+        <p><span class="cartography-metadata-name">Viktig egenskap for kartografien: </span>@Model.Properties</p>
     </div>
 
-    <div class="col-no-padding-xs col-sm-3 col-information">
-        <p><span>Offisiell: </span>@(Model.OfficialStatus ? "Ja" : "Nei")</p>
-        <p><span>Status: </span>@CodeList.Status[Model.Status]</p>
-        <p><span>Versjon: </span>@Model.VersionId</p>
+    <div class="col-no-padding-xs col-sm-3 col-md-2 col-information">
+        <p><span class="cartography-metadata-name">Offisiell: </span>@(Model.OfficialStatus ? "Ja" : "Nei")</p>
+        <p><span class="cartography-metadata-name">Status: </span>@CodeList.Status[Model.Status]</p>
+        <p><span class="cartography-metadata-name">Versjon: </span>@Model.VersionId</p>
         @if (ViewBag.IsAdmin)
         {
             <p><span>Redigert av: </span>@Model.LastEditedBy</p>
         }
-        <p><span>Sist oppdatert: </span>@Model.DateChanged</p>
+        <p><span class="cartography-metadata-name">Sist oppdatert: </span>@Model.DateChanged</p>
     </div>
     <div class="col-sm-3">
-        <p><span>Datasett: </span>@Model.DatasetName</p>
-        <p><span>Datasetteier: </span>@Model.OwnerDataset</p>
-        <p><span>Tjeneste: </span>@Model.ServiceName</p>
+        <p><span class="cartography-metadata-name">Datasett: </span>@Model.DatasetName</p>
+        <p><span class="cartography-metadata-name">Datasetteier: </span>@Model.OwnerDataset</p>
+        <p><span class="cartography-metadata-name">Tjeneste: </span>@Model.ServiceName</p>
     </div>
 </div>
 

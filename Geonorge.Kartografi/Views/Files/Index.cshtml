@@ -29,31 +29,74 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div id="tableView" class="search-results">
             <div class="row search-results-table-heading">
-                <div class="col-sm-5"><p>@Html.ActionLink("Tittel", "Index", new { sortOrder = ViewBag.DatasetNameSortParm, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("datasetname") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-4"><p>@Html.ActionLink("Tittel", "Index", new { sortOrder = ViewBag.DatasetNameSortParm, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("datasetname") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
                 <div class="col-sm-4"><p>@Html.ActionLink("Eier", "Index", new { sortOrder = ViewBag.DatasetOwner, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("datasetowner") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
-                <div class="col-sm-3"><p>@Html.ActionLink("Tema", "Index", new { sortOrder = ViewBag.Theme, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("theme") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-2"><p>@Html.ActionLink("Tema", "Index", new { sortOrder = ViewBag.Theme, text = ViewBag.text }, new { @class = ViewBag.SortOrder.Contains("theme") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" })</p></div>
+                <div class="col-sm-1"><p>Offisiell</p></div>
+                <div class="col-sm-1"><p>Format</p></div>
             </div>
 
 
             <div class="menu-separator search-results-table-heading"></div>
             @foreach (var item in Model)
             {
-                <div class="row result-row metadata">
+                <div class="dataset-list metadata">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="title-field">
+                                <span class="arrow-icon toggle-content-button"></span> @Html.ActionLink(item.DatasetName ?? "->", "Files", new { uuid = item.DatasetUuid })
+                            </div>
+                        </div>
 
-                    <div class="col-sm-5">
-                        @Html.ActionLink(item.DatasetName ?? "->", "Files", new { uuid = item.DatasetUuid })
+                        <div class="col-sm-4">
+                            @Html.DisplayFor(modelItem => item.OwnerDataset)
+                        </div>
+
+                        <div class="col-sm-2">
+                            @Html.DisplayFor(modelItem => item.Theme)
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="file-list">
+                        <div class="row">
+                            <div class="col-sm-10"></div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        @foreach (var file in item.Files)
+                        {
+                            <div class="file-list-item">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="title-field">
+                                            <span>- </span>@Html.ActionLink(file.Name ?? "->", "Details", new { SystemId = file.SystemId })
+                                            <a href="@file.FileUrl()" class="pull-right" target="_blank">
+                                                <span class="glyphicon glyphicon-download-alt"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                    </div>
+
+                                    <div class="col-sm-1 official-field">
+                                        <span class="custom-checkbox">@Html.DisplayFor(modelItem => file.OfficialStatus)</span>
+                                    </div>
+
+                                    <div class="col-sm-1">
+                                        @Html.DisplayFor(modelItem => file.Format)
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        }
                     </div>
 
-                    <div class="col-sm-4">
-                        @Html.DisplayFor(modelItem => item.OwnerDataset)
-                    </div>
-
-                    <div class="col-sm-3">
-                        @Html.DisplayFor(modelItem => item.Theme)
-                    </div>
                 </div>
+
                 <hr />
-             }
+            }
         </div>
         Side @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) av @Model.PageCount
 
@@ -62,9 +105,23 @@
     <div class="clearfix"></div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
         <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="/">Tilbake</a>
-        @if (Request.IsAuthenticated) {
-        <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Create">Legg til</a>
+        @if (Request.IsAuthenticated)
+        {
+            <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Create">Legg til</a>
         }
 
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".toggle-content-button").click(function () {
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+                $(this).closest(".dataset-list").removeClass("active");
+            } else {
+                $(this).addClass("active");
+                $(this).closest(".dataset-list").addClass("active");
+            }
+        })
+    })
+</script>
