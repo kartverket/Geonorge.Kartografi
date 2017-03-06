@@ -25,6 +25,11 @@
     <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
         Registeret inneholder datasett som har registrert digital kartografi
     </div>
+    <div class="clearfix"></div>
+
+    <div class="col-xs-12">
+        <a id="expand-all-button" class="margin-top-10"><span class="arrow-icon"></span><span class="button-text"></span></a>
+    </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div id="tableView" class="search-results">
@@ -121,6 +126,17 @@
             } else {
                 $(this).addClass("active");
                 $(this).closest(".dataset-list").addClass("active");
+            }
+        })
+        $("#expand-all-button").click(function () {
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+                $(".dataset-list").removeClass("active");
+                $(".toggle-content-button").removeClass("active");
+            } else {
+                $(this).addClass("active");
+                $(".dataset-list").addClass("active");
+                $(".toggle-content-button").addClass("active");
             }
         })
     })
