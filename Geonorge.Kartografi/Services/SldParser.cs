@@ -13,7 +13,7 @@ namespace Geonorge.Kartografi.Services
         private static XNamespace SE = "http://www.opengis.net/se";
         private static XNamespace XLINK = "http://www.w3.org/1999/xlink";
 
-        public List<SldRule> Get(string url)
+        public List<SldLayer> Get(string url)
         {
             XDocument sldDoc = new XDocument();
             try
@@ -26,12 +26,12 @@ namespace Geonorge.Kartografi.Services
 
         }
 
-        public List<SldRule> Parse(XDocument sldDoc)
+        public List<SldLayer> Parse(XDocument sldDoc)
         {
             if (sldDoc.Root == null)
                 return null;
 
-            List<SldRule> sldRules = new List<SldRule>();
+            List<SldLayer> layers = new List<SldLayer>();
 
             XElement root = sldDoc?.Element(SLD + "StyledLayerDescriptor");
 
@@ -46,6 +46,10 @@ namespace Geonorge.Kartografi.Services
 
             foreach (var namedLayer in namedLayers)
             {
+                SldLayer sldLayer = new SldLayer();
+
+                var nameLayer = namedLayer.Element(SE + "Name")?.Value;
+                sldLayer.Name = nameLayer;
 
                 IEnumerable<XElement> rules = namedLayer?
                         .Element(SLD + "UserStyle")?
@@ -55,6 +59,8 @@ namespace Geonorge.Kartografi.Services
 
                 if (rules == null)
                     return null;
+
+                List<SldRule> sldRules = new List<SldRule>();
 
                 foreach (var rule in rules)
                 {
@@ -201,9 +207,12 @@ namespace Geonorge.Kartografi.Services
                     });
 
                 }
+                sldLayer.Rules = sldRules;
+                layers.Add(sldLayer);
             }
 
-           return sldRules;
+
+           return layers;
         }
 
         string RemoveStrings(string str)

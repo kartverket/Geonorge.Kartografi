@@ -2,17 +2,22 @@
 @using Geonorge.Kartografi.Services
 @model Geonorge.Kartografi.Models.CartographyFile
 @{
-    List<SldRule> sldRules = new SldParser().Get(Model.FileUrl());
+    List<SldLayer> sldLayers = new SldParser().Get(Model.FileUrl());
     var viewBox = "0 0 100 100";
 }
-@if (sldRules != null)
+@if (sldLayers != null)
 {
     <article class="legend-list">
         <h3>Tegnforklaring</h3>
-        <div class="row">
-
-            @foreach (var sld in sldRules)
+        @foreach (var sldLayer in sldLayers)
+        {
+            if (sldLayers.Count > 1)
             {
+                <h4>@sldLayer.Name</h4>
+            }
+        <div class="row">
+             @foreach (var sld in sldLayer.Rules)
+             {
 
                 <div class="legend-list-item col-sm-4 col-md-3">
                     @if (!string.IsNullOrEmpty(sld.ExternalGraphicHref))
@@ -235,5 +240,6 @@
                 </div>
             }
         </div>
+        }
     </article>
 }
