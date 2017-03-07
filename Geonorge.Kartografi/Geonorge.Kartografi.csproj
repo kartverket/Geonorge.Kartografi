@@ -173,6 +173,7 @@
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,6 +190,7 @@
     <Compile Include="Models\CartographyDbContext.cs" />
     <Compile Include="Models\Compatibility.cs" />
     <Compile Include="Models\Dataset.cs" />
+    <Compile Include="Models\NotFoundModel.cs" />
     <Compile Include="Models\SldLayer.cs" />
     <Compile Include="Models\SldRule.cs" />
     <Compile Include="Models\Version.cs" />
