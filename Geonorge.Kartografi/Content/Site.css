@@ -6,19 +6,19 @@ a.sorted-desc:after {
     content: ' \25B2';
 }
 
-#expand-all-button{
+#expand-all-button {
     display: block;
 }
 
-#expand-all-button .button-text:before{
-    display: inline-block;
-    content: "Ekspander alle";
-    margin-left: 2px;
-}
+    #expand-all-button .button-text:before {
+        display: inline-block;
+        content: "Ekspander alle";
+        margin-left: 2px;
+    }
 
-#expand-all-button.active .button-text:before{
-    content: "Minimer alle";
-}
+    #expand-all-button.active .button-text:before {
+        content: "Minimer alle";
+    }
 
 
 .arrow-icon {
@@ -44,9 +44,9 @@ a.sorted-desc:after {
     line-height: 24pt;
 }
 
-.dataset-list .title-field{
-    padding-left: 6px;
-}
+    .dataset-list .title-field {
+        padding-left: 6px;
+    }
 
 .file-list {
     display: none;
@@ -56,7 +56,7 @@ a.sorted-desc:after {
         padding-left: 24px;
     }
 
-    .file-list .official-field{
+    .file-list .official-field {
         text-align: center;
     }
 
@@ -65,14 +65,13 @@ a.sorted-desc:after {
 }
 
 
-.file-list .file-list-item:nth-child(even){
+.file-list .file-list-item:nth-child(even) {
     background-color: #f8f9f9;
 }
 
 
 .legend-list-item {
-    padding-top: 2px;
-    padding-bottom: 2px;
+    min-height: 75px;
 }
 
     .legend-list-item svg,
@@ -81,12 +80,28 @@ a.sorted-desc:after {
         width: 50px !important;
     }
 
-    .legend-list-item span {
-        line-height: 50px;
-        vertical-align: top;
-        display: inline-block;
-        margin-left: 8px;
+    .legend-list-item .sld-name {
+        height: 50px;
+        display: table;
+        width: calc(100% - 64px);
+        width: -moz-calc(100% - 64px);
+        width: -webkit-calc(100% - 64px);
+        float: right;
     }
+
+        .legend-list-item .sld-name span {
+            vertical-align: middle;
+            display: table-cell;
+            line-height: 18px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -ms-word-break: keep-all;
+            word-break: break-word;
+            -ms-hyphens: none;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
 
 @media (max-width: 1199px) {
     .nav-tabs > li.pull-right {
