@@ -24,6 +24,9 @@ namespace Geonorge.Kartografi
             DependencyConfig.Configure(new ContainerBuilder());
 
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+
+            // init log4net
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }
