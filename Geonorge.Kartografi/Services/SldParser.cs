@@ -59,7 +59,7 @@ namespace Geonorge.Kartografi.Services
                 foreach (var rule in rules)
                 {
 
-                    var name = rule.Element(SE + "Name").Value;
+                    var name = rule.Element(SE + "Name")?.Value;
                     string symboliser = "";
                     string fill = "";
                     string stroke = "";
