@@ -102,7 +102,7 @@ namespace Geonorge.Kartografi.Services
                             .Element(SE + "Mark")?.Element(SE + "WellKnownName")?.Value;
                         wellKnownName = RemoveStrings(wellKnownName);
 
-                        if (wellKnownName == "circle" || wellKnownName == "cross" || wellKnownName == "cross_fill")
+                        if (wellKnownName == "circle" || wellKnownName == "cross" || wellKnownName == "cross_fill" || wellKnownName == "star")
                         {
                             fill = rule.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")?
                             .Element(SE + "Mark")?.Element(SE + "Fill")?.Elements(SE + "SvgParameter")
