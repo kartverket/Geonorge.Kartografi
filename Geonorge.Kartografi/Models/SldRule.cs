@@ -14,6 +14,8 @@ namespace Geonorge.Kartografi.Models
         public string Stroke { get; set; }
         public string StrokeWidth { get; set; }
         public string StrokeDasharray { get; set; }
+        public int Size { get; set; }
         public string ExternalGraphicHref { get; set; }
+        public List<SldRule> MoreSymbols { get; set; }
     }
 }

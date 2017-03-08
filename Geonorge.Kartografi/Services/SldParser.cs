@@ -73,6 +73,8 @@ namespace Geonorge.Kartografi.Services
                     string strokeDasharray = "0";
                     string wellKnownName = "";
                     string externalGraphicHref = "";
+                    int size = 0;
+                    List<SldRule> moreSymbols = new List<SldRule>();
 
                     externalGraphicHref = rule.Element(SLD + "PointSymbolizer")?.Element(SLD + "Graphic")
                         ?.Element(SLD + "ExternalGraphic")?.Element(SLD + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
@@ -98,37 +100,77 @@ namespace Geonorge.Kartografi.Services
 
                     if (symboliser == "point")
                     {
-                        wellKnownName = rule.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")?
-                            .Element(SE + "Mark")?.Element(SE + "WellKnownName")?.Value;
-                        wellKnownName = RemoveStrings(wellKnownName);
 
-                        if (wellKnownName == "circle" || wellKnownName == "cross" || wellKnownName == "cross_fill" || wellKnownName == "star")
+                        var pointRules = rule.Elements(SE + "PointSymbolizer")?.ToList();
+                        if (pointRules != null)
                         {
-                            fill = rule.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")?
-                            .Element(SE + "Mark")?.Element(SE + "Fill")?.Elements(SE + "SvgParameter")
-                            .First(x => x.Attribute("name").Value == "fill")?.Value;
+                            foreach(var pointRule in pointRules)
+                            {
+                                if (pointRule.HasElements)
+                                {
+                                    fill = "";
+                                    stroke = "";
+                                    strokeWidth = "";
+                                    wellKnownName = "";
+                                    size = 0;
 
-                            stroke = rule.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")?
-                            .Element(SE + "Mark")?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")?
-                            .First(x => x.Attribute("name")?.Value == "stroke")?.Value;
+                                    wellKnownName = pointRule?.Element(SE + "Graphic")?
+                                    .Element(SE + "Mark")?.Element(SE + "WellKnownName")?.Value;
+                                    wellKnownName = RemoveStrings(wellKnownName);
 
-                            var strokeWidthObject = rule?.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")
-                            .Element(SE + "Mark")?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")?
-                            .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+                                    fill = pointRule?.Element(SE + "Graphic")?
+                                    .Element(SE + "Mark")?.Element(SE + "Fill")?.Elements(SE + "SvgParameter")
+                                    .First(x => x.Attribute("name").Value == "fill")?.Value;
 
-                            if (strokeWidthObject != null)
-                                strokeWidth = strokeWidthObject.Value;
+                                    stroke = pointRule?.Element(SE + "Graphic")?
+                                    .Element(SE + "Mark")?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")?
+                                    .First(x => x.Attribute("name")?.Value == "stroke")?.Value;
+
+                                    var strokeWidthObject = pointRule?.Element(SE + "Graphic")?
+                                    .Element(SE + "Mark")?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")?
+                                    .FirstOrDefault(x => x.Attribute("name").Value == "stroke-width");
+
+                                    if (strokeWidthObject != null)
+                                        strokeWidth = strokeWidthObject.Value;
+
+                                    var sizeObject = pointRule?.Element(SE + "Graphic")?
+                                    .Element(SE + "Size");
+
+                                    if(sizeObject != null)
+                                        int.TryParse(sizeObject.Value, out size);
+
+                                    moreSymbols.Add(new SldRule
+                                    {
+                                        Symbolizer = symboliser,
+                                        Name = name,
+                                        WellKnownName = wellKnownName,
+                                        Fill = fill,
+                                        Stroke = stroke,
+                                        StrokeWidth = strokeWidth,
+                                        StrokeDasharray = strokeDasharray,
+                                        ExternalGraphicHref = externalGraphicHref,
+                                        Size = size
+                                    });
+                                }
+                            }
+
+                            if(moreSymbols.Count > 0)
+                            {
+
+                                var mainSymbol = moreSymbols.OrderByDescending(s => s.Size).First();
+                                moreSymbols.Remove(mainSymbol);
+
+                                symboliser = mainSymbol.Symbolizer;
+                                name = mainSymbol.Name;
+                                stroke = mainSymbol.Stroke;
+                                wellKnownName = mainSymbol.WellKnownName;
+                                fill = mainSymbol.Fill;
+                                stroke = mainSymbol.Stroke;
+                                strokeWidth = mainSymbol.StrokeWidth;
+                                size = mainSymbol.Size;
+                            }
                         }
-                        else if (wellKnownName == "square" || wellKnownName == "triangle" || wellKnownName == "cross2")
-                        {
-                            fill = rule.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")?
-                            .Element(SE + "Mark")?.Element(SE + "Fill")?.Elements(SE + "SvgParameter")
-                            .First(x => x.Attribute("name").Value == "fill")?.Value;
 
-                            stroke = rule.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")?
-                            .Element(SE + "Mark")?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")
-                            .First(x => x.Attribute("name")?.Value == "stroke")?.Value;
-                        }
 
                     }
                     else if (symboliser == "line")
@@ -203,7 +245,9 @@ namespace Geonorge.Kartografi.Services
                         Stroke = stroke,
                         StrokeWidth = strokeWidth,
                         StrokeDasharray = strokeDasharray,
-                        ExternalGraphicHref = externalGraphicHref
+                        ExternalGraphicHref = externalGraphicHref,
+                        Size = size,
+                        MoreSymbols = moreSymbols
                     });
 
                 }
