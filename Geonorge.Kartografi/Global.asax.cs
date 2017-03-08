@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Geonorge.Kartografi.App_Start;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Geonorge.Kartografi
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(MvcApplication));
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -27,6 +30,13 @@ namespace Geonorge.Kartografi
 
             // init log4net
             log4net.Config.XmlConfigurator.Configure();
+        }
+
+        protected void Application_Error(Object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError().GetBaseException();
+
+            log.Error("App_Error", ex);
         }
     }
 }
