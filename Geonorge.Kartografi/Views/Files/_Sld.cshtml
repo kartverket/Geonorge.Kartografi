@@ -63,7 +63,7 @@ else if (sld.WellKnownName == "circle")
             @DisplayMoreSymbols(sld, box)
         </svg>
 }
-else if (sld.WellKnownName == "square" || sld.WellKnownName == "")
+else if ((sld.WellKnownName == "square" || sld.WellKnownName == "") && !string.IsNullOrEmpty(sld.Fill))
 {
         <svg width="100" height="100" viewBox="@viewBox">
             <rect width="100" height="100"
