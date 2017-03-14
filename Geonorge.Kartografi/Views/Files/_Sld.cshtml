@@ -56,6 +56,7 @@ if (sld != null)
             {
                 <line stroke-dasharray="@sld.StrokeDasharray" x1="0" y1="50" x2="100" y2="50"
                       stroke-width="8" stroke="@sld.Stroke" />
+                    @DisplayMoreSymbols(sld, box)
             }
             else if (sld.WellKnownName == "circle")
             {
@@ -69,6 +70,7 @@ if (sld != null)
 
                 <rect width="100" height="100"
                       fill="@sld.Fill" stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
+                    @DisplayMoreSymbols(sld, box)
 
             }
             else if (sld.WellKnownName == "triangle")
@@ -89,6 +91,7 @@ if (sld != null)
                                   stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke" />
                     <!--Trengte denne, hvis ikke ble det "stroke" over delen i midten-->
                             <rect width="20" height="25" x="40" y="38" fill="@sld.Fill" />
+                            @DisplayMoreSymbols(sld, box)
 
             }
             else if (sld.WellKnownName == "cross2")
@@ -98,6 +101,7 @@ if (sld != null)
                          stroke="@sld.Stroke" fill="@sld.Fill" stroke-width="@sld.StrokeWidth" />
                                 <polygon points="0,100 100,0"
                                          stroke="@sld.Stroke" fill="@sld.Fill" stroke-width="@sld.StrokeWidth" />
+                                        @DisplayMoreSymbols(sld, box)
 
             }
             else if (sld.WellKnownName == "star")
@@ -107,6 +111,7 @@ if (sld != null)
                    font-family="MS Shell Dlg 2" font-size="8.25" font-weight="400" font-style="normal">
                     <path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M0,40 L35,40 L50,0 L65,40 L100,40 L65,60, L80,100 L50,70 L20,100 L35,60 L0,40" />
                 </g>
+                @DisplayMoreSymbols(sld, box)
 
             }
             else if (sld.WellKnownName == "line")
@@ -130,6 +135,7 @@ if (sld != null)
                                   stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
                             <rect width="1" height="90" x="88" y="5"
                                   stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
+                                @DisplayMoreSymbols(sld, box)
 
             }
             else if (sld.WellKnownName == "horline")
@@ -152,6 +158,7 @@ if (sld != null)
                                   stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
                             <rect width="90" height="1" x="5" y="88"
                                   stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
+                                @DisplayMoreSymbols(sld, box)
             }
             else if (sld.Symbolizer == "polygon" && sld.WellKnownName == "cross")
             {
@@ -187,6 +194,7 @@ if (sld != null)
                                   stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
                             <rect width="1" height="90" x="88" y="5"
                                   stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
+                                @DisplayMoreSymbols(sld, box)
             }
             else if (sld.WellKnownName == "slash")
             {
@@ -206,6 +214,7 @@ if (sld != null)
                                              stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
                                     <polygon points="75,95 95,75"
                                              stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
+                                            @DisplayMoreSymbols(sld, box)
             }
             else if (sld.WellKnownName == "backslash")
             {
@@ -226,6 +235,7 @@ if (sld != null)
                                              stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
                                     <polygon points="75,5 95,25"
                                              stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
+                                            @DisplayMoreSymbols(sld, box)
 
             }
             else if (sld.WellKnownName == "x")
@@ -260,6 +270,7 @@ if (sld != null)
                                              stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
                                     <polygon points="75,95 95,75"
                                              stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
+                                            @DisplayMoreSymbols(sld, box)
             }
         </svg>
 }
