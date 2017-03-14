@@ -127,7 +127,7 @@ namespace Geonorge.Kartografi.Services
 
                                     stroke = pointRule?.Element(SE + "Graphic")?
                                     .Element(SE + "Mark")?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")?
-                                    .First(x => x.Attribute("name")?.Value == "stroke")?.Value;
+                                    .FirstOrDefault(x => x.Attribute("name")?.Value == "stroke")?.Value;
 
                                     var strokeWidthObject = pointRule?.Element(SE + "Graphic")?
                                     .Element(SE + "Mark")?.Element(SE + "Stroke")?.Elements(SE + "SvgParameter")?
