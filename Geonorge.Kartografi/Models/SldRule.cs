@@ -17,5 +17,7 @@ namespace Geonorge.Kartografi.Models
         public int Size { get; set; }
         public string ExternalGraphicHref { get; set; }
         public List<SldRule> MoreSymbols { get; set; }
+        public string Identifier { get; set; }
+        public string Parent { get; set; }
     }
 }

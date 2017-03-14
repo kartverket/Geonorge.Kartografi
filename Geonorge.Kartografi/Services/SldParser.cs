@@ -75,6 +75,7 @@ namespace Geonorge.Kartografi.Services
                     string externalGraphicHref = "";
                     int size = 0;
                     List<SldRule> moreSymbols = new List<SldRule>();
+                    string identifier = "";
 
                     externalGraphicHref = rule.Element(SLD + "PointSymbolizer")?.Element(SLD + "Graphic")
                         ?.Element(SLD + "ExternalGraphic")?.Element(SLD + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
@@ -104,7 +105,9 @@ namespace Geonorge.Kartografi.Services
                         var pointRules = rule.Elements(SE + "PointSymbolizer")?.ToList();
                         if (pointRules != null)
                         {
-                            foreach(var pointRule in pointRules)
+                            int counter = 0;
+                            string parent = "0";
+                            foreach (var pointRule in pointRules)
                             {
                                 if (pointRule.HasElements)
                                 {
@@ -141,6 +144,7 @@ namespace Geonorge.Kartografi.Services
 
                                     moreSymbols.Add(new SldRule
                                     {
+                                        Identifier = counter.ToString(),
                                         Symbolizer = symboliser,
                                         Name = name,
                                         WellKnownName = wellKnownName,
@@ -149,8 +153,11 @@ namespace Geonorge.Kartografi.Services
                                         StrokeWidth = strokeWidth,
                                         StrokeDasharray = strokeDasharray,
                                         ExternalGraphicHref = externalGraphicHref,
-                                        Size = size
+                                        Size = size,
+                                        Parent = parent
                                     });
+                                    parent = counter.ToString();
+                                    counter++;
                                 }
                             }
 
@@ -168,6 +175,8 @@ namespace Geonorge.Kartografi.Services
                                 stroke = mainSymbol.Stroke;
                                 strokeWidth = mainSymbol.StrokeWidth;
                                 size = mainSymbol.Size;
+                                identifier = mainSymbol.Identifier;
+                                
                             }
                         }
 
@@ -238,6 +247,7 @@ namespace Geonorge.Kartografi.Services
 
                     sldRules.Add(new SldRule
                     {
+                        Identifier = identifier,
                         Symbolizer = symboliser,
                         Name = name,
                         WellKnownName = wellKnownName,
@@ -247,6 +257,7 @@ namespace Geonorge.Kartografi.Services
                         StrokeDasharray = strokeDasharray,
                         ExternalGraphicHref = externalGraphicHref,
                         Size = size,
+                        Parent = "0",
                         MoreSymbols = moreSymbols
                     });
 
