@@ -8,7 +8,7 @@
 @functions {
 
     List<SldRule> moreSymbols;
-    double sizeForLargeSymbol;
+    double sizeForPreviousSymbol;
 
     public class ViewBox
     {
@@ -20,12 +20,13 @@
 
     public ViewBox CalculateViewBox(ViewBox view, SldRule sld)
     {
-        double skaleringstall = sld.Size / sizeForLargeSymbol;
-        double tilleggstall = skaleringstall * 100;
-        view.X = -tilleggstall / 2;
-        view.Y = -tilleggstall / 2;
-        view.W = 100 + tilleggstall;
-        view.H = 100 + tilleggstall;
+        double skaleringstall = sizeForPreviousSymbol / sld.Size ;
+
+        view.W = 100 * skaleringstall;
+        view.H = view.W;
+
+        view.X = -(view.W - 100) / 2;
+        view.Y = view.X;
 
         return view;
     }
@@ -300,7 +301,7 @@ if (sld != null)
                             moreSymbols = sld.MoreSymbols;
                             ViewBox viewBoxDefault = new ViewBox();
                             if (sld.MoreSymbols.Count > 0) {
-                                sizeForLargeSymbol = (double)sld.Size;
+                                sizeForPreviousSymbol = (double)sld.Size;
                             }
                             @DisplaySldRule(sld, viewBoxDefault)
                         }
