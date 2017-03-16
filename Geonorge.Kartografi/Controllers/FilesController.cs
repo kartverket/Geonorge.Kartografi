@@ -9,13 +9,17 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using PagedList;
+using log4net;
 
 namespace Geonorge.Kartografi.Controllers
 {
+    [HandleError]
     public class FilesController : Controller
     {
         ICartographyService _cartographyService;
         private readonly IAuthorizationService _authorizationService;
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(MvcApplication));
 
         public FilesController(ICartographyService cartographyService, IAuthorizationService authorizationService)
         {
