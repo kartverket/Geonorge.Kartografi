@@ -335,5 +335,10 @@ namespace Geonorge.Kartografi.Controllers
 
             return View(cartographyFile);
         }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            Log.Error("Error", filterContext.Exception);
+        }
     }
 }
