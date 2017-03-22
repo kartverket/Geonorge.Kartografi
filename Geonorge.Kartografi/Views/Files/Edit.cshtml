@@ -283,13 +283,13 @@
         metadata = [];
         option = {}
         option["id"] = "@Model.DatasetUuid";
-        option["text"] = "@Model.DatasetName";
+        option["text"] = "@Html.Raw(Model.DatasetName)";
         option["theme"] = "@Model.Theme";
         option["ownerorganization"] = "@Html.Raw(Model.OwnerDataset)";
 
         metadata.push(option);
 
-        var data = [{ id: "@Model.DatasetUuid", text: '@Model.DatasetName' }];
+        var data = [{ id: "@Model.DatasetUuid", text: '@Html.Raw(Model.DatasetName)' }];
 
         $(".datasetUuidSelect").select2({
             data: data
@@ -298,7 +298,7 @@
         $(".datasetUuidSelect").trigger("select2:select");
 
         $(".serviceUuidSelect").select2({
-            data: [{ id: "@Model.ServiceUuid", text: '@Model.ServiceName' }]
+            data: [{ id: "@Model.ServiceUuid", text: '@Html.Raw(Model.ServiceName)' }]
         })
 
         $(".serviceUuidSelect").trigger("select2:select");
