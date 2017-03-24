@@ -251,7 +251,7 @@
 
         metadata.push(option);
 
-        var data = [{ id: "@Model.DatasetUuid", text: '@Model.DatasetName' }];
+        var data = [{ id: "@Model.DatasetUuid", text: '@Html.Raw(Model.DatasetName)' }];
 
         $(".datasetUuidSelect").select2({
             data: data
