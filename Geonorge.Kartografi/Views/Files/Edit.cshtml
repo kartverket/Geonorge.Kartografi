@@ -284,7 +284,7 @@
         option = {}
         option["id"] = "@Model.DatasetUuid";
         option["text"] = "@Html.Raw(Model.DatasetName)";
-        option["theme"] = "@Model.Theme";
+        option["theme"] = "@Html.Raw(Model.Theme)";
         option["ownerorganization"] = "@Html.Raw(Model.OwnerDataset)";
 
         metadata.push(option);
