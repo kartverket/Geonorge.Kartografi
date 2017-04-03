@@ -413,6 +413,7 @@
     </Content>
     <Content Include="Views\Files\_FileData.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\_SearchBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
