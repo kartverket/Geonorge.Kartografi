@@ -61,7 +61,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.SortOrder = sortOrder;
             ViewBag.text = text;
 
-            int pageSize = 50;
+            int pageSize = 30;
             int pageNumber = (page ?? 1);
 
             return View(datasets.ToPagedList(pageNumber, pageSize));

@@ -103,7 +103,7 @@
                 <hr />
             }
         </div>
-        Side @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) av @Model.PageCount
+        Viser @(Model.TotalItemCount == 0 ? 0 : Model.FirstItemOnPage) - @Model.LastItemOnPage av @Model.TotalItemCount treff
 
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, text = ViewBag.text }))
     </div>
