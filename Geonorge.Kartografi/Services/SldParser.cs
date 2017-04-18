@@ -80,6 +80,12 @@ namespace Geonorge.Kartografi.Services
                     externalGraphicHref = rule.Element(SLD + "PointSymbolizer")?.Element(SLD + "Graphic")
                         ?.Element(SLD + "ExternalGraphic")?.Element(SLD + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
 
+                    if (string.IsNullOrEmpty(externalGraphicHref)) { 
+                        externalGraphicHref = rule.Element(SE + "PointSymbolizer")?.Element(SE + "Graphic")
+                        ?.Element(SE + "ExternalGraphic")?.Element(SE + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
+                    }
+
+
                     var point = rule.Element(SE + "PointSymbolizer");
 
                     var line = rule.Element(SE + "LineSymbolizer");
