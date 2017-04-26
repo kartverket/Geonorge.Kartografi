@@ -208,6 +208,8 @@
     <Compile Include="Services\ICartographyService.cs" />
     <Compile Include="Services\IVersioningService.cs" />
     <Compile Include="Services\SldParser.cs" />
+    <Compile Include="Services\SldParser10.cs" />
+    <Compile Include="Services\SldParser11.cs" />
     <Compile Include="Services\VersioningService.cs" />
   </ItemGroup>
   <ItemGroup>

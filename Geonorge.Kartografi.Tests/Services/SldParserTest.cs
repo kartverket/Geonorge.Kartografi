@@ -17,7 +17,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\AkvakulturGodkjenteLokaliteter.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal(8, slds.Count);
@@ -28,7 +28,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\punkt_sirkel.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("point", slds[0].Symbolizer);
@@ -43,7 +43,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\punkt_firkant.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("point", slds[0].Symbolizer);
@@ -57,7 +57,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\punkt_triangel.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("point", slds[0].Symbolizer);
@@ -71,7 +71,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\punkt_kryss2.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("point", slds[0].Symbolizer);
@@ -85,7 +85,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\punkt_kryss.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("point", slds[0].Symbolizer);
@@ -99,7 +99,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\punkt_x.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("point", slds[0].Symbolizer);
@@ -113,7 +113,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\polygon_solid.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
@@ -128,7 +128,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\polygon_vertline.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
@@ -141,7 +141,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\polygon_horline.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
@@ -154,7 +154,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\polygon_kryss.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
@@ -167,7 +167,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\polygon_slash.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
@@ -180,7 +180,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\polygon_backslash.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
@@ -193,7 +193,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\polygon_x.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("polygon", slds[0].Symbolizer);
@@ -206,7 +206,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\punkt_svg.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal(@"http://blackicemedia.com/presentations/2013-02-hires/img/awesome_tiger.svg", slds[0].ExternalGraphicHref);
@@ -217,7 +217,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\linje_heltrukket.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("line", slds[0].Symbolizer);
@@ -230,7 +230,7 @@ namespace Geonorge.Kartografi.Tests.Services
         {
             xmlFile = File.ReadAllText("xml\\linje_helpunkt.sld");
             XDocument doc = XDocument.Parse(xmlFile);
-            List<SldLayer> layers = new SldParser().Parse(doc);
+            List<SldLayer> layers = new SldParser11().Parse(doc);
             List<SldRule> slds = layers[0].Rules;
             Assert.NotNull(slds);
             Assert.Equal("line", slds[0].Symbolizer);
