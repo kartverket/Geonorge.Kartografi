@@ -19,9 +19,9 @@ namespace Geonorge.Kartografi.Services
                 string version = sldDoc.Root.Attribute("version").Value;
                 version = version.Substring(0, 3);
 
-                if (version == "1.0")
-                    sldLayers = new SldParser10().Parse(sldDoc);
-                else
+                //if (version == "1.0")
+                //    sldLayers = new SldParser10().Parse(sldDoc); //sld 1.0 not fully supported
+                //else
                     sldLayers = new SldParser11().Parse(sldDoc);
 
             }
