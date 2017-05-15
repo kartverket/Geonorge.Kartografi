@@ -33,6 +33,9 @@
 </div>
 
         <a href="@Model.FileUrl()" class="btn" target="_blank">
+            <span class="custom-icon custom-icon-eksternlink"></span> Vis fil
+        </a>
+        <a href="~/tegneregler/Download/@Model.SystemId" class="btn" target="_blank">
             <span class="glyphicon glyphicon-download-alt"></span> Last ned
         </a>
         @if (ViewBag.HasAccess)

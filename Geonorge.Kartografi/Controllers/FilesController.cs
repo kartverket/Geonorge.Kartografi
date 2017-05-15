@@ -336,6 +336,18 @@ namespace Geonorge.Kartografi.Controllers
             return View(cartographyFile);
         }
 
+        public FileResult Download(Guid? systemid)
+        {
+
+            var file = _cartographyService.GetCartography(systemid.Value);
+            string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/files/");
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@""+ targetFolder + file.FileName);
+
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, file.FileName);
+        }
+
+
         protected override void OnException(ExceptionContext filterContext)
         {
             Log.Error("Error", filterContext.Exception);
