@@ -15,7 +15,7 @@ namespace Geonorge.Kartografi
 
             routes.MapRoute(
                 name: "AlternateFiles",
-                url: "tegneregler/{action}/{SystemId}",
+                url: "register/kartografi/{action}/{SystemId}",
                 defaults: new { controller = "Files", action = "Index", SystemId = UrlParameter.Optional }
             );
 
