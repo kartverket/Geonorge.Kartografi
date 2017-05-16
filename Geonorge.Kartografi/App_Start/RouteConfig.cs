@@ -14,12 +14,6 @@ namespace Geonorge.Kartografi
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "AlternateFiles",
-                url: "register/kartografi/{action}/{SystemId}",
-                defaults: new { controller = "Files", action = "Index", SystemId = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{SystemId}",
                 defaults: new { controller = "Files", action = "Index", SystemId = UrlParameter.Optional }

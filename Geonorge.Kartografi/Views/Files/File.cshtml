@@ -5,8 +5,8 @@
     ViewBag.Title = "Detaljer";
 }
 @section breadcrumb {
-    <li><a href="~/tegneregler/">Digital kartografi</a></li>
-    <li><a href="~/tegneregler/Details/@Model.SystemId">@Model.Name</a></li>
+    <li><a href="~/">Digital kartografi</a></li>
+    <li><a href="~/Files/Details/@Model.SystemId">@Model.Name</a></li>
     <li>Detaljer</li>
 }
 
@@ -33,10 +33,10 @@
 
         @if (ViewBag.HasAccess)
         {
-            <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Edit/@Model.SystemId" style="margin-left: 15px;">Rediger</a>
-            <a class="btn btn-default btn-space pull-right" href="~/tegneregler/Delete/@Model.SystemId">Slett</a>
+            <a class="btn btn-default btn-space pull-right" href="~/Files/Edit/@Model.SystemId" style="margin-left: 15px;">Rediger</a>
+            <a class="btn btn-default btn-space pull-right" href="~/Files/Delete/@Model.SystemId">Slett</a>
         }
-        <a class="hidden-print" href="~/tegneregler/Details/@Model.SystemId">Tilbake</a>
+        <a class="hidden-print" href="~/Files/Details/@Model.SystemId">Tilbake</a>
 
     </div>
 </div>

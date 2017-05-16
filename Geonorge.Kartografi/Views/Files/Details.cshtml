@@ -6,8 +6,8 @@
 }
 
 @section breadcrumb {
-    <li><a href="~/tegneregler/">Digital kartografi</a></li>
-    <li><a href="~/tegneregler/Files?uuid=@Model.CurrentVersion.DatasetUuid">@Model.CurrentVersion.DatasetName</a></li>
+    <li><a href="~/">Digital kartografi</a></li>
+    <li><a href="~/Files/Files?uuid=@Model.CurrentVersion.DatasetUuid">@Model.CurrentVersion.DatasetName</a></li>
     <li>@Model.CurrentVersion.Name</li>
 }
 <section class="heading">
@@ -56,7 +56,7 @@
                 {
                     <div class="row result-row metadata">
                         <div class="col-lg-4">
-                            <a href="~/tegneregler/File/@historical.SystemId">@historical.Name</a>
+                            <a href="~/Files/File/@historical.SystemId">@historical.Name</a>
                         </div>
                         <div class="col-lg-3">@historical.Owner</div>
                         <div class="col-lg-2">@historical.VersionId</div>
@@ -83,7 +83,7 @@
                 {
                     <div class="row result-row metadata">
                         <div class="col-lg-4">
-                            <a href="~/tegneregler/File/@suggestion.SystemId">@suggestion.Name</a>
+                            <a href="~/Files/File/@suggestion.SystemId">@suggestion.Name</a>
                         </div>
                         <div class="col-lg-3">@suggestion.Owner</div>
                         <div class="col-lg-2">@suggestion.VersionId</div>
@@ -100,7 +100,7 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
-            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/tegneregler/Files?uuid=@Model.CurrentVersion.DatasetUuid">Tilbake</a>
+            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/Files/Files?uuid=@Model.CurrentVersion.DatasetUuid">Tilbake</a>
         </div>
     </div>
 </div>
