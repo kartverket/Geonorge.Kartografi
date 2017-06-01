@@ -17,7 +17,24 @@ namespace Geonorge.Kartografi.Formatter
         public CsvFormatter()
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue(csv));
+            MediaTypeMappings.Add(new QueryStringMapping("mediatype", "csv", csv));
             MediaTypeMappings.Add(new UriPathExtensionMapping("csv", csv));
+
+            SupportedEncodings.Add(new UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+            SupportedEncodings.Add(Encoding.GetEncoding("iso-8859-1"));
+        }
+
+        public override void SetDefaultContentHeaders(Type type, HttpContentHeaders headers, MediaTypeHeaderValue mediaType)
+        {
+            if (CanWriteType(type) && mediaType.MediaType == csv)
+            {
+                headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+                headers.ContentDisposition.FileName = "kartografi.csv";
+            }
+            else
+            {
+                base.SetDefaultContentHeaders(type, headers, mediaType);
+            }
         }
 
         Func<Type, bool> SupportedTypeCSV = (type) =>
@@ -40,14 +57,16 @@ namespace Geonorge.Kartografi.Formatter
 
         public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
         {
+            Encoding effectiveEncoding = SelectCharacterEncoding(content.Headers);
+
             if (type == typeof(Models.Api.Cartography) ||
                 type == typeof(List<Models.Api.Cartography>))
-                BuildCSV(value, writeStream, content.Headers.ContentType.MediaType);
+                BuildCSV(value, writeStream, effectiveEncoding);
         }
 
-        private void BuildCSV(object models, Stream stream, string contenttype)
+        private void BuildCSV(object models, Stream stream, Encoding effectiveEncoding)
         {
-            StreamWriter streamWriter = new StreamWriter(stream, Encoding.UTF8);
+            StreamWriter streamWriter = new StreamWriter(stream, effectiveEncoding);
 
             if (models is List<Models.Api.Cartography>)
             {
@@ -65,7 +84,7 @@ namespace Geonorge.Kartografi.Formatter
 
         private static void ConvertRegisterToCSV(StreamWriter streamWriter, Models.Api.Cartography item)
         {
-            string text = $"{item.Uuid};{item.Name}";
+            string text = $"{item.Uuid};{item.Name};{item.FileUrl};{item.Owner};{item.Theme};{(item.OfficialStatus ? "JA" : "NEI")};{item.Format};{item.DatasetUuid};{item.DatasetName};{item.OwnerDataset}";
             streamWriter.WriteLine(text);
         }
 
@@ -87,7 +106,7 @@ namespace Geonorge.Kartografi.Formatter
 
         private string RegisterHeading()
         {
-            return "Uuid;Name";
+            return "Uuid;Tegneregelnavn;FileUrl;Organisasjon;Tema;Offisiell;Format;DatasettUuid;Datasettnavn;DatasettEier";
         }
         
     }

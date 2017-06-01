@@ -26,7 +26,25 @@
         Registeret inneholder datasett som har registrert digital kartografi
     </div>
     <div class="clearfix"></div>
-
+    <div class="col-md-12">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <div class="save-as-menu">
+                <label>Lagre som:</label>
+                <div class="no-padding-bottom save-as-dropdown">
+                    <div class="custom-select">
+                        <select onchange="additionalView(this.value)" class="form-control">
+                            <option value="csvUrl" selected="selected">CSV</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="saveButtons" class="no-padding-bottom save-as-buttons">
+                    @{ string urlCSV = HttpContext.Current.Request.Url.AbsoluteUri + "api/kartografi?mediatype=csv&text=" + Request.QueryString["text"];}
+                    <a class="btn" id="csvUrl" href="@urlCSV">Lagre</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-xs-12">
         <a id="expand-all-button" class="margin-top-10"><span class="arrow-icon"></span><span class="button-text"></span></a>
     </div>

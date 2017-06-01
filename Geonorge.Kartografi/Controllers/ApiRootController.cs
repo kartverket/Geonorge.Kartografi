@@ -27,13 +27,12 @@ namespace Geonorge.Kartografi.Controllers
         /// List items, optional limit by text
         /// </summary>
         [Route("api/kartografi")]
-        [Route("api/kartografi.{ext}")]
         [HttpGet]
-        public IHttpActionResult GetCartography([FromUri] string text = null)
+        public List<Models.Api.Cartography> GetCartography([FromUri] string text = null)
         {
             var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text));
                        
-            return Ok(cartographyFiles);
+            return cartographyFiles;
         }
 
         private List<Models.Api.Cartography> ConvertRegister(List<Dataset> cartographyFiles)
