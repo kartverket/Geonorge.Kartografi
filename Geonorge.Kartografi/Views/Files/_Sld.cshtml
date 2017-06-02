@@ -48,9 +48,12 @@ if (ruleSymbol != null)
     <title>
     @if(sld.SldFilters != null && !string.IsNullOrEmpty(sld.SldFilters[0].PropertyName) && !string.IsNullOrEmpty(sld.SldFilters[0].Literal))
     {
-        @:Spørring: @sld.SldFilters[0].PropertyName : @sld.SldFilters[0].Literal
+        @:Spørring: @sld.SldFilters[0].PropertyName: @sld.SldFilters[0].Literal
     }
-Farge = @sld.Fill
+@if (!string.IsNullOrEmpty(sld.Fill))
+{ 
+@:Farge = @sld.Fill 
+}
     </title>
 }
 
