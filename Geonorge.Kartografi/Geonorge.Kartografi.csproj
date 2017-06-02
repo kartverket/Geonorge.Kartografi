@@ -238,6 +238,7 @@
     <Compile Include="Models\Compatibility.cs" />
     <Compile Include="Models\Dataset.cs" />
     <Compile Include="Models\NotFoundModel.cs" />
+    <Compile Include="Models\SldFilter.cs" />
     <Compile Include="Models\SldLayer.cs" />
     <Compile Include="Models\SldRule.cs" />
     <Compile Include="Models\Version.cs" />

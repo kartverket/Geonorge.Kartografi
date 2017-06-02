@@ -19,5 +19,6 @@ namespace Geonorge.Kartografi.Models
         public List<SldRule> MoreSymbols { get; set; }
         public string Identifier { get; set; }
         public string Parent { get; set; }
+        public List<SldFilter> SldFilters { get; set; }
     }
 }

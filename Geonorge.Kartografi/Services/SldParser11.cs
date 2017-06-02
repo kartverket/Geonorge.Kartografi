@@ -12,6 +12,7 @@ namespace Geonorge.Kartografi.Services
         private static XNamespace SLD = "http://www.opengis.net/sld";
         private static XNamespace SE = "http://www.opengis.net/se";
         private static XNamespace XLINK = "http://www.w3.org/1999/xlink";
+        private static XNamespace OGC = "http://www.opengis.net/ogc";
 
         public List<SldLayer> Parse(XDocument sldDoc)
         {
@@ -63,6 +64,15 @@ namespace Geonorge.Kartografi.Services
                     int size = 0;
                     List<SldRule> moreSymbols = new List<SldRule>();
                     string identifier = "";
+
+                    string filterPropertyName = "";
+                    string filterLiteral = "";
+
+                    filterPropertyName = rule.Element(OGC + "Filter")?.Element(OGC + "PropertyIsEqualTo")?.Element(OGC + "PropertyName")?.Value;
+                    filterLiteral = rule.Element(OGC + "Filter")?.Element(OGC + "PropertyIsEqualTo")?.Element(OGC + "Literal")?.Value;
+
+                    List <SldFilter> sldFilters = new List<SldFilter>();
+                    sldFilters.Add(new SldFilter { PropertyName = filterPropertyName, Literal = filterLiteral });
 
                     externalGraphicHref = rule.Element(SLD + "PointSymbolizer")?.Element(SLD + "Graphic")
                         ?.Element(SLD + "ExternalGraphic")?.Element(SLD + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
@@ -252,6 +262,7 @@ namespace Geonorge.Kartografi.Services
                         ExternalGraphicHref = externalGraphicHref,
                         Size = size,
                         Parent = "0",
+                        SldFilters = sldFilters,
                         MoreSymbols = moreSymbols
                     });
 

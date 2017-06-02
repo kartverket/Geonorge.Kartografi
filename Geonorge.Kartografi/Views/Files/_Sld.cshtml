@@ -45,7 +45,13 @@ if (ruleSymbol != null)
 
 @helper DisplaySymbolTitle(SldRule sld)
 {
-    <title>Farge = @sld.Fill</title>
+    <title>
+    @if(sld.SldFilters != null && !string.IsNullOrEmpty(sld.SldFilters[0].PropertyName) && !string.IsNullOrEmpty(sld.SldFilters[0].Literal))
+    {
+        @:Spørring: @sld.SldFilters[0].PropertyName : @sld.SldFilters[0].Literal
+    }
+Farge = @sld.Fill
+    </title>
 }
 
 @helper DisplaySldRule(SldRule sld, ViewBox box)
