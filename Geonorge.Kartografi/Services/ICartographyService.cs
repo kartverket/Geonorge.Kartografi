@@ -12,7 +12,7 @@ namespace Geonorge.Kartografi.Services
         List<CartographyFile> GetCartography(string uuid = null);
         CartographyFile GetCartography(Guid? SystemId);
         void AddCartographyVersion(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null);
-        void RemoveCartography(CartographyFile cartographyFile);
+        CartographyFile RemoveCartography(CartographyFile cartographyFile);
         VersionsItem Versions(Guid? SystemId);
         void AddCartography(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null);
         void UpdateCartography(CartographyFile originalFile, CartographyFile file = null, HttpPostedFileBase uploadPreviewImage = null);

@@ -306,8 +306,21 @@ namespace Geonorge.Kartografi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            _cartographyService.RemoveCartography(cartographyFile);
-            return RedirectToAction("Index");
+            var cartography = _cartographyService.RemoveCartography(cartographyFile);
+
+            if (cartography != null)
+            {
+                var versions =_cartographyService.Versions(cartography.SystemId);
+
+                if (versions != null && versions.CurrentVersion != null)
+                {
+                    return RedirectToAction("Details", "Files", new { systemid = versions.CurrentVersion.SystemId });
+                }
+                else
+                    return RedirectToAction("Index");
+            }
+            else
+                return RedirectToAction("Index");
         }
 
         // GET: Files/File/5

@@ -172,8 +172,9 @@ namespace Geonorge.Kartografi.Services
 
         }
 
-        public void RemoveCartography(CartographyFile cartographyFile)
+        public CartographyFile RemoveCartography(CartographyFile cartographyFile)
         {
+            CartographyFile newVersion = null;
             CartographyFile originalCartographyFile = GetCartography(cartographyFile.SystemId);
             var versioning = originalCartographyFile.versioning;
             if (originalCartographyFile.SystemId == versioning.CurrentVersion)
@@ -182,7 +183,7 @@ namespace Geonorge.Kartografi.Services
 
                 if(versions != null && versions.Count() > 0)
                 { 
-                    var newVersion = versions.First();
+                    newVersion = versions.First();
 
                     foreach (var version in versions)
                     {
@@ -196,6 +197,11 @@ namespace Geonorge.Kartografi.Services
                     Models.Version versionGroup = _versioningService.GetVersionGroup(newVersion.versioningId);
                     versionGroup.CurrentVersion = newVersion.SystemId;
                     versionGroup.LastVersionNumber = newVersion.VersionId;
+                    if (newVersion.OfficialStatus)
+                        newVersion.Status = "Accepted";
+                    else
+                        newVersion.Status = "Submitted";
+
                     _dbContext.SaveChanges();
 
                 }
@@ -204,6 +210,8 @@ namespace Geonorge.Kartografi.Services
             _dbContext.SaveChanges();
             DeleteFile(cartographyFile.FileName);
             DeleteFile(cartographyFile.PreviewImage);
+
+            return newVersion;
         }
 
         public string CreateFileName(CartographyFile cartographyFile)
