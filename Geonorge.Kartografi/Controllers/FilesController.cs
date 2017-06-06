@@ -30,28 +30,6 @@ namespace Geonorge.Kartografi.Controllers
         // GET: Datasets
         public ActionResult Index(string sortOrder, string text, int? page)
         {
-            var datasets = _cartographyService.GetDatasets(text);
-            switch (sortOrder)
-            {
-                case "datasetname_desc":
-                    datasets = datasets.OrderByDescending(s => s.DatasetName).ToList();
-                    break;
-                case "datasetowner":
-                    datasets = datasets.OrderBy(s => s.OwnerDataset).ToList();
-                    break;
-                case "datasetowner_desc":
-                    datasets = datasets.OrderByDescending(s => s.OwnerDataset).ToList();
-                    break;
-                case "theme_desc":
-                    datasets = datasets.OrderByDescending(s => s.Theme).ToList();
-                    break;
-                case "theme":
-                    datasets = datasets.OrderBy(s => s.Theme).ToList();
-                    break;
-                default:
-                    datasets = datasets.OrderBy(s => s.DatasetName).ToList();
-                    break;
-            }
             if (string.IsNullOrEmpty(sortOrder))
                 sortOrder = "datasetname";
 
@@ -60,11 +38,9 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.Theme = sortOrder == "theme" ? "theme_desc" : "theme";
             ViewBag.SortOrder = sortOrder;
             ViewBag.text = text;
+            ViewBag.Page = 0;
 
-            int pageSize = 30;
-            int pageNumber = (page ?? 1);
-
-            return View(datasets.ToPagedList(pageNumber, pageSize));
+            return View();
         }
 
         // GET: Files in dataset
@@ -358,6 +334,65 @@ namespace Geonorge.Kartografi.Controllers
             byte[] fileBytes = System.IO.File.ReadAllBytes(@""+ targetFolder + file.FileName);
 
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, file.FileName);
+        }
+
+        public ActionResult CartographyList(int page, string sortOrder, string text)
+        {
+            var datasets = _cartographyService.GetDatasets(text);
+            switch (sortOrder)
+            {
+                case "datasetname_desc":
+                    datasets = datasets.OrderByDescending(s => s.DatasetName).ToList();
+                    break;
+                case "datasetowner":
+                    datasets = datasets.OrderBy(s => s.OwnerDataset).ToList();
+                    break;
+                case "datasetowner_desc":
+                    datasets = datasets.OrderByDescending(s => s.OwnerDataset).ToList();
+                    break;
+                case "theme_desc":
+                    datasets = datasets.OrderByDescending(s => s.Theme).ToList();
+                    break;
+                case "theme":
+                    datasets = datasets.OrderBy(s => s.Theme).ToList();
+                    break;
+                default:
+                    datasets = datasets.OrderBy(s => s.DatasetName).ToList();
+                    break;
+            }
+            if (string.IsNullOrEmpty(sortOrder))
+                sortOrder = "datasetname";
+
+            ViewBag.DatasetNameSortParm = sortOrder == "datasetname" ? "datasetname_desc" : "datasetname";
+            ViewBag.DatasetOwner = sortOrder == "datasetowner" ? "datasetowner_desc" : "datasetowner";
+            ViewBag.Theme = sortOrder == "theme" ? "theme_desc" : "theme";
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.text = text;
+
+            int rangeStart = 0;
+            int rangeLength = 0;
+
+            int pageSize = 30;
+            int pageNumber = page;
+
+            if ((pageNumber * pageSize) > datasets.Count)
+                return new EmptyResult();
+
+            if (((pageNumber * pageSize) + pageSize) > datasets.Count)
+            {
+                rangeLength = datasets.Count % pageSize;
+                rangeStart = datasets.Count - rangeLength;
+            }
+            else
+            {
+                rangeStart = (pageNumber * pageSize);
+                rangeLength = pageSize;
+            }
+
+            datasets = datasets.GetRange(rangeStart, rangeLength);
+
+            ViewBag.Page = pageNumber + 1;
+            return PartialView("_CartographyList", datasets);
         }
 
 

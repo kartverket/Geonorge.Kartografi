@@ -1,6 +1,4 @@
-﻿@model PagedList.IPagedList<Geonorge.Kartografi.Models.Dataset>
-@using PagedList.Mvc;
-@section breadcrumb {
+﻿@section breadcrumb {
     <li>Digital kartografi</li>
 }
 @{
@@ -19,7 +17,6 @@
         </div>
     </div>
 </section>
-
 <div class="row">
 
     <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
@@ -61,70 +58,11 @@
 
 
             <div class="menu-separator search-results-table-heading"></div>
-            @foreach (var item in Model)
-            {
-                <div class="dataset-list metadata">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="title-field">
-                                <span class="arrow-icon toggle-content-button"></span> @Html.ActionLink(item.DatasetName ?? "->", "Files", new { uuid = item.DatasetUuid })
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            @Html.DisplayFor(modelItem => item.OwnerDataset)
-                        </div>
-
-                        <div class="col-sm-2">
-                            @Html.DisplayFor(modelItem => item.Theme)
-                        </div>
-
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="file-list">
-                        <div class="row">
-                            <div class="col-sm-10"></div>
-
-                            <div class="clearfix"></div>
-                        </div>
-                        @foreach (var file in item.Files)
-                        {
-                            <div class="file-list-item">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="title-field">
-                                            <span>- </span>@Html.ActionLink(file.Name ?? "->", "Details", new { SystemId = file.SystemId })
-                                            <a href="@file.FileUrl()" class="pull-right" target="_blank">
-                                                <span class="glyphicon glyphicon-download-alt"></span>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        @file.Owner
-                                    </div>
-
-                                    <div class="col-sm-1 official-field">
-                                        <span class="custom-checkbox">@Html.DisplayFor(modelItem => file.OfficialStatus)</span>
-                                    </div>
-
-                                    <div class="col-sm-1">
-                                        @Html.DisplayFor(modelItem => file.Format)
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                </div>
-
-                <hr />
-            }
-        </div>
-        Viser @(Model.TotalItemCount == 0 ? 0 : Model.FirstItemOnPage) - @Model.LastItemOnPage av @Model.TotalItemCount treff
-
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, text = ViewBag.text }))
+            <div id="cartographylist" class="scroll">
+                <div class="next"><a href="~/Files/CartographyList?page=@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@ViewBag.text">Laster...</a></div>
+            </div>
+         </div>
+       
     </div>
     <div class="clearfix"></div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
@@ -147,6 +85,7 @@
                 $(this).closest(".dataset-list").addClass("active");
             }
         })
+
         $("#expand-all-button").click(function () {
             if ($(this).hasClass("active")) {
                 $(this).removeClass("active");
@@ -159,4 +98,12 @@
             }
         })
     })
+</script>
+<script src="~/Scripts/jquery.jscroll.js"></script>
+<script>
+      $(function () {
+        $('#cartographylist').jscroll({
+            debug: true
+        });
+      });
 </script>

@@ -476,6 +476,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.jscroll.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -518,6 +519,7 @@
     <Content Include="Views\Files\_FileData.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\_SearchBarPartial.cshtml" />
+    <Content Include="Views\Files\_CartographyList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
