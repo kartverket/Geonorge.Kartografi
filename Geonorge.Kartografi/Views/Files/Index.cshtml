@@ -75,16 +75,19 @@
     </div>
 </div>
 <script>
+
+    function ToogleContent(element)
+    {
+        if ($(element).hasClass("active")) {
+            $(element).removeClass("active");
+            $(element).closest(".dataset-list").removeClass("active");
+        } else {
+            $(element).addClass("active");
+            $(element).closest(".dataset-list").addClass("active");
+        }
+    }
+
     $(document).ready(function () {
-        $(".toggle-content-button").click(function () {
-            if ($(this).hasClass("active")) {
-                $(this).removeClass("active");
-                $(this).closest(".dataset-list").removeClass("active");
-            } else {
-                $(this).addClass("active");
-                $(this).closest(".dataset-list").addClass("active");
-            }
-        })
 
         $("#expand-all-button").click(function () {
             if ($(this).hasClass("active")) {
