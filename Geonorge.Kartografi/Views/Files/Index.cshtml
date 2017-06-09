@@ -105,7 +105,10 @@
                                     </div>
 
                                     <div class="col-sm-1 official-field">
-                                        <span class="custom-checkbox">@Html.DisplayFor(modelItem => file.OfficialStatus)</span>
+                                        <div class="custom-checkbox">
+                                            @Html.DisplayFor(modelItem => file.OfficialStatus)
+                                            <span class="checkbox-icon"></span>
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-1">
