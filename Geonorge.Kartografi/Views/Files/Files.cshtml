@@ -47,7 +47,8 @@
                     <div class="col-sm-2">
                         @foreach (var compability in item.Compatibility)
                         {
-                        <span>@compability</span>if (!item.Compatibility.LastOrDefault().Equals(compability)){<span>, </span>}
+                            <span>@compability</span>if (!item.Compatibility.LastOrDefault().Equals(compability))
+                            {<span>, </span>}
                         }
                     </div>
 
@@ -56,7 +57,10 @@
                     </div>
 
                     <div class="col-sm-1">
-                        @Html.DisplayFor(modelItem => item.OfficialStatus)
+                        <div class="custom-checkbox">
+                            @Html.DisplayFor(modelItem => item.OfficialStatus)
+                            <span class="checkbox-icon"></span>
+                        </div>
                     </div>
 
                     <div class="col-sm-1">
@@ -71,8 +75,9 @@
     <div class="clearfix"></div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
         <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="~/">Tilbake</a>
-        @if (Request.IsAuthenticated){
-        <a class="btn btn-default btn-space pull-right" href="~/Files/Create?uuid=@Model.FirstOrDefault().DatasetUuid">Legg til</a>
+        @if (Request.IsAuthenticated)
+        {
+            <a class="btn btn-default btn-space pull-right" href="~/Files/Create?uuid=@Model.FirstOrDefault().DatasetUuid">Legg til</a>
         }
     </div>
 </div>
