@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div id="saveButtons" class="no-padding-bottom save-as-buttons">
-                    @{ string urlCSV = HttpContext.Current.Request.Url.AbsoluteUri + "/api/kartografi?mediatype=csv&text=" + Request.QueryString["text"];}
+                    @{ string urlCSV = (!HttpContext.Current.Request.Url.Host.Contains("localhost") ? "/kartografi" : "") + "/api/kartografi?mediatype=csv&text=" + Request.QueryString["text"];}
                     <a class="btn" id="csvUrl" href="@urlCSV">Lagre</a>
                 </div>
             </div>
