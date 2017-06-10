@@ -24,7 +24,13 @@
     </div>
     <div class="clearfix"></div>
     <div class="col-md-12">
-        <div class="col-md-8"></div>
+        <div class="col-md-8">
+            <form>
+                <br />
+                <input type="checkbox" name="limitofficial" @(ViewBag.limitofficial ? "checked" : "") value="True" onchange="form.submit();" /> Vis kun offisielle
+                <input type="hidden" name="text" value="@ViewBag.text" />
+            </form>
+        </div>
         <div class="col-md-4">
             <div class="save-as-menu">
                 <label>Lagre som:</label>
@@ -59,7 +65,7 @@
 
             <div class="menu-separator search-results-table-heading"></div>
             <div id="cartographylist" class="scroll">
-                <div class="next"><a href="~/Files/CartographyList?page=@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@ViewBag.text">Laster...</a></div>
+                <div class="next"><a href="~/Files/CartographyList?page=@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&limitofficial=@ViewBag.limitofficial.ToString()&text=@ViewBag.text">Laster...</a></div>
             </div>
          </div>
        

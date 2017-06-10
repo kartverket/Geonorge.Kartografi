@@ -22,25 +22,31 @@ namespace Geonorge.Kartografi.Services
             _authorizationService = authorizationService;
         }
 
-        public List<Dataset> GetDatasets(string text = null)
+        public List<Dataset> GetDatasets(string text = null, bool limitofficial = false)
         {
+            var query = _dbContext.CartographyFiles.AsQueryable();
             List<Dataset> datasets;
 
             if (!string.IsNullOrEmpty(text))
             {
-                datasets = _dbContext.CartographyFiles
-                .Where(s => s.DatasetName.Contains(text) || s.Description.Contains(text) || s.FileName.Contains(text) || s.Format.Contains(text)
-                || s.Name.Contains(text) || s.Properties.Contains(text) || s.Theme.Contains(text) || s.Use.Contains(text) 
-                || s.OwnerDataset.Contains(text) || s.Owner.Contains(text))
-                .Select(d => new Dataset { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
+                query = query.Where(s => s.DatasetName.Contains(text) || s.Description.Contains(text) || s.FileName.Contains(text) || s.Format.Contains(text)
+                || s.Name.Contains(text) || s.Properties.Contains(text) || s.Theme.Contains(text) || s.Use.Contains(text)
+                || s.OwnerDataset.Contains(text) || s.Owner.Contains(text));
+
+                if (limitofficial)
+                    query = query.Where(l => l.OfficialStatus == true);
+
+                datasets = query.Select(d => new Dataset { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
                 .Distinct()
                 .ToList();
 
             }
             else
-            { 
-                datasets = _dbContext.CartographyFiles
-                    .Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
+            {
+                if (limitofficial)
+                    query = query.Where(l => l.OfficialStatus == true);
+
+                datasets = query.Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
                     .Distinct()
                     .ToList();
                 }
@@ -51,7 +57,12 @@ namespace Geonorge.Kartografi.Services
                 {
                     var files = GetCartography(datasets[d].DatasetUuid).ToList();
                     foreach(var file in files)
-                        datasets[d].Files.Add(file);
+                    {
+                        if (limitofficial && file.OfficialStatus)
+                            datasets[d].Files.Add(file);
+                        else
+                            datasets[d].Files.Add(file);
+                    }
                 }
             }
 

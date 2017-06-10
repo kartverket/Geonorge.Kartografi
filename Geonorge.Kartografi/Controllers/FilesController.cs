@@ -28,7 +28,7 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         // GET: Datasets
-        public ActionResult Index(string sortOrder, string text, int? page)
+        public ActionResult Index(string sortOrder, string text, int? page, bool limitofficial = false)
         {
             if (string.IsNullOrEmpty(sortOrder))
                 sortOrder = "datasetname";
@@ -38,6 +38,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.Theme = sortOrder == "theme" ? "theme_desc" : "theme";
             ViewBag.SortOrder = sortOrder;
             ViewBag.text = text;
+            ViewBag.limitofficial = limitofficial;
             ViewBag.Page = 0;
 
             return View();
@@ -336,9 +337,9 @@ namespace Geonorge.Kartografi.Controllers
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, file.FileName);
         }
 
-        public ActionResult CartographyList(int page, string sortOrder, string text)
+        public ActionResult CartographyList(int page, string sortOrder, string text, bool limitofficial = false)
         {
-            var datasets = _cartographyService.GetDatasets(text);
+            var datasets = _cartographyService.GetDatasets(text, limitofficial);
             switch (sortOrder)
             {
                 case "datasetname_desc":
@@ -368,6 +369,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.Theme = sortOrder == "theme" ? "theme_desc" : "theme";
             ViewBag.SortOrder = sortOrder;
             ViewBag.text = text;
+            ViewBag.limitofficial = limitofficial;
 
             int rangeStart = 0;
             int rangeLength = 0;
