@@ -28,20 +28,21 @@ namespace Geonorge.Kartografi.Controllers
         /// </summary>
         [Route("api/kartografi")]
         [HttpGet]
-        public List<Models.Api.Cartography> GetCartography([FromUri] string text = null)
+        public List<Models.Api.Cartography> GetCartography([FromUri] string text = null, bool limitofficial = false)
         {
-            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text));
+            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial), limitofficial);
                        
             return cartographyFiles;
         }
 
-        private List<Models.Api.Cartography> ConvertRegister(List<Dataset> cartographyFiles)
+        private List<Models.Api.Cartography> ConvertRegister(List<Dataset> cartographyFiles, bool limitofficial = false)
         {
             var cartograhyList = new List<Models.Api.Cartography>();
             foreach (var dataset in cartographyFiles)
             {
                 foreach (var cartography in dataset.Files)
                 {
+
                     var file = new Models.Api.Cartography();
                     file.Compatibility = FormatCompability(cartography.Compatibility);
                     file.DatasetName = cartography.DatasetName;
@@ -67,7 +68,13 @@ namespace Geonorge.Kartografi.Controllers
                     file.Uuid = cartography.SystemId;
                     file.VersionId = cartography.VersionId;
 
-                    cartograhyList.Add(file);
+                    if (limitofficial)
+                    {
+                        if (file.OfficialStatus)
+                            cartograhyList.Add(file);
+                    }
+                    else
+                        cartograhyList.Add(file);
 
                 }
             }

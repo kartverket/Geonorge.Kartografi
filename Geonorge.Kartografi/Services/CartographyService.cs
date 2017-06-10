@@ -58,8 +58,10 @@ namespace Geonorge.Kartografi.Services
                     var files = GetCartography(datasets[d].DatasetUuid).ToList();
                     foreach(var file in files)
                     {
-                        if (limitofficial && file.OfficialStatus)
-                            datasets[d].Files.Add(file);
+                        if (limitofficial) { 
+                            if(file.OfficialStatus)
+                                datasets[d].Files.Add(file);
+                        }
                         else
                             datasets[d].Files.Add(file);
                     }
