@@ -32,7 +32,7 @@ namespace Geonorge.Kartografi.Controllers
         {
             var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial), limitofficial);
                        
-            return cartographyFiles;
+            return cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).ToList();
         }
 
         private List<Models.Api.Cartography> ConvertRegister(List<Dataset> cartographyFiles, bool limitofficial = false)
