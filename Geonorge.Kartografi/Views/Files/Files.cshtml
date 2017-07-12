@@ -41,7 +41,7 @@
                 <div class="row result-row metadata">
 
                     <div class="col-sm-3">
-                        @Html.ActionLink(item.Name ?? "->", "Details", new { SystemId = item.SystemId })
+                        <a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@item.SystemId">@item.Name</a>
                     </div>
 
                     <div class="col-sm-2">
