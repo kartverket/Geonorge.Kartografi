@@ -5,8 +5,8 @@
     ViewBag.Title = "Detaljer";
 }
 @section breadcrumb {
-    <li><a href="~/">Digital kartografi</a></li>
-    <li><a href="~/Files/Details/@Model.SystemId">@Model.Name</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">Digital kartografi</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@Model.Name</a></li>
     <li>Detaljer</li>
 }
 
@@ -33,10 +33,10 @@
 
         @if (ViewBag.HasAccess)
         {
-            <a class="btn btn-default btn-space pull-right" href="~/Files/Edit/@Model.SystemId" style="margin-left: 15px;">Rediger</a>
-            <a class="btn btn-default btn-space pull-right" href="~/Files/Delete/@Model.SystemId">Slett</a>
+            <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Edit/")@Model.SystemId" style="margin-left: 15px;">Rediger</a>
+            <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Delete/")@Model.SystemId">Slett</a>
         }
-        <a class="hidden-print" href="~/Files/Details/@Model.SystemId">Tilbake</a>
+        <a class="hidden-print" href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">Tilbake</a>
 
     </div>
 </div>

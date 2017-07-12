@@ -62,4 +62,4 @@
         </div>      
       <hr />
     }
-    <div class="last"><a href="~/Files/CartographyList?page=@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@ViewBag.text&limitofficial=@ViewBag.limitofficial.ToString()">Laster...</a></div>
+    <div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@ViewBag.text&limitofficial=@ViewBag.limitofficial.ToString()">Laster...</a></div>
