@@ -117,31 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppPageTitle" xml:space="preserve">
-    <value>Geonorge kartografi</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Beskrivelse</value>
-  </data>
-  <data name="HelpDescription" xml:space="preserve">
-    <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
-  </data>
-  <data name="HelpOfficialStatus" xml:space="preserve">
-    <value>Offisiell: Ja = Filen inneholder kartografi som etaten har bestemt at er gjeldende. Nei = Forslag til kartografi.</value>
-  </data>
-  <data name="HelpProperties" xml:space="preserve">
-    <value>En oppramsing av hvilke attributter i datasettet kartografien-reglene benytter.</value>
-  </data>
-  <data name="HelpUse" xml:space="preserve">
-    <value>Kort beskrivelse av hva kartografi-filen kan/bør brukes til.</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Tegneregelnavn</value>
-  </data>
-  <data name="Properties" xml:space="preserve">
-    <value>Viktig egenskap for kartografien</value>
-  </data>
-  <data name="Use" xml:space="preserve">
-    <value>Bruksområde</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

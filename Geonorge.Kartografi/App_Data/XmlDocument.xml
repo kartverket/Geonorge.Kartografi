@@ -639,6 +639,11 @@
               Looks up a localized string similar to Geonorge kartografi.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Description">
+            <summary>
+              Looks up a localized string similar to Beskrivelse.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.HelpDescription">
             <summary>
               Looks up a localized string similar to Kortfattet tekst om hvordan kartografien ser ut..
@@ -657,6 +662,21 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.HelpUse">
             <summary>
               Looks up a localized string similar to Kort beskrivelse av hva kartografi-filen kan/bør brukes til..
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Name">
+            <summary>
+              Looks up a localized string similar to Tegneregelnavn.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Properties">
+            <summary>
+              Looks up a localized string similar to Viktig egenskap for kartografien.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Use">
+            <summary>
+              Looks up a localized string similar to Bruksområde.
             </summary>
         </member>
     </members>

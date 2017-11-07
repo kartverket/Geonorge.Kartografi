@@ -121,7 +121,7 @@
     <value>Geonorge kartografi</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Beskrivelse</value>
+    <value>Description</value>
   </data>
   <data name="HelpDescription" xml:space="preserve">
     <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
@@ -136,12 +136,12 @@
     <value>Kort beskrivelse av hva kartografi-filen kan/bør brukes til.</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Tegneregelnavn</value>
+    <value>Cartography rule name</value>
   </data>
   <data name="Properties" xml:space="preserve">
-    <value>Viktig egenskap for kartografien</value>
+    <value>Key feature of the cartography</value>
   </data>
   <data name="Use" xml:space="preserve">
-    <value>Bruksområde</value>
+    <value>Use</value>
   </data>
 </root>

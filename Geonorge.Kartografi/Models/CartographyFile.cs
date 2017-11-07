@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Geonorge.Kartografi.Models.Translations;
+using Geonorge.Kartografi.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,16 +11,21 @@ namespace Geonorge.Kartografi.Models
 {
     public class CartographyFile
     {
+        public CartographyFile()
+        {
+            this.Translations = new TranslationCollection<CartographyFileTranslation>();
+        }
+
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid SystemId { get; set; }
         /// <summary> Navn* på kartografiregel/stil. For eksempel «N50 stier og løyper».</summary>
-        [Display(Name = "Tegneregelnavn")]
+        [Display(Name = "Name", ResourceType = typeof(UI))]
         [Required]
         public string Name { get; set; }
 
         /// <summary> Beskrivelse av både hva og hvordan filen uthever informasjon i datasettet.</summary>
-        [Display(Name = "Beskrivelse")]
+        [Display(Name = "Description", ResourceType = typeof(UI))]
         public string Description { get; set; }
 
         /// <summary> Organisasjon som har sendt inn filen.</summary>
@@ -46,7 +53,7 @@ namespace Geonorge.Kartografi.Models
         public virtual ICollection<Compatibility> Compatibility { get; set; }
 
         /// <summary>Dropdown,beskrivelse over hva filen skal brukes til, f.eks. style WMS eller GML.</summary>
-        [Display(Name = "Bruksområde")]
+        [Display(Name = "Use", ResourceType = typeof(UI))]
         public string Use { get; set; }
 
         /// <summary>Kobling til datasett</summary>
@@ -100,12 +107,19 @@ namespace Geonorge.Kartografi.Models
         public bool OfficialStatus { get; set; }
 
         /// <summary>Hvilke attributter er sentrale for bruk av kartografien, tekstfelt</summary>
-        [Display(Name = "Viktig egenskap for kartografien")]
+        [Display(Name = "Properties", ResourceType = typeof(UI))]
         public string Properties { get; set; }
 
         /// <summary>Hentes automatisk fra metadata. Inn i db eller koples dette i visningsapplikasjon? Tematisk hovedkategori i metadataene</summary>
         [Display(Name = "Tema")]
         public string Theme { get; set; }
+
+        public virtual TranslationCollection<CartographyFileTranslation> Translations { get; set; }
+
+        public void AddMissingTranslations()
+        {
+            Translations.AddMissingTranslations();
+        }
 
         public string FileUrl()
         {

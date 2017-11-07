@@ -66,7 +66,7 @@ namespace Geonorge.Kartografi.Controllers
                     file.OwnerDataset = data.OwnerDataset;
                 }
             }
-
+            file.AddMissingTranslations();
             ViewBag.IsAdmin = false;
             if (Request.IsAuthenticated)
             {

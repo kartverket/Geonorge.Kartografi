@@ -81,7 +81,11 @@ namespace Geonorge.Kartografi.Services
 
         public CartographyFile GetCartography(Guid? SystemId)
         {
-            return _dbContext.CartographyFiles.Find(SystemId);
+            var cartography = _dbContext.CartographyFiles.Find(SystemId);
+            if (cartography != null)
+                cartography.AddMissingTranslations();
+
+            return cartography;
         }
 
         public void AddCartography(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null)
@@ -147,6 +151,17 @@ namespace Geonorge.Kartografi.Services
                     var insertSql = "INSERT INTO Compatibilities(Id, [Key], CartographyFile_SystemId) Values ({0}, {1}, {2} )";
                     _dbContext.Database.ExecuteSqlCommand(insertSql, Guid.NewGuid().ToString(), item.Key, originalFile.SystemId);
                     _dbContext.SaveChanges();
+                }
+
+                _dbContext.Database.ExecuteSqlCommand("DELETE FROM CartographyFileTranslations WHERE CartographyFileId = {0}", originalFile.SystemId);
+                foreach (var translation in file.Translations.ToList())
+                {
+                    //Todo get Translation for Owner, OwnerDataset,DatasetName, ServiceName, Theme from sync service
+                    _dbContext.Database.ExecuteSqlCommand("INSERT INTO CartographyFileTranslations" +
+                        "(CartographyFileId,Name,Description,CultureName, Id, [Use], Properties)" +
+                        " VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                    translation.CartographyFileId, translation.Name, translation.Description, translation.CultureName, Guid.NewGuid(),
+                    translation.Use, translation.Properties);
                 }
             }
 
