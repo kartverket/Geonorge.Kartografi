@@ -486,6 +486,23 @@
             List items, optional limit by text
             </summary>
         </member>
+        <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.IsRighToLeft">
+            <summary>
+            Returns true if the language is a right-to-left language. Otherwise, false.
+            </summary>
+        </member>
+        <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.IsNorwegian">
+            <summary>
+            Returns true if current language is norwegian. Otherwise, false.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Geonorge.Kartografi.Helpers.CultureHelper.GetImplementedCulture(System.String)" -->
+        <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.GetDefaultCulture">
+            <summary>
+            Returns default culture name which is the first name decalared (e.g. en-US)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.Name">
             <summary> Navn på kartografiregel/stil.</summary>
         </member>
