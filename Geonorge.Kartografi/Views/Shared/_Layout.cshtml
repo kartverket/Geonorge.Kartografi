@@ -29,6 +29,14 @@
                 }
             }
         }
+
+        var cultureData = {
+            supportsMultiCulture: @(Html.SupportsMultiCulture() ? "true" : "false"),
+            urlSetCulture: '@Url.Action("SetCulture", "Home", new { culture = Geonorge.Kartografi.Models.Translations.Culture.EnglishCode, ReturnUrl = Request.Url })',
+            urlSetCultureNorwegian: '@Url.Action("SetCulture", "Home", new { culture = Geonorge.Kartografi.Models.Translations.Culture.NorwegianCode, ReturnUrl = Request.Url })',
+            currentCulture: '@CultureHelper.GetCurrentCulture()'
+        };
+
     </script>
     @Scripts.Render("~/Content/bower_components/kartverket-felleskomponenter/assets/scripts")
     <link href="@VirtualPathUtility.ToAbsolute("~/Content/select2.min.css")" rel="stylesheet" />
@@ -73,6 +81,14 @@
 
     </div>
     @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Footer.cshtml")
+    @if (CultureHelper.IsNorwegian())
+    {
+        @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Footer.min.cshtml");
+    }
+    else
+    {
+        @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Footer_eng.min.cshtml");
+    }
 
 </body>
 </html>
