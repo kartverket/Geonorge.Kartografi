@@ -3,14 +3,14 @@
     <li>@UI.CartographyRegistery</li>
 }
 @{
-    ViewBag.Title = "Digital kartografi";
+    ViewBag.Title = UI.CartographyRegistery;
 }
 @Html.Partial("_SearchBarPartial")
 <section class="heading">
     <div class="row">
         <div class="col-sm-12">
             <h1>
-                Digital kartografi
+                @UI.CartographyRegistery
             </h1>
         </div>
         <div class="col-sm-12">
@@ -21,7 +21,7 @@
 <div class="row">
 
     <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
-        Registeret inneholder datasett som har registrert digital kartografi
+       @UI.KartografiContent
     </div>
     <div class="clearfix"></div>
     <div class="col-md-12">

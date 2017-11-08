@@ -157,6 +157,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="KartografiContent" xml:space="preserve">
+    <value>Norwegian NSDI register of cartography definitions – SLD and other formats</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Cartography rule name</value>
   </data>

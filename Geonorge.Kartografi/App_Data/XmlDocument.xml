@@ -717,6 +717,11 @@
               Looks up a localized string similar to Forside.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.KartografiContent">
+            <summary>
+              Looks up a localized string similar to Registeret inneholder datasett som har registrert digital kartografi.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Name">
             <summary>
               Looks up a localized string similar to Tegneregelnavn.

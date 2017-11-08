@@ -179,6 +179,15 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registeret inneholder datasett som har registrert digital kartografi.
+        /// </summary>
+        public static string KartografiContent {
+            get {
+                return ResourceManager.GetString("KartografiContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tegneregelnavn.
         /// </summary>
         public static string Name {

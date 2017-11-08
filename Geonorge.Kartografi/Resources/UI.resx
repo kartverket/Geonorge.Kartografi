@@ -157,6 +157,9 @@
   <data name="Home" xml:space="preserve">
     <value>Forside</value>
   </data>
+  <data name="KartografiContent" xml:space="preserve">
+    <value>Registeret inneholder datasett som har registrert digital kartografi</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Tegneregelnavn</value>
   </data>
