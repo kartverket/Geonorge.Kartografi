@@ -1,6 +1,7 @@
-﻿@model IEnumerable<Geonorge.Kartografi.Models.CartographyFile>
+﻿@using Geonorge.Kartografi.Resources
+@model IEnumerable<Geonorge.Kartografi.Models.CartographyFile>
 @section breadcrumb {
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">Digital kartografi</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
     <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Files?uuid=")@Model.FirstOrDefault().DatasetUuid">@Model.FirstOrDefault().DatasetName</a></li>
 }
 @{

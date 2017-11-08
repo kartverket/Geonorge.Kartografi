@@ -651,9 +651,19 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ApiHelp">
+            <summary>
+              Looks up a localized string similar to API hjelp.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.AppPageTitle">
             <summary>
               Looks up a localized string similar to Geonorge kartografi.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.CartographyRegistery">
+            <summary>
+              Looks up a localized string similar to Digital kartografi.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Description">
@@ -689,6 +699,11 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.Properties">
             <summary>
               Looks up a localized string similar to Viktig egenskap for kartografien.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Register">
+            <summary>
+              Looks up a localized string similar to Registrene.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Use">

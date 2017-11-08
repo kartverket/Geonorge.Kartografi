@@ -1,11 +1,11 @@
-﻿@using Geonorge.Kartografi.Services
+﻿@using Geonorge.Kartografi.Resources
 @model Geonorge.Kartografi.Models.CartographyFile
 
 @{
     ViewBag.Title = "Detaljer";
 }
 @section breadcrumb {
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">Digital kartografi</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
     <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@Model.Name</a></li>
     <li>Detaljer</li>
 }

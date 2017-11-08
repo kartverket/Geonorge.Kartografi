@@ -61,11 +61,29 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to API hjelp.
+        /// </summary>
+        public static string ApiHelp {
+            get {
+                return ResourceManager.GetString("ApiHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geonorge kartografi.
         /// </summary>
         public static string AppPageTitle {
             get {
                 return ResourceManager.GetString("AppPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital kartografi.
+        /// </summary>
+        public static string CartographyRegistery {
+            get {
+                return ResourceManager.GetString("CartographyRegistery", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace Geonorge.Kartografi.Resources {
         public static string Properties {
             get {
                 return ResourceManager.GetString("Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrene.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
             }
         }
         

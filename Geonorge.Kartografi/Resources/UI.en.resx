@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApiHelp" xml:space="preserve">
+    <value>API help</value>
+  </data>
   <data name="AppPageTitle" xml:space="preserve">
     <value>Geonorge kartografi</value>
+  </data>
+  <data name="CartographyRegistery" xml:space="preserve">
+    <value>Cartography – specifications (SLD)</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -140,6 +146,9 @@
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Key feature of the cartography</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Norwegian NSDI registers</value>
   </data>
   <data name="Use" xml:space="preserve">
     <value>Use</value>

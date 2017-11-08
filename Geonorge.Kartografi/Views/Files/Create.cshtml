@@ -1,12 +1,11 @@
-﻿@using Geonorge.Kartografi.Helpers
-@using Geonorge.Kartografi.Resources
+﻿@using Geonorge.Kartografi.Resources
 @model Geonorge.Kartografi.Models.CartographyFile
 
 @{
     ViewBag.Title = "Ny tegneregel";
 }
 @section breadcrumb {
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">Digital kartografi</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
 }
 
 <section class="heading">

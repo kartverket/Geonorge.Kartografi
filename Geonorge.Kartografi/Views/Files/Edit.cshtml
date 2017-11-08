@@ -5,7 +5,7 @@
     ViewBag.Title = "Rediger";
 }
 @section breadcrumb {
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">Digital kartografi</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
     <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@Model.Name</a></li>
     <li>Rediger</li>
 }
