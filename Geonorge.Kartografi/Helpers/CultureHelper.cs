@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Geonorge.Kartografi.Models.Translations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
-using System.Web.Configuration;
-using System.Web.Mvc;
-using Geonorge.Kartografi.Models.Translations;
 
 namespace Geonorge.Kartografi.Helpers
 {

@@ -226,8 +226,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HtmlHelperExtension.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\HtmlHelperExtension.cs" />
     <Compile Include="Helpers\registerUrls.cs" />
     <Compile Include="Migrations\201702081214416_Initial.cs" />
     <Compile Include="Migrations\201702081214416_Initial.Designer.cs">

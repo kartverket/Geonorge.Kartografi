@@ -42,7 +42,7 @@
                 <div class="row result-row metadata">
 
                     <div class="col-sm-3">
-                        <a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@item.SystemId">@item.Name</a>
+                        <a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@item.SystemId">@item.NameTranslated()</a>
                     </div>
 
                     <div class="col-sm-2">
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="col-sm-2">
-                        @Html.DisplayFor(modelItem => item.Owner)
+                        @item.OwnerTranslated()
                     </div>
 
                     <div class="col-sm-1">

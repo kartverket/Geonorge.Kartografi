@@ -8,14 +8,14 @@
 
 @section breadcrumb {
     <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Files?uuid=")@Model.CurrentVersion.DatasetUuid">@Model.CurrentVersion.DatasetName</a></li>
-    <li>@Model.CurrentVersion.Name</li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Files?uuid=")@Model.CurrentVersion.DatasetUuid">@Model.CurrentVersion.DatasetNameTranslated()</a></li>
+    <li>@Model.CurrentVersion.NameTranslated()</li>
 }
 <section class="heading">
     <div class="row">
         <div class="col-sm-12">
             <h1>
-                @Model.CurrentVersion.Name
+                @Model.CurrentVersion.NameTranslated()
             </h1>
         </div>
         <div class="col-sm-12">

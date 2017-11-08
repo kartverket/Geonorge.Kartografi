@@ -1,4 +1,5 @@
-﻿using Geonorge.Kartografi.Models.Translations;
+﻿using Geonorge.Kartografi.Helpers;
+using Geonorge.Kartografi.Models.Translations;
 using Geonorge.Kartografi.Resources;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,87 @@ namespace Geonorge.Kartografi.Models
         public void AddMissingTranslations()
         {
             Translations.AddMissingTranslations();
+        }
+
+        public string NameTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var nameTranslated = Translations[cultureName]?.Name;
+            if (string.IsNullOrEmpty(nameTranslated))
+                nameTranslated = Name;
+            return nameTranslated;
+        }
+
+        public string DescriptionTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var descriptionTranslated = Translations[cultureName]?.Description;
+            if (string.IsNullOrEmpty(descriptionTranslated))
+                descriptionTranslated = Description;
+            return descriptionTranslated;
+        }
+
+        public string DatasetNameTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var datasetNameTranslated = Translations[cultureName]?.DatasetName;
+            if (string.IsNullOrEmpty(datasetNameTranslated))
+                datasetNameTranslated = DatasetName;
+            return datasetNameTranslated;
+        }
+
+        public string OwnerDatasetTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var ownerDatasetTranslated = Translations[cultureName]?.OwnerDataset;
+            if (string.IsNullOrEmpty(ownerDatasetTranslated))
+                ownerDatasetTranslated = OwnerDataset;
+            return ownerDatasetTranslated;
+        }
+
+        public string ThemeTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var themeTranslated = Translations[cultureName]?.Theme;
+            if (string.IsNullOrEmpty(themeTranslated))
+                themeTranslated = Theme;
+            return themeTranslated;
+        }
+
+        public string OwnerTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var ownerTranslated = Translations[cultureName]?.Owner;
+            if (string.IsNullOrEmpty(ownerTranslated))
+                ownerTranslated = Owner;
+            return ownerTranslated;
+        }
+
+        public string UseTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var useTranslated = Translations[cultureName]?.Use;
+            if (string.IsNullOrEmpty(useTranslated))
+                useTranslated = Use;
+            return useTranslated;
+        }
+
+        public string PropertiesTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var propertiesTranslated = Translations[cultureName]?.Properties;
+            if (string.IsNullOrEmpty(propertiesTranslated))
+                propertiesTranslated = Properties;
+            return propertiesTranslated;
+        }
+
+        public string ServiceNameTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            var serviceNameTranslated = Translations[cultureName]?.ServiceName;
+            if (string.IsNullOrEmpty(serviceNameTranslated))
+                serviceNameTranslated = ServiceName;
+            return serviceNameTranslated;
         }
 
         public string FileUrl()

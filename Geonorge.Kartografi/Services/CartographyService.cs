@@ -6,6 +6,7 @@ using Geonorge.Kartografi.Models;
 using System.Data.Entity;
 using System.Text.RegularExpressions;
 using System.IO;
+using Geonorge.Kartografi.Helpers;
 
 namespace Geonorge.Kartografi.Services
 {
@@ -26,19 +27,26 @@ namespace Geonorge.Kartografi.Services
         {
             var query = _dbContext.CartographyFiles.AsQueryable();
             List<Dataset> datasets;
+            var culture = CultureHelper.GetCurrentCulture();
 
             if (!string.IsNullOrEmpty(text))
             {
                 query = query.Where(s => s.DatasetName.Contains(text) || s.Description.Contains(text) || s.FileName.Contains(text) || s.Format.Contains(text)
                 || s.Name.Contains(text) || s.Properties.Contains(text) || s.Theme.Contains(text) || s.Use.Contains(text)
-                || s.OwnerDataset.Contains(text) || s.Owner.Contains(text));
+                || s.OwnerDataset.Contains(text) || s.Owner.Contains(text) 
+                || s.Translations.Any(d => d.DatasetName.Contains(text)) || s.Translations.Any(d => d.Description.Contains(text))
+                || s.Translations.Any(d => d.Name.Contains(text)) || s.Translations.Any(d => d.Theme.Contains(text))
+                || s.Translations.Any(d => d.Owner.Contains(text)) || s.Translations.Any(d => d.OwnerDataset.Contains(text))
+                || s.Translations.Any(d => d.Use.Contains(text)) || s.Translations.Any(d => d.Properties.Contains(text))
+                );
+
 
                 if (limitofficial)
                     query = query.Where(l => l.OfficialStatus == true);
 
-                datasets = query.Select(d => new Dataset { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
-                .Distinct()
-                .ToList();
+                datasets = query.ToList().Select(d => new { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetNameTranslated(), Theme = d.ThemeTranslated(), OwnerDataset = d.OwnerDatasetTranslated() })
+                    .Distinct().Select(x => new Dataset { DatasetUuid = x.DatasetUuid, DatasetName = x.DatasetName, Theme = x.Theme, OwnerDataset = x.OwnerDataset })
+                    .ToList();
 
             }
             else
@@ -46,11 +54,10 @@ namespace Geonorge.Kartografi.Services
                 if (limitofficial)
                     query = query.Where(l => l.OfficialStatus == true);
 
-                datasets = query.Select(d => new Dataset{ DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetName, Theme = d.Theme, OwnerDataset = d.OwnerDataset })
-                    .Distinct()
+                datasets = query.ToList().Select(d =>  new { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetNameTranslated(), Theme = d.ThemeTranslated(), OwnerDataset = d.OwnerDatasetTranslated()  })
+                    .Distinct().Select(x => new Dataset { DatasetUuid = x.DatasetUuid, DatasetName = x.DatasetName, Theme = x.Theme, OwnerDataset = x.OwnerDataset })
                     .ToList();
                 }
-
             for (int d = 0; d < datasets.Count; d++)
             {
                 if (!string.IsNullOrEmpty(datasets[d].DatasetUuid))

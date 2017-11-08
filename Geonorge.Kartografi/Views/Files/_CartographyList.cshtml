@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="title-field">
-                                    <span>- </span><a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@file.SystemId">@file.Name</a>
+                                    <span>- </span><a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@file.SystemId">@file.NameTranslated()</a>
                                     <a href="@file.FileUrl()" class="pull-right" target="_blank">
                                         <span class="glyphicon glyphicon-download-alt"></span>
                                     </a>
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                @file.Owner
+                                @file.OwnerTranslated()
                             </div>
 
                             <div class="col-sm-1 official-field">
@@ -62,4 +62,4 @@
         </div>      
       <hr />
     }
-    <div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@ViewBag.text&limitofficial=@ViewBag.limitofficial.ToString()">Laster...</a></div>
+    <div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@Server.UrlEncode(ViewBag.text)&limitofficial=@ViewBag.limitofficial.ToString()">Laster...</a></div>
