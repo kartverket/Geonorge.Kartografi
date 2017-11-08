@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Geonorge.Kartografi.Models;
+using System.Web.Http.Description;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -14,13 +15,15 @@ namespace Geonorge.Kartografi.Controllers
     {
         ICartographyService _cartographyService;
         private readonly IAuthorizationService _authorizationService;
+        private readonly CartographyDbContext _dbContext;
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(MvcApplication));
 
-        public ApiRootController(ICartographyService cartographyService, IAuthorizationService authorizationService)
+        public ApiRootController(ICartographyService cartographyService, IAuthorizationService authorizationService, CartographyDbContext dbContext)
         {
             _cartographyService = cartographyService;
             _authorizationService = authorizationService;
+            _dbContext = dbContext;
         }
 
         /// <summary>
@@ -33,6 +36,16 @@ namespace Geonorge.Kartografi.Controllers
             var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial), limitofficial);
                        
             return cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [Route("api/syncdata")]
+        [HttpGet]
+        public IHttpActionResult SyncData()
+        {
+            new DataSync(_dbContext).UpdateAllExternal();
+
+            return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
         }
 
         private List<Models.Api.Cartography> ConvertRegister(List<Dataset> cartographyFiles, bool limitofficial = false)

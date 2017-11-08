@@ -267,6 +267,7 @@
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\CartographyService.cs" />
     <Compile Include="Services\CodeList.cs" />
+    <Compile Include="Services\DataSync.cs" />
     <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\ICartographyService.cs" />
     <Compile Include="Services\IVersioningService.cs" />

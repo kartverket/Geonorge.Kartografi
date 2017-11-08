@@ -156,12 +156,12 @@ namespace Geonorge.Kartografi.Services
                 _dbContext.Database.ExecuteSqlCommand("DELETE FROM CartographyFileTranslations WHERE CartographyFileId = {0}", originalFile.SystemId);
                 foreach (var translation in file.Translations.ToList())
                 {
-                    //Todo get Translation for Owner, OwnerDataset,DatasetName, ServiceName, Theme from sync service
+                    var translated = new DataSync(_dbContext).GetTranslations(translation.CultureName, file);
                     _dbContext.Database.ExecuteSqlCommand("INSERT INTO CartographyFileTranslations" +
-                        "(CartographyFileId,Name,Description,CultureName, Id, [Use], Properties)" +
-                        " VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                        "(CartographyFileId,Name,Description,CultureName, Id, [Use], Properties, Owner, OwnerDataset, DatasetName, Theme, ServiceName)" +
+                        " VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11})",
                     translation.CartographyFileId, translation.Name, translation.Description, translation.CultureName, Guid.NewGuid(),
-                    translation.Use, translation.Properties);
+                    translation.Use, translation.Properties, translated.Owner, translated.OwnerDataset, translated.DatasetName, translated.Theme, translated.ServiceName);
                 }
             }
 
