@@ -115,6 +115,15 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inneholder digital kartografi for.
+        /// </summary>
+        public static string ContainsCartographyFor {
+            get {
+                return ResourceManager.GetString("ContainsCartographyFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datasettnavn.
         /// </summary>
         public static string DatasetName {

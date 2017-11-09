@@ -135,6 +135,9 @@
   <data name="ContactUs" xml:space="preserve">
     <value>Kontakt oss</value>
   </data>
+  <data name="ContainsCartographyFor" xml:space="preserve">
+    <value>Inneholder digital kartografi for</value>
+  </data>
   <data name="DatasetName" xml:space="preserve">
     <value>Datasettnavn</value>
   </data>

@@ -681,6 +681,11 @@
               Looks up a localized string similar to Kontakt oss.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ContainsCartographyFor">
+            <summary>
+              Looks up a localized string similar to Inneholder digital kartografi for.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.DatasetName">
             <summary>
               Looks up a localized string similar to Datasettnavn.
