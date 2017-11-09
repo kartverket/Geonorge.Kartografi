@@ -681,6 +681,11 @@
               Looks up a localized string similar to Kontakt oss.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DatasetName">
+            <summary>
+              Looks up a localized string similar to Datasettnavn.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Description">
             <summary>
               Looks up a localized string similar to Beskrivelse.
@@ -757,9 +762,19 @@
               Looks up a localized string similar to Tegneregelnavn.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.No">
+            <summary>
+              Looks up a localized string similar to Nei.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.NotFoundText">
             <summary>
               Looks up a localized string similar to Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre..
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.NotSet">
+            <summary>
+              Looks up a localized string similar to ikke angitt.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Objektregisteret">
@@ -775,6 +790,11 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.Owner">
             <summary>
               Looks up a localized string similar to Eier.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.OwnerDataset">
+            <summary>
+              Looks up a localized string similar to Datasetteier.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Properties">
@@ -835,6 +855,11 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.Use">
             <summary>
               Looks up a localized string similar to Bruksområde.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Yes">
+            <summary>
+              Looks up a localized string similar to Ja.
             </summary>
         </member>
     </members>

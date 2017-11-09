@@ -135,6 +135,9 @@
   <data name="ContactUs" xml:space="preserve">
     <value>Kontakt oss</value>
   </data>
+  <data name="DatasetName" xml:space="preserve">
+    <value>Datasettnavn</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Beskrivelse</value>
   </data>
@@ -181,8 +184,14 @@
   <data name="Name" xml:space="preserve">
     <value>Tegneregelnavn</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nei</value>
+  </data>
   <data name="NotFoundText" xml:space="preserve">
     <value>Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre.</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>ikke angitt</value>
   </data>
   <data name="Objektregisteret" xml:space="preserve">
     <value>Objektregisteret</value>
@@ -192,6 +201,9 @@
   </data>
   <data name="Owner" xml:space="preserve">
     <value>Eier</value>
+  </data>
+  <data name="OwnerDataset" xml:space="preserve">
+    <value>Datasetteier</value>
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Viktig egenskap for kartografien</value>
@@ -228,5 +240,8 @@
   </data>
   <data name="Use" xml:space="preserve">
     <value>Bruksområde</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>

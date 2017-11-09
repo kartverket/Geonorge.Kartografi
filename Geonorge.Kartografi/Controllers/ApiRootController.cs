@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Geonorge.Kartografi.Models;
 using System.Web.Http.Description;
+using Geonorge.Kartografi.Helpers;
+using Geonorge.Kartografi.Models.Translations;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -50,6 +52,7 @@ namespace Geonorge.Kartografi.Controllers
 
         private List<Models.Api.Cartography> ConvertRegister(List<Dataset> cartographyFiles, bool limitofficial = false)
         {
+            var culture = CultureHelper.GetCurrentCulture();
             var cartograhyList = new List<Models.Api.Cartography>();
             foreach (var dataset in cartographyFiles)
             {
@@ -58,26 +61,26 @@ namespace Geonorge.Kartografi.Controllers
 
                     var file = new Models.Api.Cartography();
                     file.Compatibility = FormatCompability(cartography.Compatibility);
-                    file.DatasetName = cartography.DatasetName;
+                    file.DatasetName = cartography.DatasetNameTranslated();
                     file.DatasetUuid = cartography.DatasetUuid;
                     file.DateAccepted = cartography.DateAccepted;
                     file.DateChanged = cartography.DateChanged;
-                    file.Description = cartography.Description;
+                    file.Description = cartography.DescriptionTranslated();
                     file.FileName = cartography.FileName;
                     file.FileUrl = cartography.FileUrl();
                     file.Format = cartography.Format;
-                    file.Name = cartography.Name;
+                    file.Name = cartography.NameTranslated();
                     file.OfficialStatus = cartography.OfficialStatus;
-                    file.Owner = cartography.Owner;
-                    file.OwnerDataset = cartography.OwnerDataset;
+                    file.Owner = cartography.OwnerTranslated();
+                    file.OwnerDataset = cartography.OwnerDatasetTranslated();
                     file.PreviewImage = cartography.PreviewImage;
                     file.PreviewImageUrl = cartography.PreviewImageUrl();
-                    file.Properties = cartography.Properties;
-                    file.ServiceName = cartography.ServiceName;
+                    file.Properties = cartography.PropertiesTranslated();
+                    file.ServiceName = cartography.ServiceNameTranslated();
                     file.ServiceUuid = cartography.ServiceUuid;
-                    file.Status = CodeList.Status[cartography.Status];
-                    file.Theme = cartography.Theme;
-                    file.Use = cartography.Use;
+                    file.Status = !CultureHelper.IsNorwegian(culture) ? cartography.Status : CodeList.Status[cartography.Status];
+                    file.Theme = cartography.ThemeTranslated();
+                    file.Use = cartography.UseTranslated();
                     file.Uuid = cartography.SystemId;
                     file.VersionId = cartography.VersionId;
 

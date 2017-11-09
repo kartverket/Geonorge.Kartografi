@@ -135,6 +135,9 @@
   <data name="ContactUs" xml:space="preserve">
     <value>Contact us</value>
   </data>
+  <data name="DatasetName" xml:space="preserve">
+    <value>Dataset name</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -181,8 +184,14 @@
   <data name="Name" xml:space="preserve">
     <value>Cartography rule name</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NotFoundText" xml:space="preserve">
     <value>We can not find the page you are looking for, but Geonorge will help you further.</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>not set</value>
   </data>
   <data name="Objektregisteret" xml:space="preserve">
     <value>Feature Catalogue</value>
@@ -192,6 +201,9 @@
   </data>
   <data name="Owner" xml:space="preserve">
     <value>Owner</value>
+  </data>
+  <data name="OwnerDataset" xml:space="preserve">
+    <value>Owner dataset</value>
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Key feature of the cartography</value>
@@ -228,5 +240,8 @@
   </data>
   <data name="Use" xml:space="preserve">
     <value>Use</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

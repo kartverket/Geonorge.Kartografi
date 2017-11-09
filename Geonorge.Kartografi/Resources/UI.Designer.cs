@@ -115,6 +115,15 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datasettnavn.
+        /// </summary>
+        public static string DatasetName {
+            get {
+                return ResourceManager.GetString("DatasetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beskrivelse.
         /// </summary>
         public static string Description {
@@ -251,11 +260,29 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nei.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre..
         /// </summary>
         public static string NotFoundText {
             get {
                 return ResourceManager.GetString("NotFoundText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ikke angitt.
+        /// </summary>
+        public static string NotSet {
+            get {
+                return ResourceManager.GetString("NotSet", resourceCulture);
             }
         }
         
@@ -283,6 +310,15 @@ namespace Geonorge.Kartografi.Resources {
         public static string Owner {
             get {
                 return ResourceManager.GetString("Owner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datasetteier.
+        /// </summary>
+        public static string OwnerDataset {
+            get {
+                return ResourceManager.GetString("OwnerDataset", resourceCulture);
             }
         }
         
@@ -391,6 +427,15 @@ namespace Geonorge.Kartografi.Resources {
         public static string Use {
             get {
                 return ResourceManager.GetString("Use", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

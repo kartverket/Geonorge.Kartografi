@@ -7,6 +7,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
+using Geonorge.Kartografi.Resources;
 
 namespace Geonorge.Kartografi.Formatter
 {
@@ -84,7 +85,7 @@ namespace Geonorge.Kartografi.Formatter
 
         private static void ConvertRegisterToCSV(StreamWriter streamWriter, Models.Api.Cartography item)
         {
-            string text = $"{item.Uuid};{item.Name};{item.FileUrl};{item.Owner};{item.Theme};{(item.OfficialStatus ? "JA" : "NEI")};{item.Format};{item.DatasetUuid};{item.DatasetName};{item.OwnerDataset}";
+            string text = $"{item.Uuid};{item.Name};{item.FileUrl};{item.Owner};{item.Theme};{(item.OfficialStatus ? UI.Yes : UI.No)};{item.Format};{item.DatasetUuid};{item.DatasetName};{item.OwnerDataset}";
             streamWriter.WriteLine(text);
         }
 
@@ -97,7 +98,7 @@ namespace Geonorge.Kartografi.Formatter
             }
             else
             {
-                text = "ikke angitt";
+                text = UI.NotSet;
             }
 
             return text;
@@ -106,7 +107,7 @@ namespace Geonorge.Kartografi.Formatter
 
         private string RegisterHeading()
         {
-            return "Uuid;Tegneregelnavn;FileUrl;Organisasjon;Tema;Offisiell;Format;DatasettUuid;Datasettnavn;DatasettEier";
+            return $"Uuid;{UI.Name};FileUrl;{UI.Owner};{UI.Theme};{UI.Official};Format;DatasetUuid;{UI.DatasetName};{UI.OwnerDataset}";
         }
         
     }
