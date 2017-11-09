@@ -545,6 +545,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\_SearchBarPartial.cshtml" />
     <Content Include="Views\Files\_CartographyList.cshtml" />
+    <Content Include="Views\Shared\_Resources.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -567,6 +568,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UI.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Geonorge.Kartografi.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

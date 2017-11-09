@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Geonorge.Kartografi.Models.Dataset>
+﻿@using Geonorge.Kartografi.Resources
+@model IEnumerable<Geonorge.Kartografi.Models.Dataset>
 
     @foreach (var item in Model)
     {
@@ -62,4 +63,4 @@
         </div>      
       <hr />
     }
-    <div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@Server.UrlEncode(ViewBag.text)&limitofficial=@ViewBag.limitofficial.ToString()">Laster...</a></div>
+    <div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@Server.UrlEncode(ViewBag.text)&limitofficial=@ViewBag.limitofficial.ToString()">@UI.Loading....</a></div>

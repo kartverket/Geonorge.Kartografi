@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Legg til</value>
+  </data>
   <data name="ApiHelp" xml:space="preserve">
     <value>API hjelp</value>
   </data>
   <data name="AppPageTitle" xml:space="preserve">
     <value>Geonorge kartografi</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Tilbake</value>
   </data>
   <data name="CartographyRegistery" xml:space="preserve">
     <value>Digital kartografi</value>
@@ -132,6 +138,9 @@
   <data name="Description" xml:space="preserve">
     <value>Beskrivelse</value>
   </data>
+  <data name="DisplayOnlyOfficial" xml:space="preserve">
+    <value>Vis kun offisielle</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Feil</value>
   </data>
@@ -141,6 +150,9 @@
   <data name="ErrorReport" xml:space="preserve">
     <value>&lt;p&gt;Feilen er logget og vil sjekkes av systemansvarlig.&lt;/p&gt;
 &lt;p&gt;Du kan også rapportere feilen til &lt;a mailto:"post@norgedigitalt.no"&gt;post@norgedigitalt.no&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Ekspander alle</value>
   </data>
   <data name="HelpDescription" xml:space="preserve">
     <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
@@ -160,11 +172,26 @@
   <data name="KartografiContent" xml:space="preserve">
     <value>Registeret inneholder datasett som har registrert digital kartografi</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Laster</value>
+  </data>
+  <data name="MinimizeAll" xml:space="preserve">
+    <value>Minimer alle</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Tegneregelnavn</value>
   </data>
   <data name="NotFoundText" xml:space="preserve">
     <value>Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre.</value>
+  </data>
+  <data name="Objektregisteret" xml:space="preserve">
+    <value>Objektregisteret</value>
+  </data>
+  <data name="Official" xml:space="preserve">
+    <value>Offisiell</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Eier</value>
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Viktig egenskap for kartografien</value>
@@ -172,8 +199,32 @@
   <data name="Register" xml:space="preserve">
     <value>Registrene</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lagre</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Lagre som</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søk</value>
+  </data>
   <data name="SearchFor" xml:space="preserve">
     <value>Søk etter</value>
+  </data>
+  <data name="Search_AllRegisters" xml:space="preserve">
+    <value>Alle registre</value>
+  </data>
+  <data name="Search_Heading" xml:space="preserve">
+    <value>Søk i register</value>
+  </data>
+  <data name="Search_Placeholder" xml:space="preserve">
+    <value>Søk etter registerdata</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tittel</value>
   </data>
   <data name="Use" xml:space="preserve">
     <value>Bruksområde</value>

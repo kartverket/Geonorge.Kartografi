@@ -12,12 +12,10 @@ a.sorted-desc:after {
 
     #expand-all-button .button-text:before {
         display: inline-block;
-        content: "Ekspander alle";
         margin-left: 2px;
     }
 
     #expand-all-button.active .button-text:before {
-        content: "Minimer alle";
     }
 
 

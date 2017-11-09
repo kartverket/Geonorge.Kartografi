@@ -10,6 +10,7 @@
     @Styles.Render("~/Content/bower_components/kartverket-felleskomponenter/assets/css/styles")
 
     <!-- Scripts -->
+    @Html.Partial("_Resources")
     <script>
         var applicationEnvironment = '@Html.EnvironmentName()';
         var applicationVersionNumber = '@Html.ApplicationVersionNumber()';
