@@ -2,7 +2,7 @@
 @model IEnumerable<Geonorge.Kartografi.Models.CartographyFile>
 @section breadcrumb {
     <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Files?uuid=")@Model.FirstOrDefault().DatasetUuid">@Model.FirstOrDefault().DatasetName</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Files?uuid=")@Model.FirstOrDefault().DatasetUuid">@Model.FirstOrDefault().DatasetNameTranslated()</a></li>
 }
 @{
     ViewBag.Title = UI.CartographyRegistery;
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h1>
-                @UI.CartographyRegistery - @Model.FirstOrDefault().DatasetName
+                @UI.CartographyRegistery - @Model.FirstOrDefault().DatasetNameTranslated()
             </h1>
         </div>
         <div class="col-sm-12">
@@ -24,7 +24,7 @@
 <div class="row">
 
     <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
-        @UI.ContainsCartographyFor @Model.FirstOrDefault().DatasetName
+        @UI.ContainsCartographyFor @Model.FirstOrDefault().DatasetNameTranslated()
     </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

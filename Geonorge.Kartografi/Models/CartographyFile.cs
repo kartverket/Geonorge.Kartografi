@@ -1,6 +1,7 @@
 ﻿using Geonorge.Kartografi.Helpers;
 using Geonorge.Kartografi.Models.Translations;
 using Geonorge.Kartografi.Resources;
+using Geonorge.Kartografi.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -30,7 +31,7 @@ namespace Geonorge.Kartografi.Models
         public string Description { get; set; }
 
         /// <summary> Organisasjon som har sendt inn filen.</summary>
-        [Display(Name = "Organisasjon")]
+        [Display(Name = "Owner", ResourceType = typeof(UI))]
         public string Owner { get; set; }
 
         /// <summary> Eier av datasettet</summary>
@@ -50,7 +51,7 @@ namespace Geonorge.Kartografi.Models
         public string Format { get; set; }
 
         /// <summary>Beskrivelse over hva filen skal brukes til. F.eks. style WMS eller GML.</summary>
-        [Display(Name = "Kompatibel med")]
+        [Display(Name = "Compatibility", ResourceType = typeof(UI))]
         public virtual ICollection<Compatibility> Compatibility { get; set; }
 
         /// <summary>Dropdown,beskrivelse over hva filen skal brukes til, f.eks. style WMS eller GML.</summary>
@@ -104,7 +105,7 @@ namespace Geonorge.Kartografi.Models
         public string AcceptedComment { get; set; }
 
         /// <summary>Angi om kartografi er levert som offisielt tilbud eller som et alternativ til offisiell kartografi, radioknapp</summary>
-        [Display(Name = "Offisiell")]
+        [Display(Name = "Official", ResourceType = typeof(UI))]
         public bool OfficialStatus { get; set; }
 
         /// <summary>Hvilke attributter er sentrale for bruk av kartografien, tekstfelt</summary>
@@ -201,6 +202,15 @@ namespace Geonorge.Kartografi.Models
             if (string.IsNullOrEmpty(serviceNameTranslated))
                 serviceNameTranslated = ServiceName;
             return serviceNameTranslated;
+        }
+
+        public string StatusTranslated()
+        {
+            var cultureName = CultureHelper.GetCurrentCulture();
+            if (CultureHelper.IsNorwegian(cultureName))
+                return CodeList.Status[Status];
+            else
+                return Status;
         }
 
         public string FileUrl()

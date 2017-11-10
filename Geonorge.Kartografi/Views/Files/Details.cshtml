@@ -27,11 +27,11 @@
 <div class="row">
     <div class="col-lg-12">
         <ul class="page-header nav nav-tabs nav-tabs-topp" style="display:block; padding-bottom:0px;">
-            <li class="tab active"><a aria-expanded="false" href="#gjeldende" id="gjeldendeLink" data-toggle="tab">Gjeldende</a></li>
+            <li class="tab active"><a aria-expanded="false" href="#gjeldende" id="gjeldendeLink" data-toggle="tab">@UI.Current</a></li>
 
-            <li class="tab pull-right"><a aria-expanded="false" href="#forslag" id="forslagLink" data-toggle="tab">Forslag</a></li>
+            <li class="tab pull-right"><a aria-expanded="false" href="#forslag" id="forslagLink" data-toggle="tab">@UI.Proposal</a></li>
 
-            <li class="tab pull-right"><a aria-expanded="false" href="#historiske" id="historiskeLink" data-toggle="tab">Historiske</a></li>
+            <li class="tab pull-right"><a aria-expanded="false" href="#historiske" id="historiskeLink" data-toggle="tab">@UI.Historical</a></li>
         </ul>
         <br />
     </div>
@@ -47,9 +47,9 @@
             @if (Model.Historical != null && Model.Historical.Count > 0)
             {
                 <div class="row search-results-table-heading">
-                    <div class="col-lg-4"><b>Tittel</b></div>
-                    <div class="col-lg-3"><b>Eier</b></div>
-                    <div class="col-lg-2"><b>Utgave</b></div>
+                    <div class="col-lg-4"><b>@UI.Title</b></div>
+                    <div class="col-lg-3"><b>@UI.Owner</b></div>
+                    <div class="col-lg-2"><b>@UI.Version</b></div>
                     <div class="col-lg-3"><b>Status</b></div>
                 </div>
                     <div class="menu-separator search-results-table-heading"></div>
@@ -57,26 +57,26 @@
                 {
                     <div class="row result-row metadata">
                         <div class="col-lg-4">
-                            <a href="@VirtualPathUtility.ToAbsolute("~/Files/File/")@historical.SystemId">@historical.Name</a>
+                            <a href="@VirtualPathUtility.ToAbsolute("~/Files/File/")@historical.SystemId">@historical.NameTranslated()</a>
                         </div>
-                        <div class="col-lg-3">@historical.Owner</div>
+                        <div class="col-lg-3">@historical.OwnerTranslated()</div>
                         <div class="col-lg-2">@historical.VersionId</div>
-                        <div class="col-lg-3">@CodeList.Status[historical.Status]</div>
+                        <div class="col-lg-3">@historical.StatusTranslated()</div>
                     </div>
                 }
             }
             else
             {
-                <span>Ingen filer</span>
+                <span>@UI.NoFiles</span>
             }
         </div>
         <div class="tab-pane search-results" id="forslag">
             @if (Model.Suggestions != null && Model.Suggestions.Count > 0)
             {
                 <div class="row search-results-table-heading">
-                    <div class="col-lg-4"><b>Tittel</b></div>
-                    <div class="col-lg-3"><b>Eier</b></div>
-                    <div class="col-lg-2"><b>Utgave</b></div>
+                    <div class="col-lg-4"><b>@UI.Title</b></div>
+                    <div class="col-lg-3"><b>@UI.Owner</b></div>
+                    <div class="col-lg-2"><b>@UI.Version</b></div>
                     <div class="col-lg-3"><b>Status</b></div>
                 </div>
                     <div class="menu-separator search-results-table-heading"></div>
@@ -84,17 +84,17 @@
                 {
                     <div class="row result-row metadata">
                         <div class="col-lg-4">
-                            <a href="@VirtualPathUtility.ToAbsolute("~/Files/File/")@suggestion.SystemId">@suggestion.Name</a>
+                            <a href="@VirtualPathUtility.ToAbsolute("~/Files/File/")@suggestion.SystemId">@suggestion.NameTranslated()</a>
                         </div>
-                        <div class="col-lg-3">@suggestion.Owner</div>
+                        <div class="col-lg-3">@suggestion.OwnerTranslated()</div>
                         <div class="col-lg-2">@suggestion.VersionId</div>
-                        <div class="col-lg-3">@CodeList.Status[suggestion.Status]</div>
+                        <div class="col-lg-3">@suggestion.StatusTranslated()</div>
                     </div>
                 }
             }
             else
             {
-                <span>Ingen filer</span>
+                <span>@UI.NoFiles</span>
             }
         </div>
     </div>

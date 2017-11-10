@@ -132,20 +132,44 @@
   <data name="CartographyRegistery" xml:space="preserve">
     <value>Digital kartografi</value>
   </data>
+  <data name="Compatibility" xml:space="preserve">
+    <value>Kompatibel med</value>
+  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Kontakt oss</value>
   </data>
   <data name="ContainsCartographyFor" xml:space="preserve">
     <value>Inneholder digital kartografi for</value>
   </data>
+  <data name="Current" xml:space="preserve">
+    <value>Gjeldende</value>
+  </data>
   <data name="DatasetName" xml:space="preserve">
     <value>Datasettnavn</value>
+  </data>
+  <data name="DateChanged" xml:space="preserve">
+    <value>Sist oppdatert</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slett</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Er du sikker på at du vil slette</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beskrivelse</value>
   </data>
+  <data name="DisplayFile" xml:space="preserve">
+    <value>Vis fil</value>
+  </data>
   <data name="DisplayOnlyOfficial" xml:space="preserve">
     <value>Vis kun offisielle</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Last ned</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Rediger</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Feil</value>
@@ -160,6 +184,9 @@
   <data name="ExpandAll" xml:space="preserve">
     <value>Ekspander alle</value>
   </data>
+  <data name="ExplanationOfSymbols" xml:space="preserve">
+    <value>Tegnforklaring</value>
+  </data>
   <data name="HelpDescription" xml:space="preserve">
     <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
   </data>
@@ -172,11 +199,17 @@
   <data name="HelpUse" xml:space="preserve">
     <value>Kort beskrivelse av hva kartografi-filen kan/bør brukes til.</value>
   </data>
+  <data name="Historical" xml:space="preserve">
+    <value>Historiske</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Forside</value>
   </data>
   <data name="KartografiContent" xml:space="preserve">
     <value>Registeret inneholder datasett som har registrert digital kartografi</value>
+  </data>
+  <data name="LastEditedBy" xml:space="preserve">
+    <value>Redigert av</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Laster</value>
@@ -189,6 +222,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Nei</value>
+  </data>
+  <data name="NoFiles" xml:space="preserve">
+    <value>Ingen filer</value>
   </data>
   <data name="NotFoundText" xml:space="preserve">
     <value>Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre.</value>
@@ -210,6 +246,9 @@
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Viktig egenskap for kartografien</value>
+  </data>
+  <data name="Proposal" xml:space="preserve">
+    <value>Forslag</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrene</value>
@@ -235,6 +274,9 @@
   <data name="Search_Placeholder" xml:space="preserve">
     <value>Søk etter registerdata</value>
   </data>
+  <data name="Service" xml:space="preserve">
+    <value>Tjeneste</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Tema</value>
   </data>
@@ -243,6 +285,9 @@
   </data>
   <data name="Use" xml:space="preserve">
     <value>Bruksområde</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Utgave</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>

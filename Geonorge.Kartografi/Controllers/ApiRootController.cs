@@ -78,7 +78,7 @@ namespace Geonorge.Kartografi.Controllers
                     file.Properties = cartography.PropertiesTranslated();
                     file.ServiceName = cartography.ServiceNameTranslated();
                     file.ServiceUuid = cartography.ServiceUuid;
-                    file.Status = !CultureHelper.IsNorwegian(culture) ? cartography.Status : CodeList.Status[cartography.Status];
+                    file.Status = cartography.StatusTranslated();
                     file.Theme = cartography.ThemeTranslated();
                     file.Use = cartography.UseTranslated();
                     file.Uuid = cartography.SystemId;

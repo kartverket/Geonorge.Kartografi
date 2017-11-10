@@ -132,20 +132,44 @@
   <data name="CartographyRegistery" xml:space="preserve">
     <value>Cartography – specifications (SLD)</value>
   </data>
+  <data name="Compatibility" xml:space="preserve">
+    <value>Compatibility</value>
+  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Contact us</value>
   </data>
   <data name="ContainsCartographyFor" xml:space="preserve">
     <value>Contains digital cartography for</value>
   </data>
+  <data name="Current" xml:space="preserve">
+    <value>Current</value>
+  </data>
   <data name="DatasetName" xml:space="preserve">
     <value>Dataset name</value>
+  </data>
+  <data name="DateChanged" xml:space="preserve">
+    <value>Date changed</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Are you sure you want to delete</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="DisplayFile" xml:space="preserve">
+    <value>Display file</value>
+  </data>
   <data name="DisplayOnlyOfficial" xml:space="preserve">
     <value>Show only official</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -160,6 +184,9 @@
   <data name="ExpandAll" xml:space="preserve">
     <value>Expand all</value>
   </data>
+  <data name="ExplanationOfSymbols" xml:space="preserve">
+    <value>Explanation of symbols</value>
+  </data>
   <data name="HelpDescription" xml:space="preserve">
     <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
   </data>
@@ -172,11 +199,17 @@
   <data name="HelpUse" xml:space="preserve">
     <value>Kort beskrivelse av hva kartografi-filen kan/bør brukes til.</value>
   </data>
+  <data name="Historical" xml:space="preserve">
+    <value>Historical</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
   <data name="KartografiContent" xml:space="preserve">
     <value>Norwegian NSDI register of cartography definitions – SLD and other formats</value>
+  </data>
+  <data name="LastEditedBy" xml:space="preserve">
+    <value>Edited by</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading</value>
@@ -189,6 +222,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="NoFiles" xml:space="preserve">
+    <value>No files</value>
   </data>
   <data name="NotFoundText" xml:space="preserve">
     <value>We can not find the page you are looking for, but Geonorge will help you further.</value>
@@ -210,6 +246,9 @@
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Key feature of the cartography</value>
+  </data>
+  <data name="Proposal" xml:space="preserve">
+    <value>Proposal</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Norwegian NSDI registers</value>
@@ -235,6 +274,9 @@
   <data name="Search_Placeholder" xml:space="preserve">
     <value>Search for registerdata</value>
   </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
   </data>
@@ -243,6 +285,9 @@
   </data>
   <data name="Use" xml:space="preserve">
     <value>Use</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

@@ -6,7 +6,7 @@
 }
 @section breadcrumb {
     <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@Model.Name</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@Model.NameTranslated()</a></li>
     <li>Detaljer</li>
 }
 
@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h1>
-                @Model.Name
+                @Model.NameTranslated()
             </h1>
         </div>
         <div class="col-sm-12">
@@ -33,8 +33,8 @@
 
         @if (ViewBag.HasAccess)
         {
-            <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Edit/")@Model.SystemId" style="margin-left: 15px;">Rediger</a>
-            <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Delete/")@Model.SystemId">Slett</a>
+            <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Edit/")@Model.SystemId" style="margin-left: 15px;">@UI.Edit</a>
+            <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Delete/")@Model.SystemId">@UI.Delete</a>
         }
         <a class="hidden-print" href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@UI.Back</a>
 

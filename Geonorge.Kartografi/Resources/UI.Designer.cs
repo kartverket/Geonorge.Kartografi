@@ -106,6 +106,15 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kompatibel med.
+        /// </summary>
+        public static string Compatibility {
+            get {
+                return ResourceManager.GetString("Compatibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kontakt oss.
         /// </summary>
         public static string ContactUs {
@@ -124,11 +133,47 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gjeldende.
+        /// </summary>
+        public static string Current {
+            get {
+                return ResourceManager.GetString("Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datasettnavn.
         /// </summary>
         public static string DatasetName {
             get {
                 return ResourceManager.GetString("DatasetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sist oppdatert.
+        /// </summary>
+        public static string DateChanged {
+            get {
+                return ResourceManager.GetString("DateChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slett.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Er du sikker på at du vil slette.
+        /// </summary>
+        public static string DeleteConfirm {
+            get {
+                return ResourceManager.GetString("DeleteConfirm", resourceCulture);
             }
         }
         
@@ -142,11 +187,38 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vis fil.
+        /// </summary>
+        public static string DisplayFile {
+            get {
+                return ResourceManager.GetString("DisplayFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vis kun offisielle.
         /// </summary>
         public static string DisplayOnlyOfficial {
             get {
                 return ResourceManager.GetString("DisplayOnlyOfficial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last ned.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rediger.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -188,6 +260,15 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tegnforklaring.
+        /// </summary>
+        public static string ExplanationOfSymbols {
+            get {
+                return ResourceManager.GetString("ExplanationOfSymbols", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kortfattet tekst om hvordan kartografien ser ut..
         /// </summary>
         public static string HelpDescription {
@@ -224,6 +305,15 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Historiske.
+        /// </summary>
+        public static string Historical {
+            get {
+                return ResourceManager.GetString("Historical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forside.
         /// </summary>
         public static string Home {
@@ -238,6 +328,15 @@ namespace Geonorge.Kartografi.Resources {
         public static string KartografiContent {
             get {
                 return ResourceManager.GetString("KartografiContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redigert av.
+        /// </summary>
+        public static string LastEditedBy {
+            get {
+                return ResourceManager.GetString("LastEditedBy", resourceCulture);
             }
         }
         
@@ -274,6 +373,15 @@ namespace Geonorge.Kartografi.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingen filer.
+        /// </summary>
+        public static string NoFiles {
+            get {
+                return ResourceManager.GetString("NoFiles", resourceCulture);
             }
         }
         
@@ -337,6 +445,15 @@ namespace Geonorge.Kartografi.Resources {
         public static string Properties {
             get {
                 return ResourceManager.GetString("Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forslag.
+        /// </summary>
+        public static string Proposal {
+            get {
+                return ResourceManager.GetString("Proposal", resourceCulture);
             }
         }
         
@@ -413,6 +530,15 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tjeneste.
+        /// </summary>
+        public static string Service {
+            get {
+                return ResourceManager.GetString("Service", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tema.
         /// </summary>
         public static string Theme {
@@ -436,6 +562,15 @@ namespace Geonorge.Kartografi.Resources {
         public static string Use {
             get {
                 return ResourceManager.GetString("Use", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utgave.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
         
