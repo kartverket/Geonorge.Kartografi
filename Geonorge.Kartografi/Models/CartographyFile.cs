@@ -35,15 +35,15 @@ namespace Geonorge.Kartografi.Models
         public string Owner { get; set; }
 
         /// <summary> Eier av datasettet</summary>
-        [Display(Name = "Datasetteier")]
+        [Display(Name = "OwnerDataset", ResourceType = typeof(UI))]
         public string OwnerDataset { get; set; }
 
         /// <summary> Editor. Hentes fra pålogget bruker</summary>
-        [Display(Name = "Redigert av")]
+        [Display(Name = "LastEditedBy", ResourceType = typeof(UI))]
         public string LastEditedBy { get; set; }
 
         /// <summary>Opplasting av filen i form av sld/lyr/pdf</summary>
-        [Display(Name = "Kartografi-fil")]
+        [Display(Name = "FileName", ResourceType = typeof(UI))]
         public string FileName { get; set; }
 
         /// <summary>Dropdown (sld/lyr, leses fra kodeliste)</summary>
@@ -59,27 +59,27 @@ namespace Geonorge.Kartografi.Models
         public string Use { get; set; }
 
         /// <summary>Kobling til datasett</summary>
-        [Display(Name = "Datasett")]
+        [Display(Name = "Dataset")]
         public string DatasetUuid { get; set; }
 
         /// <summary></summary>
-        [Display(Name = "Datasettnavn")]
+        [Display(Name = "DatasetName", ResourceType = typeof(UI))]
         public string DatasetName { get; set; }
 
         /// <summary>Kobling til tjeneste</summary>
-        [Display(Name = "Tjeneste")]
+        [Display(Name = "Service", ResourceType = typeof(UI))]
         public string ServiceUuid { get; set; }
 
         /// <summary></summary>
-        [Display(Name = "Tjeneste-navn")]
+        [Display(Name = "ServiceName", ResourceType = typeof(UI))]
         public string ServiceName { get; set; }
 
         /// <summary>Et lite bilde som viser hvilke symboler som benyttes med beskrivende tekst.</summary>
-        [Display(Name = "Miniatyrbilde")]
+        [Display(Name = "PreviewImage", ResourceType = typeof(UI))]
         public string PreviewImage { get; set; }
 
         /// <summary>Tallverdi for hvilken versjon av filen det er snakk om. Autogenereres.</summary>
-        [Display(Name = "Versjon")]
+        [Display(Name = "Version", ResourceType = typeof(UI))]
         public int VersionId { get; set; }
 
         [ForeignKey("versioning")]
@@ -87,7 +87,7 @@ namespace Geonorge.Kartografi.Models
         public virtual Version versioning { get; set; }
 
         /// <summary>Dato for når filen/informasjonen i registeret sist ble endret.</summary>
-        [Display(Name = "Dato endret")]
+        [Display(Name = "DateChanged", ResourceType = typeof(UI))]
         [DisplayFormat(NullDisplayText = "", ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime DateChanged { get; set; } = DateTime.Now;
 
@@ -96,12 +96,12 @@ namespace Geonorge.Kartografi.Models
         public string Status { get; set; }
 
         /// <summary>Dato for når filen ble godkjent. Settes av administrator.</summary>
-        [Display(Name = "Dato godkjent")]
+        [Display(Name = "DateAccepted", ResourceType = typeof(UI))]
         [DisplayFormat(NullDisplayText = "", ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime? DateAccepted { get; set; }
 
         /// <summary>Tekst dersom det er noe som er viktig å påpeke ved godkjenningen. F.eks. dersom noe blir godkjent, men ikke er optimalt. Settes av administrator</summary>
-        [Display(Name = "Godkjent kommentar")]
+        [Display(Name = "AcceptedComment", ResourceType = typeof(UI))]
         public string AcceptedComment { get; set; }
 
         /// <summary>Angi om kartografi er levert som offisielt tilbud eller som et alternativ til offisiell kartografi, radioknapp</summary>
@@ -113,7 +113,7 @@ namespace Geonorge.Kartografi.Models
         public string Properties { get; set; }
 
         /// <summary>Hentes automatisk fra metadata. Inn i db eller koples dette i visningsapplikasjon? Tematisk hovedkategori i metadataene</summary>
-        [Display(Name = "Tema")]
+        [Display(Name = "Theme", ResourceType = typeof(UI))]
         public string Theme { get; set; }
 
         public virtual TranslationCollection<CartographyFileTranslation> Translations { get; set; }

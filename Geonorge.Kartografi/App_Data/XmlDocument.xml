@@ -651,6 +651,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.AcceptedComment">
+            <summary>
+              Looks up a localized string similar to Godkjent kommentar.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Add">
             <summary>
               Looks up a localized string similar to Legg til.
@@ -671,6 +676,11 @@
               Looks up a localized string similar to Tilbake.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.CartographyFileInfo">
+            <summary>
+              Looks up a localized string similar to Informasjon om kartografi-filen.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.CartographyRegistery">
             <summary>
               Looks up a localized string similar to Digital kartografi.
@@ -679,6 +689,11 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.Compatibility">
             <summary>
               Looks up a localized string similar to Kompatibel med.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ConnectionToDatasetAndService">
+            <summary>
+              Looks up a localized string similar to Knytning til datasett og tjeneste.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.ContactUs">
@@ -699,6 +714,11 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.DatasetName">
             <summary>
               Looks up a localized string similar to Datasettnavn.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DateAccepted">
+            <summary>
+              Looks up a localized string similar to Dato godkjent.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.DateChanged">
@@ -729,6 +749,11 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.DisplayOnlyOfficial">
             <summary>
               Looks up a localized string similar to Vis kun offisielle.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DocumentApproval">
+            <summary>
+              Looks up a localized string similar to Dokumentgodkjenning.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Download">
@@ -765,6 +790,11 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.ExplanationOfSymbols">
             <summary>
               Looks up a localized string similar to Tegnforklaring.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.FileName">
+            <summary>
+              Looks up a localized string similar to Kartografi-fil.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.HelpDescription">
@@ -862,6 +892,16 @@
               Looks up a localized string similar to Datasetteier.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.OwnerHeading">
+            <summary>
+              Looks up a localized string similar to Eier av kartografi.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.PreviewImage">
+            <summary>
+              Looks up a localized string similar to Miniatyrbilde.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Properties">
             <summary>
               Looks up a localized string similar to Viktig egenskap for kartografien.
@@ -910,6 +950,16 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.SearchFor">
             <summary>
               Looks up a localized string similar to Søk etter.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SearchForDataset">
+            <summary>
+              Looks up a localized string similar to Søk etter datasett.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SearchForOrginization">
+            <summary>
+              Looks up a localized string similar to Søk etter organisasjon.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Service">

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptedComment" xml:space="preserve">
+    <value>Accepted comment</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
@@ -129,11 +132,17 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="CartographyFileInfo" xml:space="preserve">
+    <value>Information about the cartography file</value>
+  </data>
   <data name="CartographyRegistery" xml:space="preserve">
     <value>Cartography – specifications (SLD)</value>
   </data>
   <data name="Compatibility" xml:space="preserve">
     <value>Compatibility</value>
+  </data>
+  <data name="ConnectionToDatasetAndService" xml:space="preserve">
+    <value>Linking to dataset and service</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Contact us</value>
@@ -146,6 +155,9 @@
   </data>
   <data name="DatasetName" xml:space="preserve">
     <value>Dataset name</value>
+  </data>
+  <data name="DateAccepted" xml:space="preserve">
+    <value>Date accepted</value>
   </data>
   <data name="DateChanged" xml:space="preserve">
     <value>Date changed</value>
@@ -164,6 +176,9 @@
   </data>
   <data name="DisplayOnlyOfficial" xml:space="preserve">
     <value>Show only official</value>
+  </data>
+  <data name="DocumentApproval" xml:space="preserve">
+    <value>Document approval</value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
@@ -187,17 +202,20 @@
   <data name="ExplanationOfSymbols" xml:space="preserve">
     <value>Explanation of symbols</value>
   </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Cartography file</value>
+  </data>
   <data name="HelpDescription" xml:space="preserve">
-    <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
+    <value>Brief text on how the cartography looks.</value>
   </data>
   <data name="HelpOfficialStatus" xml:space="preserve">
-    <value>Offisiell: Ja = Filen inneholder kartografi som etaten har bestemt at er gjeldende. Nei = Forslag til kartografi.</value>
+    <value>Official: Yes = The file contains cartography that the agency has determined to be applicable. No = Suggested cartography.</value>
   </data>
   <data name="HelpProperties" xml:space="preserve">
-    <value>En oppramsing av hvilke attributter i datasettet kartografien-reglene benytter.</value>
+    <value>A summary of which attributes in the data set cartography rules apply.</value>
   </data>
   <data name="HelpUse" xml:space="preserve">
-    <value>Kort beskrivelse av hva kartografi-filen kan/bør brukes til.</value>
+    <value>Brief description of what the cartography file may / should be used for.</value>
   </data>
   <data name="Historical" xml:space="preserve">
     <value>Historical</value>
@@ -244,6 +262,12 @@
   <data name="OwnerDataset" xml:space="preserve">
     <value>Owner dataset</value>
   </data>
+  <data name="OwnerHeading" xml:space="preserve">
+    <value>Owner of Cartography</value>
+  </data>
+  <data name="PreviewImage" xml:space="preserve">
+    <value>Preview image</value>
+  </data>
   <data name="Properties" xml:space="preserve">
     <value>Key feature of the cartography</value>
   </data>
@@ -264,6 +288,12 @@
   </data>
   <data name="SearchFor" xml:space="preserve">
     <value>Search for</value>
+  </data>
+  <data name="SearchForDataset" xml:space="preserve">
+    <value>Search for dataset</value>
+  </data>
+  <data name="SearchForOrginization" xml:space="preserve">
+    <value>Search for orginization</value>
   </data>
   <data name="Search_AllRegisters" xml:space="preserve">
     <value>All registers</value>

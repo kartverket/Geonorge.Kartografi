@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptedComment" xml:space="preserve">
+    <value>Godkjent kommentar</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Legg til</value>
   </data>
@@ -129,11 +132,17 @@
   <data name="Back" xml:space="preserve">
     <value>Tilbake</value>
   </data>
+  <data name="CartographyFileInfo" xml:space="preserve">
+    <value>Informasjon om kartografi-filen</value>
+  </data>
   <data name="CartographyRegistery" xml:space="preserve">
     <value>Digital kartografi</value>
   </data>
   <data name="Compatibility" xml:space="preserve">
     <value>Kompatibel med</value>
+  </data>
+  <data name="ConnectionToDatasetAndService" xml:space="preserve">
+    <value>Knytning til datasett og tjeneste</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Kontakt oss</value>
@@ -146,6 +155,9 @@
   </data>
   <data name="DatasetName" xml:space="preserve">
     <value>Datasettnavn</value>
+  </data>
+  <data name="DateAccepted" xml:space="preserve">
+    <value>Dato godkjent</value>
   </data>
   <data name="DateChanged" xml:space="preserve">
     <value>Sist oppdatert</value>
@@ -164,6 +176,9 @@
   </data>
   <data name="DisplayOnlyOfficial" xml:space="preserve">
     <value>Vis kun offisielle</value>
+  </data>
+  <data name="DocumentApproval" xml:space="preserve">
+    <value>Dokumentgodkjenning</value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Last ned</value>
@@ -186,6 +201,9 @@
   </data>
   <data name="ExplanationOfSymbols" xml:space="preserve">
     <value>Tegnforklaring</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Kartografi-fil</value>
   </data>
   <data name="HelpDescription" xml:space="preserve">
     <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
@@ -244,6 +262,12 @@
   <data name="OwnerDataset" xml:space="preserve">
     <value>Datasetteier</value>
   </data>
+  <data name="OwnerHeading" xml:space="preserve">
+    <value>Eier av kartografi</value>
+  </data>
+  <data name="PreviewImage" xml:space="preserve">
+    <value>Miniatyrbilde</value>
+  </data>
   <data name="Properties" xml:space="preserve">
     <value>Viktig egenskap for kartografien</value>
   </data>
@@ -264,6 +288,12 @@
   </data>
   <data name="SearchFor" xml:space="preserve">
     <value>Søk etter</value>
+  </data>
+  <data name="SearchForDataset" xml:space="preserve">
+    <value>Søk etter datasett</value>
+  </data>
+  <data name="SearchForOrginization" xml:space="preserve">
+    <value>Søk etter organisasjon</value>
   </data>
   <data name="Search_AllRegisters" xml:space="preserve">
     <value>Alle registre</value>

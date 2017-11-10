@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h1>
-                Legg til digital kartografi
+                @UI.Add @UI.CartographyRegistery
             </h1>
         </div>
         <div class="col-sm-12">
@@ -34,7 +34,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-12">
-                    <span class="required">Eier av kartografi</span>
+                    <span class="required">@UI.OwnerHeading</span>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-12">
-                    <span class="required">Informasjon om kartografi-filen</span>
+                    <span class="required">@UI.CartographyFileInfo</span>
                 </div>
             </div>
         </div>
@@ -192,7 +192,7 @@
                     <p class="help-text bg-success" id="help-text-officialstatus" style="display: none">
                         @UI.HelpOfficialStatus
                     </p>
-                    <input type="radio" name="OfficialStatus" value="True" /> Ja <input type="radio" name="OfficialStatus" value="False" /> Nei
+                    <input type="radio" name="OfficialStatus" value="True" /> @UI.Yes <input type="radio" name="OfficialStatus" value="False" /> @UI.No
                 </div>
                 <div class="col-md-1">
                     <p class="form-control-static">
@@ -206,7 +206,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-12">
-                    <span class="required">Knytning til datasett og tjeneste</span>
+                    <span class="required">@UI.ConnectionToDatasetAndService</span>
                 </div>
             </div>
         </div>
@@ -247,7 +247,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-12">
-                    <span>Dokumentgodkjenning</span>
+                    <span>@UI.DocumentApproval</span>
                 </div>
             </div>
         </div>

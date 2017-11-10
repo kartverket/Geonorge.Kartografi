@@ -18,7 +18,7 @@
 
     <div class="col-no-padding-xs col-sm-3 col-md-2 col-information">
         <p><span class="cartography-metadata-name">@UI.Official: </span>@(Model.OfficialStatus ? UI.Yes : UI.No)</p>
-        <p><span class="cartography-metadata-name">Status: </span>@CodeList.Status[Model.Status]</p>
+        <p><span class="cartography-metadata-name">Status: </span>@Model.StatusTranslated()</p>
         <p><span class="cartography-metadata-name">@UI.Version: </span>@Model.VersionId</p>
         @if (ViewBag.IsAdmin)
         {

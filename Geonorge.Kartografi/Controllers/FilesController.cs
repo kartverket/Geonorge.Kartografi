@@ -10,6 +10,8 @@ using System.IO;
 using System.Collections.Generic;
 using PagedList;
 using log4net;
+using System.Collections;
+using Geonorge.Kartografi.Helpers;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -74,8 +76,24 @@ namespace Geonorge.Kartografi.Controllers
             }
 
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
-            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", "Submitted");
+            ViewBag.Statuses = new SelectList(GetStatusTranslated(CodeList.Status), "Key", "Value", "Submitted");
             return View(file);
+        }
+
+        private IEnumerable GetStatusTranslated(Dictionary<string, string> status)
+        {
+            if (CultureHelper.IsNorwegian())
+                return status;
+            else
+            {
+                Dictionary<string, string> statusTranslated = new Dictionary<string, string>();
+                foreach (KeyValuePair<string, string> kvp in status)
+                {
+                    statusTranslated[kvp.Key] = kvp.Key;
+                }
+
+                return statusTranslated;
+            }
         }
 
         // GET: Files/Details/5
@@ -139,7 +157,7 @@ namespace Geonorge.Kartografi.Controllers
             }
 
             ViewBag.Compatibility = new SelectList(CodeList.Compatibility, "Key", "Value", string.Empty);
-            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
+            ViewBag.Statuses = new SelectList(GetStatusTranslated(CodeList.Status), "Key", "Value", cartographyFile.Status);
             cartographyFile.Compatibility = new List<Compatibility>();
             if(compatibilities != null)
             {
@@ -172,7 +190,7 @@ namespace Geonorge.Kartografi.Controllers
 
             ViewBag.newversion = newversion;
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
-            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
+            ViewBag.Statuses = new SelectList(GetStatusTranslated(CodeList.Status), "Key", "Value", cartographyFile.Status);
 
             ViewBag.IsAdmin = false;
             if (Request.IsAuthenticated)
@@ -227,7 +245,7 @@ namespace Geonorge.Kartografi.Controllers
 
             ViewBag.newversion = newversion;
             ViewBag.compatibilitiesList = new MultiSelectList(CodeList.Compatibility, "Key", "Key", cartographyFile.Compatibility.Select(c => c.Key).ToArray());
-            ViewBag.Statuses = new SelectList(CodeList.Status, "Key", "Value", cartographyFile.Status);
+            ViewBag.Statuses = new SelectList(GetStatusTranslated(CodeList.Status), "Key", "Value", cartographyFile.Status);
 
             if (ModelState.IsValid)
             {
