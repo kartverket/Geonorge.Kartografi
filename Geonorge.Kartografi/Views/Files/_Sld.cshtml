@@ -1,6 +1,7 @@
 ﻿@using Geonorge.Kartografi.Models
 @using Geonorge.Kartografi.Services
 @using Geonorge.Kartografi.Resources
+@using Newtonsoft.Json;
 @model Geonorge.Kartografi.Models.CartographyFile
 @{
     List<SldLayer> sldLayers = new SldParser().Get(Model.FileUrl());
@@ -50,6 +51,10 @@ if (ruleSymbol != null)
     @if(sld.SldFilters != null && !string.IsNullOrEmpty(sld.SldFilters[0].PropertyName) && !string.IsNullOrEmpty(sld.SldFilters[0].Literal))
     {
         @:Spørring: @sld.SldFilters[0].PropertyName: @sld.SldFilters[0].Literal
+    }
+    else if(sld.SldFilters != null && sld.SldFilters[0].FilterObject != null)
+    {
+        @:Spørring: se kartografi-fil for detaljer
     }
 @if (!string.IsNullOrEmpty(sld.Fill))
 { 
