@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -225,11 +226,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Helpers\HtmlHelperExtension.cs" />
     <Compile Include="Helpers\registerUrls.cs" />
     <Compile Include="Migrations\201702081214416_Initial.cs" />
     <Compile Include="Migrations\201702081214416_Initial.Designer.cs">
       <DependentUpon>201702081214416_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061403506_AddCartographyFileTranslation.cs" />
+    <Compile Include="Migrations\201711061403506_AddCartographyFileTranslation.Designer.cs">
+      <DependentUpon>201711061403506_AddCartographyFileTranslation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Api\Cartography.cs" />
@@ -241,9 +247,19 @@
     <Compile Include="Models\SldFilter.cs" />
     <Compile Include="Models\SldLayer.cs" />
     <Compile Include="Models\SldRule.cs" />
+    <Compile Include="Models\Translations\CartographyFileTranslation.cs" />
+    <Compile Include="Models\Translations\Culture.cs" />
+    <Compile Include="Models\Translations\Translation.cs" />
+    <Compile Include="Models\Translations\TranslationCollection.cs" />
     <Compile Include="Models\Version.cs" />
     <Compile Include="Models\VersionsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\UI.en.Designer.cs">
+      <DependentUpon>UI.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\UI.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -252,6 +268,7 @@
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\CartographyService.cs" />
     <Compile Include="Services\CodeList.cs" />
+    <Compile Include="Services\DataSync.cs" />
     <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\ICartographyService.cs" />
     <Compile Include="Services\IVersioningService.cs" />
@@ -528,6 +545,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\_SearchBarPartial.cshtml" />
     <Content Include="Views\Files\_CartographyList.cshtml" />
+    <Content Include="Views\Shared\_Resources.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -538,10 +556,19 @@
     <EmbeddedResource Include="Migrations\201702081214416_Initial.resx">
       <DependentUpon>201702081214416_Initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061403506_AddCartographyFileTranslation.resx">
+      <DependentUpon>201711061403506_AddCartographyFileTranslation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UI.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UI.en.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Geonorge.Kartografi.Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\UI.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UI.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Geonorge.Kartografi.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

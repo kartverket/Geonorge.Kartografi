@@ -1,6 +1,6 @@
 ﻿var metadata = [];
 $('.datasetUuidSelect').select2({
-    placeholder: "Søk etter datasett",
+    placeholder: SearchForDataset,
     language: "nb",
     ajax: {
         url: kartkatalogenUrl+ "api/search",
@@ -75,7 +75,7 @@ $('#ServiceUuid').on('change', function () {
 var organizations = [];
 
 $('.ownerOrganizationSelect').select2({
-    placeholder: "Søk etter organisasjon",
+    placeholder: SearchForOrginization,
     language: "nb",
     ajax: {
         url: registryUrl + "api/search",
@@ -133,14 +133,14 @@ Statuses();
 var OfficialStatus = function (event) {
 
     var statusAll = {};
-    statusAll["Submitted"] = "Sendt inn";
-    statusAll["Accepted"] = "Godkjent";
-    statusAll["Superseded"] = "Erstattet";
-    statusAll["Retired"] = "Utgått";
+    statusAll["Submitted"] = statusSubmitted;
+    statusAll["Accepted"] = statusAccepted;
+    statusAll["Superseded"] = statusSuperseded;
+    statusAll["Retired"] = statusRetired;
 
     var statusNotOfficial = {};
-    statusNotOfficial["Submitted"] = "Sendt inn";
-    statusNotOfficial["Retired"] = "Utgått";
+    statusNotOfficial["Submitted"] = statusSubmitted;
+    statusNotOfficial["Retired"] = statusRetired;
 
     var selectedStatus = $('#Status option:selected').val();
 

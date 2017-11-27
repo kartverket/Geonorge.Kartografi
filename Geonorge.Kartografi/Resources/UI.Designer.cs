@@ -19,7 +19,7 @@ namespace Geonorge.Kartografi.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class UI {
@@ -61,11 +61,264 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Godkjent kommentar.
+        /// </summary>
+        public static string AcceptedComment {
+            get {
+                return ResourceManager.GetString("AcceptedComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legg til.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API hjelp.
+        /// </summary>
+        public static string ApiHelp {
+            get {
+                return ResourceManager.GetString("ApiHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geonorge kartografi.
         /// </summary>
         public static string AppPageTitle {
             get {
                 return ResourceManager.GetString("AppPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilbake.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informasjon om kartografi-filen.
+        /// </summary>
+        public static string CartographyFileInfo {
+            get {
+                return ResourceManager.GetString("CartographyFileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital kartografi.
+        /// </summary>
+        public static string CartographyRegistery {
+            get {
+                return ResourceManager.GetString("CartographyRegistery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kompatibel med.
+        /// </summary>
+        public static string Compatibility {
+            get {
+                return ResourceManager.GetString("Compatibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knytning til datasett og tjeneste.
+        /// </summary>
+        public static string ConnectionToDatasetAndService {
+            get {
+                return ResourceManager.GetString("ConnectionToDatasetAndService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kontakt oss.
+        /// </summary>
+        public static string ContactUs {
+            get {
+                return ResourceManager.GetString("ContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inneholder digital kartografi for.
+        /// </summary>
+        public static string ContainsCartographyFor {
+            get {
+                return ResourceManager.GetString("ContainsCartographyFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gjeldende.
+        /// </summary>
+        public static string Current {
+            get {
+                return ResourceManager.GetString("Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datasettnavn.
+        /// </summary>
+        public static string DatasetName {
+            get {
+                return ResourceManager.GetString("DatasetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dato godkjent.
+        /// </summary>
+        public static string DateAccepted {
+            get {
+                return ResourceManager.GetString("DateAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sist oppdatert.
+        /// </summary>
+        public static string DateChanged {
+            get {
+                return ResourceManager.GetString("DateChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slett.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Er du sikker på at du vil slette.
+        /// </summary>
+        public static string DeleteConfirm {
+            get {
+                return ResourceManager.GetString("DeleteConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beskrivelse.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vis fil.
+        /// </summary>
+        public static string DisplayFile {
+            get {
+                return ResourceManager.GetString("DisplayFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vis kun offisielle.
+        /// </summary>
+        public static string DisplayOnlyOfficial {
+            get {
+                return ResourceManager.GetString("DisplayOnlyOfficial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dokumentgodkjenning.
+        /// </summary>
+        public static string DocumentApproval {
+            get {
+                return ResourceManager.GetString("DocumentApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last ned.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rediger.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feil.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Det har desverre skjedd en feil med din forespørsel. Prøv igjen om litt..
+        /// </summary>
+        public static string ErrorInfo {
+            get {
+                return ResourceManager.GetString("ErrorInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Feilen er logget og vil sjekkes av systemansvarlig.&lt;/p&gt;
+        ///&lt;p&gt;Du kan også rapportere feilen til &lt;a mailto:&quot;post@norgedigitalt.no&quot;&gt;post@norgedigitalt.no&lt;/a&gt;.&lt;/p&gt;.
+        /// </summary>
+        public static string ErrorReport {
+            get {
+                return ResourceManager.GetString("ErrorReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ekspander alle.
+        /// </summary>
+        public static string ExpandAll {
+            get {
+                return ResourceManager.GetString("ExpandAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tegnforklaring.
+        /// </summary>
+        public static string ExplanationOfSymbols {
+            get {
+                return ResourceManager.GetString("ExplanationOfSymbols", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kartografi-fil.
+        /// </summary>
+        public static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
             }
         }
         
@@ -102,6 +355,321 @@ namespace Geonorge.Kartografi.Resources {
         public static string HelpUse {
             get {
                 return ResourceManager.GetString("HelpUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historiske.
+        /// </summary>
+        public static string Historical {
+            get {
+                return ResourceManager.GetString("Historical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forside.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registeret inneholder datasett som har registrert digital kartografi.
+        /// </summary>
+        public static string KartografiContent {
+            get {
+                return ResourceManager.GetString("KartografiContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redigert av.
+        /// </summary>
+        public static string LastEditedBy {
+            get {
+                return ResourceManager.GetString("LastEditedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laster.
+        /// </summary>
+        public static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimer alle.
+        /// </summary>
+        public static string MinimizeAll {
+            get {
+                return ResourceManager.GetString("MinimizeAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tegneregelnavn.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nei.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingen filer.
+        /// </summary>
+        public static string NoFiles {
+            get {
+                return ResourceManager.GetString("NoFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre..
+        /// </summary>
+        public static string NotFoundText {
+            get {
+                return ResourceManager.GetString("NotFoundText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ikke angitt.
+        /// </summary>
+        public static string NotSet {
+            get {
+                return ResourceManager.GetString("NotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objektregisteret.
+        /// </summary>
+        public static string Objektregisteret {
+            get {
+                return ResourceManager.GetString("Objektregisteret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offisiell.
+        /// </summary>
+        public static string Official {
+            get {
+                return ResourceManager.GetString("Official", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eier.
+        /// </summary>
+        public static string Owner {
+            get {
+                return ResourceManager.GetString("Owner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datasetteier.
+        /// </summary>
+        public static string OwnerDataset {
+            get {
+                return ResourceManager.GetString("OwnerDataset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eier av kartografi.
+        /// </summary>
+        public static string OwnerHeading {
+            get {
+                return ResourceManager.GetString("OwnerHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miniatyrbilde.
+        /// </summary>
+        public static string PreviewImage {
+            get {
+                return ResourceManager.GetString("PreviewImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Viktig egenskap for kartografien.
+        /// </summary>
+        public static string Properties {
+            get {
+                return ResourceManager.GetString("Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forslag.
+        /// </summary>
+        public static string Proposal {
+            get {
+                return ResourceManager.GetString("Proposal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrene.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lagre.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lagre som.
+        /// </summary>
+        public static string SaveAs {
+            get {
+                return ResourceManager.GetString("SaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Søk.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle registre.
+        /// </summary>
+        public static string Search_AllRegisters {
+            get {
+                return ResourceManager.GetString("Search_AllRegisters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Søk i register.
+        /// </summary>
+        public static string Search_Heading {
+            get {
+                return ResourceManager.GetString("Search_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Søk etter registerdata.
+        /// </summary>
+        public static string Search_Placeholder {
+            get {
+                return ResourceManager.GetString("Search_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Søk etter.
+        /// </summary>
+        public static string SearchFor {
+            get {
+                return ResourceManager.GetString("SearchFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Søk etter datasett.
+        /// </summary>
+        public static string SearchForDataset {
+            get {
+                return ResourceManager.GetString("SearchForDataset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Søk etter organisasjon.
+        /// </summary>
+        public static string SearchForOrginization {
+            get {
+                return ResourceManager.GetString("SearchForOrginization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tjeneste.
+        /// </summary>
+        public static string Service {
+            get {
+                return ResourceManager.GetString("Service", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tema.
+        /// </summary>
+        public static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tittel.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bruksområde.
+        /// </summary>
+        public static string Use {
+            get {
+                return ResourceManager.GetString("Use", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utgave.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

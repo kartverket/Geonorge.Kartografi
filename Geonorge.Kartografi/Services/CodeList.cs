@@ -28,6 +28,14 @@ namespace Geonorge.Kartografi.Services
             {"Retired", "Utgått"},
         };
 
+        public static readonly Dictionary<string, string> StatusEnglish = new Dictionary<string, string>()
+        {
+            {"Submitted", "Submitted"},
+            {"Accepted", "Accepted"},
+            {"Superseded", "Superseded"},
+            {"Retired", "Retired"},
+        };
+
     }
 
 }

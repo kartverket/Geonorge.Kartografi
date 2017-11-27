@@ -1,5 +1,6 @@
 ﻿@using Geonorge.Kartografi.Models
 @using Geonorge.Kartografi.Services
+@using Geonorge.Kartografi.Resources
 @model Geonorge.Kartografi.Models.CartographyFile
 
 <div class="row result-row metadata cartography-metadata">
@@ -9,40 +10,40 @@
         </a>
     </div>
     <div class="col-no-padding-xs col-title col-sm-4 col-md-5">
-        <p><span class="cartography-metadata-name">Eier: </span>@Model.Owner</p>
-        <p><span class="cartography-metadata-name">Beskrivelse: </span>@Model.Description</p>
-        <p><span class="cartography-metadata-name">Bruksområde: </span>@Model.Use</p>
-        <p><span class="cartography-metadata-name">Viktig egenskap for kartografien: </span>@Model.Properties</p>
+        <p><span class="cartography-metadata-name">@UI.Owner: </span>@Model.OwnerTranslated()</p>
+        <p><span class="cartography-metadata-name">@UI.Description: </span>@Model.DescriptionTranslated()</p>
+        <p><span class="cartography-metadata-name">@UI.Use: </span>@Model.UseTranslated()</p>
+        <p><span class="cartography-metadata-name">@UI.Properties: </span>@Model.PropertiesTranslated()</p>
     </div>
 
     <div class="col-no-padding-xs col-sm-3 col-md-2 col-information">
-        <p><span class="cartography-metadata-name">Offisiell: </span>@(Model.OfficialStatus ? "Ja" : "Nei")</p>
-        <p><span class="cartography-metadata-name">Status: </span>@CodeList.Status[Model.Status]</p>
-        <p><span class="cartography-metadata-name">Versjon: </span>@Model.VersionId</p>
+        <p><span class="cartography-metadata-name">@UI.Official: </span>@(Model.OfficialStatus ? UI.Yes : UI.No)</p>
+        <p><span class="cartography-metadata-name">Status: </span>@Model.StatusTranslated()</p>
+        <p><span class="cartography-metadata-name">@UI.Version: </span>@Model.VersionId</p>
         @if (ViewBag.IsAdmin)
         {
-            <p><span>Redigert av: </span>@Model.LastEditedBy</p>
+            <p><span>@UI.LastEditedBy: </span>@Model.LastEditedBy</p>
         }
-        <p><span class="cartography-metadata-name">Sist oppdatert: </span>@Model.DateChanged</p>
+        <p><span class="cartography-metadata-name">@UI.DateChanged: </span>@Model.DateChanged</p>
     </div>
     <div class="col-sm-3">
-        <p><span class="cartography-metadata-name">Datasett: </span>@Model.DatasetName</p>
-        <p><span class="cartography-metadata-name">Datasetteier: </span>@Model.OwnerDataset</p>
-        <p><span class="cartography-metadata-name">Tjeneste: </span>@Model.ServiceName</p>
+        <p><span class="cartography-metadata-name">@UI.DatasetName: </span>@Model.DatasetNameTranslated()</p>
+        <p><span class="cartography-metadata-name">@UI.OwnerDataset: </span>@Model.OwnerDatasetTranslated()</p>
+        <p><span class="cartography-metadata-name">@UI.Service: </span>@Model.ServiceNameTranslated()</p>
     </div>
 </div>
 
         <a href="@Model.FileUrl()" class="btn" target="_blank">
-            <span class="custom-icon custom-icon-eksternlink"></span> Vis fil
+            <span class="custom-icon custom-icon-eksternlink"></span> @UI.DisplayFile
         </a>
         <a href="@VirtualPathUtility.ToAbsolute("~/Files/Download/")@Model.SystemId" class="btn" target="_blank">
-            <span class="glyphicon glyphicon-download-alt"></span> Last ned
+            <span class="glyphicon glyphicon-download-alt"></span> @UI.Download
         </a>
         @if (ViewBag.HasAccess)
         {
-            <a class="btn" href="@VirtualPathUtility.ToAbsolute("~/Files/Edit/")@Model.SystemId"><span class="fa fa-edit"></span> Rediger</a>
-            <a class="btn" href="@VirtualPathUtility.ToAbsolute("~/Files/Delete/")@Model.SystemId"><span class="fa fa-trash"></span> Slett</a>
-            <a class="btn pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Edit/")@Model.SystemId?newversion=true"><span class="fa fa-copy"></span> Legg til ny versjon</a>
+            <a class="btn" href="@VirtualPathUtility.ToAbsolute("~/Files/Edit/")@Model.SystemId"><span class="fa fa-edit"></span> @UI.Edit</a>
+            <a class="btn" href="@VirtualPathUtility.ToAbsolute("~/Files/Delete/")@Model.SystemId"><span class="fa fa-trash"></span> @UI.Delete</a>
+            <a class="btn pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Edit/")@Model.SystemId?newversion=true"><span class="fa fa-copy"></span> @UI.Add @UI.Version</a>
         }
     <div class="clearfix"></div>
 

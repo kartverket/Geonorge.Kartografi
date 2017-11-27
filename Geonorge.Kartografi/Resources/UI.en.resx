@@ -118,208 +118,208 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AcceptedComment" xml:space="preserve">
-    <value>Godkjent kommentar</value>
+    <value>Accepted comment</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Legg til</value>
+    <value>Add</value>
   </data>
   <data name="ApiHelp" xml:space="preserve">
-    <value>API hjelp</value>
+    <value>API help</value>
   </data>
   <data name="AppPageTitle" xml:space="preserve">
     <value>Geonorge kartografi</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Tilbake</value>
+    <value>Back</value>
   </data>
   <data name="CartographyFileInfo" xml:space="preserve">
-    <value>Informasjon om kartografi-filen</value>
+    <value>Information about the cartography file</value>
   </data>
   <data name="CartographyRegistery" xml:space="preserve">
-    <value>Digital kartografi</value>
+    <value>Cartography – specifications (SLD)</value>
   </data>
   <data name="Compatibility" xml:space="preserve">
-    <value>Kompatibel med</value>
+    <value>Compatibility</value>
   </data>
   <data name="ConnectionToDatasetAndService" xml:space="preserve">
-    <value>Knytning til datasett og tjeneste</value>
+    <value>Linking to dataset and service</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Kontakt oss</value>
+    <value>Contact us</value>
   </data>
   <data name="ContainsCartographyFor" xml:space="preserve">
-    <value>Inneholder digital kartografi for</value>
+    <value>Contains digital cartography for</value>
   </data>
   <data name="Current" xml:space="preserve">
-    <value>Gjeldende</value>
+    <value>Current</value>
   </data>
   <data name="DatasetName" xml:space="preserve">
-    <value>Datasettnavn</value>
+    <value>Dataset name</value>
   </data>
   <data name="DateAccepted" xml:space="preserve">
-    <value>Dato godkjent</value>
+    <value>Date accepted</value>
   </data>
   <data name="DateChanged" xml:space="preserve">
-    <value>Sist oppdatert</value>
+    <value>Date changed</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Slett</value>
+    <value>Delete</value>
   </data>
   <data name="DeleteConfirm" xml:space="preserve">
-    <value>Er du sikker på at du vil slette</value>
+    <value>Are you sure you want to delete</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Beskrivelse</value>
+    <value>Description</value>
   </data>
   <data name="DisplayFile" xml:space="preserve">
-    <value>Vis fil</value>
+    <value>Display file</value>
   </data>
   <data name="DisplayOnlyOfficial" xml:space="preserve">
-    <value>Vis kun offisielle</value>
+    <value>Show only official</value>
   </data>
   <data name="DocumentApproval" xml:space="preserve">
-    <value>Dokumentgodkjenning</value>
+    <value>Document approval</value>
   </data>
   <data name="Download" xml:space="preserve">
-    <value>Last ned</value>
+    <value>Download</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Rediger</value>
+    <value>Edit</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Feil</value>
+    <value>Error</value>
   </data>
   <data name="ErrorInfo" xml:space="preserve">
-    <value>Det har desverre skjedd en feil med din forespørsel. Prøv igjen om litt.</value>
+    <value>Unfortunately, an error has occurred with your request. Please try again.</value>
   </data>
   <data name="ErrorReport" xml:space="preserve">
-    <value>&lt;p&gt;Feilen er logget og vil sjekkes av systemansvarlig.&lt;/p&gt;
-&lt;p&gt;Du kan også rapportere feilen til &lt;a mailto:"post@norgedigitalt.no"&gt;post@norgedigitalt.no&lt;/a&gt;.&lt;/p&gt;</value>
+    <value>&lt;p&gt;The error is logged and will be checked by the system administrator.&lt;/p&gt;
+&lt;p&gt;You can also report the error to &lt;a mailto:"post@norgedigitalt.no"&gt;post@norgedigitalt.no &lt;/a&gt;. &lt;/p&gt;</value>
   </data>
   <data name="ExpandAll" xml:space="preserve">
-    <value>Ekspander alle</value>
+    <value>Expand all</value>
   </data>
   <data name="ExplanationOfSymbols" xml:space="preserve">
-    <value>Tegnforklaring</value>
+    <value>Explanation of symbols</value>
   </data>
   <data name="FileName" xml:space="preserve">
-    <value>Kartografi-fil</value>
+    <value>Cartography file</value>
   </data>
   <data name="HelpDescription" xml:space="preserve">
-    <value>Kortfattet tekst om hvordan kartografien ser ut.</value>
+    <value>Brief text on how the cartography looks.</value>
   </data>
   <data name="HelpOfficialStatus" xml:space="preserve">
-    <value>Offisiell: Ja = Filen inneholder kartografi som etaten har bestemt at er gjeldende. Nei = Forslag til kartografi.</value>
+    <value>Official: Yes = The file contains cartography that the agency has determined to be applicable. No = Suggested cartography.</value>
   </data>
   <data name="HelpProperties" xml:space="preserve">
-    <value>En oppramsing av hvilke attributter i datasettet kartografien-reglene benytter.</value>
+    <value>A summary of which attributes in the data set cartography rules apply.</value>
   </data>
   <data name="HelpUse" xml:space="preserve">
-    <value>Kort beskrivelse av hva kartografi-filen kan/bør brukes til.</value>
+    <value>Brief description of what the cartography file may / should be used for.</value>
   </data>
   <data name="Historical" xml:space="preserve">
-    <value>Historiske</value>
+    <value>Historical</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Forside</value>
+    <value>Home</value>
   </data>
   <data name="KartografiContent" xml:space="preserve">
-    <value>Registeret inneholder datasett som har registrert digital kartografi</value>
+    <value>Norwegian NSDI register of cartography definitions – SLD and other formats</value>
   </data>
   <data name="LastEditedBy" xml:space="preserve">
-    <value>Redigert av</value>
+    <value>Edited by</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Laster</value>
+    <value>Loading</value>
   </data>
   <data name="MinimizeAll" xml:space="preserve">
-    <value>Minimer alle</value>
+    <value>Minimize all</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Tegneregelnavn</value>
+    <value>Cartography rule name</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Nei</value>
+    <value>No</value>
   </data>
   <data name="NoFiles" xml:space="preserve">
-    <value>Ingen filer</value>
+    <value>No files</value>
   </data>
   <data name="NotFoundText" xml:space="preserve">
-    <value>Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre.</value>
+    <value>We can not find the page you are looking for, but Geonorge will help you further.</value>
   </data>
   <data name="NotSet" xml:space="preserve">
-    <value>ikke angitt</value>
+    <value>not set</value>
   </data>
   <data name="Objektregisteret" xml:space="preserve">
-    <value>Objektregisteret</value>
+    <value>Feature Catalogue</value>
   </data>
   <data name="Official" xml:space="preserve">
-    <value>Offisiell</value>
+    <value>Official</value>
   </data>
   <data name="Owner" xml:space="preserve">
-    <value>Eier</value>
+    <value>Owner</value>
   </data>
   <data name="OwnerDataset" xml:space="preserve">
-    <value>Datasetteier</value>
+    <value>Owner dataset</value>
   </data>
   <data name="OwnerHeading" xml:space="preserve">
-    <value>Eier av kartografi</value>
+    <value>Owner of Cartography</value>
   </data>
   <data name="PreviewImage" xml:space="preserve">
-    <value>Miniatyrbilde</value>
+    <value>Preview image</value>
   </data>
   <data name="Properties" xml:space="preserve">
-    <value>Viktig egenskap for kartografien</value>
+    <value>Key feature of the cartography</value>
   </data>
   <data name="Proposal" xml:space="preserve">
-    <value>Forslag</value>
+    <value>Proposal</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Registrene</value>
+    <value>Norwegian NSDI registers</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Lagre</value>
+    <value>Save</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Lagre som</value>
+    <value>Save As</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Søk</value>
+    <value>Search</value>
   </data>
   <data name="SearchFor" xml:space="preserve">
-    <value>Søk etter</value>
+    <value>Search for</value>
   </data>
   <data name="SearchForDataset" xml:space="preserve">
-    <value>Søk etter datasett</value>
+    <value>Search for dataset</value>
   </data>
   <data name="SearchForOrginization" xml:space="preserve">
-    <value>Søk etter organisasjon</value>
+    <value>Search for orginization</value>
   </data>
   <data name="Search_AllRegisters" xml:space="preserve">
-    <value>Alle registre</value>
+    <value>All registers</value>
   </data>
   <data name="Search_Heading" xml:space="preserve">
-    <value>Søk i register</value>
+    <value>Search register</value>
   </data>
   <data name="Search_Placeholder" xml:space="preserve">
-    <value>Søk etter registerdata</value>
+    <value>Search for registerdata</value>
   </data>
   <data name="Service" xml:space="preserve">
-    <value>Tjeneste</value>
+    <value>Service</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Tema</value>
+    <value>Theme</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Tittel</value>
+    <value>Title</value>
   </data>
   <data name="Use" xml:space="preserve">
-    <value>Bruksområde</value>
+    <value>Use</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Utgave</value>
+    <value>Version</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Ja</value>
+    <value>Yes</value>
   </data>
 </root>

@@ -2,22 +2,23 @@
 using Geonorge.Kartografi.App_Start;
 using log4net;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using System.Net.Http.Formatting;
 using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Geonorge.Kartografi.Models.Translations;
 
 namespace Geonorge.Kartografi
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(MvcApplication));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(MvcApplication));
 
         protected void Application_Start()
         {
@@ -45,7 +46,24 @@ namespace Geonorge.Kartografi
         {
             Exception ex = Server.GetLastError().GetBaseException();
 
-            log.Error("App_Error", ex);
+            Log.Error("App_Error", ex);
+        }
+
+        protected void Application_BeginRequest()
+        {
+            var cookie = Context.Request.Cookies["_culture"];
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("_culture", Culture.NorwegianCode);
+                HttpContext.Current.Response.Cookies.Add(cookie);
+            }
+
+            if (!string.IsNullOrEmpty(cookie.Value))
+            {
+                var culture = new CultureInfo(cookie.Value);
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+            }
         }
     }
 }

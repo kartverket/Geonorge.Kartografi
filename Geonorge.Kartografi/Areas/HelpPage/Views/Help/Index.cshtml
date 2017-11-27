@@ -2,24 +2,24 @@
 @using System.Web.Http.Controllers
 @using System.Web.Http.Description
 @using System.Collections.ObjectModel
-@using Geonorge.Kartografi.Areas.HelpPage.Models
 @model Collection<ApiDescription>
+    @using Geonorge.Kartografi.Resources
 
 @{
-    ViewBag.Title = "Kartografi help";
+    ViewBag.Title = UI.ApiHelp;
 
     // Group APIs by controller
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
 }
 @section breadcrumb {
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">Digital kartografi</a></li>
-    <li class="active">API hjelp</li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
+    <li class="active">@UI.ApiHelp</li>
 }
 <link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
 <header class="help-page">
     <div class="content-wrapper">
         <div class="float-left">
-            <h1>@ViewBag.Title</h1>
+            <h1>@UI.ApiHelp</h1>
         </div>
     </div>
 </header>

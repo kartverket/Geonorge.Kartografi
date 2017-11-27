@@ -67,12 +67,13 @@ namespace Geonorge.Kartografi.Services
 
                     string filterPropertyName = "";
                     string filterLiteral = "";
+                    XElement filterObject = rule.Element(OGC + "Filter");
 
                     filterPropertyName = rule.Element(OGC + "Filter")?.Element(OGC + "PropertyIsEqualTo")?.Element(OGC + "PropertyName")?.Value;
                     filterLiteral = rule.Element(OGC + "Filter")?.Element(OGC + "PropertyIsEqualTo")?.Element(OGC + "Literal")?.Value;
 
                     List <SldFilter> sldFilters = new List<SldFilter>();
-                    sldFilters.Add(new SldFilter { PropertyName = filterPropertyName, Literal = filterLiteral });
+                    sldFilters.Add(new SldFilter { PropertyName = filterPropertyName, Literal = filterLiteral, FilterObject = filterObject });
 
                     externalGraphicHref = rule.Element(SLD + "PointSymbolizer")?.Element(SLD + "Graphic")
                         ?.Element(SLD + "ExternalGraphic")?.Element(SLD + "OnlineResource")?.Attribute(XLINK + "href")?.Value;

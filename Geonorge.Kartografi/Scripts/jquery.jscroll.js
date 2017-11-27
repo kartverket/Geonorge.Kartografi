@@ -19,7 +19,7 @@
             debug: false,
             autoTrigger: true,
             autoTriggerUntil: false,
-            loadingHtml: '<small>Laster...</small>',
+            loadingHtml: LoadingMessage,
             loadingFunction: false,
             padding: 0,
             nextSelector: 'a:last',

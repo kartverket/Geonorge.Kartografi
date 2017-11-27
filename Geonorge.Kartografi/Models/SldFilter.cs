@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
 
 namespace Geonorge.Kartografi.Models
 {
@@ -9,5 +10,6 @@ namespace Geonorge.Kartografi.Models
     {
         public string PropertyName { get; set; }
         public string Literal { get; set; }
+        public XElement FilterObject { get; set; }
     }
 }

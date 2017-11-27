@@ -1,0 +1,26 @@
+﻿@using Geonorge.Kartografi.Resources
+@using Geonorge.Kartografi.Helpers
+@using Geonorge.Kartografi.Services
+<script>
+    var LoadingMessage = '@UI.Loading';
+    var ExpandAll = '@UI.ExpandAll';
+    var MinimizeAll = '@UI.MinimizeAll';
+    var SearchForOrginization = '@Html.Raw(UI.SearchForOrginization)';
+    var SearchForDataset = '@Html.Raw(UI.SearchForDataset)';
+    @{
+        if (!CultureHelper.IsNorwegian(CultureHelper.GetCurrentCulture()))
+        {
+            @:var statusSubmitted = '@Html.Raw(CodeList.StatusEnglish["Submitted"])';
+            @:var statusAccepted = '@Html.Raw(CodeList.StatusEnglish["Accepted"])';
+            @:var statusSuperseded = '@Html.Raw(CodeList.StatusEnglish["Superseded"])';
+            @:var statusRetired = '@Html.Raw(CodeList.StatusEnglish["Retired"])';
+        }
+        else
+        {
+            @:var statusSubmitted = '@Html.Raw(CodeList.Status["Submitted"])';
+            @:var statusAccepted = '@Html.Raw(CodeList.Status["Accepted"])';
+            @:var statusSuperseded = '@Html.Raw(CodeList.Status["Superseded"])';
+            @:var statusRetired = '@Html.Raw(CodeList.Status["Retired"])';
+        }
+    }
+</script>

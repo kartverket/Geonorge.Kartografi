@@ -2,15 +2,15 @@
 @model Geonorge.Kartografi.Models.CartographyFile
 
 @{
-    ViewBag.Title = "Rediger";
+    ViewBag.Title = UI.Edit;
 }
 @section breadcrumb {
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">Digital kartografi</a></li>
-    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@Model.Name</a></li>
-    <li>Rediger</li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
+    <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@Model.NameTranslated()</a></li>
+    <li>@UI.Edit</li>
 }
 
-<h2>Rediger @Model.Name</h2>
+<h2>@UI.Edit @Model.NameTranslated()</h2>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", id = "cartographyform" }))
 {
@@ -31,7 +31,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-12">
-                        <span class="required">Eier av kartografi</span>
+                        <span class="required">@UI.OwnerHeading</span>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-12">
-                    <span class="required">Informasjon om kartografi-filen</span>
+                    <span class="required">@UI.CartographyFileInfo</span>
                 </div>
             </div>
         </div>
@@ -64,6 +64,18 @@
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
+            @for (int t = 0; t < Model.Translations.Count; t++)
+            {
+                @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Translations[t].Name, Resource.Name(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => Model.Translations[t].Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => Model.Translations[t].Name)
+                    </div>
+                </div>
+            }
             @if (ViewBag.newversion)
             {
             <div class="form-group">
@@ -114,6 +126,19 @@
                 </div>
             </div>
 
+            @for (int t = 0; t < Model.Translations.Count; t++)
+            {
+                @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Translations[t].Description, Resource.Description(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => Model.Translations[t].Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                        @Html.ValidationMessageFor(m => Model.Translations[t].Description)
+                    </div>
+                </div>
+            }
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Use, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
@@ -129,6 +154,19 @@
                     </p>
                 </div>
             </div>
+
+            @for (int t = 0; t < Model.Translations.Count; t++)
+            {
+                @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Translations[t].Use, Resource.Use(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => Model.Translations[t].Use, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                        @Html.ValidationMessageFor(m => Model.Translations[t].Use)
+                    </div>
+                </div>
+            }
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -146,6 +184,19 @@
                 </div>
             </div>
 
+            @for (int t = 0; t < Model.Translations.Count; t++)
+            {
+                @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Translations[t].Properties, Resource.Properties(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => Model.Translations[t].Properties, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                        @Html.ValidationMessageFor(m => Model.Translations[t].Properties)
+                    </div>
+                </div>
+            }
+
             <div class="form-group">
                 @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
@@ -154,18 +205,18 @@
                     </p>
                 @if (ViewBag.newversion)
                 {
-                    <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" : "")  /> <span>Ja</span>
-                    <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" : "") /> <span>Nei</span>
+                    <input type="radio" name="OfficialStatus" value="True" @(Model.OfficialStatus ? "checked='checked'" : "")  /> <span>@UI.Yes</span>
+                    <input type="radio" name="OfficialStatus" value="False" @(!Model.OfficialStatus ? "checked='checked'" : "") /> <span>@UI.No</span>
                 }
                 else
                 {
                     if (Model.OfficialStatus)
                     {
-                        <span>Ja</span>
+                        <span>@UI.Yes</span>
                     }
                     else
                     {
-                        <span>Nei</span>
+                        <span>@UI.No</span>
                     }
                 }
                 </div>
@@ -181,7 +232,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-12">
-                    <span class="required">Knytning til datasett og tjeneste</span>
+                    <span class="required">@UI.ConnectionToDatasetAndService</span>
                 </div>
             </div>
         </div>
@@ -222,7 +273,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-12">
-                    <span>Dokumentgodkjenning</span>
+                    <span>@UI.DocumentApproval</span>
                 </div>
             </div>
         </div>
@@ -255,11 +306,11 @@
     <div class="clearfix"></div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
-        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">Tilbake</a>
-        <input type="submit" value="Lagre" style="margin-left: 15px;" class="btn btn-default pull-right" />
+        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="@VirtualPathUtility.ToAbsolute("~/Files/Details/")@Model.SystemId">@UI.Back</a>
+        <input type="submit" value="@UI.Save" style="margin-left: 15px;" class="btn btn-default pull-right" />
         @if (!(Model.OfficialStatus && Model.Status == "Accepted") && !ViewBag.newversion)
         {
-            <a class="btn btn-default btn-space pull-right" style="margin-left: 15px;" href="@VirtualPathUtility.ToAbsolute("~/Files/Delete/")@Model.SystemId">Slett</a>
+            <a class="btn btn-default btn-space pull-right" style="margin-left: 15px;" href="@VirtualPathUtility.ToAbsolute("~/Files/Delete/")@Model.SystemId">@UI.Delete</a>
         }
 
     </div>

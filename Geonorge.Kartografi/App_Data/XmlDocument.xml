@@ -486,6 +486,23 @@
             List items, optional limit by text
             </summary>
         </member>
+        <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.IsRighToLeft">
+            <summary>
+            Returns true if the language is a right-to-left language. Otherwise, false.
+            </summary>
+        </member>
+        <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.IsNorwegian">
+            <summary>
+            Returns true if current language is norwegian. Otherwise, false.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Geonorge.Kartografi.Helpers.CultureHelper.GetImplementedCulture(System.String)" -->
+        <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.GetDefaultCulture">
+            <summary>
+            Returns default culture name which is the first name decalared (e.g. en-US)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.Name">
             <summary> Navn på kartografiregel/stil.</summary>
         </member>
@@ -634,9 +651,150 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.AcceptedComment">
+            <summary>
+              Looks up a localized string similar to Godkjent kommentar.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Add">
+            <summary>
+              Looks up a localized string similar to Legg til.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ApiHelp">
+            <summary>
+              Looks up a localized string similar to API hjelp.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.AppPageTitle">
             <summary>
               Looks up a localized string similar to Geonorge kartografi.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Back">
+            <summary>
+              Looks up a localized string similar to Tilbake.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.CartographyFileInfo">
+            <summary>
+              Looks up a localized string similar to Informasjon om kartografi-filen.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.CartographyRegistery">
+            <summary>
+              Looks up a localized string similar to Digital kartografi.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Compatibility">
+            <summary>
+              Looks up a localized string similar to Kompatibel med.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ConnectionToDatasetAndService">
+            <summary>
+              Looks up a localized string similar to Knytning til datasett og tjeneste.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ContactUs">
+            <summary>
+              Looks up a localized string similar to Kontakt oss.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ContainsCartographyFor">
+            <summary>
+              Looks up a localized string similar to Inneholder digital kartografi for.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Current">
+            <summary>
+              Looks up a localized string similar to Gjeldende.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DatasetName">
+            <summary>
+              Looks up a localized string similar to Datasettnavn.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DateAccepted">
+            <summary>
+              Looks up a localized string similar to Dato godkjent.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DateChanged">
+            <summary>
+              Looks up a localized string similar to Sist oppdatert.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Delete">
+            <summary>
+              Looks up a localized string similar to Slett.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DeleteConfirm">
+            <summary>
+              Looks up a localized string similar to Er du sikker på at du vil slette.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Description">
+            <summary>
+              Looks up a localized string similar to Beskrivelse.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DisplayFile">
+            <summary>
+              Looks up a localized string similar to Vis fil.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DisplayOnlyOfficial">
+            <summary>
+              Looks up a localized string similar to Vis kun offisielle.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.DocumentApproval">
+            <summary>
+              Looks up a localized string similar to Dokumentgodkjenning.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Download">
+            <summary>
+              Looks up a localized string similar to Last ned.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Edit">
+            <summary>
+              Looks up a localized string similar to Rediger.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Error">
+            <summary>
+              Looks up a localized string similar to Feil.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ErrorInfo">
+            <summary>
+              Looks up a localized string similar to Det har desverre skjedd en feil med din forespørsel. Prøv igjen om litt..
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ErrorReport">
+             <summary>
+               Looks up a localized string similar to &lt;p&gt;Feilen er logget og vil sjekkes av systemansvarlig.&lt;/p&gt;
+            &lt;p&gt;Du kan også rapportere feilen til &lt;a mailto:&quot;post@norgedigitalt.no&quot;&gt;post@norgedigitalt.no&lt;/a&gt;.&lt;/p&gt;.
+             </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ExpandAll">
+            <summary>
+              Looks up a localized string similar to Ekspander alle.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.ExplanationOfSymbols">
+            <summary>
+              Looks up a localized string similar to Tegnforklaring.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.FileName">
+            <summary>
+              Looks up a localized string similar to Kartografi-fil.
             </summary>
         </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.HelpDescription">
@@ -657,6 +815,181 @@
         <member name="P:Geonorge.Kartografi.Resources.UI.HelpUse">
             <summary>
               Looks up a localized string similar to Kort beskrivelse av hva kartografi-filen kan/bør brukes til..
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Historical">
+            <summary>
+              Looks up a localized string similar to Historiske.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Home">
+            <summary>
+              Looks up a localized string similar to Forside.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.KartografiContent">
+            <summary>
+              Looks up a localized string similar to Registeret inneholder datasett som har registrert digital kartografi.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.LastEditedBy">
+            <summary>
+              Looks up a localized string similar to Redigert av.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Loading">
+            <summary>
+              Looks up a localized string similar to Laster.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.MinimizeAll">
+            <summary>
+              Looks up a localized string similar to Minimer alle.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Name">
+            <summary>
+              Looks up a localized string similar to Tegneregelnavn.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.No">
+            <summary>
+              Looks up a localized string similar to Nei.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.NoFiles">
+            <summary>
+              Looks up a localized string similar to Ingen filer.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.NotFoundText">
+            <summary>
+              Looks up a localized string similar to Vi finner ikke siden du leter etter, men Geonorge skal hjelpe deg videre..
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.NotSet">
+            <summary>
+              Looks up a localized string similar to ikke angitt.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Objektregisteret">
+            <summary>
+              Looks up a localized string similar to Objektregisteret.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Official">
+            <summary>
+              Looks up a localized string similar to Offisiell.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Owner">
+            <summary>
+              Looks up a localized string similar to Eier.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.OwnerDataset">
+            <summary>
+              Looks up a localized string similar to Datasetteier.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.OwnerHeading">
+            <summary>
+              Looks up a localized string similar to Eier av kartografi.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.PreviewImage">
+            <summary>
+              Looks up a localized string similar to Miniatyrbilde.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Properties">
+            <summary>
+              Looks up a localized string similar to Viktig egenskap for kartografien.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Proposal">
+            <summary>
+              Looks up a localized string similar to Forslag.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Register">
+            <summary>
+              Looks up a localized string similar to Registrene.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Save">
+            <summary>
+              Looks up a localized string similar to Lagre.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SaveAs">
+            <summary>
+              Looks up a localized string similar to Lagre som.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Search">
+            <summary>
+              Looks up a localized string similar to Søk.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Search_AllRegisters">
+            <summary>
+              Looks up a localized string similar to Alle registre.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Search_Heading">
+            <summary>
+              Looks up a localized string similar to Søk i register.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Search_Placeholder">
+            <summary>
+              Looks up a localized string similar to Søk etter registerdata.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SearchFor">
+            <summary>
+              Looks up a localized string similar to Søk etter.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SearchForDataset">
+            <summary>
+              Looks up a localized string similar to Søk etter datasett.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SearchForOrginization">
+            <summary>
+              Looks up a localized string similar to Søk etter organisasjon.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Service">
+            <summary>
+              Looks up a localized string similar to Tjeneste.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Theme">
+            <summary>
+              Looks up a localized string similar to Tema.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Title">
+            <summary>
+              Looks up a localized string similar to Tittel.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Use">
+            <summary>
+              Looks up a localized string similar to Bruksområde.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Version">
+            <summary>
+              Looks up a localized string similar to Utgave.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.Yes">
+            <summary>
+              Looks up a localized string similar to Ja.
             </summary>
         </member>
     </members>

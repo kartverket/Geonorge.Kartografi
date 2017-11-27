@@ -1,4 +1,5 @@
 ﻿@using Geonorge.Kartografi.Helpers
+@using Geonorge.Kartografi.Resources
 
 <script>
     function registerName(reg) {
@@ -8,17 +9,17 @@
 </script>
 
 <form class="col-md-offset-2 col-md-8 hidden-print" action="@VirtualPathUtility.ToAbsolute("~/Files/index")">
-    <h3 class="h-md" id="register-heading">Søk i register</h3>
+    <h3 class="h-md" id="register-heading">@UI.Search_Heading</h3>
     <div class="input-group input-group-split-on-xs edgesRegistre">
         @*Set edges* class for borders according to dropdown choice*@
         <div class="input-group-btn">
             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                <span id="registerSelected">Digital kartografi</span>
+                <span id="registerSelected">@UI.CartographyRegistery</span>
                 <span class="caret"></span>
             </button>
             <ul class="geonorge-dropdown dropdown-menu" id="search-dropdown" tabindex="-1">
-                <li tabindex="0" onclick="registerName('Alle registre')" class="left-edge-registre"><a href="@Html.RegistryUrl()">Alle registre</a></li>
-                <li tabindex="0" onclick="registerName('Objektregisteret')" class="left-edge-registre"><a href="/">Objektregisteret</a></li>
+                <li tabindex="0" onclick="registerName('Alle registre')" class="left-edge-registre"><a href="@Html.RegistryUrl()">@UI.Search_AllRegisters</a></li>
+                <li tabindex="0" onclick="registerName('Objektregisteret')" class="left-edge-registre"><a href="/">@UI.Objektregisteret</a></li>
                 <li tabindex="0" onclick="registerName('Det offentlige kartgrunnlaget')" class="left-edge-registre"><a href="@Html.RegistryUrl()register/det-offentlige-kartgrunnlaget">Det offentlige kartgrunnlaget</a></li>
                 <li tabindex="0" onclick="registerName('EPSG koder')" class="left-edge-registre"><a href="@Html.RegistryUrl()register/epsg-koder">EPSG koder</a></li>
                 <li tabindex="0" onclick="registerName('GML applikasjonsskjema')" class="left-edge-registre"><a href="@Html.RegistryUrl()register/gml-applikasjonsskjema">GML applikasjonsskjema</a></li>
@@ -32,9 +33,9 @@
             </ul>
 
         </div><!-- /input-group-btn -->
-        <input name="text" style="z-index: 0;" type="text" placeholder="Søk etter registerdata" title="Søk" class="form-control" id="txtSearch" value="@(Request.QueryString["text"] != null ? Request.QueryString["text"].ToString() : "")" />
+        <input name="text" style="z-index: 0;" type="text" placeholder="@UI.Search_Placeholder" title="@UI.Search" class="form-control" id="txtSearch" value="@(Request.QueryString["text"] != null ? Request.QueryString["text"].ToString() : "")" />
         <span class="input-group-btn">
-            <button type="submit" class="show-loading-animation btn" data-loading-message="Henter søkeresultater" style="z-index: 0;">Søk</button>
+            <button type="submit" class="show-loading-animation btn" data-loading-message="@UI.Loading" style="z-index: 0;">@UI.Search</button>
         </span>
     </div>
 </form>
