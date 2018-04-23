@@ -47,15 +47,15 @@ $('.datasetUuidSelect').on('select2:select', function (evt) {
             $("#Theme").val(item.theme);
 
             $('#ServiceUuid').empty();
-            $.getJSON(kartkatalogenUrl+ "api/getdata/" + uuidSelected, function (relatedData) {
+            $.getJSON(kartkatalogenUrl + "api/distributions/" + uuidSelected, function (relatedData) {
                 if (relatedData.length != 0) {
                     $('#ServiceUuid').append($("<option></option>")
                                 .attr("value", "").text("Velg tjeneste"));
-                    for (r = 0 ; r < relatedData.Related.length; r++) {
-                        var related = relatedData.Related[r];
-                        var distributionDetails = related.DistributionDetails;
+                    for (r = 0 ; r < relatedData.length; r++) {
+                        var related = relatedData[r];
+                        var distributionDetails = related;
                         if (distributionDetails != null) {
-                            if (distributionDetails.Name == "" && (distributionDetails.Protocol == "OGC:WMS" || distributionDetails.Protocol == "OGC:WFS")) {
+                            if (distributionDetails.Protocol != "Tjenestelag" && (distributionDetails.Protocol == "WMS-tjeneste" || distributionDetails.Protocol == "WFS-tjeneste")) {
                                 $('#ServiceUuid').append($("<option></option>")
                                     .attr("value", related.Uuid).text(related.Title));
                             }
