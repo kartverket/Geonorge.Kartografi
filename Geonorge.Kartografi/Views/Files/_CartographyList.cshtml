@@ -34,7 +34,7 @@
                             <div class="col-sm-4">
                                 <div class="title-field">
                                     <span>- </span><a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@file.SystemId">@file.NameTranslated()</a>
-                                    <a href="@file.FileUrl()" class="pull-right" target="_blank">
+                                    <a href="@VirtualPathUtility.ToAbsolute("~/Files/Download/")@file.SystemId" class="pull-right" target="_blank">
                                         <span class="glyphicon glyphicon-download-alt"></span>
                                     </a>
                                 </div>
