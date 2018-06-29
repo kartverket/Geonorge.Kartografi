@@ -26,11 +26,11 @@ namespace Geonorge.Kartografi.Models.Api
         [Display(Name = "Datasetteier")]
         public string OwnerDataset { get; set; }
 
-        /// <summary>Filnavn sld/lyr</summary>
+        /// <summary>Filnavn sld/qml/lyr</summary>
         [Display(Name = "Kartografi-fil")]
         public string FileName { get; set; }
 
-        /// <summary>Format:sld/lyr</summary>
+        /// <summary>Format:sld/qml/lyr</summary>
         [Display(Name = "Format")]
         public string Format { get; set; }
 
