@@ -46,7 +46,7 @@ namespace Geonorge.Kartografi.Models
         [Display(Name = "FileName", ResourceType = typeof(UI))]
         public string FileName { get; set; }
 
-        /// <summary>Dropdown (sld/lyr, leses fra kodeliste)</summary>
+        /// <summary>Dropdown (sld/qml/lyr, leses fra kodeliste)</summary>
         [Display(Name = "Format")]
         public string Format { get; set; }
 

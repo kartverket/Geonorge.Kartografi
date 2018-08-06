@@ -10,6 +10,7 @@ namespace Geonorge.Kartografi.Services
         public static readonly Dictionary<string, string> Formats = new Dictionary<string, string>()
         {
             {"sld", "sld"},
+            {"qml", "qml"},
             {"lyr", "lyr"}
         };
 

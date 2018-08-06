@@ -8,6 +8,14 @@
 @Html.Partial("_SearchBarPartial")
 <section class="heading">
     <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="/">@UI.Back</a>
+            @if (Request.IsAuthenticated)
+            {
+                <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Create")">@UI.Add</a>
+            }
+        </div>
+        <div class="clearfix"></div>
         <div class="col-sm-12">
             <h1>
                 @UI.CartographyRegistery
@@ -19,9 +27,8 @@
     </div>
 </section>
 <div class="row">
-
     <div class="col-no-padding-xs col-xs-12 col-sm-10 col-md-10 col-lg-10">
-       @UI.KartografiContent
+        @UI.KartografiContent
     </div>
     <div class="clearfix"></div>
     <div class="col-md-12">
@@ -43,7 +50,7 @@
                     </div>
                 </div>
                 <div id="saveButtons" class="no-padding-bottom save-as-buttons">
-                    @{ string urlCSV = (!HttpContext.Current.Request.Url.Host.Contains("localhost") ? "/register/kartografi" : "") + "/api/kartografi?mediatype=csv&text=" + Request.QueryString["text"] + "&limitofficial="+ ViewBag.limitofficial.ToString();}
+                    @{ string urlCSV = (!HttpContext.Current.Request.Url.Host.Contains("localhost") ? "/register/kartografi" : "") + "/api/kartografi?mediatype=csv&text=" + Request.QueryString["text"] + "&limitofficial=" + ViewBag.limitofficial.ToString();}
                     <a class="btn" id="csvUrl" href="@urlCSV">@UI.Save</a>
                 </div>
             </div>
@@ -52,32 +59,21 @@
     <div class="col-xs-12">
         <a id="expand-all-button" class="margin-top-10"><span class="arrow-icon"></span><span class="button-text">@UI.ExpandAll</span></a>
     </div>
-
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div id="tableView" class="search-results">
             <div class="row search-results-table-heading">
                 <div class="col-sm-4"><p><a href="@VirtualPathUtility.ToAbsolute("~/Files/Index?sortOrder=")@(ViewBag.DatasetNameSortParm)&text=@(ViewBag.text)" class="@(ViewBag.SortOrder.Contains("datasetname") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" )">@UI.Title</a></p></div>
                 <div class="col-sm-4"><p><a href="@VirtualPathUtility.ToAbsolute("~/Files/Index?sortOrder=")@(ViewBag.DatasetOwner)&text=@(ViewBag.text)" class="@(ViewBag.SortOrder.Contains("datasetowner") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" )">@UI.Owner</a></p></div>
-                <div class="col-sm-2"><p><a href="@VirtualPathUtility.ToAbsolute("~/Files/Index?sortOrder=")@(ViewBag.Theme)&text=@(ViewBag.text)" class="@(ViewBag.SortOrder.Contains("theme") ? (ViewBag.SortOrder.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" )">@UI.Theme</a></p></div>         
-                <div class="col-sm-1"><p>@UI.Official</p></div>       
+                <div class="col-sm-2"><p><a href="@VirtualPathUtility.ToAbsolute("~/Files/Index?sortOrder=")@(ViewBag.Theme)&text=@(ViewBag.text)" class="@(ViewBag.SortOrder.Contains("theme") ? (ViewBag.SortOrder.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" )">@UI.Theme</a></p></div>
+                <div class="col-sm-1"><p>@UI.Official</p></div>
                 <div class="col-sm-1"><p>Format</p></div>
             </div>
-
 
             <div class="menu-separator search-results-table-heading"></div>
             <div id="cartographylist" class="scroll">
                 <div class="next"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&limitofficial=@ViewBag.limitofficial.ToString()&text=@Server.UrlEncode(ViewBag.text)">@UI.Loading...</a></div>
             </div>
-         </div>
-       
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
-        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="/">@UI.Back</a>
-        @if (Request.IsAuthenticated)
-        {
-            <a class="btn btn-default btn-space pull-right" href="@VirtualPathUtility.ToAbsolute("~/Files/Create")">@UI.Add</a>
-        }
+        </div>
 
     </div>
 </div>

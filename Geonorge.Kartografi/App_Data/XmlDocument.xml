@@ -516,10 +516,10 @@
             <summary> Eier av datasettet</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.FileName">
-            <summary>Filnavn sld/lyr</summary>
+            <summary>Filnavn sld/qml/lyr</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.Format">
-            <summary>Format:sld/lyr</summary>
+            <summary>Format:sld/qml/lyr</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.Compatibility">
             <summary>Beskrivelse over hva filen skal brukes til. F.eks. style WMS eller GML.</summary>
@@ -588,7 +588,7 @@
             <summary>Opplasting av filen i form av sld/lyr/pdf</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.CartographyFile.Format">
-            <summary>Dropdown (sld/lyr, leses fra kodeliste)</summary>
+            <summary>Dropdown (sld/qml/lyr, leses fra kodeliste)</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.CartographyFile.Compatibility">
             <summary>Beskrivelse over hva filen skal brukes til. F.eks. style WMS eller GML.</summary>
