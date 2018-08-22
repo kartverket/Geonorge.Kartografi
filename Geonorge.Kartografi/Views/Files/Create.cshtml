@@ -286,12 +286,14 @@
         </div>
     </div>
 }
-<script src="@VirtualPathUtility.ToAbsolute("~/Scripts/select2.min.js")"></script>
-<script type="text/javascript" src="~/Scripts/custom.js"></script>
-@if (!string.IsNullOrEmpty(Model.DatasetUuid))
-{
-    @section scripts {
-        <script type="text/javascript">
+@section scripts {
+    <script src="@VirtualPathUtility.ToAbsolute("~/Scripts/select2.min.js")"></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>
+}
+    @if (!string.IsNullOrEmpty(Model.DatasetUuid))
+    {
+        @section scripts {
+            <script type="text/javascript">
     $(document).ready(function () {
         metadata = [];
         option = {}
@@ -310,6 +312,6 @@
 
         $(".datasetUuidSelect").trigger("select2:select");
     });
-        </script>
+            </script>
+        }
     }
-}
