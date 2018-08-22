@@ -14,12 +14,6 @@ namespace Geonorge.Kartografi.Models.Translations
             get
             {
                 var translation = this.FirstOrDefault(x => x.CultureName == culture);
-                if (translation == null)
-                {
-                    translation = new T();
-                    translation.CultureName = culture;
-                    Add(translation);
-                }
 
                 return translation;
             }
