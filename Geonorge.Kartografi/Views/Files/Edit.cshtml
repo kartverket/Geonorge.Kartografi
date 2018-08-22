@@ -319,43 +319,46 @@
 <script src="@VirtualPathUtility.ToAbsolute("~/Scripts/select2.min.js")"></script>
 <script type="text/javascript" src="~/Scripts/custom.js"></script>
 @if (!ViewBag.IsAdmin)
-{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            if ($('#Status option:selected').val() == "Accepted" && $('#newversion').val() == "false")
-                $("#cartographyform :input").prop("disabled", true);
-        });
-    </script>
+{    @section scripts {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                if ($('#Status option:selected').val() == "Accepted" && $('#newversion').val() == "false")
+                    $("#cartographyform :input").prop("disabled", true);
+            });
+        </script>
+     }
 }
 
 @if (!string.IsNullOrEmpty(Model.DatasetUuid))
 {
-    <script type="text/javascript">
-    $(document).ready(function () {
-        metadata = [];
-        option = {}
-        option["id"] = "@Model.DatasetUuid";
-        option["text"] = "@Html.Raw(Model.DatasetName)";
-        option["theme"] = "@Html.Raw(Model.Theme)";
-        option["ownerorganization"] = "@Html.Raw(Model.OwnerDataset)";
+    @section scripts {
+        <script type="text/javascript">
+        $(document).ready(function () {
+            metadata = [];
+            option = {}
+            option["id"] = "@Model.DatasetUuid";
+            option["text"] = "@Html.Raw(Model.DatasetName)";
+            option["theme"] = "@Html.Raw(Model.Theme)";
+            option["ownerorganization"] = "@Html.Raw(Model.OwnerDataset)";
 
-        metadata.push(option);
+            metadata.push(option);
 
-        var data = [{ id: "@Model.DatasetUuid", text: '@Html.Raw(Model.DatasetName)' }];
+            var data = [{ id: "@Model.DatasetUuid", text: '@Html.Raw(Model.DatasetName)' }];
 
-        $(".datasetUuidSelect").select2({
-            data: data
-        })
+            $(".datasetUuidSelect").select2({
+                data: data
+            })
 
-        $(".datasetUuidSelect").trigger("select2:select");
+            $(".datasetUuidSelect").trigger("select2:select");
 
-        $(".serviceUuidSelect").select2({
-            data: [{ id: "@Model.ServiceUuid", text: '@Html.Raw(Model.ServiceName)' }]
-        })
+            $(".serviceUuidSelect").select2({
+                data: [{ id: "@Model.ServiceUuid", text: '@Html.Raw(Model.ServiceName)' }]
+            })
 
-        $(".serviceUuidSelect").trigger("select2:select");
+            $(".serviceUuidSelect").trigger("select2:select");
 
 
-    });
-    </script>
+        });
+        </script>
+    }
 }

@@ -77,40 +77,41 @@
 
     </div>
 </div>
-<script>
+@section scripts {
+    <script>
 
-    function ToogleContent(element)
-    {
-        if ($(element).hasClass("active")) {
-            $(element).removeClass("active");
-            $(element).closest(".dataset-list").removeClass("active");
-        } else {
-            $(element).addClass("active");
-            $(element).closest(".dataset-list").addClass("active");
-        }
-    }
-
-    $(document).ready(function () {
-
-        $("#expand-all-button").click(function () {
-            if ($(this).hasClass("active")) {
-                $(this).removeClass("active");
-                $(".dataset-list").removeClass("active");
-                $(".toggle-content-button").removeClass("active");
-                $(".button-text").text(ExpandAll);
+        function ToogleContent(element) {
+            if ($(element).hasClass("active")) {
+                $(element).removeClass("active");
+                $(element).closest(".dataset-list").removeClass("active");
             } else {
-                $(this).addClass("active");
-                $(".dataset-list").addClass("active");
-                $(".toggle-content-button").addClass("active");
-                $(".button-text").text(MinimizeAll);
+                $(element).addClass("active");
+                $(element).closest(".dataset-list").addClass("active");
             }
+        }
+
+        $(document).ready(function () {
+
+            $("#expand-all-button").click(function () {
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                    $(".dataset-list").removeClass("active");
+                    $(".toggle-content-button").removeClass("active");
+                    $(".button-text").text(ExpandAll);
+                } else {
+                    $(this).addClass("active");
+                    $(".dataset-list").addClass("active");
+                    $(".toggle-content-button").addClass("active");
+                    $(".button-text").text(MinimizeAll);
+                }
+            })
         })
-    })
-</script>
-<script src="@VirtualPathUtility.ToAbsolute("~/Scripts/jquery.jscroll.js")"></script>
-<script>
-      $(function () {
-        $('#cartographylist').jscroll({
+    </script>
+    <script src="@VirtualPathUtility.ToAbsolute("~/Scripts/jquery.jscroll.js")"></script>
+    <script>
+        $(function () {
+            $('#cartographylist').jscroll({
+            });
         });
-      });
-</script>
+    </script>
+}
