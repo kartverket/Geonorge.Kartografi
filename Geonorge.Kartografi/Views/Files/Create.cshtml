@@ -24,273 +24,276 @@
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", id = "cartographyform" }))
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @if(ViewBag.IsAdmin)
-    {
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="required">@UI.OwnerHeading</span>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Owner, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <select class="ownerOrganizationSelect form-control" id="Owner" name="Owner"> </select>
-                    @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-    </div>
-    }
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="required">@UI.CartographyFileInfo</span>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            @for (int t = 0; t < Model.Translations.Count; t++)
-            {
-                @Html.HiddenFor(m => Model.Translations[t].CultureName)
-                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
-                <div class="form-group">
-                    @Html.LabelFor(m => Model.Translations[t].Name, Resource.Name(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => Model.Translations[t].Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(m => Model.Translations[t].Name)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @if (ViewBag.IsAdmin)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="required">@UI.OwnerHeading</span>
+                        </div>
                     </div>
                 </div>
-            }
-            <div class="form-group">
-                @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" id="uploadFile" name="uploadFile" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Compatibility, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("compatibilities", ViewBag.Compatibility as SelectList, String.Empty, new { @class = "form-control compatibilitySelect", multiple = "multiple" })
-                    @Html.ValidationMessageFor(model => model.Compatibility, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" accept="image/*" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    <p class="help-text bg-success" id="help-text-description" style="display: none">
-                        @UI.HelpDescription
-                    </p>
-                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <p class="form-control-static">
-                        <a href="#" data-help-text-id="help-text-description" class="badge help-text-toggle">?</a>
-                    </p>
-                </div>
-            </div>
-
-            @for (int t = 0; t < Model.Translations.Count; t++)
-            {
-                @Html.HiddenFor(m => Model.Translations[t].CultureName)
-                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
-                <div class="form-group">
-                    @Html.LabelFor(m => Model.Translations[t].Description, Resource.Description(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => Model.Translations[t].Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
-                        @Html.ValidationMessageFor(m => Model.Translations[t].Description)
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Owner, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select class="ownerOrganizationSelect form-control" id="Owner" name="Owner"> </select>
+                            @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
-            }
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Use, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    <p class="help-text bg-success" id="help-text-use" style="display: none">
-                        @UI.HelpUse
-                    </p>
-                    @Html.TextAreaFor(model => model.Use, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
-                    @Html.ValidationMessageFor(model => model.Use, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <p class="form-control-static">
-                        <a href="#" data-help-text-id="help-text-use" class="badge help-text-toggle">?</a>
-                    </p>
-                </div>
             </div>
-
-            @for (int t = 0; t < Model.Translations.Count; t++)
-            {
-                @Html.HiddenFor(m => Model.Translations[t].CultureName)
-                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
-                <div class="form-group">
-                    @Html.LabelFor(m => Model.Translations[t].Use, Resource.Use(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => Model.Translations[t].Use, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
-                        @Html.ValidationMessageFor(m => Model.Translations[t].Use)
+        }
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="required">@UI.CartographyFileInfo</span>
                     </div>
                 </div>
-            }
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    <p class="help-text bg-success" id="help-text-properties" style="display: none">
-                        @UI.HelpProperties
-                    </p>
-                    @Html.TextAreaFor(model => model.Properties, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
-                    @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <p class="form-control-static">
-                        <a href="#" data-help-text-id="help-text-properties" class="badge help-text-toggle">?</a>
-                    </p>
-                </div>
             </div>
-
-            @for (int t = 0; t < Model.Translations.Count; t++)
-            {
-                @Html.HiddenFor(m => Model.Translations[t].CultureName)
-                <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+            <div class="panel-body">
                 <div class="form-group">
-                    @Html.LabelFor(m => Model.Translations[t].Properties, Resource.Properties(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => Model.Translations[t].Properties, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
-                        @Html.ValidationMessageFor(m => Model.Translations[t].Properties)
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            }
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    <p class="help-text bg-success" id="help-text-officialstatus" style="display: none">
-                        @UI.HelpOfficialStatus
-                    </p>
-                    <input type="radio" name="OfficialStatus" value="True" /> @UI.Yes <input type="radio" name="OfficialStatus" value="False" /> @UI.No
+                @for (int t = 0; t < Model.Translations.Count; t++)
+                {
+                    @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                    <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.Translations[t].Name, Resource.Name(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => Model.Translations[t].Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => Model.Translations[t].Name)
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="uploadFile" name="uploadFile" />
+                    </div>
                 </div>
-                <div class="col-md-1">
-                    <p class="form-control-static">
-                        <a href="#" data-help-text-id="help-text-officialstatus" class="badge help-text-toggle">?</a>
-                    </p>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Compatibility, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("compatibilities", ViewBag.Compatibility as SelectList, String.Empty, new { @class = "form-control compatibilitySelect", multiple = "multiple" })
+                        @Html.ValidationMessageFor(model => model.Compatibility, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PreviewImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="uploadPreviewImage" name="uploadPreviewImage" accept="image/*" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        <p class="help-text bg-success" id="help-text-description" style="display: none">
+                            @UI.HelpDescription
+                        </p>
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1">
+                        <p class="form-control-static">
+                            <a href="#" data-help-text-id="help-text-description" class="badge help-text-toggle">?</a>
+                        </p>
+                    </div>
+                </div>
+
+                @for (int t = 0; t < Model.Translations.Count; t++)
+                {
+                    @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                    <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.Translations[t].Description, Resource.Description(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => Model.Translations[t].Description, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                            @Html.ValidationMessageFor(m => Model.Translations[t].Description)
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Use, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        <p class="help-text bg-success" id="help-text-use" style="display: none">
+                            @UI.HelpUse
+                        </p>
+                        @Html.TextAreaFor(model => model.Use, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
+                        @Html.ValidationMessageFor(model => model.Use, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1">
+                        <p class="form-control-static">
+                            <a href="#" data-help-text-id="help-text-use" class="badge help-text-toggle">?</a>
+                        </p>
+                    </div>
+                </div>
+
+                @for (int t = 0; t < Model.Translations.Count; t++)
+                {
+                    @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                    <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.Translations[t].Use, Resource.Use(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => Model.Translations[t].Use, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                            @Html.ValidationMessageFor(m => Model.Translations[t].Use)
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Properties, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        <p class="help-text bg-success" id="help-text-properties" style="display: none">
+                            @UI.HelpProperties
+                        </p>
+                        @Html.TextAreaFor(model => model.Properties, new { @class = "form-control", cols = "", rows = "2", style = "min-height: 0;" })
+                        @Html.ValidationMessageFor(model => model.Properties, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1">
+                        <p class="form-control-static">
+                            <a href="#" data-help-text-id="help-text-properties" class="badge help-text-toggle">?</a>
+                        </p>
+                    </div>
+                </div>
+
+                @for (int t = 0; t < Model.Translations.Count; t++)
+                {
+                    @Html.HiddenFor(m => Model.Translations[t].CultureName)
+                    <input type="hidden" name="Translations[@t].CartographyFileId" value="@Model.SystemId" />
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.Translations[t].Properties, Resource.Properties(Model.Translations[t].CultureName), htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => Model.Translations[t].Properties, new { @class = "form-control2", cols = "", rows = "2", style = "min-height: 0;" })
+                            @Html.ValidationMessageFor(m => Model.Translations[t].Properties)
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OfficialStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        <p class="help-text bg-success" id="help-text-officialstatus" style="display: none">
+                            @UI.HelpOfficialStatus
+                        </p>
+                        <input type="radio" name="OfficialStatus" value="True" /> @UI.Yes <input type="radio" name="OfficialStatus" value="False" /> @UI.No
+                    </div>
+                    <div class="col-md-1">
+                        <p class="form-control-static">
+                            <a href="#" data-help-text-id="help-text-officialstatus" class="badge help-text-toggle">?</a>
+                        </p>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="required">@UI.ConnectionToDatasetAndService</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (!string.IsNullOrEmpty(Model.DatasetUuid))
+                        {
+                            @Html.HiddenFor(m => m.DatasetUuid)
+                            <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid" disabled="disabled"></select>
+                        }
+                        else
+                        {
+                            <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"></select>
+                        }
+                        @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.DatasetName)
+                        @Html.HiddenFor(model => model.OwnerDataset)
+                        @Html.HiddenFor(model => model.Theme)
+                        @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ServiceUuid, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="serviceUuidSelect form-control" id="ServiceUuid" name="ServiceUuid"></select>
+                        @Html.ValidationMessageFor(model => model.ServiceUuid, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ServiceName)
+                        @Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>@UI.DocumentApproval</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Status", ViewBag.Statuses as SelectList, String.Empty, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div id="DateAcceptedDiv" class="form-group">
+                    @Html.LabelFor(model => model.DateAccepted, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DateAccepted, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateAccepted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div id="AcceptedCommentDiv" class="form-group">
+                    @Html.LabelFor(model => model.AcceptedComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AcceptedComment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AcceptedComment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
+            <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="@VirtualPathUtility.ToAbsolute("~/")">@UI.Back</a>
+            <input type="submit" value="@UI.Add" style="margin-left: 15px;" class="btn btn-default pull-right" />
+
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="required">@UI.ConnectionToDatasetAndService</span>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="form-group">
-                @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @if (!string.IsNullOrEmpty(Model.DatasetUuid))
-                    {
-                        @Html.HiddenFor(m => m.DatasetUuid)
-                        <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid" disabled="disabled"></select>
-                    }
-                    else
-                    {
-                    <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"></select>
-                    }
-                    @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.DatasetName)
-                    @Html.HiddenFor(model => model.OwnerDataset)
-                    @Html.HiddenFor(model => model.Theme)
-                    @Html.ValidationMessageFor(model => model.DatasetName, "", new { @class = "text-danger" })
-                    @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ServiceUuid, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <select class="serviceUuidSelect form-control" id="ServiceUuid" name="ServiceUuid"></select>
-                    @Html.ValidationMessageFor(model => model.ServiceUuid, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.ServiceName)
-                    @Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-12">
-                    <span>@UI.DocumentApproval</span>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Status", ViewBag.Statuses as SelectList, String.Empty, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div id="DateAcceptedDiv" class="form-group">
-                @Html.LabelFor(model => model.DateAccepted, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DateAccepted, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DateAccepted, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div id="AcceptedCommentDiv" class="form-group">
-                @Html.LabelFor(model => model.AcceptedComment, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.AcceptedComment, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AcceptedComment, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-print">
-        <a class="hidden-print show-loading-animation pull-left" data-loading-message="Henter innhold" href="@VirtualPathUtility.ToAbsolute("~/")">@UI.Back</a>
-        <input type="submit" value="@UI.Add" style="margin-left: 15px;" class="btn btn-default pull-right" />
-
-    </div>
-</div>
 }
-<script src="@VirtualPathUtility.ToAbsolute("~/Scripts/select2.min.js")"></script>
-<script type="text/javascript" src="~/Scripts/custom.js"></script>
-@if (!string.IsNullOrEmpty(Model.DatasetUuid))
-{
-<script type="text/javascript">
+@section scripts {
+    <script src="@VirtualPathUtility.ToAbsolute("~/Scripts/select2.min.js")"></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>
+}
+    @if (!string.IsNullOrEmpty(Model.DatasetUuid))
+    {
+        @section scripts {
+            <script type="text/javascript">
     $(document).ready(function () {
         metadata = [];
         option = {}
@@ -305,9 +308,10 @@
 
         $(".datasetUuidSelect").select2({
             data: data
-        })
+        });
 
         $(".datasetUuidSelect").trigger("select2:select");
     });
-</script>
-}
+            </script>
+        }
+    }
