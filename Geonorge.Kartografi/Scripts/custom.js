@@ -11,7 +11,8 @@ $('.datasetUuidSelect').select2({
                 text: params.term,// search term
                 limit: 10,
                 'facets[0]name': "type",
-                'facets[0]value': "dataset"
+                'facets[0]value': "dataset",
+                'lang': 'no'
             };
         },
         processResults: function (data, params) {
@@ -47,7 +48,7 @@ $('.datasetUuidSelect').on('select2:select', function (evt) {
             $("#Theme").val(item.theme);
 
             $('#ServiceUuid').empty();
-            $.getJSON(kartkatalogenUrl + "api/distributions/" + uuidSelected, function (relatedData) {
+            $.getJSON(kartkatalogenUrl + "api/distributions/" + uuidSelected + '?lang=no', function (relatedData) {
                 if (relatedData.length != 0) {
                     $('#ServiceUuid').append($("<option></option>")
                                 .attr("value", "").text("Velg tjeneste"));
@@ -86,7 +87,8 @@ $('.ownerOrganizationSelect').select2({
                 text: params.term,// search term
                 limit: 10,
                 'facets[0]name': "type",
-                'facets[0]value': "organisasjoner"
+                'facets[0]value': "organisasjoner",
+                'lang': 'no'
             };
         },
         processResults: function (data, params) {
