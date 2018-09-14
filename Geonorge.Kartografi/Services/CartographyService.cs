@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,6 +26,7 @@ namespace Geonorge.Kartografi.Services
         public List<Dataset> GetDatasets(string text = null, bool limitofficial = false)
         {
             var query = _dbContext.CartographyFiles.AsQueryable();
+            query = query.Where(c => c.SystemId == c.versioning.CurrentVersion);
             List<Dataset> datasets;
             var culture = CultureHelper.GetCurrentCulture();
 
