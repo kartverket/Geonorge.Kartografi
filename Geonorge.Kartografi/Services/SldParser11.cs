@@ -84,6 +84,12 @@ namespace Geonorge.Kartografi.Services
                         ?.Element(SE + "ExternalGraphic")?.Element(SE + "OnlineResource")?.Attribute(XLINK + "href")?.Value;
                     }
 
+                    if (string.IsNullOrEmpty(externalGraphicHref))
+                    {
+                        externalGraphicHref = rule.Elements(SE + "PointSymbolizer").ElementAtOrDefault(1)?.Element(SE + "Graphic")
+                        ?.Element(SE + "ExternalGraphic")?.Element(SE + "OnlineResource")?.Attribute(XLINK + "href")?.Value; ;
+                    }
+
 
                     var point = rule.Element(SE + "PointSymbolizer");
 
