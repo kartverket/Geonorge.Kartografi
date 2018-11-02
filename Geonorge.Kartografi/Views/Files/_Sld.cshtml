@@ -341,7 +341,7 @@ if (sld != null)
                     <div class="legend-list-item col-sm-4 col-md-3">
                         @if (!string.IsNullOrEmpty(sld.ExternalGraphicHref))
                         {
-                            <img src="@sld.ExternalGraphicHref" alt="@sld.Name" style="width: 50%;" />
+                            <img src="@sld.ExternalGraphicHref" alt="@sld.Name" style="width: 50%; background-color: @sld.Fill" />
                         }
                         else
                         {
