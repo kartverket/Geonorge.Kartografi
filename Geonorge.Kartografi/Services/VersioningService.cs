@@ -111,7 +111,8 @@ namespace Geonorge.Kartografi.Services
                                          where ca.versioningId == CurrentVersion.versioningId
                                          && ca.SystemId != currentVersionId
                                           && (ca.Status == "Superseded"
-                                          || ca.Status == "Retired")                                        
+                                          || ca.Status == "Retired" 
+                                          || ca.Status == "Accepted")                                        
                                          select ca;
 
             foreach (CartographyFile item in queryResultsHistorical.ToList())
