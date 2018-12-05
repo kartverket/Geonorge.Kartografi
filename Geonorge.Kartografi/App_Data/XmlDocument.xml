@@ -481,7 +481,7 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:Geonorge.Kartografi.Controllers.ApiRootController.GetCartography(System.String,System.Boolean)">
+        <member name="M:Geonorge.Kartografi.Controllers.ApiRootController.GetCartography(System.String,System.Boolean,System.String)">
             <summary>
             List items, optional limit by text
             </summary>

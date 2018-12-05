@@ -33,9 +33,9 @@ namespace Geonorge.Kartografi.Controllers
         /// </summary>
         [Route("api/kartografi")]
         [HttpGet]
-        public List<Models.Api.Cartography> GetCartography([FromUri] string text = null, bool limitofficial = false)
+        public List<Models.Api.Cartography> GetCartography([FromUri] string text = null, bool limitofficial = false, string owner = null)
         {
-            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial), limitofficial);
+            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial, owner), limitofficial);
                        
             return cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).ToList();
         }
