@@ -10,6 +10,7 @@ namespace Geonorge.Kartografi.Models.Api
         public int Count { get; set; }
         public int Offset { get; set; }
         public int Limit { get; set; }
+        public int Total { get; set; }
 
         public List<Models.Api.Cartography> Files { get; set; }
     }

@@ -63,6 +63,7 @@ namespace Geonorge.Kartografi.Controllers
             result.Count = files.Count;
             result.Limit = limit;
             result.Offset = offset;
+            result.Total = cartographyFiles.Count;
 
             return result;
         }
