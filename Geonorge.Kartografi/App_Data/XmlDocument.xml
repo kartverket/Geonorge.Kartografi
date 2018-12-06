@@ -486,6 +486,11 @@
             List items, optional limit by text
             </summary>
         </member>
+        <member name="M:Geonorge.Kartografi.Controllers.ApiRootController.GetCartographyResult(System.String,System.Boolean,System.String,System.Int32,System.Int32)">
+            <summary>
+            List items with limit and offset
+            </summary>
+        </member>
         <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.IsRighToLeft">
             <summary>
             Returns true if the language is a right-to-left language. Otherwise, false.

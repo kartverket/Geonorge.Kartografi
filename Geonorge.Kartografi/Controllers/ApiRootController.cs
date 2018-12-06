@@ -1,4 +1,4 @@
-﻿using Geonorge.Kartografi.Services;
+using Geonorge.Kartografi.Services;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,7 @@ using Geonorge.Kartografi.Models.Translations;
 using System.Net.Http.Headers;
 using System.Globalization;
 using System.Threading;
+using Geonorge.Kartografi.Models.Api;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -43,6 +44,27 @@ namespace Geonorge.Kartografi.Controllers
             var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial, owner), limitofficial);
                        
             return cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).ToList();
+        }
+
+        /// <summary>
+        /// List items with limit and offset
+        /// </summary>
+        [Route("api/cartography")]
+        [HttpGet]
+        public CartographyResult GetCartographyResult([FromUri] string text = null, bool limitofficial = false, string owner = null, int limit = 1000, int offset = 0)
+        {
+            SetLanguage(Request);
+
+            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial, owner), limitofficial);
+            CartographyResult result = new CartographyResult();
+
+            var files = cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).Skip(offset).Take(limit).ToList();
+            result.Files = files;
+            result.Count = files.Count;
+            result.Limit = limit;
+            result.Offset = offset;
+
+            return result;
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
