@@ -1,4 +1,4 @@
-﻿using Geonorge.Kartografi.Services;
+using Geonorge.Kartografi.Services;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,10 @@ using Geonorge.Kartografi.Models;
 using System.Web.Http.Description;
 using Geonorge.Kartografi.Helpers;
 using Geonorge.Kartografi.Models.Translations;
+using System.Net.Http.Headers;
+using System.Globalization;
+using System.Threading;
+using Geonorge.Kartografi.Models.Api;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -33,11 +37,35 @@ namespace Geonorge.Kartografi.Controllers
         /// </summary>
         [Route("api/kartografi")]
         [HttpGet]
-        public List<Models.Api.Cartography> GetCartography([FromUri] string text = null, bool limitofficial = false)
+        public List<Models.Api.Cartography> GetCartography([FromUri] string text = null, bool limitofficial = false, string owner = null)
         {
-            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial), limitofficial);
+            SetLanguage(Request);
+
+            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial, owner), limitofficial);
                        
             return cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).ToList();
+        }
+
+        /// <summary>
+        /// List items with limit and offset
+        /// </summary>
+        [Route("api/cartography")]
+        [HttpGet]
+        public CartographyResult GetCartographyResult([FromUri] string text = null, bool limitofficial = false, string owner = null, int limit = 1000, int offset = 0)
+        {
+            SetLanguage(Request);
+
+            var cartographyFiles = ConvertRegister(_cartographyService.GetDatasets(text, limitofficial, owner), limitofficial);
+            CartographyResult result = new CartographyResult();
+
+            var files = cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).Skip(offset).Take(limit).ToList();
+            result.Files = files;
+            result.Count = files.Count;
+            result.Limit = limit;
+            result.Offset = offset;
+            result.Total = cartographyFiles.Count;
+
+            return result;
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -114,6 +142,34 @@ namespace Geonorge.Kartografi.Controllers
             }
 
             return output;
+        }
+
+        private void SetLanguage(HttpRequestMessage request)
+        {
+            string language = Culture.NorwegianCode;
+
+            IEnumerable<string> headerValues;
+            if (request.Headers.TryGetValues("Accept-Language", out headerValues))
+            {
+                language = headerValues.FirstOrDefault();
+                if (CultureHelper.IsNorwegian(language))
+                    language = Culture.NorwegianCode;
+                else
+                    language = Culture.EnglishCode;
+            }
+            else
+            {
+                CookieHeaderValue cookie = request.Headers.GetCookies("_culture").FirstOrDefault();
+                if (cookie != null && !string.IsNullOrEmpty(cookie["_culture"].Value))
+                {
+                    language = cookie["_culture"].Value;
+                }
+            }
+
+            var culture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
         }
     }
 }
