@@ -98,5 +98,9 @@ namespace Geonorge.Kartografi.Models.Api
 
         /// <summary>Url til thumbnail</summary>
         public string PreviewImageUrl { get; set; }
+
+        /// <summary>Url til detaljer</summary>
+        [Display(Name = "DetailsUrl")]
+        public string DetailsUrl { get; set; }
     }
 }

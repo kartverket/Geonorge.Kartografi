@@ -111,6 +111,7 @@ namespace Geonorge.Kartografi.Controllers
                     file.Use = cartography.UseTranslated();
                     file.Uuid = cartography.SystemId;
                     file.VersionId = cartography.VersionId;
+                    file.DetailsUrl = cartography.DetailsUrl();
 
                     if (limitofficial)
                     {

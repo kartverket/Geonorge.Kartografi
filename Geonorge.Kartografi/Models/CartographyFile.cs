@@ -223,6 +223,11 @@ namespace Geonorge.Kartografi.Models
             return CurrentDomain() + "/files/" + PreviewImage;
         }
 
+        public string DetailsUrl()
+        {
+            return CurrentDomain() + "/files/Details?SystemId=" + SystemId;
+        }
+
         string CurrentDomain()
         {
             return HttpContext.Current.Request.Url.Scheme + System.Uri.SchemeDelimiter
