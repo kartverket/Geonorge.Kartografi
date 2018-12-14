@@ -574,6 +574,9 @@
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.PreviewImageUrl">
             <summary>Url til thumbnail</summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Models.Api.Cartography.DetailsUrl">
+            <summary>Url til detaljer</summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Models.CartographyFile.Name">
             <summary> Navn* på kartografiregel/stil. For eksempel «N50 stier og løyper».</summary>
         </member>
