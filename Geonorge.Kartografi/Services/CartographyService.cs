@@ -32,7 +32,7 @@ namespace Geonorge.Kartografi.Services
 
             if (!string.IsNullOrEmpty(text))
             {
-                query = query.Where(s => s.DatasetName.Contains(text) || s.Description.Contains(text) || s.FileName.Contains(text) || s.Format.Contains(text)
+                query = query.Where(s => s.DatasetName.Contains(text) || s.DatasetUuid.Contains(text) || s.Description.Contains(text) || s.FileName.Contains(text) || s.Format.Contains(text)
                 || s.Name.Contains(text) || s.Properties.Contains(text) || s.Theme.Contains(text) || s.Use.Contains(text)
                 || s.OwnerDataset.Contains(text) || s.Owner.Contains(text) 
                 || s.Translations.Any(d => d.DatasetName.Contains(text)) || s.Translations.Any(d => d.Description.Contains(text))
