@@ -7,12 +7,13 @@ using Autofac.Integration.WebApi;
 using Geonorge.Kartografi.Models;
 using Geonorge.Kartografi.Services;
 using System.Security.Claims;
+using Geonorge.AuthLib.NetFull;
 
 namespace Geonorge.Kartografi.App_Start
 {
     public class DependencyConfig
     {
-        public static void Configure(ContainerBuilder builder)
+        public static IContainer Configure(ContainerBuilder builder)
         {
             ConfigureInfrastructure(builder);
 
@@ -21,6 +22,8 @@ namespace Geonorge.Kartografi.App_Start
             var container = builder.Build();
 
             SetupAspMvcDependencyResolver(container);
+
+            return container;
         }
 
         private static void ConfigureApplicationDependencies(ContainerBuilder builder)
@@ -45,6 +48,7 @@ namespace Geonorge.Kartografi.App_Start
             builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();
             builder.RegisterModule(new AutofacWebTypesModule());
+            builder.RegisterModule<GeonorgeAuthenticationModule>();
         }
     }
 }

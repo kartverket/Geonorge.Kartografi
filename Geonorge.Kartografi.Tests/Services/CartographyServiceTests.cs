@@ -24,7 +24,7 @@ namespace Geonorge.Kartografi.Tests
             var versioning = new Mock<VersioningService>(mockContext.Object);
 
             var claims = new List<Claim>();
-            claims.Add(new Claim("role", "nd.metadata_admin"));
+            claims.Add(new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "nd.metadata_admin"));
             claims.Add(new Claim("organization", "Kartverket"));
             var identity = new ClaimsIdentity(claims, "TestAuthType");
             var claimsPrincipal = new ClaimsPrincipal(identity);
@@ -81,7 +81,7 @@ namespace Geonorge.Kartografi.Tests
         public void UserIsAdmin()
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim("role", "nd.metadata_admin"));
+            claims.Add(new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "nd.metadata_admin"));
             var identity = new ClaimsIdentity(claims, "TestAuthType");
             var claimsPrincipal = new ClaimsPrincipal(identity);
             Thread.CurrentPrincipal = claimsPrincipal;
