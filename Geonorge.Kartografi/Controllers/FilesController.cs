@@ -12,6 +12,12 @@ using PagedList;
 using log4net;
 using System.Collections;
 using Geonorge.Kartografi.Helpers;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.Owin.Security;
+using System.Web.Configuration;
+using Microsoft.Owin.Security.Cookies;
+using System.Security.Claims;
+using Geonorge.AuthLib.Common;
 
 namespace Geonorge.Kartografi.Controllers
 {
@@ -114,7 +120,7 @@ namespace Geonorge.Kartografi.Controllers
             if (Request.IsAuthenticated)
             {
                 ViewBag.HasAccess = _authorizationService.HasAccess(cartographyFile.CurrentVersion.Owner,
-                    _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
+                    ClaimsPrincipal.Current.GetOrganizationName());
                 ViewBag.IsAdmin = _authorizationService.IsAdmin();
             } 
 
@@ -222,7 +228,7 @@ namespace Geonorge.Kartografi.Controllers
             ViewBag.IsAdmin = _authorizationService.IsAdmin();
    
             if (!_authorizationService.HasAccess(originalCartographyFile.Owner,
-                    _authorizationService.GetSecurityClaim("organization").FirstOrDefault()))
+                    ClaimsPrincipal.Current.GetOrganizationName()))
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
             if (!ViewBag.IsAdmin && cartographyFile.Status == "Accepted")
@@ -288,7 +294,7 @@ namespace Geonorge.Kartografi.Controllers
             CartographyFile cartographyFile = _cartographyService.GetCartography(SystemId);
 
             bool hasAccess = _authorizationService.HasAccess(cartographyFile.Owner,
-                _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
+                ClaimsPrincipal.Current.GetOrganizationName());
 
             bool isAdmin = _authorizationService.IsAdmin();
 
@@ -337,7 +343,7 @@ namespace Geonorge.Kartografi.Controllers
             if (Request.IsAuthenticated)
             {
                 ViewBag.HasAccess = _authorizationService.HasAccess(cartographyFile.Owner,
-                    _authorizationService.GetSecurityClaim("organization").FirstOrDefault());
+                    ClaimsPrincipal.Current.GetOrganizationName());
                 ViewBag.IsAdmin = _authorizationService.IsAdmin();
             }
 
@@ -413,6 +419,32 @@ namespace Geonorge.Kartografi.Controllers
 
             ViewBag.Page = pageNumber + 1;
             return PartialView("_CartographyList", datasets);
+        }
+
+
+        public void SignIn()
+        {
+            var redirectUrl = Url.Action(nameof(FilesController.Index), "Files");
+            HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = redirectUrl },
+                OpenIdConnectAuthenticationDefaults.AuthenticationType);
+        }
+
+        public void SignOut()
+        {
+            var redirectUri = WebConfigurationManager.AppSettings["GeoID:PostLogoutRedirectUri"];
+            HttpContext.GetOwinContext().Authentication.SignOut(
+                new AuthenticationProperties { RedirectUri = redirectUri },
+                OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                CookieAuthenticationDefaults.AuthenticationType);
+        }
+
+        /// <summary>
+        /// This is the action responding to /signout-callback-oidc route after logout at the identity provider
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SignOutCallback()
+        {
+            return RedirectToAction(nameof(FilesController.Index), "Files");
         }
 
 
