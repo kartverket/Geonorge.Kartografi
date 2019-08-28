@@ -7,6 +7,8 @@ using System.Data.Entity;
 using System.Text.RegularExpressions;
 using System.IO;
 using Geonorge.Kartografi.Helpers;
+using System.Security.Claims;
+using Geonorge.AuthLib.Common;
 
 namespace Geonorge.Kartografi.Services
 {
@@ -104,7 +106,7 @@ namespace Geonorge.Kartografi.Services
 
         public void AddCartography(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null)
         {
-            string owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+            string owner = ClaimsPrincipal.Current.GetOrganizationName();
             if (_authorizationService.IsAdmin() && !string.IsNullOrEmpty(cartographyFile.Owner))
                 owner = cartographyFile.Owner;
 
@@ -122,7 +124,7 @@ namespace Geonorge.Kartografi.Services
             }
             cartographyFile.FileName = CreateFileName(cartographyFile);
             cartographyFile.Owner = owner;
-            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
+            cartographyFile.LastEditedBy = ClaimsPrincipal.Current.GetUsername();
             _dbContext.CartographyFiles.Add(cartographyFile);
             _dbContext.SaveChanges();
             SaveFile(uploadFile, cartographyFile.FileName);
@@ -150,7 +152,7 @@ namespace Geonorge.Kartografi.Services
                 originalFile.AcceptedComment = file.AcceptedComment;
                 originalFile.DateAccepted = file.DateAccepted;
                 originalFile.DateChanged = DateTime.Now;
-                string owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
+                string owner = ClaimsPrincipal.Current.GetOrganizationName();
                 if (_authorizationService.IsAdmin() && !string.IsNullOrEmpty(file.Owner))
                     owner = file.Owner;
                 originalFile.Owner = owner;
@@ -179,7 +181,7 @@ namespace Geonorge.Kartografi.Services
                 }
             }
 
-            originalFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
+            originalFile.LastEditedBy = ClaimsPrincipal.Current.GetUsername();
             _dbContext.Entry(originalFile).State = EntityState.Modified;
             _dbContext.SaveChanges();
             if (uploadPreviewImage != null)
@@ -203,8 +205,8 @@ namespace Geonorge.Kartografi.Services
                     cartographyFile.Format = extension;
             }
             cartographyFile.FileName = CreateFileName(cartographyFile);
-            cartographyFile.Owner = _authorizationService.GetSecurityClaim("organization").FirstOrDefault();
-            cartographyFile.LastEditedBy = _authorizationService.GetSecurityClaim("username").FirstOrDefault();
+            cartographyFile.Owner = ClaimsPrincipal.Current.GetOrganizationName();
+            cartographyFile.LastEditedBy = ClaimsPrincipal.Current.GetUsername();
             if (string.IsNullOrEmpty(cartographyFile.Status))
                 cartographyFile.Status = "Submitted";
             _dbContext.CartographyFiles.Add(cartographyFile);

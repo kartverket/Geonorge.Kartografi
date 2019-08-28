@@ -491,6 +491,12 @@
             List items with limit and offset
             </summary>
         </member>
+        <member name="M:Geonorge.Kartografi.Controllers.FilesController.SignOutCallback">
+            <summary>
+            This is the action responding to /signout-callback-oidc route after logout at the identity provider
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Geonorge.Kartografi.Helpers.CultureHelper.IsRighToLeft">
             <summary>
             Returns true if the language is a right-to-left language. Otherwise, false.
