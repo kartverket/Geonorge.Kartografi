@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
+using Version = Geonorge.Kartografi.Models.Version;
 
 namespace Geonorge.Kartografi.Tests
 {
@@ -17,9 +18,11 @@ namespace Geonorge.Kartografi.Tests
         public void ShouldAddCartography()
         {
             var mockSet = new Mock<DbSet<CartographyFile>>();
+            var mockSetVersion = new Mock<DbSet<Version>>();
 
             var mockContext = new Mock<CartographyDbContext>();
             mockContext.Setup(m => m.CartographyFiles).Returns(mockSet.Object);
+            mockContext.Setup(m => m.Versions).Returns(mockSetVersion.Object);
 
             var versioning = new Mock<VersioningService>(mockContext.Object);
 
