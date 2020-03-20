@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Geonorge.Kartografi.Models.Translations;
+using Geonorge.Kartografi.Helpers;
 
 namespace Geonorge.Kartografi
 {
@@ -52,9 +53,32 @@ namespace Geonorge.Kartografi
         protected void Application_BeginRequest()
         {
             var cookie = Context.Request.Cookies["_culture"];
+            var userAgent = Context.Request.UserAgent;
+
+            if ((userAgent != null && !userAgent.StartsWith("Mozilla") || userAgent == null))
+                cookie = null;
+
+            var lang = Context.Request.QueryString["lang"];
+            if (!string.IsNullOrEmpty(lang))
+                cookie = null;
+
             if (cookie == null)
             {
-                cookie = new HttpCookie("_culture", Culture.NorwegianCode);
+                var cultureName = Request.UserLanguages != null && Request.UserLanguages.Length > 0 ?
+                    Request.UserLanguages[0] : null;
+
+                if (!string.IsNullOrEmpty(lang))
+                    cultureName = lang;
+
+                cultureName = CultureHelper.GetImplementedCulture(cultureName);
+                if (CultureHelper.IsNorwegian(cultureName))
+                    cookie = new HttpCookie("_culture", Culture.NorwegianCode);
+                else
+                    cookie = new HttpCookie("_culture", Culture.EnglishCode);
+
+                if (!Request.IsLocal)
+                    cookie.Domain = ".geonorge.no";
+                cookie.Expires = DateTime.Now.AddYears(1);
                 HttpContext.Current.Response.Cookies.Add(cookie);
             }
 
