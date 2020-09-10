@@ -71,7 +71,7 @@
 
             <div class="menu-separator search-results-table-heading"></div>
             <div id="cartographylist" class="scroll">
-                <div class="next"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&limitofficial=@ViewBag.limitofficial.ToString()&text=@Server.UrlEncode(ViewBag.text)">@UI.Loading...</a></div>
+                <div class="next"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&limitofficial=@ViewBag.limitofficial.ToString()&text=@Server.UrlEncode(ViewBag.text)&ownerdataset=@Server.UrlEncode(ViewBag.ownerdataset)">@UI.Loading...</a></div>
             </div>
         </div>
 
