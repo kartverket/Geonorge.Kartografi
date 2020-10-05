@@ -25,7 +25,7 @@ namespace Geonorge.Kartografi.Services
             _authorizationService = authorizationService;
         }
 
-        public List<Dataset> GetDatasets(string text = null, bool limitofficial = false, string owner = null)
+        public List<Dataset> GetDatasets(string text = null, bool limitofficial = false, string owner = null, string datasetowner= null)
         {
             var query = _dbContext.CartographyFiles.AsQueryable();
             query = query.Where(c => c.SystemId == c.versioning.CurrentVersion);
@@ -50,6 +50,9 @@ namespace Geonorge.Kartografi.Services
                 if(!string.IsNullOrEmpty(owner))
                     query = query.Where(o => o.Owner == owner);
 
+                if (!string.IsNullOrEmpty(datasetowner))
+                    query = query.Where(o => o.OwnerDataset == datasetowner);
+
                 datasets = query.ToList().Select(d => new { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetNameTranslated(), Theme = d.ThemeTranslated(), OwnerDataset = d.OwnerDatasetTranslated() })
                     .Distinct().Select(x => new Dataset { DatasetUuid = x.DatasetUuid, DatasetName = x.DatasetName, Theme = x.Theme, OwnerDataset = x.OwnerDataset })
                     .ToList();
@@ -62,6 +65,9 @@ namespace Geonorge.Kartografi.Services
 
                 if (!string.IsNullOrEmpty(owner))
                     query = query.Where(o => o.Owner == owner);
+
+                if (!string.IsNullOrEmpty(datasetowner))
+                    query = query.Where(o => o.OwnerDataset == datasetowner);
 
                 datasets = query.ToList().Select(d =>  new { DatasetUuid = d.DatasetUuid, DatasetName = d.DatasetNameTranslated(), Theme = d.ThemeTranslated(), OwnerDataset = d.OwnerDatasetTranslated()  })
                     .Distinct().Select(x => new Dataset { DatasetUuid = x.DatasetUuid, DatasetName = x.DatasetName, Theme = x.Theme, OwnerDataset = x.OwnerDataset })
