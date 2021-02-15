@@ -27,46 +27,52 @@
 <body class="geonorge-container prototype  geonorge">
     <div id="loading-animation" class="loading-animation" style="display: none;"></div>
 
-    @Html.Raw(File.ReadAllText(Server.MapPath("~/dist/partials/Header.html")))
-    @Styles.Render("~/shared-partials-styles")
-    @Styles.Render("~/Content/bower_components/kartverket-felleskomponenter/assets/css/styles")
+    <main-navigation environment="@Html.EnvironmentName()" 
+                     signinurl="@Html.Raw(@Html.UrlActionSignIn())?ReturnUrl=@Server.UrlEncode(Request.Url.AbsoluteUri.ToString())"
+                     signouturl="@Html.Raw(@Html.UrlActionSignOut())"
+                     isLoggedIn="@Request.IsAuthenticated.ToString().ToLower()"
+                     norwegianurl="@Html.Raw(@VirtualPathUtility.ToAbsolute("~/Home/SetCulture?culture="))@Geonorge.Kartografi.Models.Translations.Culture.NorwegianCode&ReturnUrl=@Request.Url"
+                     englishurl="@Html.Raw(@VirtualPathUtility.ToAbsolute("~/Home/SetCulture?culture="))@Geonorge.Kartografi.Models.Translations.Culture.EnglishCode&ReturnUrl=@Request.Url"
+                     language="@CultureHelper.GetCurrentCulture()"></main-navigation>
+        @Styles.Render("~/shared-partials-styles")
+        @Styles.Render("~/Content/bower_components/kartverket-felleskomponenter/assets/css/styles")
 
-    <div class="body-content">
-        <div class="container container-breadcrumbs" id="navTabCont">
-            <ul class="breadcrumbs col-md-12">
-                <li><a href="@Html.GeonorgeUrl()">Geonorge</a></li>
-                <li><a href="@Html.RegistryUrl()">@UI.Register</a></li>
-                @RenderSection("breadcrumb", false)
-            </ul>
-        </div>
-        @if (TempData["success"] != null)
-        {
-            <div class="alert alert-success">
-                @TempData["success"]
-            </div>
-        }
-        @if (TempData["failure"] != null)
-        {
-            <div class="alert alert-danger">
-                @TempData["failure"]
-            </div>
-        }
         <div class="body-content">
-            <div class="container">
-                @RenderBody()
+            <div class="container container-breadcrumbs" id="navTabCont">
+                <ul class="breadcrumbs col-md-12">
+                    <li><a href="@Html.GeonorgeUrl()">Geonorge</a></li>
+                    <li><a href="@Html.RegistryUrl()">@UI.Register</a></li>
+                    @RenderSection("breadcrumb", false)
+                </ul>
+            </div>
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["success"]
+                </div>
+            }
+            @if (TempData["failure"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["failure"]
+                </div>
+            }
+            <div class="body-content">
+                <div class="container">
+                    @RenderBody()
+                </div>
             </div>
         </div>
-    </div>
-    @if (CultureHelper.IsNorwegian())
-    {
-        @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Footer.min.cshtml");
-    }
-    else
-    {
-        @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Footer_eng.min.cshtml");
-    }
-    @Scripts.Render("~/shared-partials-scripts")
-    <script>
+        @if (CultureHelper.IsNorwegian())
+        {
+            @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Footer.min.cshtml");
+        }
+        else
+        {
+            @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Footer_eng.min.cshtml");
+        }
+        @Scripts.Render("~/shared-partials-scripts")
+        <script>
         searchOption.supportsLogin = true;
         searchOption.loginUrl = '@Html.Raw(@Html.UrlActionSignIn())?ReturnUrl=@Server.UrlEncode(Request.Url.AbsoluteUri.ToString())';
         searchOption.logoutUrl = '@Html.Raw(@Html.UrlActionSignOut())';
@@ -77,12 +83,12 @@
             $('.downloads__count').show();
             $('.downloads__count').text(orderItems);
         }
-    </script>
+        </script>
 
-    @Scripts.Render("~/Content/bower_components/kartverket-felleskomponenter/assets/js/scripts")
-    @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Analytics.min.cshtml")
-    <link href="@VirtualPathUtility.ToAbsolute("~/Content/select2.min.css")" rel="stylesheet" />
-    @RenderSection("scripts", required: false)
-
+        @Scripts.Render("~/Content/bower_components/kartverket-felleskomponenter/assets/js/scripts")
+        @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Analytics.min.cshtml")
+        <link href="@VirtualPathUtility.ToAbsolute("~/Content/select2.min.css")" rel="stylesheet" />
+        @RenderSection("scripts", required: false)
+        <script src="https://cdn.jsdelivr.net/npm/@("@kartverket/geonorge-web-components@0.1.33/MainNavigation.js")"></script>
 </body>
 </html>
