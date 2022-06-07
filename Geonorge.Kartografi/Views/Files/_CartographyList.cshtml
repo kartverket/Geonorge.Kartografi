@@ -34,7 +34,7 @@
                             <div class="col-sm-4">
                                 <div class="title-field">
                                     <span>- </span><a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@file.SystemId">@file.NameTranslated()</a>
-                                    <a href="@VirtualPathUtility.ToAbsolute("~/Files/Download/")@file.SystemId" class="pull-right" target="_blank">
+                                    <a href="@VirtualPathUtility.ToAbsolute("~/Files/Download/")@file.SystemId" class="pull-right" target="_blank" alt="Last ned">
                                         <span class="glyphicon glyphicon-download-alt"></span>
                                     </a>
                                 </div>
@@ -46,7 +46,7 @@
 
                             <div class="col-sm-1 official-field">
                                 <div class="custom-checkbox">
-                                    @Html.DisplayFor(modelItem => file.OfficialStatus)
+                                    <input class="check-box" disabled="disabled" @(file.OfficialStatus ? "checked" : "") type="checkbox"  aria-labelledby="official-file">
                                     <span class="checkbox-icon"></span>
                                 </div>
                             </div>
