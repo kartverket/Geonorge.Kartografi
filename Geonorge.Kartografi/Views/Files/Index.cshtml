@@ -65,7 +65,7 @@
                 <div class="col-sm-4"><p><a href="@VirtualPathUtility.ToAbsolute("~/Files/Index?sortOrder=")@(ViewBag.DatasetNameSortParm)&text=@(ViewBag.text)" class="@(ViewBag.SortOrder.Contains("datasetname") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" )">@UI.Title</a></p></div>
                 <div class="col-sm-4"><p><a href="@VirtualPathUtility.ToAbsolute("~/Files/Index?sortOrder=")@(ViewBag.DatasetOwner)&text=@(ViewBag.text)" class="@(ViewBag.SortOrder.Contains("datasetowner") ? (ViewBag.DatasetNameSortParm.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" )">@UI.Owner</a></p></div>
                 <div class="col-sm-2"><p><a href="@VirtualPathUtility.ToAbsolute("~/Files/Index?sortOrder=")@(ViewBag.Theme)&text=@(ViewBag.text)" class="@(ViewBag.SortOrder.Contains("theme") ? (ViewBag.SortOrder.Contains("desc") ? "sorted-desc" : "sorted-asc") : "" )">@UI.Theme</a></p></div>
-                <div class="col-sm-1"><p>@UI.Official</p></div>
+                <div class="col-sm-1"><p id="official-file">@UI.Official</p></div>
                 <div class="col-sm-1"><p>Format</p></div>
             </div>
 

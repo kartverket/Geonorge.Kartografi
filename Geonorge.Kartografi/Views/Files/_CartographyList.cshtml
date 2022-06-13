@@ -1,66 +1,73 @@
-﻿@using Geonorge.Kartografi.Resources
+﻿@using Geonorge.Kartografi.Helpers
+@using Geonorge.Kartografi.Resources
 @model IEnumerable<Geonorge.Kartografi.Models.Dataset>
+<html lang="@CultureHelper.GetCurrentCulture()">
+<head>
+    <title>@UI.AppPageTitle</title>
+</head>
+<body>
+@foreach (var item in Model)
+{
+    <div class="dataset-list metadata" onclick="ToogleContent(this)">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="title-field">
+                    <span class="arrow-icon toggle-content-button"></span><a href="@VirtualPathUtility.ToAbsolute("~/files/files?uuid=")@item.DatasetUuid">@item.DatasetName</a>
+                </div>
+            </div>
 
-    @foreach (var item in Model)
-    {
-        <div class="dataset-list metadata" onclick="ToogleContent(this)">
+            <div class="col-sm-4">
+                <a href="?ownerdataset=@item.OwnerDataset">@Html.DisplayFor(modelItem => item.OwnerDataset)</a>
+            </div>
+
+            <div class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.Theme)
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="file-list">
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="title-field">
-                        <span class="arrow-icon toggle-content-button"></span><a href="@VirtualPathUtility.ToAbsolute("~/files/files?uuid=")@item.DatasetUuid">@item.DatasetName</a>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <a href="?ownerdataset=@item.OwnerDataset">@Html.DisplayFor(modelItem => item.OwnerDataset)</a>
-                </div>
-
-                <div class="col-sm-2">
-                    @Html.DisplayFor(modelItem => item.Theme)
-                </div>
+                <div class="col-sm-10"></div>
 
                 <div class="clearfix"></div>
             </div>
-            <div class="file-list">
-                <div class="row">
-                    <div class="col-sm-10"></div>
-
-                    <div class="clearfix"></div>
-                </div>
-                @foreach (var file in item.Files)
-                {
-                    <div class="file-list-item">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="title-field">
-                                    <span>- </span><a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@file.SystemId">@file.NameTranslated()</a>
-                                    <a href="@VirtualPathUtility.ToAbsolute("~/Files/Download/")@file.SystemId" class="pull-right" target="_blank">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                    </a>
-                                </div>
+            @foreach (var file in item.Files)
+            {
+                <div class="file-list-item">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="title-field">
+                                <span>- </span><a href="@VirtualPathUtility.ToAbsolute("~/files/Details?SystemId=")@file.SystemId">@file.NameTranslated()</a>
+                                <a href="@VirtualPathUtility.ToAbsolute("~/Files/Download/")@file.SystemId" class="pull-right" target="_blank" alt="Last ned">
+                                    <span class="glyphicon glyphicon-download-alt"></span>
+                                </a>
                             </div>
-
-                            <div class="col-sm-6">
-                                @file.OwnerTranslated()
-                            </div>
-
-                            <div class="col-sm-1 official-field">
-                                <div class="custom-checkbox">
-                                    @Html.DisplayFor(modelItem => file.OfficialStatus)
-                                    <span class="checkbox-icon"></span>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-1">
-                                @Html.DisplayFor(modelItem => file.Format)
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
-                    </div>
-                }
-            </div>
 
-        </div>      
-      <hr />
-    }
-    <div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@Server.UrlEncode(ViewBag.text)&limitofficial=@ViewBag.limitofficial.ToString()&ownerdataset=@Server.UrlEncode(ViewBag.ownerdataset)">@UI.Loading....</a></div>
+                        <div class="col-sm-6">
+                            @file.OwnerTranslated()
+                        </div>
+
+                        <div class="col-sm-1 official-field">
+                            <div class="custom-checkbox">
+                                <input class="check-box" disabled="disabled" @(file.OfficialStatus ? "checked" : "") type="checkbox" aria-labelledby="official-file">
+                                <span class="checkbox-icon"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1">
+                            @Html.DisplayFor(modelItem => file.Format)
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <hr />
+}
+<div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@Server.UrlEncode(ViewBag.text)&limitofficial=@ViewBag.limitofficial.ToString()&ownerdataset=@Server.UrlEncode(ViewBag.ownerdataset)">@UI.Loading....</a></div>
+</body>
+</html>
