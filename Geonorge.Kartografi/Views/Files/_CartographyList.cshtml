@@ -6,7 +6,7 @@
     <title>@UI.AppPageTitle</title>
 </head>
 <body>
-@foreach (var item in Model)
+@foreach (var item in Model.Where(f => f.DatasetName != null))
 {
     <div class="dataset-list metadata" onclick="ToogleContent(this)">
         <div class="row">
