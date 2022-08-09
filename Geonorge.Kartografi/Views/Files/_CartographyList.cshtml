@@ -69,5 +69,17 @@
     <hr />
 }
 <div class="last"><a href="@VirtualPathUtility.ToAbsolute("~/Files/CartographyList?page=")@(ViewBag.Page)&sortOrder=@(ViewBag.SortOrder)&text=@Server.UrlEncode(ViewBag.text)&limitofficial=@ViewBag.limitofficial.ToString()&ownerdataset=@Server.UrlEncode(ViewBag.ownerdataset)">@UI.Loading....</a></div>
+
+<script>
+    var id = "cartographylist";
+    if (document.getElementById(id) == null) {
+        var dc = document.createElement("div");
+        dc.setAttribute("id", "official-file");
+        dc.setAttribute("style", "visibility: hidden;");
+        dc.textContent = "@UI.Official";
+        document.body.appendChild(dc);
+    }
+</script>
+
 </body>
 </html>
