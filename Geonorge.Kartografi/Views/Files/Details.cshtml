@@ -8,7 +8,9 @@
 
 @section breadcrumb {
     <li><a href="@VirtualPathUtility.ToAbsolute("~/")">@UI.CartographyRegistery</a></li>
+    @if (Model.CurrentVersion.DatasetUuid != null) { 
     <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Files?uuid=")@Model.CurrentVersion.DatasetUuid">@Model.CurrentVersion.DatasetNameTranslated()</a></li>
+    }
     <li>@Model.CurrentVersion.NameTranslated()</li>
 }
 <section class="heading">
