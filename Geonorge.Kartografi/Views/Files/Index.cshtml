@@ -27,16 +27,16 @@
         <div class="col-md-8">
             <form>
                 <br />
-                <input type="checkbox" name="limitofficial" @(ViewBag.limitofficial ? "checked" : "") value="True" onchange="form.submit();" /> @UI.DisplayOnlyOfficial
+                <input type="checkbox" name="limitofficial" id="limitofficialId" @(ViewBag.limitofficial ? "checked" : "") value="True" onchange="form.submit();" /> <label for="limitofficialId">@UI.DisplayOnlyOfficial</label>
                 <input type="hidden" name="text" value="@ViewBag.text" />
             </form>
         </div>
         <div class="col-md-4">
             <div class="save-as-menu">
-                <label>@UI.SaveAs:</label>
+                <label for="saveas">@UI.SaveAs:</label>
                 <div class="no-padding-bottom save-as-dropdown">
                     <div class="custom-select">
-                        <select onchange="additionalView(this.value)" class="form-control">
+                        <select id="saveas" onchange="additionalView(this.value)" class="form-control">
                             <option value="csvUrl" selected="selected">CSV</option>
                         </select>
                     </div>
