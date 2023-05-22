@@ -527,7 +527,7 @@
             <summary> Eier av datasettet</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.FileName">
-            <summary>Filnavn sld/qml/lyr</summary>
+            <summary>Filnavn sld/qml/lyr/lyrx</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.Api.Cartography.Format">
             <summary>Format:sld/qml/lyr</summary>
@@ -599,7 +599,7 @@
             <summary> Editor. Hentes fra pålogget bruker</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.CartographyFile.FileName">
-            <summary>Opplasting av filen i form av sld/lyr/pdf</summary>
+            <summary>Opplasting av filen i form av sld/lyr/lyrx/pdf</summary>
         </member>
         <member name="P:Geonorge.Kartografi.Models.CartographyFile.Format">
             <summary>Dropdown (sld/qml/lyr, leses fra kodeliste)</summary>
