@@ -11,7 +11,8 @@ namespace Geonorge.Kartografi.Services
         {
             {"sld", "sld"},
             {"qml", "qml"},
-            {"lyr", "lyr"}
+            {"lyr", "lyr"},
+            {"lyrx", "lyrx"},
         };
 
         public static readonly Dictionary<string, string> Compatibility = new Dictionary<string, string>()

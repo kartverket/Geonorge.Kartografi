@@ -26,7 +26,7 @@ namespace Geonorge.Kartografi.Models.Api
         [Display(Name = "Datasetteier")]
         public string OwnerDataset { get; set; }
 
-        /// <summary>Filnavn sld/qml/lyr</summary>
+        /// <summary>Filnavn sld/qml/lyr/lyrx</summary>
         [Display(Name = "Kartografi-fil")]
         public string FileName { get; set; }
 
