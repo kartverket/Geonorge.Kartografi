@@ -12,6 +12,8 @@ $('.datasetUuidSelect').select2({
                 limit: 10,
                 'facets[0]name': "type",
                 'facets[0]value': "dataset",
+                'facets[1]name': "type",
+                'facets[1]value': "series",
                 'lang': 'no'
             };
         },
