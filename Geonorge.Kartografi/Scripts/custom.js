@@ -87,7 +87,7 @@ $('.ownerOrganizationSelect').select2({
         data: function (params) {
             return {
                 text: params.term,// search term
-                limit: 10,
+                limit: 50,
                 'facets[0]name': "type",
                 'facets[0]value': "organisasjoner",
                 'lang': 'no'
