@@ -9,9 +9,11 @@ $('.datasetUuidSelect').select2({
         data: function (params) {
             return {
                 text: params.term,// search term
-                limit: 10,
+                limit: 50,
                 'facets[0]name': "type",
                 'facets[0]value': "dataset",
+                'facets[1]name': "type",
+                'facets[1]value': "series",
                 'lang': 'no'
             };
         },
@@ -85,7 +87,7 @@ $('.ownerOrganizationSelect').select2({
         data: function (params) {
             return {
                 text: params.term,// search term
-                limit: 10,
+                limit: 50,
                 'facets[0]name': "type",
                 'facets[0]value': "organisasjoner",
                 'lang': 'no'

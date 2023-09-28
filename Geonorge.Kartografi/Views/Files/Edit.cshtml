@@ -1,4 +1,4 @@
-﻿@using Geonorge.Kartografi.Resources
+@using Geonorge.Kartografi.Resources
 @model Geonorge.Kartografi.Models.CartographyFile
 
 @{
@@ -240,15 +240,15 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.DatasetUuid, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @if (!string.IsNullOrEmpty(Model.DatasetUuid))
+                        @*@if (!string.IsNullOrEmpty(Model.DatasetUuid))
                         {
                             @Html.HiddenFor(m => m.DatasetUuid)
                             <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid" disabled="disabled"></select>
                         }
                         else
-                        {
+                        {*@
                             <select class="datasetUuidSelect form-control" id="DatasetUuid" name="DatasetUuid"></select>
-                        }
+                        @*}*@
                         @Html.ValidationMessageFor(model => model.DatasetUuid, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.DatasetName)
                         @Html.HiddenFor(model => model.OwnerDataset)
@@ -332,7 +332,7 @@
 
     @if (!string.IsNullOrEmpty(Model.DatasetUuid))
     {
-       <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             metadata = [];
             option = {}
@@ -345,11 +345,19 @@
 
             var data = [{ id: "@Model.DatasetUuid", text: '@Html.Raw(Model.DatasetName)' }];
 
-            $(".datasetUuidSelect").select2({
-                data: data
-            })
 
-            $(".datasetUuidSelect").trigger("select2:select");
+            // create the option and append to Select2
+            var option = new Option('@Html.Raw(Model.DatasetName)', '@Model.DatasetUuid', true, true);
+            $('.datasetUuidSelect').append(option).trigger('change');
+
+            // manually trigger the `select2:select` event
+            $('.datasetUuidSelect').trigger({
+                type: 'select2:select',
+                params: {
+                    data: data
+                }
+            });
+
 
             $(".serviceUuidSelect").select2({
                 data: [{ id: "@Model.ServiceUuid", text: '@Html.Raw(Model.ServiceName)' }]
@@ -359,6 +367,6 @@
 
 
         });
-       </script>
+</script>
      }
 }
