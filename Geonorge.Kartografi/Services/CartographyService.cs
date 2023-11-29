@@ -125,7 +125,7 @@ namespace Geonorge.Kartografi.Services
             {
                 string extension = Path.GetExtension(uploadFile.FileName);
                 extension = extension.Replace(".", "");
-                if ((extension == "sld" || extension == "lyr" || extension == "lyrx" || extension == "qml"))
+                if ((extension == "sld" || extension == "lyr" || extension == "lyrx" || extension == "qml" || extension == "zip"))
                     cartographyFile.Format = extension;
             }
             cartographyFile.FileName = CreateFileName(cartographyFile);
@@ -207,7 +207,7 @@ namespace Geonorge.Kartografi.Services
             {
                 string extension = Path.GetExtension(uploadFile.FileName);
                 extension = extension.Replace(".", "");
-                if ((extension == "sld" || extension == "lyr" || extension == "lyrx" ||  extension == "qml"))
+                if ((extension == "sld" || extension == "lyr" || extension == "lyrx" ||  extension == "qml" || extension == "zip"))
                     cartographyFile.Format = extension;
             }
             cartographyFile.FileName = CreateFileName(cartographyFile);
