@@ -42,11 +42,11 @@ namespace Geonorge.Kartografi.Models
         [Display(Name = "LastEditedBy", ResourceType = typeof(UI))]
         public string LastEditedBy { get; set; }
 
-        /// <summary>Opplasting av filen i form av sld/lyr/lyrx/pdf</summary>
+        /// <summary>Opplasting av filen i form av sld/lyr/lyrx/pdf/zip</summary>
         [Display(Name = "FileName", ResourceType = typeof(UI))]
         public string FileName { get; set; }
 
-        /// <summary>Dropdown (sld/qml/lyr, leses fra kodeliste)</summary>
+        /// <summary>Dropdown (sld/qml/lyr/zip, leses fra kodeliste)</summary>
         [Display(Name = "Format")]
         public string Format { get; set; }
 
