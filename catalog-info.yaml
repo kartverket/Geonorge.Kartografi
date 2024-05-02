@@ -1,0 +1,38 @@
+# nonk8s
+apiVersion: "backstage.io/v1alpha1"
+kind: "Component"
+metadata:
+  name: "Geonorge.Kartografi"
+  tags:
+  - "public"
+spec:
+  type: "website"
+  lifecycle: "production"
+  owner: "datadeling_og_distribusjon"
+  system: "geonorge"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Group"
+metadata:
+  name: "security_champion_Geonorge.Kartografi"
+  title: "Security Champion Geonorge.Kartografi"
+spec:
+  type: "security_champion"
+  parent: "land_security_champions"
+  members:
+  - "dagolav"
+  children:
+  - "resource:Geonorge.Kartografi"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Resource"
+metadata:
+  name: "Geonorge.Kartografi"
+  links:
+  - url: "https://github.com/kartverket/Geonorge.Kartografi"
+    title: "Geonorge.Kartografi på GitHub"
+spec:
+  type: "repo"
+  owner: "security_champion_Geonorge.Kartografi"
+  dependencyOf:
+  - "component:Geonorge.Kartografi"
