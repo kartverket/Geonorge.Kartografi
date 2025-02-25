@@ -427,6 +427,12 @@ namespace Geonorge.Kartografi.Controllers
         public void SignIn()
         {
             var redirectUrl = Url.Action(nameof(FilesController.Index), "Files");
+
+            if (Request.QueryString["ReturnUrl"] != null)
+            {
+                redirectUrl = Request.QueryString["ReturnUrl"];
+            }
+
             HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = redirectUrl },
                 OpenIdConnectAuthenticationDefaults.AuthenticationType);
         }
