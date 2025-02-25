@@ -452,7 +452,8 @@ namespace Geonorge.Kartografi.Controllers
         /// <returns></returns>
         public ActionResult SignOutCallback()
         {
-            return RedirectToAction(nameof(FilesController.Index), "Files");
+            //return RedirectToAction(nameof(FilesController.Index), "Files");
+            return Redirect("/?logout=true");
         }
 
 
