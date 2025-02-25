@@ -103,7 +103,7 @@ namespace Geonorge.Kartografi
                 var loggedInCookie = Context.Request.Cookies["_loggedIn"];
                 if (string.IsNullOrEmpty(Request.QueryString["autologin"]) && loggedInCookie != null && loggedInCookie.Value == "true" && !Request.IsAuthenticated)
                 {
-                    if (Request.Path != "/SignOut" && Request.Path != "/signout-callback-oidc" && Request.QueryString["logout"] != "true" && Request.Path != "/shared-partials-scripts" && Request.Path != "/shared-partials-styles" && Request.Path != "/Content/bower_components/kartverket-felleskomponenter/assets/css/styles" && Request.Path != "/Content/local-styles" && Request.Path != "/Content/bower_components/kartverket-felleskomponenter/assets/js/scripts" && Request.Path != "/Scripts/local-scripts" && Request.Path != "/Files/CartographyList" && Request.Path != VirtualPathUtility.ToAbsolute("~/Files/SignOut") && Request.Path != VirtualPathUtility.ToAbsolute("~/Files/signout-callback-oidc") && Request.Path != VirtualPathUtility.ToAbsolute("~/Files/CartographyList")) { 
+                    if (!Request.Path.Contains("/SignOut") && !Request.Path.Contains("/signout-callback-oidc") && Request.QueryString["logout"] != "true" && !Request.Path.Contains("shared-partials-scripts") && !Request.Path.Contains("shared-partials-styles") && !Request.Path.Contains("kartverket-felleskomponenter") && !Request.Path.Contains("local-styles") && !Request.Path.Contains("local-scripts") && !Request.Path.Contains("CartographyList")) { 
                         var returnUrl = VirtualPathUtility.ToAbsolute("~/Files/SignIn") + "?autologin=true&ReturnUrl=" + redirectUri;
                         Response.Redirect(returnUrl);
                     }
