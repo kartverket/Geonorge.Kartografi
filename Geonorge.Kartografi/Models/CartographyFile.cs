@@ -230,7 +230,12 @@ namespace Geonorge.Kartografi.Models
 
         string CurrentDomain()
         {
-            return HttpContext.Current.Request.Url.Scheme + System.Uri.SchemeDelimiter
+            var urlScheme = HttpContext.Current.Request.Url.Scheme;
+
+            if(!urlScheme.EndsWith("s"))
+                urlScheme += "s";
+
+            return urlScheme + System.Uri.SchemeDelimiter
                  + HttpContext.Current.Request.Url.Host +
                  (HttpContext.Current.Request.Url.IsDefaultPort ? "" : ":" + HttpContext.Current.Request.Url.Port)
                  +(!HttpContext.Current.Request.Url.Host.Contains("localhost") ? "/register/kartografi" : "");
