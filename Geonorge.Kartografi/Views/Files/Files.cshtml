@@ -5,14 +5,14 @@
     <li><a href="@VirtualPathUtility.ToAbsolute("~/Files/Files?uuid=")@Model.FirstOrDefault().DatasetUuid">@Model.FirstOrDefault().DatasetNameTranslated()</a></li>
 }
 @{
-    ViewBag.Title = UI.CartographyRegistery;
+    ViewBag.Title = @Model.FirstOrDefault().DatasetNameTranslated() + " | "  + UI.CartographyRegistery;
 }
 
 <section class="heading">
     <div class="row">
         <div class="col-sm-12">
-            <h1>
-                @UI.CartographyRegistery - @Model.FirstOrDefault().DatasetNameTranslated()
+            <h1 class="shortcut">
+                @Model.FirstOrDefault().DatasetNameTranslated()
             </h1>
         </div>
         <div class="col-sm-12">
