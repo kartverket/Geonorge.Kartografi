@@ -16,5 +16,7 @@ namespace Geonorge.Kartografi.Services
         VersionsItem Versions(Guid? SystemId);
         void AddCartography(CartographyFile cartographyFile, HttpPostedFileBase uploadFile = null, HttpPostedFileBase uploadPreviewImage = null);
         void UpdateCartography(CartographyFile originalFile, CartographyFile file = null, HttpPostedFileBase uploadPreviewImage = null);
+
+        List<Dataset> GetFilesByMetadataUuid(string metadataUuid);
     }
 }

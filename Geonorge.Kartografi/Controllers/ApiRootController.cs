@@ -45,6 +45,18 @@ namespace Geonorge.Kartografi.Controllers
         }
 
         /// <summary>
+        /// List items, optional limit by text
+        /// </summary>
+        [Route("api/kartografi/{metadataUuid}")]
+        [HttpGet]
+        public List<Models.Api.Cartography> GetCartography(string metadataUuid)
+        {
+            var cartographyFiles = ConvertRegister(_cartographyService.GetFilesByMetadataUuid(metadataUuid));
+
+            return cartographyFiles.OrderBy(o => o.DatasetName).ThenBy(oo => oo.Name).ToList();
+        }
+
+        /// <summary>
         /// List items with limit and offset
         /// </summary>
         [Route("api/cartography")]

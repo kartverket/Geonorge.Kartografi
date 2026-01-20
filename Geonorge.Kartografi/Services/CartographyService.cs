@@ -313,6 +313,36 @@ namespace Geonorge.Kartografi.Services
             return filename;
         }
 
+        public List<Dataset> GetFilesByMetadataUuid(string metadataUuid)
+        {
+            if (string.IsNullOrEmpty(metadataUuid))
+                return new List<Dataset>();
+
+            var files = _dbContext.CartographyFiles
+                .Where(c => c.SystemId == c.versioning.CurrentVersion && c.DatasetUuid == metadataUuid)
+                .ToList();
+
+            if (!files.Any())
+                return new List<Dataset>();
+
+            var first = files.First();
+            var dataset = new Dataset
+            {
+                DatasetUuid = first.DatasetUuid,
+                DatasetName = first.DatasetNameTranslated(),
+                Theme = first.ThemeTranslated(),
+                OwnerDataset = first.OwnerDatasetTranslated(),
+                Files = new List<CartographyFile>()
+            };
+
+            foreach (var f in files)
+            {
+                dataset.Files.Add(f);
+            }
+
+            return new List<Dataset> { dataset };
+        }
+
         public static string MakeSeoFriendlyString(string input)
         {
             string encodedUrl = (input ?? "").ToLower();
