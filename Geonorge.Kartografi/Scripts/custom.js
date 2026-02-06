@@ -176,3 +176,17 @@ var OfficialStatus = function (event) {
 
 $("input[type=radio][name=OfficialStatus]").on("change", OfficialStatus);
 OfficialStatus();
+
+$(function () {
+    $(document).on('click', '.help-text-toggle', function (e) {
+        e.preventDefault();
+        var targetId = $(this).data('help-text-id');
+        var $target = $('#' + targetId);
+        // Toggle visibility; ensure block display so bg-success is visible
+        if ($target.is(':visible')) {
+            $target.slideUp(150);
+        } else {
+            $target.css('display', 'block').hide().slideDown(150);
+        }
+    });
+});
