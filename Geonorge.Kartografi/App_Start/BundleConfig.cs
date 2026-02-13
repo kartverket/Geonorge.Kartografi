@@ -21,7 +21,8 @@ namespace Geonorge.Kartografi
                ));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Scripts/jquery-3.7.0.js"
+                "~/Scripts/jquery-3.7.0.js",
+                "~/Scripts/bootstrap.js"
                  ));
 
             bundles.Add(new ScriptBundle("~/node-modules/scripts").Include(
