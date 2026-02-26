@@ -39,22 +39,47 @@ $('.datasetUuidSelect').select2({
     minimumInputLength: 3
 });
 
-$('.datasetUuidSelect').on('select2:select', function (evt) {
+$('.datasetUuidSelect').on('select2:closing', function (evt) {
+    var selectedData = $(this).select2('data')[0];
+    if (selectedData) {
+        // Simulate the select event
+        setTimeout(() => {
+            var fakeEvent = {
+                params: {
+                    data: selectedData
+                }
+            };
+            handleDatasetSelection(fakeEvent);
+        }, 100);
+    }
+});
 
-    var uuidSelected = $("#DatasetUuid").val();
+function handleDatasetSelection(evt) {
+    console.log("Dataset selected:", evt.params.data);
+    var uuidSelected = evt.params.data.id;
 
     $.each(metadata, function (i, item) {
         if (uuidSelected == item.id) {
             $("#DatasetName").val(item.text);
+            var $select = $('.datasetUuidSelect');
+
+            // Clear current selection
+            $select.empty();
+
+            // Add the new option
+            var option = new Option(item.text, item.id, true, true);
+            $select.append(option).trigger('change');
+
             $("#OwnerDataset").val(item.ownerorganization);
             $("#Theme").val(item.theme);
 
             $('#ServiceUuid').empty();
             $.getJSON(kartkatalogenUrl + "api/distributions/" + uuidSelected + '?lang=no', function (relatedData) {
+                $('#ServiceUuid').empty();
                 if (relatedData.length != 0) {
                     $('#ServiceUuid').append($("<option></option>")
-                                .attr("value", "").text("Velg tjeneste"));
-                    for (r = 0 ; r < relatedData.length; r++) {
+                        .attr("value", "").text("Velg tjeneste"));
+                    for (r = 0; r < relatedData.length; r++) {
                         var related = relatedData[r];
                         var distributionDetails = related;
                         if (distributionDetails != null) {
@@ -67,8 +92,11 @@ $('.datasetUuidSelect').on('select2:select', function (evt) {
                 }
             });
         }
-    })
+    });
+}
 
+$('.datasetUuidSelect').on('select2:select', function (evt) {
+    handleDatasetSelection(evt);
 });
 
 $('#ServiceUuid').on('change', function () {
