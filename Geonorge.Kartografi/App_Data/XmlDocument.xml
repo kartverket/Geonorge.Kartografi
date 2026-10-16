@@ -654,6 +654,27 @@
         <member name="P:Geonorge.Kartografi.Models.CartographyFile.Theme">
             <summary>Hentes automatisk fra metadata. Inn i db eller koples dette i visningsapplikasjon? Tematisk hovedkategori i metadataene</summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Models.SldFill.Graphic">
+            <summary>Pattern fill (GraphicFill)</summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Models.SldGraphic.WellKnownName">
+            <summary>Mark name in lower case without "shape://" prefix, e.g. circle, square, horline</summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Models.SldGraphic.Size">
+            <summary>Size in pixels, null when not given in the SLD</summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Models.SldRule.Filter">
+            <summary>Human readable version of the rule filter, null when the rule has no filter</summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Models.SldRule.Symbolizers">
+            <summary>Symbolizers in painting order, may come from several FeatureTypeStyles</summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Models.SldStroke.Graphic">
+            <summary>Repeated symbol along the line (GraphicStroke)</summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Models.SldSymbolizer.Type">
+            <summary>point, line, polygon, text or raster</summary>
+        </member>
         <member name="T:Geonorge.Kartografi.Resources.UI">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -986,6 +1007,21 @@
               Looks up a localized string similar to Tjeneste.
             </summary>
         </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SldElseFilter">
+            <summary>
+              Looks up a localized string similar to Alle andre objekter.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SldFilter">
+            <summary>
+              Looks up a localized string similar to Spørring.
+            </summary>
+        </member>
+        <member name="P:Geonorge.Kartografi.Resources.UI.SldScale">
+            <summary>
+              Looks up a localized string similar to Målestokk.
+            </summary>
+        </member>
         <member name="P:Geonorge.Kartografi.Resources.UI.Theme">
             <summary>
               Looks up a localized string similar to Tema.
@@ -1010,6 +1046,36 @@
             <summary>
               Looks up a localized string similar to Ja.
             </summary>
+        </member>
+        <member name="T:Geonorge.Kartografi.Services.SldFilterFormatter">
+            <summary>Formats an OGC/FES filter as readable text, e.g. "avKlasse = 'Matfisk' AND areal > 10"</summary>
+        </member>
+        <member name="T:Geonorge.Kartografi.Services.SldLegendRenderer">
+            <summary>
+            Renders a legend symbol for an SLD rule as inline SVG in a 100x100 viewBox.
+            All symbolizers in the rule are painted in order, like a map renderer would.
+            </summary>
+        </member>
+        <member name="M:Geonorge.Kartografi.Services.SldLegendRenderer.PointScale(Geonorge.Kartografi.Models.SldRule)">
+            <summary>Points share one scale so stacked marks keep their relative size</summary>
+        </member>
+        <member name="M:Geonorge.Kartografi.Services.SldLegendRenderer.Pattern(Geonorge.Kartografi.Models.SldGraphic,System.Xml.Linq.XElement)">
+            <summary>Adds a tile pattern for a GraphicFill and returns its id</summary>
+        </member>
+        <member name="M:Geonorge.Kartografi.Services.SldLegendRenderer.MarkPath(System.String,System.Double,System.Double,System.Double,System.Boolean@)">
+            <summary>Path for a well known mark, centered on (cx, cy) and fitting in a square of the given size</summary>
+        </member>
+        <member name="T:Geonorge.Kartografi.Services.SldParser">
+            <summary>
+            Parses SLD 1.0 and SLD 1.1/SE 1.1 documents. Elements are matched on local name only,
+            so the sld:, se: and ogc: namespaces (and CssParameter/SvgParameter) are handled alike.
+            </summary>
+        </member>
+        <member name="M:Geonorge.Kartografi.Services.SldParser.Parse(System.Xml.Linq.XDocument,System.String)">
+            <param name="baseUrl">Used to resolve relative ExternalGraphic references</param>
+        </member>
+        <member name="M:Geonorge.Kartografi.Services.SldParser.ExpressionText(System.Xml.Linq.XElement)">
+            <summary>Value of a parameter or expression, null if it depends on feature attributes</summary>
         </member>
     </members>
 </doc>

@@ -629,6 +629,33 @@ namespace Geonorge.Kartografi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alle andre objekter.
+        /// </summary>
+        public static string SldElseFilter {
+            get {
+                return ResourceManager.GetString("SldElseFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spørring.
+        /// </summary>
+        public static string SldFilter {
+            get {
+                return ResourceManager.GetString("SldFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Målestokk.
+        /// </summary>
+        public static string SldScale {
+            get {
+                return ResourceManager.GetString("SldScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tema.
         /// </summary>
         public static string Theme {
