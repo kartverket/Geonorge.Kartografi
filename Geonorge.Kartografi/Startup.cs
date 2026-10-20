@@ -3,11 +3,13 @@ using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Configuration;
 using Autofac;
 using Autofac.Integration.Owin;
 using Geonorge.AuthLib.Common;
 using Geonorge.Kartografi.App_Start;
+using log4net;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Owin;
@@ -23,6 +25,7 @@ namespace Geonorge.Kartografi
 {
     public class Startup
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(Startup));
         private const string NonceCookiePrefix = "OpenIdConnect.nonce.";
 
         public void Configuration(IAppBuilder app)
@@ -86,8 +89,9 @@ namespace Geonorge.Kartografi
                     },
                     AuthenticationFailed = context =>
                     {
+                        Log.Error("OpenID Connect authentication failed", context.Exception);
                         context.HandleResponse();
-                        context.Response.Redirect("/?errormessage=" + context.Exception.Message);
+                        context.Response.Redirect(VirtualPathUtility.ToAbsolute("~/") + "?errormessage=" + Uri.EscapeDataString(context.Exception.Message));
                         return Task.FromResult(0);
                     },
                     RedirectToIdentityProvider = context =>
@@ -110,7 +114,7 @@ namespace Geonorge.Kartografi
                                 .Where(k => k.StartsWith(NonceCookiePrefix))
                                 .ToList();
                             foreach (var key in nonceKeys)
-                                cookieManager.DeleteCookie(context.OwinContext, key, new CookieOptions { HttpOnly = true, Secure = context.Request.IsSecure, SameSite = SameSiteMode.None });
+                                cookieManager.DeleteCookie(context.OwinContext, key, new CookieOptions { HttpOnly = true, Secure = context.Request.IsSecure, SameSite = Microsoft.Owin.SameSiteMode.None });
                         }
                         else if (context.ProtocolMessage.RequestType == OpenIdConnectRequestType.Logout)
                         {

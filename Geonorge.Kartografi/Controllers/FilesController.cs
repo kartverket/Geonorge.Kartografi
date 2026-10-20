@@ -230,7 +230,7 @@ namespace Geonorge.Kartografi.Controllers
    
             if (!_authorizationService.HasAccess(originalCartographyFile.Owner,
                     ClaimsPrincipal.Current.GetOrganizationName()))
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
 
             if (!ViewBag.IsAdmin && cartographyFile.Status == "Accepted")
             {
@@ -301,7 +301,7 @@ namespace Geonorge.Kartografi.Controllers
 
             if (!hasAccess)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             if (cartographyFile.OfficialStatus && cartographyFile.Status == "Accepted" && !isAdmin)
