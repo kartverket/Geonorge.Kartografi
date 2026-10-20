@@ -47,6 +47,9 @@ namespace Geonorge.Kartografi
             app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
+                // Other Geonorge apps on the same host (e.g. register.geonorge.no) use the default ".AspNet.Cookies" with path "/".
+                // Sharing the name makes the apps overwrite each other's auth cookie, logging the user out and triggering new logins.
+                CookieName = ".AspNet.Kartografi",
                 CookieManager = new SystemWebChunkingCookieManager()
             });
 
