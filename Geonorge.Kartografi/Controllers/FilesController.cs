@@ -433,16 +433,7 @@ namespace Geonorge.Kartografi.Controllers
                 redirectUrl = Request.QueryString["ReturnUrl"];
             }
 
-            // Each challenge adds a new nonce cookie that is only removed on a successful callback.
-            // Remove leftovers from earlier unfinished logins so they don't accumulate and overflow the request headers.
-            var owinContext = HttpContext.GetOwinContext();
-            foreach (var cookie in owinContext.Request.Cookies.ToList())
-            {
-                if (cookie.Key.Contains("OpenIdConnect.nonce."))
-                    owinContext.Response.Cookies.Delete(cookie.Key, new Microsoft.Owin.CookieOptions { Path = "/", HttpOnly = true, Secure = true });
-            }
-
-            owinContext.Authentication.Challenge(new AuthenticationProperties { RedirectUri = redirectUrl },
+            HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = redirectUrl },
                 OpenIdConnectAuthenticationDefaults.AuthenticationType);
         }
 
