@@ -307,6 +307,15 @@
   <data name="Service" xml:space="preserve">
     <value>Tjeneste</value>
   </data>
+  <data name="SldElseFilter" xml:space="preserve">
+    <value>Alle andre objekter</value>
+  </data>
+  <data name="SldFilter" xml:space="preserve">
+    <value>Spørring</value>
+  </data>
+  <data name="SldScale" xml:space="preserve">
+    <value>Målestokk</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Tema</value>
   </data>

@@ -307,6 +307,15 @@
   <data name="Service" xml:space="preserve">
     <value>Service</value>
   </data>
+  <data name="SldElseFilter" xml:space="preserve">
+    <value>All other features</value>
+  </data>
+  <data name="SldFilter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="SldScale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
   </data>

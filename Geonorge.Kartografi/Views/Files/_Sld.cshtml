@@ -1,329 +1,39 @@
 ﻿@using Geonorge.Kartografi.Models
 @using Geonorge.Kartografi.Services
 @using Geonorge.Kartografi.Resources
-@using Newtonsoft.Json;
 @model Geonorge.Kartografi.Models.CartographyFile
 @{
-    List<SldLayer> sldLayers = new SldParser().Get(Model.FileUrl());
+    List<SldLayer> sldLayers = Model.Format == "sld" ? new SldParser().Get(Model.FileUrl()) : new List<SldLayer>();
+    var legendRenderer = new SldLegendRenderer();
 }
 
 @functions {
 
-    List<SldRule> moreSymbols;
-    double sizeForPreviousSymbol;
-
-    public class ViewBox
+    string Tooltip(SldRule rule)
     {
-        public double X { get; set; } = 0;
-        public double Y { get; set; } = 0;
-        public double W { get; set; } = 100;
-        public double H { get; set; } = 100;
+        var lines = new List<string> { rule.Label };
+
+        if (!string.IsNullOrEmpty(rule.Abstract))
+            lines.Add(rule.Abstract);
+
+        if (rule.Filter != null)
+            lines.Add(UI.SldFilter + ": " + rule.Filter);
+        else if (rule.IsElseFilter)
+            lines.Add(UI.SldFilter + ": " + UI.SldElseFilter);
+
+        if (rule.MinScaleDenominator.HasValue || rule.MaxScaleDenominator.HasValue)
+        {
+            string min = rule.MinScaleDenominator.HasValue ? "1:" + rule.MinScaleDenominator.Value.ToString("#,0") : "";
+            string max = rule.MaxScaleDenominator.HasValue ? "1:" + rule.MaxScaleDenominator.Value.ToString("#,0") : "";
+            lines.Add(UI.SldScale + ": " + min + " – " + max);
+        }
+
+        return string.Join("\n", lines.Where(l => !string.IsNullOrEmpty(l)));
     }
 
-    public ViewBox CalculateViewBox(ViewBox view, SldRule sld)
-    {
-        double skaleringstall = sizeForPreviousSymbol / sld.Size ;
-
-        view.W = 100 * skaleringstall;
-        view.H = view.W;
-
-        view.X = -(view.W - 100) / 2;
-        view.Y = view.X;
-
-        return view;
-    }
-
 }
 
-@helper DisplayMoreSymbols(SldRule sld, ViewBox box)
-{
-var ruleSymbol = moreSymbols.Where(p => p.Parent == sld.Identifier).FirstOrDefault();
-if (ruleSymbol != null)
-{
-    box = CalculateViewBox(box, ruleSymbol);
-    @DisplaySldRule(ruleSymbol, box)
-}
-}
-
-@helper DisplaySymbolTitle(SldRule sld)
-{
-    <title>
-    @if(sld.SldFilters != null && !string.IsNullOrEmpty(sld.SldFilters[0].PropertyName) && !string.IsNullOrEmpty(sld.SldFilters[0].Literal))
-    {
-        @:Spørring: @sld.SldFilters[0].PropertyName: @sld.SldFilters[0].Literal
-    }
-    else if(sld.SldFilters != null && sld.SldFilters[0].FilterObject != null)
-    {
-        @:Spørring: se kartografi-fil for detaljer
-    }
-@if (!string.IsNullOrEmpty(sld.Fill))
-{ 
-@:Farge = @sld.Fill 
-}
-    </title>
-}
-
-@helper DisplaySldRule(SldRule sld, ViewBox box)
-{
-
-var viewBox = box.X + " " + box.Y + " " + box.W + " " + box.H;
-viewBox = viewBox.Replace(",", ".");
-
-if (sld != null)
-{
-
-        <svg width="100" height="100" viewBox="@viewBox">
-            @if (sld.Symbolizer == "line")
-            {
-                <line stroke-dasharray="@sld.StrokeDasharray" x1="0" y1="50" x2="100" y2="50"
-                      stroke-width="8" stroke="@sld.Stroke" >
-                    @DisplaySymbolTitle(sld)
-                </line>
-                    @DisplayMoreSymbols(sld, box)
-            }
-            else if (sld.WellKnownName == "circle")
-            {
-                <circle cx="50" cy="50" r="40"
-                        stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke">
-                    @DisplaySymbolTitle(sld)
-                </circle>
-                        @DisplayMoreSymbols(sld, box)
-
-            }
-            else if ((sld.WellKnownName == "square" || sld.WellKnownName == "") && !string.IsNullOrEmpty(sld.Fill))
-            {
-
-                <rect width="100" height="100"
-                      fill="@sld.Fill" stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke">
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                    @DisplayMoreSymbols(sld, box)
-
-            }
-            else if (sld.WellKnownName == "triangle")
-            {
-
-                <polygon points="50,0 100,100 0,100"
-                         fill="@sld.Fill" stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke">
-                    @DisplaySymbolTitle(sld)
-                </polygon>
-                    @DisplayMoreSymbols(sld, box)
-
-
-            }
-            else if (sld.Symbolizer == "point" && (sld.WellKnownName == "cross" || sld.WellKnownName == "cross_fill"))
-            {
-
-                <rect width="20" height="100" x="40" y="0"
-                      stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke" >
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                            <rect width="100" height="20" x="0" y="40"
-                                  stroke-width="@sld.StrokeWidth" fill="@sld.Fill" stroke="@sld.Stroke" />
-                    <!--Trengte denne, hvis ikke ble det "stroke" over delen i midten-->
-                            <rect width="20" height="25" x="40" y="38" fill="@sld.Fill" />
-                            @DisplayMoreSymbols(sld, box)
-
-            }
-            else if (sld.WellKnownName == "cross2")
-            {
-
-                <polygon points="0,0 100,100"
-                         stroke="@sld.Stroke" fill="@sld.Fill" stroke-width="@sld.StrokeWidth" >
-                    @DisplaySymbolTitle(sld)
-                </polygon>
-                                <polygon points="0,100 100,0"
-                                         stroke="@sld.Stroke" fill="@sld.Fill" stroke-width="@sld.StrokeWidth" />
-                                        @DisplayMoreSymbols(sld, box)
-
-            }
-            else if (sld.WellKnownName == "star")
-            {
-
-                <g fill="@sld.Fill" fill-opacity="1" stroke="@sld.Stroke" stroke-opacity="1" stroke-width="2" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
-                   font-family="MS Shell Dlg 2" font-size="8.25" font-weight="400" font-style="normal">
-                    <path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M0,40 L35,40 L50,0 L65,40 L100,40 L65,60, L80,100 L50,70 L20,100 L35,60 L0,40" />
-                @DisplaySymbolTitle(sld)
-                </g>
-                @DisplayMoreSymbols(sld, box)
-
-            }
-            else if (sld.WellKnownName == "line")
-            {
-
-                    <!--Denne er for bakgrunnnen/kanten rundt-->
-                <rect width="100" height="100"
-                      fill="rgb(255,255,255)" stroke-width="4" stroke="rgb(0,0,0)" >
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                    <!--Her starter linjene-->
-                            <rect width="1" height="90" x="13" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="26" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="39" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="51" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="64" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="75" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="88" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                @DisplayMoreSymbols(sld, box)
-
-            }
-            else if (sld.WellKnownName == "horline")
-            {
-                    <!--Denne er for bakgrunnnen/kanten rundt-->
-                <rect width="100" height="100"
-                      fill="rgb(255,255,255)" stroke-width="4" stroke="rgb(0,0,0)" >
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                    <!--Her starter linjene-->
-                            <rect width="90" height="1" x="5" y="13"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="26"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="39"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="51"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="64"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="75"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="88"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                @DisplayMoreSymbols(sld, box)
-            }
-            else if (sld.Symbolizer == "polygon" && sld.WellKnownName == "cross")
-            {
-                    <!--Denne er for bakgrunnnen/kanten rundt-->
-                <rect width="100" height="100"
-                      fill="rgb(255,255,255)" stroke-width="4" stroke="rgb(0,0,0)">
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                    <!--Her starter linjene-->
-                            <rect width="90" height="1" x="5" y="13"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="26"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="39"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="51"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="64"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="75"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="90" height="1" x="5" y="88"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="13" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="26" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="39" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="51" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="64" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="75" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                            <rect width="1" height="90" x="88" y="5"
-                                  stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                @DisplayMoreSymbols(sld, box)
-            }
-            else if (sld.WellKnownName == "slash")
-            {
-                <rect width="100" height="100"
-                      fill="rgb(255,255,255)" stroke-width="4" stroke="rgb(0,0,0)" >
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                            <polygon points="5,95 95,5"
-                                     stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                <polygon points="5,75 75,5"
-                                         stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,50 50,5"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,25 25,5"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="25,95 95,25"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="50,95 95,50"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="75,95 95,75"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                            @DisplayMoreSymbols(sld, box)
-            }
-            else if (sld.WellKnownName == "backslash")
-            {
-
-                <rect width="100" height="100"
-                      fill="rgb(255,255,255)" stroke-width="4" stroke="rgb(0,0,0)" >
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                            <polygon points="5,5 95,95"
-                                     stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                <polygon points="5,25 75,95"
-                                         stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,50 50,95"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,75 25,95"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="25,5 95,75"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="50,5 95,50"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="75,5 95,25"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                            @DisplayMoreSymbols(sld, box)
-
-            }
-            else if (sld.WellKnownName == "x")
-            {
-                <rect width="100" height="100"
-                      fill="rgb(255,255,255)" stroke-width="4" stroke="rgb(0,0,0)" >
-                    @DisplaySymbolTitle(sld)
-                </rect>
-                            <polygon points="5,5 95,95"
-                                     stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                <polygon points="5,25 75,95"
-                                         stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,50 50,95"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,75 25,95"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="25,5 95,75"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="50,5 95,50"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="75,5 95,25"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,95 95,5"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,75 75,5"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,50 50,5"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="5,25 25,5"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="25,95 95,25"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="50,95 95,50"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                    <polygon points="75,95 95,75"
-                                             stroke-width="@sld.StrokeWidth" stroke="@sld.Stroke" />
-                                            @DisplayMoreSymbols(sld, box)
-            }
-        </svg>
-}
-
-}
-
-@if (sldLayers != null)
+@if (sldLayers.Count > 0)
 {
     <article class="legend-list">
         <h3>@UI.ExplanationOfSymbols</h3>
@@ -336,25 +46,13 @@ if (sld != null)
                 <h4>@sldLayer.Name</h4>
             }
             <div class="row">
-                @foreach (var sld in sldLayer.Rules)
+                @foreach (var rule in sldLayer.Rules)
                 {
-                    <div class="legend-list-item col-sm-4 col-md-3">
-                        @if (!string.IsNullOrEmpty(sld.ExternalGraphicHref))
-                        {
-                            <img src="@sld.ExternalGraphicHref" alt="@sld.Name" style="width: 50%; background-color: @sld.Fill @(sld.WellKnownName == "circle" ? "; border-radius: 50%;" : "")" />
-                        }
-                        else
-                        {
-                            moreSymbols = sld.MoreSymbols;
-                            ViewBox viewBoxDefault = new ViewBox();
-                            if (sld.MoreSymbols.Count > 0) {
-                                sizeForPreviousSymbol = (double)sld.Size;
-                            }
-                            @DisplaySldRule(sld, viewBoxDefault)
-                        }
+                    <div class="legend-list-item col-sm-4 col-md-3" title="@Tooltip(rule)">
+                        @Html.Raw(legendRenderer.Render(rule))
                         <div class="sld-name">
                             <span>
-                                @sld.Name
+                                @rule.Label
                             </span>
                         </div>
                     </div>

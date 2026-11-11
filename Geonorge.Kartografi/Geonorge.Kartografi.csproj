@@ -433,9 +433,12 @@
     <Compile Include="Models\Compatibility.cs" />
     <Compile Include="Models\Dataset.cs" />
     <Compile Include="Models\NotFoundModel.cs" />
-    <Compile Include="Models\SldFilter.cs" />
+    <Compile Include="Models\SldFill.cs" />
+    <Compile Include="Models\SldGraphic.cs" />
     <Compile Include="Models\SldLayer.cs" />
     <Compile Include="Models\SldRule.cs" />
+    <Compile Include="Models\SldStroke.cs" />
+    <Compile Include="Models\SldSymbolizer.cs" />
     <Compile Include="Models\Translations\CartographyFileTranslation.cs" />
     <Compile Include="Models\Translations\Culture.cs" />
     <Compile Include="Models\Translations\Translation.cs" />
@@ -461,9 +464,9 @@
     <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\ICartographyService.cs" />
     <Compile Include="Services\IVersioningService.cs" />
+    <Compile Include="Services\SldFilterFormatter.cs" />
+    <Compile Include="Services\SldLegendRenderer.cs" />
     <Compile Include="Services\SldParser.cs" />
-    <Compile Include="Services\SldParser10.cs" />
-    <Compile Include="Services\SldParser11.cs" />
     <Compile Include="Services\VersioningService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

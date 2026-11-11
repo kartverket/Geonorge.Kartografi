@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Geonorge.Kartografi.Models
 {
     public class SldRule
     {
-        public string Symbolizer { get; set; }
         public string Name { get; set; }
-        public string WellKnownName { get; set; }
-        public string Fill { get; set; }
-        public string Stroke { get; set; }
-        public string StrokeWidth { get; set; }
-        public string StrokeDasharray { get; set; }
-        public int Size { get; set; }
-        public string ExternalGraphicHref { get; set; }
-        public List<SldRule> MoreSymbols { get; set; }
-        public string Identifier { get; set; }
-        public string Parent { get; set; }
-        public List<SldFilter> SldFilters { get; set; }
+        public string Title { get; set; }
+        public string Abstract { get; set; }
+
+        /// <summary>Human readable version of the rule filter, null when the rule has no filter</summary>
+        public string Filter { get; set; }
+        public bool IsElseFilter { get; set; }
+        public double? MinScaleDenominator { get; set; }
+        public double? MaxScaleDenominator { get; set; }
+
+        /// <summary>Symbolizers in painting order, may come from several FeatureTypeStyles</summary>
+        public List<SldSymbolizer> Symbolizers { get; set; } = new List<SldSymbolizer>();
+
+        public string Label => !string.IsNullOrWhiteSpace(Title) ? Title : Name;
     }
 }
